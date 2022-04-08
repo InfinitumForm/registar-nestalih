@@ -1,5 +1,7 @@
 # REGISTAR NESTALIH
 
+Prvi WordPress plugin za Registar nestalih lica u Republici Srbiji.
+
 ## NESTALI NE SMEJU BITI I NEVIDLJIVI
 
 Brojni nestanci dece i maloletnih lica na godišnjem nivou u Srbiji, alarm su koji se napravedno ignoriše. O nestancima mnogih se ne zna ništa, već samo mali broj njih, zahvaljujući angažovanosti porodice, dopre do društvenih mreža i medija, kada zapravo i započinje javna potraga.
