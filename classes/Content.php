@@ -16,6 +16,7 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 	// PRIVATE: Main construct
 	private function __construct() {
 		add_action( 'registar_nestalih_pagination', [$this, 'do_pagination'] );
+		add_action( 'registar_nestalih_breadcrumb', [$this, 'do_breadcrumb'] );
 	}
 	
 	// Render content from template
@@ -42,6 +43,11 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		$current_url.= '://' . ($_SERVER['HTTP_HOST'] ?? '') . ($_SERVER['REQUEST_URI'] ?? '') . ($_SERVER['QUERY_STRING'] ?? '');
 
 		Registar_Nestalih_Template::get('pagination', $response);
+	}
+	
+	// Render breadcrumb
+	public function do_breadcrumb( $response ){
+		/* TO DO */
 	}
 	
 } endif;

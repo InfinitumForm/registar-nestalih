@@ -85,6 +85,10 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 				'class' => 'Registar_Nestalih_Content',
 				'load' => true
 			],
+			__DIR__ . '/classes/Rewrite.php' => [
+				'class' => 'Registar_Nestalih_Rewrite',
+				'load' => true
+			],
 			__DIR__ . '/classes/Shortcodes.php' => [
 				'class' => 'Registar_Nestalih_Shortcodes',
 				'load' => true
