@@ -1,6 +1,10 @@
 # REGISTAR NESTALIH
 
-Prvi WordPress plugin za Registar nestalih lica u Republici Srbiji.
+Prvi WordPress plugin za [Registar nestalih lica u Republici Srbiji](https://www.nestalisrbija.rs/).
+
+Ovaj plugin je u fazi izrade i još nije za javnu upotrebu.
+
+Naknadno ćemo da pustimo obaveštenje kada zvanična verzija bude gotova.
 
 ## NESTALI NE SMEJU BITI I NEVIDLJIVI
 
