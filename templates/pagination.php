@@ -13,7 +13,9 @@ global $missing_response, $last_page, $current_url;
 			echo !((absint($missing_response->current_page)-1) > 0) ? ' disabled' : '';
 		?>" rel="prev" title="<?php esc_attr_e('Previous', 'registar-nestalih'); ?>" href="<?php
 			if((absint($missing_response->current_page)-1) > 0) {
-				echo add_query_arg(['lista'=>(absint($missing_response->current_page)-1)], $current_url);
+				echo add_query_arg([
+					'lista'=>(absint($missing_response->current_page)-1)
+				], $current_url);
 			} else {
 				echo 'javascript:void(0);';
 			}
@@ -23,7 +25,9 @@ global $missing_response, $last_page, $current_url;
 			echo !((absint($missing_response->current_page)+1) <= $last_page) ? ' disabled' : '';
 		?>" title="<?php esc_attr_e('Next', 'registar-nestalih'); ?>" href="<?php
 			if((absint($missing_response->current_page)+1) <= $last_page) {
-				echo add_query_arg(['lista'=>(absint($missing_response->current_page)+1)], $current_url);
+				echo add_query_arg([
+					'lista'=>(absint($missing_response->current_page)+1)
+				], $current_url);
 			} else {
 				echo 'javascript:void(0);';
 			}

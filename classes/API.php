@@ -30,7 +30,8 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			'per_page',
 			'page',
 			'search',
-			'order'
+			'order',
+			'id'
 		];
 	
 		$query = array_filter($query, function($value, $key) use ($query_allowed){

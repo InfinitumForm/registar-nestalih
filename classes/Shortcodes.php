@@ -27,25 +27,37 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	
 	// Register Nestalih
 	public function callback__registar_nestalih	($attr, $content='', $tag) {
+		global $wp_query;
+		
 		$attr = shortcode_atts( [
 			'per_page'	=> 20,
-			'page'		=> 1,
+			'page'		=> $wp_query->get( 'lista' ) ?? 1,
 			'search'	=> NULL,
 			'order'		=> '-id',
+			'person'	=> absint($wp_query->get( 'person_id' ) ?? 0)
 		], $attr, $tag );
 		
-		$query = [
-			'paginate'	=> 'true',
-			'per_page'	=> absint($attr['per_page']),
-			'page'		=> absint($attr['page']),
-			'search'	=> $attr['search'],
-			'order'		=> $attr['order']
-		];
-		
+		if( $attr['person'] && $attr['person'] > 0 ) {
+			$query = [
+				'id' => $attr['person']
+			];
+		} else {
+			$query = [
+				'paginate'	=> 'true',
+				'per_page'	=> absint($attr['per_page']),
+				'page'		=> absint($attr['page']),
+				'search'	=> $attr['search'],
+				'order'		=> $attr['order']
+			];
+		}
 		
 		$response = Registar_Nestalih_API::get( $query );
 		
-		return Registar_Nestalih_Content::render('missing-persons', $response);
+		if( $attr['person'] && $attr['person'] > 0 ) {
+			return Registar_Nestalih_Content::render('single', $response);
+		} else {
+			return Registar_Nestalih_Content::render('missing-persons', $response);
+		}
 	}
 	
 } endif;

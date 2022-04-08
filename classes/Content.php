@@ -23,9 +23,15 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 	public static function render ( string $type = 'missing-persons', $response = [] ) {
 		ob_start();
 			switch ($type) {
+				
 				case 'missing-persons':
 					Registar_Nestalih_Template::get('missing-persons', $response);
 					break;
+				
+				case 'single':
+					Registar_Nestalih_Template::get('single', $response);
+					break;
+				
 			}
 		return ob_get_clean();
 	}

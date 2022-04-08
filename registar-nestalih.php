@@ -1,24 +1,22 @@
 <?php
 /**
- * Plugin Name: Register of Missing Persons of Serbia
- * Plugin URI: https://www.nestalisrbija.rs/
- * Description: Show on your site all missing persons from the central Register of Missing Persons of Serbia
- * Version: 1.0.0
- * Author: Ivijan-Stefan Sipić
- * Author URI: https://infinitumform.com/
- * Requires at least: 3.8
- * Tested up to: 3.9
- * Requires PHP: 7.0
- * WC requires at least: 3.1.0
- * WC tested up to: 4.0.1
- * License: GPL v2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: registar-nestalih
- * Domain Path: /languages
- * Network: true
- * Update URI: https://github.com/InfinitumForm/registar-nestalih
+ * Plugin Name:       Register of Missing Persons of Serbia
+ * Plugin URI:        https://www.nestalisrbija.rs/
+ * Description:       Show on your site all missing persons from the central Register of Missing Persons of Serbia
+ * Version:           1.0.0
+ * Author:            Ivijan-Stefan Sipić
+ * Author URI:        https://infinitumform.com/
+ * Requires at least: 5.0
+ * Tested up to:      5.9
+ * Requires PHP:      7.0
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       registar-nestalih
+ * Domain Path:       /languages
+ * Network:           true
+ * Update URI:        https://github.com/InfinitumForm/registar-nestalih
  *
- * Copyright (C) 2015-2022 Ivijan-Stefan Stipic
+ * Copyright (C) 2022 Ivijan-Stefan Stipic
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,7 +64,15 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 	
 	// PRIVATE: Main construct
 	private function __construct() {
-		add_action('plugins_loaded', [$this, 'register_textdomain'], 10, 0);
+		// Register activation hook
+		register_activation_hook( MISSING_PERSONS_FILE,  [ $this, 'register_plugin_activation' ] );
+		// Register deactivation hook
+		register_deactivation_hook( MISSING_PERSONS_FILE,  [ $this, 'register_plugin_deactivation' ] );
+		// On plugin uninstallation
+		register_uninstall_hook( MISSING_PERSONS_FILE,  [ $this, 'uninstall_plugin' ] );
+		// Load translations
+		add_action( 'plugins_loaded', [ $this, 'register_textdomain' ], 10, 0 );
+		// Register plugin classes
 		$this->register_plugin_classes();
 	}
 	
@@ -117,12 +123,69 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		}
 	}
 	
-	// Register site translations
-	public function register_textdomain() {
-		if ( is_textdomain_loaded( self::TEXTDOMAIN ) && apply_filters('registar_nestalih_unload_textdomain', false) ) {
+	// On plugin Activation
+	public function register_plugin_activation () {
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+		
+		// Reload textdomain on update
+		if ( is_textdomain_loaded( self::TEXTDOMAIN ) ) {
 			unload_textdomain( self::TEXTDOMAIN );
 		}
 		
+		// Let's save activation dates
+		if($activation = get_option(self::TEXTDOMAIN . '-activation')) {
+			$activation[] = date('Y-m-d H:i:s');
+			update_option(self::TEXTDOMAIN . '-activation', $activation, false);
+		} else {
+			add_option(self::TEXTDOMAIN . '-activation', [date('Y-m-d H:i:s')], false);
+		}
+		
+		// Flush rewrite rules
+		flush_rewrite_rules();
+	}
+	
+	// On plugin Dectivation
+	public function register_plugin_deactivation () {
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+		
+		// Reload textdomain on update
+		if ( is_textdomain_loaded( self::TEXTDOMAIN ) ) {
+			unload_textdomain( self::TEXTDOMAIN );
+		}
+		
+		// Add deactivation date
+		if($deactivation = get_option(self::TEXTDOMAIN . '-deactivation')) {
+			$deactivation[] = date('Y-m-d H:i:s');
+			update_option(self::TEXTDOMAIN . '-deactivation', $deactivation, false);
+		} else {
+			add_option(self::TEXTDOMAIN . '-deactivation', [date('Y-m-d H:i:s')], false);
+		}
+		
+		// Flush rewrite rules
+		flush_rewrite_rules();
+	}
+	
+	// On plugin uninstallation
+	public function uninstall_plugin () {
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+
+		// Delete options
+		if(get_option(self::TEXTDOMAIN . '-activation')) {
+			delete_option(self::TEXTDOMAIN . '-activation');
+		}
+		if(get_option(self::TEXTDOMAIN . '-deactivation')) {
+			delete_option(self::TEXTDOMAIN . '-deactivation');
+		}
+	}
+	
+	// Register site translations
+	public function register_textdomain() {		
 		// Get locale
 		$locale = apply_filters( 'registar_nestalih_locale', get_locale(), self::TEXTDOMAIN );
 		

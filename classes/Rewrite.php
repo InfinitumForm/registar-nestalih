@@ -15,29 +15,46 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 	
 	// PRIVATE: Main construct
 	private function __construct() {
-		add_action( 'init', [$this, 'add_rewrite_rule'] );
+		add_action( 'init', [$this, 'add_rewrite_rule'], 1 );
 		add_action( 'query_vars', [$this, 'query_vars'] );
-		add_action( 'parse_request', [$this, 'parse_request'] );
 	}
 	
 	// Add rewrite rules
 	public function add_rewrite_rule () {
-		add_rewrite_rule('nestali/(\d*)$', 'index.php?nestali=$matches[1]', 'top');
+		global $wp;
+		
+		add_rewrite_tag('%list%', '([^&]+)');
+		add_rewrite_tag('%person_id%', '([^&]+)');
+		add_rewrite_tag('%person_name%', '([^&]+)');
+		
+		$page_id = 44; // update 2 TEST
+		$page_data = get_post( $page_id );
+		
+		if( ! is_object($page_data) ) { // post not there
+			return;
+		}
+		
+		// Paginaton
+		add_rewrite_rule(
+			$page_data->post_name . '/lista/([0-9]+)[/]?$',
+			'index.php?pagename=' . $page_data->post_name . '&list=$matches[1]',
+			'top'
+		);
+		
+		// Person
+		add_rewrite_rule(
+			$page_data->post_name . '/osoba/([0-9]+)/([^/]*)[/]?$',
+			'index.php?pagename=' . $page_data->post_name . '&person_id=$matches[1]&person_name=$matches[2]',
+			'top'
+		);
 	}
 	
 	// Add rewrite query vars
-	function query_vars( $query_vars )
-	{
-		$query_vars[] = 'nestali';
+	function query_vars( $query_vars ) {
+		$query_vars[] = 'list';
+		$query_vars[] = 'person_id';
+		$query_vars[] = 'person_name';
 		return $query_vars;
-	}
-	
-	// We must parse request to get content from template
-	function parse_request( &$wp ){
-		if ( array_key_exists( 'nestali', $wp->query_vars ) ) {
-			Registar_Nestalih_Template::get('nestali', $response); /* TO DO!!! */
-			exit();
-		}
 	}
 	
 } endif;
