@@ -65,11 +65,11 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 	// PRIVATE: Main construct
 	private function __construct() {
 		// Register activation hook
-		register_activation_hook( MISSING_PERSONS_FILE,  [ $this, 'register_plugin_activation' ] );
+		register_activation_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'register_plugin_activation' ] );
 		// Register deactivation hook
-		register_deactivation_hook( MISSING_PERSONS_FILE,  [ $this, 'register_plugin_deactivation' ] );
+		register_deactivation_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'register_plugin_deactivation' ] );
 		// On plugin uninstallation
-		register_uninstall_hook( MISSING_PERSONS_FILE,  [ $this, 'uninstall_plugin' ] );
+		register_uninstall_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'uninstall_plugin' ] );
 		// Load translations
 		add_action( 'plugins_loaded', [ $this, 'register_textdomain' ], 10, 0 );
 		// Register plugin classes
@@ -124,7 +124,7 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 	}
 	
 	// On plugin Activation
-	public function register_plugin_activation () {
+	public static function register_plugin_activation () {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
@@ -147,7 +147,7 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 	}
 	
 	// On plugin Dectivation
-	public function register_plugin_deactivation () {
+	public static function register_plugin_deactivation () {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
@@ -170,7 +170,7 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 	}
 	
 	// On plugin uninstallation
-	public function uninstall_plugin () {
+	public static function uninstall_plugin () {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
