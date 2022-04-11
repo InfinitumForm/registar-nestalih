@@ -31,10 +31,10 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		
 		$attr = shortcode_atts( [
 			'per_page'	=> 20,
-			'page'		=> $wp_query->get( 'lista' ) ?? 1,
+			'page'		=> $wp_query->get( 'registar_nestalih_list' ) ?? 1,
 			'search'	=> NULL,
 			'order'		=> '-id',
-			'person'	=> absint($wp_query->get( 'person_id' ) ?? 0)
+			'person'	=> absint($wp_query->get( 'registar_nestalih_id' ) ?? 0)
 		], $attr, $tag );
 		
 		if( $attr['person'] && $attr['person'] > 0 ) {
@@ -53,8 +53,10 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		
 		$response = Registar_Nestalih_API::get( $query );
 		
+		wp_enqueue_style( 'registar-nestalih' );
+		
 		if( $attr['person'] && $attr['person'] > 0 ) {
-			return Registar_Nestalih_Content::render('single', $response);
+			return Registar_Nestalih_Content::render('missing-persons-single', $response);
 		} else {
 			return Registar_Nestalih_Content::render('missing-persons', $response);
 		}

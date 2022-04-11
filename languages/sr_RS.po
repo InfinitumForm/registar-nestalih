@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-04-08 11:24+0200\n"
-"PO-Revision-Date: 2022-04-08 11:26+0200\n"
+"POT-Creation-Date: 2022-04-11 11:32+0200\n"
+"PO-Revision-Date: 2022-04-11 12:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -22,50 +22,111 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: templates/missing-persons.php:24
+#: templates/missing-persons.php:24 templates/single.php:28
 msgid "Gender:"
 msgstr "Пол:"
 
-#: templates/missing-persons.php:25
+#: templates/missing-persons.php:25 templates/single.php:29
 msgid "Age:"
 msgstr "Старост:"
 
-#: templates/missing-persons.php:26
-msgid "Date of Birth:"
-msgstr "Датум рођења"
-
-#: templates/missing-persons.php:27
-msgid "Missing date:"
-msgstr "Датум нестанка:"
-
-#: templates/missing-persons.php:28
-msgid "Reported date:"
-msgstr "Датум пријаве:"
-
-#: templates/missing-persons.php:29
+#: templates/missing-persons.php:26 templates/single.php:51
 msgid "Place of disappearance:"
 msgstr "Место нестанка:"
 
-#: templates/missing-persons.php:29 templates/missing-persons.php:30
+#: templates/missing-persons.php:26 templates/single.php:33
+#: templates/single.php:51
 msgid "(undefined)"
 msgstr "(недефинисано)"
 
-#: templates/missing-persons.php:30
-msgid "Residence:"
-msgstr "Пребивалиште:"
-
-#: templates/pagination.php:14 templates/pagination.php:20
+#: templates/pagination.php:14 templates/pagination.php:22
 msgid "Previous"
 msgstr "Претходно"
 
-#: templates/pagination.php:24 templates/pagination.php:30
+#: templates/pagination.php:26 templates/pagination.php:34
 msgid "Next"
 msgstr "Следеће"
 
-#: templates/pagination.php:33
+#: templates/pagination.php:37
 #, php-format
 msgid "%d of %d"
 msgstr "%d од %d"
+
+#: templates/single.php:24
+msgid "Personal information"
+msgstr "Лични подаци"
+
+#: templates/single.php:26
+msgid "First Name:"
+msgstr "Име:"
+
+#: templates/single.php:27
+msgid "Last Name:"
+msgstr "Презиме:"
+
+#: templates/single.php:30
+msgid "Date of Birth:"
+msgstr "Датум рођења:"
+
+#: templates/single.php:31
+msgid "Place of Birth:"
+msgstr "Датум рођења:"
+
+#: templates/single.php:32
+msgid "Citizenship:"
+msgstr "Држављанство:"
+
+#: templates/single.php:33
+msgid "Residence:"
+msgstr "Пребивалиште:"
+
+#: templates/single.php:38
+msgid "Personal description"
+msgstr "Лични опис"
+
+#: templates/single.php:40
+msgid "Height:"
+msgstr "Висина:"
+
+#: templates/single.php:41
+msgid "Weight:"
+msgstr "Тежина:"
+
+#: templates/single.php:42
+msgid "Eye color:"
+msgstr "Боја очију:"
+
+#: templates/single.php:43
+msgid "Heir color:"
+msgstr "Боја косе:"
+
+#: templates/single.php:48
+msgid "Details about missing"
+msgstr "Детаљи о нестанку"
+
+#: templates/single.php:50
+msgid "Missing date:"
+msgstr "Датум нестанка:"
+
+#: templates/single.php:52
+msgid "Reported date:"
+msgstr "Датум пријаве:"
+
+#: templates/single.php:57
+msgid "Other informations"
+msgstr "Остале информације"
+
+#: templates/single.php:60
+msgid "Circumstances of disappearance:"
+msgstr "Околности нестанка:"
+
+#: templates/single.php:65
+msgid "Description at the time of disappearance:"
+msgstr "Место нестанка:"
+
+#: templates/single.php:70
+msgid "Additional information:"
+msgstr "Додатне информације:"
 
 #. Plugin Name of the plugin/theme
 msgid "Register of Missing Persons of Serbia"
@@ -73,7 +134,7 @@ msgstr "Регистар несталих лица Србије"
 
 #. Plugin URI of the plugin/theme
 msgid "https://www.nestalisrbija.rs/"
-msgstr ""
+msgstr "https://www.nestalisrbija.rs/"
 
 #. Description of the plugin/theme
 msgid ""

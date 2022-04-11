@@ -83,9 +83,13 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 				'class' => 'Registar_Nestalih_API',
 				'load' => false
 			],
+			__DIR__ . '/classes/Render.php' => [
+				'class' => 'Registar_Nestalih_Render',
+				'load' => false
+			],
 			__DIR__ . '/classes/Template.php' => [
 				'class' => 'Registar_Nestalih_Template',
-				'load' => false
+				'load' => true
 			],
 			__DIR__ . '/classes/Content.php' => [
 				'class' => 'Registar_Nestalih_Content',
