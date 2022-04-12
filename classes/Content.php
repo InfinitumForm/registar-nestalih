@@ -54,12 +54,14 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 	// Render paginations
 	public function do_missing_persons_pagination( $response ){
 		
-		global $last_page, $next_page, $prev_page;
+		global $last_page, $next_page, $prev_page, $current_page;
 		
 		// Get last page
 		$last_page = ceil(absint($response->total)/absint($response->per_page));
+		
+		$current_page = absint($response->current_page ?? 0);
 
-		$prev_page = (absint($response->current_page ?? $last_page)-1);
+		$prev_page = ($current_page-1);
 		if($prev_page < 0) {
 			$prev_page = 0;
 		}
@@ -70,7 +72,7 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 			$next_page = sprintf(
 				'%s/lista/%d',
 				rtrim($page_link, '/'),
-				(absint($response->current_page ?? 0)+1)
+				($current_page+1)
 			);
 			$prev_page = sprintf(
 				'%s/lista/%d',
@@ -79,7 +81,7 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 			);
 		} else {
 			$next_page = add_query_arg([
-				'lista'=>(absint($response->current_page ?? 0)+1)
+				'lista'=>($current_page+1)
 			]);
 			$prev_page = add_query_arg([
 				'lista'=>$prev_page

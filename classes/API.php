@@ -38,7 +38,7 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			return !empty($value) && in_array($key, $query_allowed) !== false;
 		}, ARRAY_FILTER_USE_BOTH);
 		
-		$cache_name = $tag . '-' . md5(serialize($query));
+		$cache_name = 'registar-nestalih-api-' . md5(serialize($query));
 		
 		if( $__get_missing[$cache_name] ?? NULL ) {
 			return $__get_missing[$cache_name];

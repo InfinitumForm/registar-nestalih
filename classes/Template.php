@@ -23,6 +23,7 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 		$active_theme_path = rtrim(get_stylesheet_directory(), '/');
 		$plugin_path = MISSING_PERSONS_ROOT;
 		
+		// Register CSS
 		$css_path = $active_theme_path . '/registar-nestalih/assets/css/style.css';
 		$css_location = str_replace(
 			$active_theme_path,
@@ -40,6 +41,32 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 		}
 		
 		wp_register_style( 'registar-nestalih', $css_location, 1, 'RV-1.' . absint(filesize($css_path)) );
+		
+		
+		// register JavaScript
+		$js_path = $active_theme_path . '/registar-nestalih/assets/js/script.js';
+		$js_location = str_replace(
+			$active_theme_path,
+			rtrim(get_stylesheet_directory_uri(), '/'),
+			$js_path
+		);
+
+		if( !file_exists($js_path) ) {
+			$js_path = $plugin_path . '/templates/assets/js/script.js';
+			$js_location = str_replace(
+				$plugin_path,
+				rtrim(plugin_dir_url( MISSING_PERSONS_FILE ), '/'),
+				$js_path
+			);
+		}
+		
+		wp_register_script( 'registar-nestalih', $js_location, ['jquery'], 'RV-1.' . absint(filesize($js_path)), true );
+		wp_localize_script( 'registar-nestalih', 'registar_nestalih', [
+			'ajax' => admin_url('/admin-ajax.php'),
+			'label' => [
+				'loading' => __('Please wait...', 'registar-nestalih')
+			]
+		] );
 	}
 
 	// Get template

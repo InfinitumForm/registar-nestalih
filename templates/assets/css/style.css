@@ -1,0 +1,108 @@
+#missing-persons-main-container .missing-item{
+	margin-bottom:64px;
+}
+
+#missing-persons-main-container .missing-item .missing-item-image{
+	display:block;
+	position:relative;
+	z-index:1;
+	width:100%;
+	overflow:hidden;
+}
+
+#missing-persons-main-container .missing-item .missing-item-image:before {
+	content: "";
+	display: block;
+	position:absolute;
+	left:0;
+	top:0;
+	bottom:0;
+	right:0;
+	width:100%;
+	height:100%;
+	z-index:2;
+	background: transparent;
+}
+
+#missing-persons-main-container .missing-item .missing-item-image:after {
+	content: "";
+	display: block;
+	padding-bottom: 100%;
+}
+
+#missing-persons-main-container .missing-item .missing-item-image > img{
+	display:block;
+	position:absolute;
+	left:50%;
+	top:50%;
+	width:105%;
+	max-width:105%;
+	transform: translate(-50%, -50%);
+	z-index:1;
+	pointer-events: none;
+}
+
+#missing-persons-main-container .missing-item .missing-item-image > img.img-landscape {
+	width: auto;
+    max-width: initial;
+    height: 105%;
+}
+
+#missing-persons-main-container .missing-item .missing-item-image > img.img-square {
+	width: 103%;
+    max-width: 103%;
+}
+
+#missing-persons-main-container .missing-item .missing-item-info {
+	font-size:14px;
+	padding-left: 0;
+    margin-bottom: 20px;
+}
+
+#missing-persons-main-container .missing-item .missing-item-info .list-group-item {
+	border:none;
+	position: relative;
+    display: block;
+    padding: 8px 15px;
+    margin-bottom: -1px;
+}
+
+#missing-persons-main-container .missing-item .missing-item-info .list-group-item + .list-group-item{
+	padding-top:0;
+}
+
+#missing-persons-pagination {
+	text-align:center;
+}
+
+#missing-persons-pagination .bs-pagination{
+	margin: 15px 0;
+}
+
+#missing-persons-pagination .bs-pagination .btn-bs-pagination {
+	border: 1px solid rgba(138,138,138,.5);
+    color: rgba(138,138,138,.95);
+    font-size: 12px;
+    padding: 0 10px;
+    display: inline-block;
+    line-height: 26px;
+    min-width: 26px;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#missing-persons-pagination .bs-pagination .btn-bs-pagination.disabled,
+#missing-persons-pagination .bs-pagination .btn-bs-pagination.disabled:hover {
+    opacity: .5;
+}
+
+#missing-persons-pagination .bs-pagination .bs-pagination-label {
+    color: rgba(138,138,138,.83);
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+#missing-persons-pagination .bs-pagination .bs-pagination-label + .btn-bs-pagination{
+	margin-left: 5px;
+}

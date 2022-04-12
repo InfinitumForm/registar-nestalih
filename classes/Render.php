@@ -101,7 +101,8 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 	
 	// Generate first name
 	public function last_name(){
-		return end(explode(' ', $this->ime_prezime));
+		$parts = explode(' ', $this->ime_prezime);
+		return end($parts);
 	}
 	
 	// Generate age
