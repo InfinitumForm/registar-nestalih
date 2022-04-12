@@ -55,6 +55,13 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 			'index.php?pagename=' . $page_data->post_name . '&registar_nestalih_search=$matches[1]',
 			'top'
 		);
+		
+		// Search with pagination
+		add_rewrite_rule(
+			$page_data->post_name . '/pretraga/([^/]*)/lista/([0-9]+)[/]?$',
+			'index.php?pagename=' . $page_data->post_name . '&registar_nestalih_search=$matches[1]&registar_nestalih_list=$matches[2]',
+			'top'
+		);
 	}
 	
 	// Add rewrite query vars

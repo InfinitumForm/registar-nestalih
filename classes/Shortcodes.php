@@ -32,7 +32,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		$attr = shortcode_atts( [
 			'per_page'	=> 8,
 			'page'		=> $wp_query->get( 'registar_nestalih_list' ) ?? 1,
-			'search'	=> NULL,
+			'search'	=> $wp_query->get( 'registar_nestalih_search' ) ?? NULL,
 			'order'		=> '-id',
 			'person'	=> absint($wp_query->get( 'registar_nestalih_id' ) ?? 0)
 		], $attr, $tag );
@@ -46,8 +46,8 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 				'paginate'	=> 'true',
 				'per_page'	=> absint($attr['per_page']),
 				'page'		=> absint($attr['page']),
-				'search'	=> $attr['search'],
-				'order'		=> $attr['order']
+				'search'	=> sanitize_text_field($attr['search']),
+				'order'		=> sanitize_text_field($attr['order'])
 			];
 		}
 		
