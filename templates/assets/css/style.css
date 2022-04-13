@@ -106,3 +106,7 @@
 #missing-persons-pagination .bs-pagination .bs-pagination-label + .btn-bs-pagination{
 	margin-left: 5px;
 }
+
+#missing-persons-search-form {
+	margin: 15px auto;
+}

@@ -37,6 +37,11 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 			'person'	=> absint($wp_query->get( 'registar_nestalih_id' ) ?? 0)
 		], $attr, $tag );
 		
+		if( !empty($attr['search']) ) {
+			$attr['per_page'] = 9999;
+		}
+		
+		
 		if( $attr['person'] && $attr['person'] > 0 ) {
 			$query = [
 				'id' => $attr['person']

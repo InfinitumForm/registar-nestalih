@@ -71,21 +71,23 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 			$page_link = get_page_link( get_the_ID() );
 			
 			$next_page = sprintf(
-				'%s/lista/%d',
+				'%s/%s/%d',
 				rtrim($page_link, '/'),
+				Registar_Nestalih_Rewrite::option('pagination-slug', 'page'),
 				($current_page+1)
 			);
 			$prev_page = sprintf(
-				'%s/lista/%d',
+				'%s/%s/%d',
 				rtrim($page_link, '/'),
+				Registar_Nestalih_Rewrite::option('pagination-slug', 'page'),
 				$prev_page
 			);
 		} else {
 			$next_page = add_query_arg([
-				'lista'=>($current_page+1)
+				'registar_nestalih_list'=>($current_page+1)
 			]);
 			$prev_page = add_query_arg([
-				'lista'=>$prev_page
+				'registar_nestalih_list'=>$prev_page
 			]);
 		}
 		
@@ -100,6 +102,22 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 	
 	// Render Search Form
 	public function do_missing_persons_search( $response ){
+		global $action_url;
+		
+		if( get_option('permalink_structure') ) {
+			$page_link = get_page_link( get_the_ID() );
+			
+			$action_url = sprintf(
+				'%s/%s',
+				rtrim($page_link, '/'),
+				Registar_Nestalih_Rewrite::option('search-slug', 'search')
+			);
+		} else {
+			$action_url = add_query_arg([
+				'registar_nestalih_search'=>''
+			]);
+		}
+		
 		Registar_Nestalih_Template::get('missing-persons/search-form', $response);
 	}
 	
