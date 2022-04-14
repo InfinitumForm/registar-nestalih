@@ -19,6 +19,15 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	private function __construct() {
 		add_action( 'admin_menu', [$this, 'admin_menu'], 1 );
 		add_action( 'admin_init', [$this, 'register_setting__missing_persons'] );
+		add_filter( 'display_post_states' , [$this, 'display_post_states'], 10, 2 );
+	}
+	
+	// Display posts state
+	public function display_post_states ($states, $post) {
+		if ( ( 'page' == get_post_type( $post->ID ) ) && ( Registar_Nestalih_Options::get('main-page') === $post->ID )) {
+			$states[] = __( 'Missing Persons Page', 'registar-nestalih' );
+		}
+		return $states;
 	}
 	
 	// Add menu pages
@@ -37,10 +46,10 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	// Sanitize fields
 	function register_setting__missing_persons() {
 		if( wp_verify_nonce( ($_POST['__nonce'] ?? NULL), 'registar-nestalih' ) && isset($_POST['registar-nestalih']) ) {
-			update_option('registar_nestalih', $_POST['registar-nestalih']);
-			
-			if( function_exists('flush_rewrite_rules') ) {
-				flush_rewrite_rules();
+			if( Registar_Nestalih_Options::set( $_POST['registar-nestalih'] ) ) {			
+				if( function_exists('flush_rewrite_rules') ) {
+					flush_rewrite_rules();
+				}
 			}
 		}
 	}
@@ -84,6 +93,12 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				<th scope="row"><?php _e('Search slug', 'registar-nestalih'); ?></th>
 				<td>
 					<input type="text" name="registar-nestalih[search-slug]" value="<?php echo esc_attr( ($options['search-slug'] ?? 'search') ); ?>" placeholder="search" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e('Person slug', 'registar-nestalih'); ?></th>
+				<td>
+					<input type="text" name="registar-nestalih[person-slug]" value="<?php echo esc_attr( ($options['person-slug'] ?? 'person') ); ?>" placeholder="person" />
 				</td>
 			</tr>
 		</table>

@@ -76,11 +76,18 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 			return '#';
 		}
 		
+		$page = Registar_Nestalih_Options::get('main-page');
+		
+		if( empty($page) ) {
+			return NULL;
+		}
+		
 		if( get_option('permalink_structure') ) {
-			$page_link = get_page_link( get_the_ID() );
+			$page_link = get_page_link( $page );
 			$url = sprintf(
-				'%s/osoba/%d/%s',
+				'%s/%s/%d/%s',
 				rtrim($page_link, '/'),
+				Registar_Nestalih_Options::get('person-slug', 'person'),
 				absint($this->id),
 				sanitize_title($this->ime_prezime)
 			);

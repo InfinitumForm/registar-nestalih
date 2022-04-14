@@ -18,26 +18,11 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 	// PRIVATE: Main construct
 	private function __construct() {
 		// here will be option
-		$this->page_id = self::option('main-page');
+		$this->page_id = Registar_Nestalih_Options::get('main-page');
 		
 		add_action( 'init', [$this, 'add_rewrite_rule'], 1 );
 		add_action( 'query_vars', [$this, 'query_vars'] );
 		add_action( 'template_redirect', [$this, 'wp_redirect'] );
-	}
-	
-	// Get options
-	public static function option ($name = NULL, $default = '') {
-		static $options;
-		
-		if( !$options ) {
-			$options = get_option( 'registar_nestalih' );
-		}
-		
-		if($name) {
-			return $options[$name] ?? $default;
-		} else {
-			return $options ?? $default;
-		}
 	}
 	
 	// Get page
@@ -68,28 +53,28 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 		
 		// Paginaton
 		add_rewrite_rule(
-			$page_data->post_name . '/' . self::option('pagination-slug', 'page') . '/([0-9]+)[/]?$',
+			$page_data->post_name . '/' . Registar_Nestalih_Options::get('pagination-slug', 'page') . '/([0-9]+)[/]?$',
 			'index.php?pagename=' . $page_data->post_name . '&registar_nestalih_list=$matches[1]',
 			'top'
 		);
 		
 		// Person
 		add_rewrite_rule(
-			$page_data->post_name . '/osoba/([0-9]+)/([^/]*)[/]?$',
+			$page_data->post_name . '/' . Registar_Nestalih_Options::get('person-slug', 'person') . '/([0-9]+)/([^/]*)[/]?$',
 			'index.php?pagename=' . $page_data->post_name . '&registar_nestalih_id=$matches[1]&registar_nestalih_name=$matches[2]',
 			'top'
 		);
 		
 		// Search
 		add_rewrite_rule(
-			$page_data->post_name . '/' . self::option('search-slug', 'search') . '/([^/]*)[/]?$',
+			$page_data->post_name . '/' . Registar_Nestalih_Options::get('search-slug', 'search') . '/([^/]*)[/]?$',
 			'index.php?pagename=' . $page_data->post_name . '&registar_nestalih_search=$matches[1]',
 			'top'
 		);
 		
 		// Search with pagination
 		add_rewrite_rule(
-			$page_data->post_name . '/' . self::option('search-slug', 'search') . '/([^/]*)/' . self::option('pagination-slug', 'page') . '/([0-9]+)[/]?$',
+			$page_data->post_name . '/' . Registar_Nestalih_Options::get('search-slug', 'search') . '/([^/]*)/' . Registar_Nestalih_Options::get('pagination-slug', 'page') . '/([0-9]+)[/]?$',
 			'index.php?pagename=' . $page_data->post_name . '&registar_nestalih_search=$matches[1]&registar_nestalih_list=$matches[2]',
 			'top'
 		);
@@ -118,7 +103,7 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 				$page_data = self::get_post();
 			
 				if(empty($_POST['registar_nestalih_search'])) {
-					$redirect = str_replace('/' . self::option('search-slug', 'search'), '', $current_url);
+					$redirect = str_replace('/' . Registar_Nestalih_Options::get('search-slug', 'search'), '', $current_url);
 				} else {
 					$redirect = sprintf(
 						'%s/%s',

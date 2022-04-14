@@ -68,18 +68,18 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		}
 		
 		if( get_option('permalink_structure') ) {
-			$page_link = get_page_link( get_the_ID() );
+			$page_link = get_page_link( Registar_Nestalih_Options::get('main-page') );
 			
 			$next_page = sprintf(
 				'%s/%s/%d',
 				rtrim($page_link, '/'),
-				Registar_Nestalih_Rewrite::option('pagination-slug', 'page'),
+				Registar_Nestalih_Options::get('pagination-slug', 'page'),
 				($current_page+1)
 			);
 			$prev_page = sprintf(
 				'%s/%s/%d',
 				rtrim($page_link, '/'),
-				Registar_Nestalih_Rewrite::option('pagination-slug', 'page'),
+				Registar_Nestalih_Options::get('pagination-slug', 'page'),
 				$prev_page
 			);
 		} else {
@@ -105,12 +105,12 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		global $action_url;
 		
 		if( get_option('permalink_structure') ) {
-			$page_link = get_page_link( get_the_ID() );
+			$page_link = get_page_link( Registar_Nestalih_Options::get('main-page') );
 			
 			$action_url = sprintf(
 				'%s/%s',
 				rtrim($page_link, '/'),
-				Registar_Nestalih_Rewrite::option('search-slug', 'search')
+				Registar_Nestalih_Options::get('search-slug', 'search')
 			);
 		} else {
 			$action_url = add_query_arg([

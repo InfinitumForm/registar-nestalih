@@ -79,6 +79,10 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 	// Register plugin classes
 	public function register_plugin_classes(){
 		$register_classes = apply_filters( 'registar_nestalih_classes', [
+			__DIR__ . '/classes/Options.php' => [
+				'class' => 'Registar_Nestalih_Options',
+				'load' => false
+			],
 			__DIR__ . '/classes/API.php' => [
 				'class' => 'Registar_Nestalih_API',
 				'load' => false
@@ -105,6 +109,10 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 			],
 			__DIR__ . '/classes/Shortcodes.php' => [
 				'class' => 'Registar_Nestalih_Shortcodes',
+				'load' => true
+			],
+			__DIR__ . '/classes/Yoast_SEO.php' => [
+				'class' => 'Registar_Nestalih_Yoast_SEO',
 				'load' => true
 			]
 		], $this );
