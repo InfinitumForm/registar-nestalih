@@ -75,43 +75,43 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		// Register plugin classes
 		$this->register_plugin_classes();
 	}
-	
+
 	// Register plugin classes
 	public function register_plugin_classes(){
 		$register_classes = apply_filters( 'registar_nestalih_classes', [
-			__DIR__ . '/classes/Options.php' => [
+			MISSING_PERSONS_ROOT . '/classes/Options.php' => [
 				'class' => 'Registar_Nestalih_Options',
 				'load' => false
 			],
-			__DIR__ . '/classes/API.php' => [
+			MISSING_PERSONS_ROOT . '/classes/API.php' => [
 				'class' => 'Registar_Nestalih_API',
 				'load' => false
 			],
-			__DIR__ . '/classes/Render.php' => [
+			MISSING_PERSONS_ROOT . '/classes/Render.php' => [
 				'class' => 'Registar_Nestalih_Render',
 				'load' => false
 			],
-			__DIR__ . '/classes/Template.php' => [
+			MISSING_PERSONS_ROOT . '/classes/Template.php' => [
 				'class' => 'Registar_Nestalih_Template',
 				'load' => true
 			],
-			__DIR__ . '/classes/Content.php' => [
+			MISSING_PERSONS_ROOT . '/classes/Content.php' => [
 				'class' => 'Registar_Nestalih_Content',
 				'load' => true
 			],
-			__DIR__ . '/classes/Rewrite.php' => [
+			MISSING_PERSONS_ROOT . '/classes/Rewrite.php' => [
 				'class' => 'Registar_Nestalih_Rewrite',
 				'load' => true
 			],
-			__DIR__ . '/classes/Admin.php' => [
+			MISSING_PERSONS_ROOT . '/classes/Admin.php' => [
 				'class' => 'Registar_Nestalih_Admin',
 				'load' => true
 			],
-			__DIR__ . '/classes/Shortcodes.php' => [
+			MISSING_PERSONS_ROOT . '/classes/Shortcodes.php' => [
 				'class' => 'Registar_Nestalih_Shortcodes',
 				'load' => true
 			],
-			__DIR__ . '/classes/Yoast_SEO.php' => [
+			MISSING_PERSONS_ROOT . '/classes/Yoast_SEO.php' => [
 				'class' => 'Registar_Nestalih_Yoast_SEO',
 				'load' => true
 			]
@@ -219,7 +219,7 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		
 		// Or inside `/wp-content/plugin/registar-nestalih/languages`
 		if ( ! $loaded ) {
-			$domain_path = __DIR__ . DIRECTORY_SEPARATOR . 'languages';
+			$domain_path = MISSING_PERSONS_ROOT . DIRECTORY_SEPARATOR . 'languages';
 			$loaded = load_textdomain( self::TEXTDOMAIN, path_join( $domain_path, $mofile ) );
 			
 			// Or load with only locale without prefix
