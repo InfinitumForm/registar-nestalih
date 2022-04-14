@@ -18,13 +18,112 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 		if( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
 			add_filter( 'wpseo_sitemap_index', [&$this, 'wpseo_sitemap_index'] );
 			add_action( 'init', [&$this, 'init'] );
+			
+			add_filter( 'wpseo_opengraph_image', [&$this, 'add_share_images'], 10, 1 );
+			add_filter( 'wpseo_twitter_image', [&$this, 'add_share_images'], 10, 1 );
+			
+			add_filter( 'wpseo_opengraph_desc', [&$this, 'add_share_description'], 10, 1 );
+			add_filter( 'wpseo_twitter_description', [&$this, 'add_share_description'], 10, 1 );
+			add_filter( 'wpseo_metadesc', [&$this, 'add_share_description'], 10, 1 );
+			
+			add_filter( 'wpseo_opengraph_title', [&$this, 'add_share_title'], 10, 1 );
+			add_filter( 'wpseo_metatitle', [&$this, 'add_share_title'], 10, 1 );
+			add_filter( 'wpseo_title', [&$this, 'add_share_title'], 10, 1 );
+			
+			add_filter( 'wpseo_opengraph_url', [&$this, 'add_share_url'], 10, 1 );
+			add_filter( 'wpseo_canonical', [&$this, 'add_share_url'], 10, 1 );
 		}
+	}
+	
+	public function add_share_images ($img) {
+		global $wp_query;
+
+		if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )
+		{
+			if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
+				$response = new Registar_Nestalih_Render($response);
+				if($response->icon) {
+					$img = $response->icon;
+				}
+			}
+		}
+		
+		return $img;
+	}
+	
+	public function add_share_description ($desc) {
+		global $wp_query;
+
+		if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )
+		{
+			if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
+				$response = new Registar_Nestalih_Render($response);
+				if($response->ime_prezime) {
+					$desc = sprintf(
+						__( '%s (%d) is missing on %s in %s, from place %s', 'registar-nestalih'),
+						$response->ime_prezime,
+						$response->age(),
+						$response->missing_date(),
+						$response->mesto_nestanka,
+						$response->prebivaliste
+					);
+				}
+			}
+		}
+		
+		return $desc;
+	}
+	
+	public function add_share_title ($title) {
+		global $wp_query;
+
+		if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )
+		{
+			if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
+				$response = new Registar_Nestalih_Render($response);
+				if($response->ime_prezime) {
+					$wpseo_titles = get_option('wpseo_titles');
+					$sep_options = WPSEO_Option_Titles::get_instance()->get_separator_options();
+					$current_filter = current_filter();
+					
+					$title = sprintf(
+						(
+							$current_filter == 'wpseo_title' 
+							? __( '%s (%d) is missing %s', 'registar-nestalih')
+							: __( '%s (%d) is missing', 'registar-nestalih')
+						),
+						$response->ime_prezime,
+						$response->age(),
+						($sep_options[$wpseo_titles['separator']??NULL] ?? '-') . ' ' . get_bloginfo('name')
+					);
+				}
+			}
+		}
+		
+		return $title;
+	}
+	
+	public function add_share_url ($url) {
+		global $wp_query;
+
+		if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )
+		{
+			if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
+				$response = new Registar_Nestalih_Render($response);
+				if($response->ime_prezime) {
+					$url = $response->profile_url();
+				}
+			}
+		}
+		
+		return $url;
 	}
 	
 	// Add to Yoast SEO new sitemap index
 	public function init(){
 		if( $this->get_registar_nestalih() ) {
 			add_action( 'wpseo_do_sitemap_registar-nestalih', [&$this, 'wpseo_do_sitemap_registar_nestalih'], 10, 1);
+			
 		}
 	}
 	
