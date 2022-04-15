@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-04-14 13:36+0200\n"
-"PO-Revision-Date: 2022-04-14 13:37+0200\n"
+"POT-Creation-Date: 2022-04-15 13:37+0200\n"
+"PO-Revision-Date: 2022-04-15 13:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -22,47 +22,59 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: classes/Admin.php:28 classes/Admin.php:70
+#: classes/Admin.php:29 classes/Admin.php:80
 msgid "Missing Persons Page"
 msgstr "Страница несталих особа"
 
-#: classes/Admin.php:36 classes/Admin.php:37
+#: classes/Admin.php:37 classes/Admin.php:38
 msgid "Missing Persons"
 msgstr "Нестале особе"
 
-#: classes/Admin.php:63
+#: classes/Admin.php:73
 msgid "Plugin Settings"
 msgstr "Подешавање додатка"
 
-#: classes/Admin.php:66
+#: classes/Admin.php:76
 msgid "Missing Persons Settings"
 msgstr "Подешавање додатка несталих особа"
 
-#: classes/Admin.php:67
+#: classes/Admin.php:77
 msgid "This option sets the API and shortcode for missing persons."
 msgstr "Ова опција поставља АПИ и кратки код за нестале особе."
 
-#: classes/Admin.php:73
+#: classes/Admin.php:83
 msgid "Select a Page"
 msgstr "Одаберите страницу"
 
-#: classes/Admin.php:87
+#: classes/Admin.php:97
 msgid "Pagination slug"
 msgstr "Пермалинк пагинације"
 
-#: classes/Admin.php:93
+#: classes/Admin.php:103
 msgid "Search slug"
 msgstr "Пермалинк претраге"
 
-#: classes/Admin.php:99
+#: classes/Admin.php:109
 msgid "Person slug"
 msgstr "Пермалинк особе"
 
-#: classes/Admin.php:105
+#: classes/Admin.php:115
+msgid "Open links in new window"
+msgstr "Отвори у новом прозору"
+
+#: classes/Admin.php:120
+msgid "Yes"
+msgstr "Да"
+
+#: classes/Admin.php:125
+msgid "No"
+msgstr "Не"
+
+#: classes/Admin.php:130
 msgid "Save"
 msgstr "Сними"
 
-#: classes/Template.php:67
+#: classes/Template.php:85
 msgid "Please wait..."
 msgstr "Молимо причекајте..."
 
