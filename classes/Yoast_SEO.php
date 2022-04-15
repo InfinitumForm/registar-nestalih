@@ -85,7 +85,7 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 					$wpseo_titles = get_option('wpseo_titles');
 					$sep_options = WPSEO_Option_Titles::get_instance()->get_separator_options();
 					$current_filter = current_filter();
-					
+				
 					$title = sprintf(
 						(
 							$current_filter == 'wpseo_title' 

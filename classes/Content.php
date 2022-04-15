@@ -21,6 +21,17 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		add_filter( 'document_title_parts', [$this, 'document_title_parts'], 100, 2 );
 	}
 	
+	// Get date format
+	public static function get_date_format() {
+		static $format;
+		
+		if( !$format ) {
+			$format = get_option( 'date_format' );
+		}
+		
+		return $format;
+	}
+	
 	// Change page title
 	public function document_title_parts( $parts ) {
 		global $wp_query;

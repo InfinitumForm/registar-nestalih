@@ -44,13 +44,14 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			return $__get_missing[$cache_name];
 		}
 		
-		if( !($posts = get_transient($cache_name)) ) {
+		$posts = get_transient($cache_name);
+		
+		if( empty($posts) ) {
 			$request = wp_remote_get( add_query_arg(
 				$query,
 				"{$this->url}/nestale_osobe"
 			) );
 			
-			$posts = NULL;
 			if( !is_wp_error( $request ) ) {
 				if($json = wp_remote_retrieve_body( $request )) {
 					$posts = json_decode($json);
@@ -58,9 +59,8 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			}
 			
 			set_transient($cache_name, $posts, HOUR_IN_SECONDS);
+			$__get_missing[$cache_name] = $posts;
 		}
-		
-		$__get_missing[$cache_name] = $posts;
 		
 		return $posts;
 	}

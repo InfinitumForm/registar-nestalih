@@ -38,7 +38,7 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 	public function __construct( $data, $index = 0 ) {
 		
 		$this->index = $index;
-		$this->date_format = get_option( 'date_format' );
+		$this->date_format = Registar_Nestalih_Content::get_date_format();
 		
 		if( empty($data) ) {
 			return $this;
@@ -69,6 +69,17 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 
         throw new Exception('No such method: ' . get_class($this) . '->$function()');
     }
+	
+	// generate image URL
+	public function profile_image () {
+		if( empty($this->icon) ) {
+			$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-male.gif');
+			if( in_array(mb_strtolower($this->pol), ['ženski', 'zenski', 'woman', 'female', 'f']) ) {
+				$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-female.gif');
+			}
+		}
+		return esc_url($this->icon);
+	}
 	
 	// Generate URL
 	public function profile_url(){
@@ -118,7 +129,7 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 			return NULL;
 		}
 		
-		return (date('Y') - date('Y', strtotime($this->datum_rodjenja . ' 01:00:01')));
+		return date_diff(date_create($this->datum_rodjenja), date_create('now'))->y;
 	}
 	
 	// Generate birth date

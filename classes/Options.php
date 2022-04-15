@@ -10,7 +10,8 @@ if( !class_exists('Registar_Nestalih_Options') ) : class Registar_Nestalih_Optio
 		'main-page' => NULL,
 		'pagination-slug' => 'page',
 		'search-slug' => 'search',
-		'person-slug' => 'person'
+		'person-slug' => 'person',
+		'open-in-new-window' => 0
 	];
 	
 	/*

@@ -18,49 +18,67 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 	
+	// Get URL
+	public static function url ($location) {
+		static $cache = [];
+		
+		if( !isset($cache[$location]) ) {		
+			$active_theme_path = rtrim(get_stylesheet_directory(), '/');
+			$plugin_path = MISSING_PERSONS_ROOT;
+			
+			$path = $active_theme_path . '/registar-nestalih/' . ltrim($location, '/');
+			$url = str_replace(
+				$active_theme_path,
+				rtrim(get_stylesheet_directory_uri(), '/'),
+				$path
+			);
+
+			if( !file_exists($path) ) {
+				$path = $plugin_path . '/templates/' . ltrim($location, '/');
+				$url = str_replace(
+					$plugin_path,
+					rtrim(plugin_dir_url( MISSING_PERSONS_FILE ), '/'),
+					$path
+				);
+			}
+			
+			$cache[$location] = $url;
+		}
+		
+		return apply_filters('registar_nestalih_template_path_url', $cache[$location], $location, $cache);
+	}
+	
+	// Get path
+	public static function path ($location) {
+		static $cache = [];
+		
+		if( !isset($cache[$location]) ) {		
+			$active_theme_path = rtrim(get_stylesheet_directory(), '/');
+			$plugin_path = MISSING_PERSONS_ROOT;
+			
+			$path = $active_theme_path . '/registar-nestalih/' . ltrim($location, '/');
+
+			if( !file_exists($path) ) {
+				$path = $plugin_path . '/templates/' . ltrim($location, '/');
+			}
+			
+			$cache[$location] = $path;
+		}
+		
+		return apply_filters('registar_nestalih_template_path', $cache[$location], $location, $cache);
+	}
+	
 	// Register plugin scripts
 	public function enqueue_scripts() {
-		$active_theme_path = rtrim(get_stylesheet_directory(), '/');
-		$plugin_path = MISSING_PERSONS_ROOT;
 		
-		// Register CSS
-		$css_path = $active_theme_path . '/registar-nestalih/assets/css/style.css';
-		$css_location = str_replace(
-			$active_theme_path,
-			rtrim(get_stylesheet_directory_uri(), '/'),
-			$css_path
-		);
-
-		if( !file_exists($css_path) ) {
-			$css_path = $plugin_path . '/templates/assets/css/style.css';
-			$css_location = str_replace(
-				$plugin_path,
-				rtrim(plugin_dir_url( MISSING_PERSONS_FILE ), '/'),
-				$css_path
-			);
-		}
+		$css_url = self::url('assets/css/style.css');
+		$css_path = self::path('assets/css/style.css');
 		
-		wp_register_style( 'registar-nestalih', $css_location, 1, 'RV-1.' . absint(filesize($css_path)) );
+		$js_url = self::url('assets/js/script.js');	
+		$js_path = self::path('assets/js/script.js');
 		
-		
-		// register JavaScript
-		$js_path = $active_theme_path . '/registar-nestalih/assets/js/script.js';
-		$js_location = str_replace(
-			$active_theme_path,
-			rtrim(get_stylesheet_directory_uri(), '/'),
-			$js_path
-		);
-
-		if( !file_exists($js_path) ) {
-			$js_path = $plugin_path . '/templates/assets/js/script.js';
-			$js_location = str_replace(
-				$plugin_path,
-				rtrim(plugin_dir_url( MISSING_PERSONS_FILE ), '/'),
-				$js_path
-			);
-		}
-		
-		wp_register_script( 'registar-nestalih', $js_location, ['jquery'], 'RV-1.' . absint(filesize($js_path)), true );
+		wp_register_style( 'registar-nestalih', $css_url, 1, 'RV-1.' . absint(filesize($css_path)) );		
+		wp_register_script( 'registar-nestalih', $js_url, ['jquery'], 'RV-1.' . absint(filesize($js_path)), true );
 		wp_localize_script( 'registar-nestalih', 'registar_nestalih', [
 			'ajax' => admin_url('/admin-ajax.php'),
 			'label' => [

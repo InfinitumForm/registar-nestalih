@@ -16,7 +16,7 @@ do_action('registar_nestalih_before_single_container', $missing);
 		
 		<div class="row missing-person-personal-row">
 			<div class="col col-sm-12 col-md-6 col-lg-5 missing-person-personal-image">
-				<div class="missing-item-image" title="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"><img src="<?php echo esc_url($missing->icon); ?>" alt="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"></div>
+				<div class="missing-item-image" title="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"><img src="<?php echo $missing->profile_image(); ?>" alt="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"></div>
 			</div>
 			<div class="col col-sm-12 col-md-6 col-lg-4">
 				<ul class="list-group missing-person-personal-info">

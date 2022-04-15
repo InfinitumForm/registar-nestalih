@@ -17,7 +17,8 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	
 	// PRIVATE: Main construct
 	private function __construct() {
-		add_action( 'admin_menu', [$this, 'admin_menu'], 1 );
+		add_action( 'admin_menu', [$this, 'admin_menu'], 90, 1 );
+		add_action( 'admin_bar_menu', [$this, 'admin_bar_menu'], 1 );
 		add_action( 'admin_init', [$this, 'register_setting__missing_persons'] );
 		add_filter( 'display_post_states' , [$this, 'display_post_states'], 10, 2 );
 	}
@@ -41,6 +42,15 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			'dashicons-heart',
 			6
 		);
+	}
+	
+	// Add links to admin bar
+	public function admin_bar_menu ($wp_admin_bar) {
+		if ( ! (current_user_can( 'administrator' ) || current_user_can( 'editor' )) ){
+			return $wp_admin_bar;
+		}
+		
+		/* TO DO */
 	}
 	
 	// Sanitize fields
@@ -76,7 +86,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 								echo $page->ID; 
 							?>" <?php 
 								selected( ($options['main-page'] ?? NULL), $page->ID ); 
-							?> ><?php 
+							?>><?php 
 								echo esc_html($page->post_title); 
 							?></option>
 						<?php }; ?>
@@ -99,6 +109,21 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				<th scope="row"><?php _e('Person slug', 'registar-nestalih'); ?></th>
 				<td>
 					<input type="text" name="registar-nestalih[person-slug]" value="<?php echo esc_attr( ($options['person-slug'] ?? 'person') ); ?>" placeholder="person" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e('Open links in new window', 'registar-nestalih'); ?></th>
+				<td>
+					<label for="open-in-new-window-0">
+						<input type="radio" id="open-in-new-window-0" name="registar-nestalih[open-in-new-window]" value="1" <?php 
+							checked( ($options['open-in-new-window'] ?? 0), 1 ); 
+						?> /> <?php _e('Yes', 'registar-nestalih'); ?>
+					</label>&nbsp;&nbsp;&nbsp;
+					<label for="open-in-new-window-1">
+						<input type="radio" id="open-in-new-window-1" name="registar-nestalih[open-in-new-window]" value="0" <?php 
+							checked( ($options['open-in-new-window'] ?? 0), 0 ); 
+						?> /> <?php _e('No', 'registar-nestalih'); ?>
+					</label>
 				</td>
 			</tr>
 		</table>
