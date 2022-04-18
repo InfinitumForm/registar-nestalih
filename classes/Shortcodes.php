@@ -58,8 +58,8 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		
 		$response = Registar_Nestalih_API::get( $query );
 		
-		wp_enqueue_style( 'registar-nestalih' );
-		wp_enqueue_script( 'registar-nestalih' );
+		wp_enqueue_style( Registar_Nestalih::TEXTDOMAIN );
+		wp_enqueue_script( Registar_Nestalih::TEXTDOMAIN );
 		
 		if( $attr['person'] && $attr['person'] > 0 ) {
 			return Registar_Nestalih_Content::render('missing-persons-single', $response);

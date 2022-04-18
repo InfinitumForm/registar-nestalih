@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-04-15 13:37+0200\n"
-"PO-Revision-Date: 2022-04-15 13:38+0200\n"
+"POT-Creation-Date: 2022-04-18 09:43+0200\n"
+"PO-Revision-Date: 2022-04-18 09:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -78,20 +78,26 @@ msgstr "Сними"
 msgid "Please wait..."
 msgstr "Молимо причекајте..."
 
-#: classes/Yoast_SEO.php:63
+#: classes/Yoast_SEO.php:78
 #, php-format
 msgid "%s (%d) is missing on %s in %s, from place %s"
 msgstr "%s (%d) је нестао дана %s у %s, из места %s"
 
-#: classes/Yoast_SEO.php:92
+#: classes/Yoast_SEO.php:108
 #, php-format
 msgid "%s (%d) is missing %s"
 msgstr "%s (%d) је нестао %s"
 
-#: classes/Yoast_SEO.php:93
+#: classes/Yoast_SEO.php:109
 #, php-format
 msgid "%s (%d) is missing"
 msgstr "%s (%d) је нестао"
+
+#: registar-nestalih.php:166
+#, fuzzy
+#| msgid "Missing Persons"
+msgid "Missing persons"
+msgstr "Нестале особе"
 
 #: templates/missing-persons.php:29 templates/missing-persons/single.php:28
 msgid "Gender:"

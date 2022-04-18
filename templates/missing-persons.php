@@ -26,12 +26,12 @@ do_action('registar_nestalih_before_main_container', $missing_response);
 					<a href="<?php echo $missing->profile_url(); ?>"<?php echo $target_blank; ?>><?php echo esc_html($missing->ime_prezime); ?></a>
 				</h3>
 				<ul class="list-group missing-item-info">
-					<li class="list-group-item"><b><?php _e('Gender:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->pol); ?></span></li>
-					<li class="list-group-item"><b><?php _e('Age:', 'registar-nestalih'); ?></b> <span><?php echo $missing->age(); ?></span></li>
-					<li class="list-group-item"><b><?php _e('Place of disappearance:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->mesto_nestanka ? $missing->mesto_nestanka : __('(undefined)', 'registar-nestalih')); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Gender:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo esc_html($missing->pol); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Age:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo $missing->age(); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Place of disappearance:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo esc_html($missing->mesto_nestanka ? $missing->mesto_nestanka : __('(undefined)', Registar_Nestalih::TEXTDOMAIN)); ?></span></li>
 				</ul>
 				<a class="btn btn-primary" href="<?php echo $missing->profile_url(); ?>" title="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"<?php echo $target_blank; ?>>
-					<?php _e('More Informations', 'registar-nestalih'); ?>
+					<?php _e('More Informations', Registar_Nestalih::TEXTDOMAIN); ?>
 				</a>
 			</div>
 		</div>	

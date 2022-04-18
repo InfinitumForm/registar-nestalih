@@ -35,15 +35,30 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 		}
 	}
 	
+	private function is_active() {
+		global $wp_query;
+		static $pass;
+		
+		if( is_null($pass) ) {
+			$pass = false;
+			if( isset($wp_query->queried_object) ) {
+				$pass = ( ($wp_query->queried_object->ID ?? -1) === Registar_Nestalih_Options::get('main-page', 0) );
+			}
+		}
+		
+		return $pass;
+	}
+	
 	public function add_share_images ($img) {
 		global $wp_query;
 
-		if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )
-		{
-			if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
-				$response = new Registar_Nestalih_Render($response);
-				if($response->icon) {
-					$img = $response->icon;
+		if( $this->is_active() ) {
+			if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )	{
+				if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
+					$response = new Registar_Nestalih_Render($response);
+					if($response->icon) {
+						$img = $response->icon;
+					}
 				}
 			}
 		}
@@ -54,19 +69,20 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 	public function add_share_description ($desc) {
 		global $wp_query;
 
-		if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )
-		{
-			if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
-				$response = new Registar_Nestalih_Render($response);
-				if($response->ime_prezime) {
-					$desc = sprintf(
-						__( '%s (%d) is missing on %s in %s, from place %s', 'registar-nestalih'),
-						$response->ime_prezime,
-						$response->age(),
-						$response->missing_date(),
-						$response->mesto_nestanka,
-						$response->prebivaliste
-					);
+		if( $this->is_active() ) {
+			if( $person_id = $wp_query->get( 'registar_nestalih_id' ) ) {
+				if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
+					$response = new Registar_Nestalih_Render($response);
+					if($response->ime_prezime) {
+						$desc = sprintf(
+							__( '%s (%d) is missing on %s in %s, from place %s', Registar_Nestalih::TEXTDOMAIN),
+							$response->ime_prezime,
+							$response->age(),
+							$response->missing_date(),
+							$response->mesto_nestanka,
+							$response->prebivaliste
+						);
+					}
 				}
 			}
 		}
@@ -77,25 +93,26 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 	public function add_share_title ($title) {
 		global $wp_query;
 
-		if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )
-		{
-			if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
-				$response = new Registar_Nestalih_Render($response);
-				if($response->ime_prezime) {
-					$wpseo_titles = get_option('wpseo_titles');
-					$sep_options = WPSEO_Option_Titles::get_instance()->get_separator_options();
-					$current_filter = current_filter();
-				
-					$title = sprintf(
-						(
-							$current_filter == 'wpseo_title' 
-							? __( '%s (%d) is missing %s', 'registar-nestalih')
-							: __( '%s (%d) is missing', 'registar-nestalih')
-						),
-						$response->ime_prezime,
-						$response->age(),
-						($sep_options[$wpseo_titles['separator']??NULL] ?? '-') . ' ' . get_bloginfo('name')
-					);
+		if( $this->is_active() ) {
+			if( $person_id = $wp_query->get( 'registar_nestalih_id' ) ) {
+				if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
+					$response = new Registar_Nestalih_Render($response);
+					if($response->ime_prezime) {
+						$wpseo_titles = get_option('wpseo_titles');
+						$sep_options = WPSEO_Option_Titles::get_instance()->get_separator_options();
+						$current_filter = current_filter();
+					
+						$title = sprintf(
+							(
+								$current_filter == 'wpseo_title' 
+								? __( '%s (%d) is missing %s', Registar_Nestalih::TEXTDOMAIN)
+								: __( '%s (%d) is missing', Registar_Nestalih::TEXTDOMAIN)
+							),
+							$response->ime_prezime,
+							$response->age(),
+							($sep_options[$wpseo_titles['separator']??NULL] ?? '-') . ' ' . get_bloginfo('name')
+						);
+					}
 				}
 			}
 		}
@@ -106,12 +123,13 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 	public function add_share_url ($url) {
 		global $wp_query;
 
-		if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )
-		{
-			if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
-				$response = new Registar_Nestalih_Render($response);
-				if($response->ime_prezime) {
-					$url = $response->profile_url();
+		if( $this->is_active() ) {
+			if( $person_id = $wp_query->get( 'registar_nestalih_id' ) ) {
+				if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
+					$response = new Registar_Nestalih_Render($response);
+					if($response->ime_prezime) {
+						$url = $response->profile_url();
+					}
 				}
 			}
 		}
@@ -153,9 +171,9 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 		
 		$registar_nestalih = $this->get_registar_nestalih();
 		
-		$output = '';
+		$output = [];
 		
-		foreach ($registar_nestalih as $key => $registar ){
+		foreach ($registar_nestalih as $key => $registar ) {
 
 			$url = [
 				'loc' => $registar->profile_url(),
@@ -171,19 +189,19 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 
 			$url['loc'] = htmlspecialchars( $url['loc'], ENT_COMPAT, 'UTF-8', false );
 
-			$output .= "\t<url>\n";
-			$output .= "\t\t<loc>" . $url['loc'] . "</loc>\n";
+			$output []= "\t<url>";
+			$output []= "\t\t<loc>" . $url['loc'] . '</loc>';
 			if( !empty( $date ) ) {
-				$output .= "\t\t<lastmod>" . htmlspecialchars( $date, ENT_COMPAT, 'UTF-8', false ) . "</lastmod>\n";
+				$output []= "\t\t<lastmod>" . htmlspecialchars( $date, ENT_COMPAT, 'UTF-8', false ) . '</lastmod>';
 			}
 			
 			if($registar->icon) {
-				$output .= "\t\t<image:image>\n";
-				$output .= "\t\t\t\t<image:loc>" . $registar->icon . "</image:loc>\n";
-				$output .= "\t\t</image:image>\n";
+				$output []= "\t\t<image:image>";
+				$output []= "\t\t\t\t<image:loc>" . $registar->icon . "</image:loc>";
+				$output []= "\t\t</image:image>";
 			}
 			
-			$output .= "\t</url>\n";
+			$output []= "\t</url>";
 
 		}
 		
@@ -193,11 +211,17 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
         }
 
         //Build the full sitemap
-        $sitemap = '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" '
+        $sitemap = '<urlset ' 
+			. 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+			. 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" '
 			. 'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd '
 			. 'http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" '
-			. 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
-        $sitemap .= $output . '</urlset>';
+			. 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'
+		. '>' . "\n"
+			. join("\n", $output) 
+		. "\n</urlset>";
+
+		unset($output);
 
         //echo $sitemap;
         $wpseo_sitemaps->set_sitemap($sitemap);

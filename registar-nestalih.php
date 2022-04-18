@@ -150,12 +150,27 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 			unload_textdomain( self::TEXTDOMAIN );
 		}
 		
-		// Let's save activation dates
+		// Plugin is already installed, update some things
 		if($activation = get_option(self::TEXTDOMAIN . '-activation')) {
+			//Set activation date
 			$activation[] = date('Y-m-d H:i:s');
 			update_option(self::TEXTDOMAIN . '-activation', $activation, false);
-		} else {
+		}
+		// Plugin is new, let's do some things first time
+		else {
+			// Set activation date
 			add_option(self::TEXTDOMAIN . '-activation', [date('Y-m-d H:i:s')], false);
+			
+			// Create new main plugin page
+			if( $page_id = wp_insert_post( [
+				'post_title'    => wp_strip_all_tags( __('Missing persons', self::TEXTDOMAIN) ),
+				'post_content'  => '[registar_nestalih]',
+				'post_status'   => 'publish',
+				'post_author'   => 1,
+				'post_type'     => 'page'
+			] ) ) {
+				Registar_Nestalih_Options::set('main-page', $page_id);
+			}
 		}
 		
 		// Flush rewrite rules
