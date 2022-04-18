@@ -58,6 +58,10 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 				case 'missing-persons-single':
 					Registar_Nestalih_Template::get('missing-persons/single', $response);
 					break;
+					
+				case 'sidebar':
+					Registar_Nestalih_Template::get('missing-persons/sidebar', $response);
+					break;
 				
 			}
 		return ob_get_clean();

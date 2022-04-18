@@ -111,6 +111,10 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 				'class' => 'Registar_Nestalih_Shortcodes',
 				'load' => true
 			],
+			MISSING_PERSONS_ROOT . '/classes/Widgets.php' => [
+				'class' => 'Registar_Nestalih_Widgets',
+				'load' => true
+			],
 			MISSING_PERSONS_ROOT . '/classes/Yoast_SEO.php' => [
 				'class' => 'Registar_Nestalih_Yoast_SEO',
 				'load' => true

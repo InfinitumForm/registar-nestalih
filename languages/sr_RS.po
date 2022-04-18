@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-04-18 09:43+0200\n"
-"PO-Revision-Date: 2022-04-18 09:43+0200\n"
+"POT-Creation-Date: 2022-04-18 12:36+0200\n"
+"PO-Revision-Date: 2022-04-18 12:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Missing Persons Page"
 msgstr "Страница несталих особа"
 
-#: classes/Admin.php:37 classes/Admin.php:38
+#: classes/Admin.php:37 classes/Admin.php:38 widgets/Latest_Missing.php:47
 msgid "Missing Persons"
 msgstr "Нестале особе"
 
@@ -93,17 +93,17 @@ msgstr "%s (%d) је нестао %s"
 msgid "%s (%d) is missing"
 msgstr "%s (%d) је нестао"
 
-#: registar-nestalih.php:166
-#, fuzzy
-#| msgid "Missing Persons"
+#: registar-nestalih.php:170
 msgid "Missing persons"
 msgstr "Нестале особе"
 
-#: templates/missing-persons.php:29 templates/missing-persons/single.php:28
+#: templates/missing-persons.php:29 templates/missing-persons/sidebar.php:20
+#: templates/missing-persons/single.php:28
 msgid "Gender:"
 msgstr "Пол:"
 
-#: templates/missing-persons.php:30 templates/missing-persons/single.php:29
+#: templates/missing-persons.php:30 templates/missing-persons/sidebar.php:21
+#: templates/missing-persons/single.php:29
 msgid "Age:"
 msgstr "Старост:"
 
@@ -142,6 +142,14 @@ msgstr "Претрага по имену, презимену, локацији..
 #: templates/missing-persons/search-form.php:16
 msgid "Search"
 msgstr "Претрага"
+
+#: templates/missing-persons/sidebar.php:23
+msgid "Do you know anything about this person?"
+msgstr "Да ли знате нешто о овој особи?"
+
+#: templates/missing-persons/sidebar.php:32
+msgid "Look at the others"
+msgstr "Погледај остале"
 
 #: templates/missing-persons/single.php:24
 msgid "Personal information"
@@ -218,6 +226,26 @@ msgstr "Место нестанка:"
 #: templates/missing-persons/single.php:73
 msgid "Additional information:"
 msgstr "Додатне информације:"
+
+#: widgets/Latest_Missing.php:13
+msgid "Missing People (recently added)"
+msgstr "Нестали људи (недавно додани)"
+
+#: widgets/Latest_Missing.php:16
+msgid "Show recently added missing people"
+msgstr "Прикажи недавно додане нестале особе"
+
+#: widgets/Latest_Missing.php:52
+msgid "Title:"
+msgstr "Наслов:"
+
+#: widgets/Latest_Missing.php:56
+msgid "Number of posts to show:"
+msgstr "Број постова за приказ:"
+
+#: widgets/Latest_Missing.php:61
+msgid "Display \"look at the others\" link."
+msgstr "Прикажите везу „погледајте остале“."
 
 #. Plugin Name of the plugin/theme
 msgid "Register of Missing Persons of Serbia"

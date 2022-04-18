@@ -1,7 +1,7 @@
 (function($){
 	$(document).ready(function(){
 		// Add orientation classes to the images
-		$('.missing-item-image > img').each(function(){
+		$('.missing-item-image > img, img.missing-person-photo').each(function(){
 			var $image = $(this),
 				$w = $image.width(),
 				$h = $image.height();

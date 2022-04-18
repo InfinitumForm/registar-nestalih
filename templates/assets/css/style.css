@@ -110,3 +110,87 @@
 #missing-persons-search-form {
 	margin: 15px auto;
 }
+
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget {
+	display:block;
+	font-size:14px;
+	color:#333333;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget+.missing-person-widget {
+	margin-top:15px;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget:hover,
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget:focus {
+	color:#000000;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget p{
+	margin:0;
+	padding:0;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget p+p{
+	margin-top:1px;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget .missing-person-img-top {
+	padding: 0;
+	overflow: hidden;
+	position:relative;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget .missing-person-img-top:after {
+	content: "";
+	display: block;
+	padding-bottom: 87%;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget .missing-person-photo{
+	display:block;
+	position:absolute;
+	left:50%;
+	top:50%;
+	width:103%;
+	max-width:103%;
+	transform: translate(-50%, -50%);
+	z-index:1;
+	pointer-events: none;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget .missing-person-photo.img-landscape {
+	width: auto;
+    max-width: initial;
+    height: 103%;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget .missing-person-photo.img-square {
+	width: 103%;
+    max-width: 103%;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget .missing-person-title{
+	padding-top:0;
+	margin:0 0 15px 0;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget .missing-person-text {
+	margin-top:15px;
+}
+
+.widget.widget_registar_nestalih_widget_latest_missing .missing-person-see-all{
+	display:table;
+	margin-top:15px;
+}
+
+@media all and (max-width:768px) {
+	.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget .missing-person-title{
+		margin-top:15px;
+	}
+	
+	.widget.widget_registar_nestalih_widget_latest_missing .missing-person-widget+.missing-person-widget {
+		margin-top:32px;
+	}
+}
