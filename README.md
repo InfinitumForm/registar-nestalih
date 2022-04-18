@@ -1,16 +1,17 @@
-# REGISTAR NESTALIH
+REGISTAR NESTALIH [![PHP Version Require](http://poser.pugx.org/phpunit/phpunit/require/php?style=for-the-badge)](https://github.com/infinitumForm/registar-nestalih)
+========
 
 Prvi WordPress plugin za [Registar nestalih lica u Republici Srbiji](https://www.nestalisrbija.rs/).
 
-### INSTALACIJA DODATKA
+## INSTALACIJA DODATKA
 
 U direktorijumu `/wp-content/plugins` vaše WordPress instalacije kreirajte novi folder pod nazivom `registar-nestalih`, preuzmite ovaj dodatak sa GitHub i prekopirajte sve fajlove koje dobijete u ZIP-u.
 
 Nakon toga u WP Admin aktivirate ovaj novi dodatak.
 
-Nakon aktivacije bi trebalo da dobijete novu stranicu *Registar nestalih* u gde se u sadržaju nalazi kratki kôd (shortcode) `[registar-nestalih]` koji prikazuje listu nestalih sa pretragom i svim ostalim funkcionalnostima.
+Nakon aktivacije bi trebalo da dobijete novu stranicu **Registar nestalih** u gde se u sadržaju nalazi kratki kôd (shortcode) `[registar-nestalih]` koji prikazuje listu nestalih sa pretragom i svim ostalim funkcionalnostima.
 
-Ako ova stranica ne postoji, kreirajte je i postavite kratki kôd `[registar-nestalih]` u sadržaj. Nakon toga u WP Admin posetite opciju *Nestale Osobe* koja se nalazi levo u u navigaciji i odaberite vašu stranicu nestalih osoba i snimite. u tim podešavanjima takođe podešavate permalinkove.
+Ako ova stranica ne postoji, kreirajte je i postavite kratki kôd `[registar-nestalih]` u sadržaj. Nakon toga u WP Admin posetite opciju **Nestale Osobe** koja se nalazi levo u u navigaciji i odaberite vašu stranicu nestalih osoba i snimite. u tim podešavanjima takođe podešavate permalinkove.
 
 Nakon toga vaš dodatak treba da radi bez problema. 
 
