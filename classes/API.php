@@ -18,7 +18,7 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 	
 	// Get remote data
 	public static function get( array $query = [] ) {
-		return self::instance()->__get_missing( $query );
+		return self::instance()->__sanitize_query( self::instance()->__get_missing( $query ) );
 	}
 	
 	// PRIVATE: Get missing persons
@@ -70,32 +70,9 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 	
 	
 	// PRIVATE: Seralize and protect query
-	private function __serialize_query( $query ) {
-		if( empty($query) && $query !== 0 ) {
-			return NULL;
-		}
-		
-		if( is_array($query) ) {
-			$serialized_query = [];
-			foreach($query as $key => $value) {
-				$serialized_query[$key] = self::__serialize_query( $value );
-			}
-			return $serialized_query;
-		} else {
-			if( is_numeric($query) ) {
-				if( $query == absint($query) ) {
-					return absint($query);
-				} else if( $query == floatval($query) ) {
-					return floatval($query);
-				}
-			} else if( preg_match('/[^a-z0-9+_.@-]/i', $query) ) {
-				return sanitize_email($query);
-			} else if( in_array($query, ['true', 'false', true, false]) !== false ) {
-				return ($query === 'true' || $query === true);
-			}
-		}
-		
-		return sanitize_text_field($query);
+	private function __sanitize_query( $query ) {
+		/* TO DO */
+		return $query;
 	}
 	
 	// Flush plugin cache
