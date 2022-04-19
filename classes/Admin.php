@@ -17,10 +17,52 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	
 	// PRIVATE: Main construct
 	private function __construct() {
-		add_action( 'admin_menu', [$this, 'admin_menu'], 90, 1 );
-		add_action( 'admin_bar_menu', [$this, 'admin_bar_menu'], 1 );
-		add_action( 'admin_init', [$this, 'register_setting__missing_persons'] );
-		add_filter( 'display_post_states' , [$this, 'display_post_states'], 10, 2 );
+		add_action( 'admin_menu', [&$this, 'admin_menu'], 90, 1 );
+		add_action( 'admin_bar_menu', [&$this, 'admin_bar_menu'], 1 );
+		add_action( 'admin_init', [&$this, 'register_setting__missing_persons'] );
+		add_filter( 'display_post_states' , [&$this, 'display_post_states'], 10, 2 );
+		add_filter( 'plugin_action_links_' . plugin_basename(MISSING_PERSONS_FILE), [&$this, 'plugin_action_links'] );
+		add_filter( 'plugin_row_meta', [&$this, 'cfgp_action_links'], 10, 2 );
+	}
+	
+	// WP Hidden links by plugin setting page
+	public function plugin_action_links( $links ) {
+		$links = array_merge( $links, [
+			'settings'	=> sprintf(
+				'<a href="' . self_admin_url( 'admin.php?page=missing-persons' ) . '" class="cfgeo-plugins-action-settings">%s</a>', 
+				esc_html__( 'Settings', Registar_Nestalih::TEXTDOMAIN )
+			)
+		] );
+		return $links;
+	}
+	
+	// Plugin action links after details
+	public function cfgp_action_links( $links, $file )
+	{
+		if( plugin_basename( MISSING_PERSONS_FILE ) == $file )
+		{
+			$row_meta = array(
+				'registar_nestalih_donate' => sprintf(
+					'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-donation">%s</a>',
+					esc_url( 'https://donacije.cnzd.rs/proizvod/donirajte/' ),
+					esc_html__( 'Donate', Registar_Nestalih::TEXTDOMAIN )
+				),
+				'registar_nestalih_foundation'	=> sprintf(
+					'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-foundation">%s</a>',
+					esc_url( 'https://cnzd.rs/' ),
+					esc_html__( 'Foundation', Registar_Nestalih::TEXTDOMAIN )
+				),
+				'registar_nestalih_vote'	=> sprintf(
+					'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-vote" title="%s"><span style="color:#ffa000; font-size: 15px; bottom: -1px; position: relative;">&#9733;&#9733;&#9733;&#9733;&#9733;</span> %s</a>',
+					esc_url( 'https://wordpress.org/support/plugin/registar-nestalih/reviews/?filter=5' ),
+					esc_attr__( 'Give us five if you like!', Registar_Nestalih::TEXTDOMAIN ),
+					esc_html__( '5 Stars?', Registar_Nestalih::TEXTDOMAIN )
+				)
+			);
+
+			$links = array_merge( $links, $row_meta );
+		}
+		return $links;
 	}
 	
 	// Display posts state
@@ -58,6 +100,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		if( wp_verify_nonce( ($_POST['__nonce'] ?? NULL), Registar_Nestalih::TEXTDOMAIN ) && isset($_POST[Registar_Nestalih::TEXTDOMAIN]) ) {
 			if( Registar_Nestalih_Options::set( $_POST[Registar_Nestalih::TEXTDOMAIN] ) ) {			
 				if( function_exists('flush_rewrite_rules') ) {
+					Registar_Nestalih_API::flush_cache();
 					flush_rewrite_rules();
 				}
 			}

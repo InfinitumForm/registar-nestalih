@@ -58,7 +58,7 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 				}
 			}
 			
-			set_transient($cache_name, $posts, HOUR_IN_SECONDS);
+			set_transient($cache_name, $posts, (HOUR_IN_SECONDS*MISSING_PERSONS_CACHE_IN_HOURS));
 			$__get_missing[$cache_name] = $posts;
 		}
 		
@@ -93,6 +93,33 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 		}
 		
 		return sanitize_text_field($query);
+	}
+	
+	// Flush plugin cache
+	public static function flush_cache() {
+		global $wpdb;
+		// Remove all transients
+		if ( is_multisite() && is_main_site() && is_main_network() ) {
+			$wpdb->query("DELETE FROM
+				`{$wpdb->sitemeta}`
+			WHERE (
+					`{$wpdb->sitemeta}`.`option_name` LIKE '_site_transient_registar-nestalih-api-%'
+				OR
+					`{$wpdb->sitemeta}`.`option_name` LIKE '_site_transient_timeout_registar-nestalih-api-%'
+			)");
+		} else {
+			$wpdb->query("DELETE FROM
+				`{$wpdb->options}`
+			WHERE (
+					`{$wpdb->sitemeta}`.`option_name` LIKE '_transient_registar-nestalih-api-%'
+				OR
+					`{$wpdb->sitemeta}`.`option_name` LIKE '_transient_timeout_registar-nestalih-api-%'
+				OR
+					`{$wpdb->sitemeta}`.`option_name` LIKE '_site_transient_registar-nestalih-api-%'
+				OR
+					`{$wpdb->sitemeta}`.`option_name` LIKE '_site_transient_timeout_registar-nestalih-api-%'
+			)");
+		}
 	}
 	
 } endif;

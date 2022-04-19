@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-04-18 12:36+0200\n"
-"PO-Revision-Date: 2022-04-18 12:37+0200\n"
+"POT-Creation-Date: 2022-04-19 10:47+0200\n"
+"PO-Revision-Date: 2022-04-19 10:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -17,62 +17,117 @@ msgstr ""
 "X-Poedit-WPHeader: registar-nestalih.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: classes/Admin.php:29 classes/Admin.php:80
+#: classes/Admin.php:33
+msgid "Settings"
+msgstr "Подешавање"
+
+#: classes/Admin.php:48
+msgid "Donate"
+msgstr "Донирајте"
+
+#: classes/Admin.php:53
+msgid "Foundation"
+msgstr "Фондација"
+
+#: classes/Admin.php:58
+msgid "Give us five if you like!"
+msgstr "Дајте нам пет ако желите!"
+
+#: classes/Admin.php:59
+msgid "5 Stars?"
+msgstr "5 звезда?"
+
+#: classes/Admin.php:71 classes/Admin.php:123
 msgid "Missing Persons Page"
 msgstr "Страница несталих особа"
 
-#: classes/Admin.php:37 classes/Admin.php:38 widgets/Latest_Missing.php:47
+#: classes/Admin.php:79 classes/Admin.php:80 widgets/Latest_Missing.php:48
 msgid "Missing Persons"
 msgstr "Нестале особе"
 
-#: classes/Admin.php:73
+#: classes/Admin.php:116
 msgid "Plugin Settings"
 msgstr "Подешавање додатка"
 
-#: classes/Admin.php:76
+#: classes/Admin.php:119
 msgid "Missing Persons Settings"
 msgstr "Подешавање додатка несталих особа"
 
-#: classes/Admin.php:77
+#: classes/Admin.php:120
 msgid "This option sets the API and shortcode for missing persons."
 msgstr "Ова опција поставља АПИ и кратки код за нестале особе."
 
-#: classes/Admin.php:83
+#: classes/Admin.php:126
 msgid "Select a Page"
 msgstr "Одаберите страницу"
 
-#: classes/Admin.php:97
+#: classes/Admin.php:140
 msgid "Pagination slug"
 msgstr "Пермалинк пагинације"
 
-#: classes/Admin.php:103
+#: classes/Admin.php:146
 msgid "Search slug"
 msgstr "Пермалинк претраге"
 
-#: classes/Admin.php:109
+#: classes/Admin.php:152
 msgid "Person slug"
 msgstr "Пермалинк особе"
 
-#: classes/Admin.php:115
+#: classes/Admin.php:158
 msgid "Open links in new window"
 msgstr "Отвори у новом прозору"
 
-#: classes/Admin.php:120
+#: classes/Admin.php:163
 msgid "Yes"
 msgstr "Да"
 
-#: classes/Admin.php:125
+#: classes/Admin.php:168
 msgid "No"
 msgstr "Не"
 
-#: classes/Admin.php:130
+#: classes/Admin.php:173
 msgid "Save"
 msgstr "Сними"
+
+#: classes/Init.php:140
+msgid "Missing persons"
+msgstr "Нестале особе"
+
+#: classes/Requirements.php:62
+#, php-format
+msgid ""
+"The %1$s cannot run on PHP versions older than PHP %2$s. Please contact your "
+"host and ask them to upgrade."
+msgstr ""
+"%1$s не може да ради на ПХП верзијама старијим од %2$s. Контактирајте свог "
+"провајдера и замолите да надогради."
+
+#: classes/Requirements.php:78
+#, php-format
+msgid ""
+"The %1$s cannot run on WordPress versions older than %2$s. Please update "
+"your WordPress installation."
+msgstr ""
+"%1$s не може да ради на верзијама ВордПрес-а старијим од %2$s. Ажурирајте "
+"своју инсталацију Вордпрес-а."
+
+#: classes/Requirements.php:115
+#, php-format
+msgid "Important upgrade notice for the version %s:"
+msgstr "Важно обавештење о надоградњи за верзију %s:"
+
+#: classes/Requirements.php:129
+msgid ""
+"NOTE: Before doing the update, it would be a good idea to backup your "
+"WordPress installations and settings."
+msgstr ""
+"НАПОМЕНА: Пре него што извршите ажурирање, било би добро да направите "
+"резервну копију својих Вордпрес инсталација и подешавања."
 
 #: classes/Template.php:85
 msgid "Please wait..."
@@ -93,9 +148,10 @@ msgstr "%s (%d) је нестао %s"
 msgid "%s (%d) is missing"
 msgstr "%s (%d) је нестао"
 
-#: registar-nestalih.php:170
-msgid "Missing persons"
-msgstr "Нестале особе"
+#. Plugin Name of the plugin/theme
+#: registar-nestalih.php:58
+msgid "Register of Missing Persons of Serbia"
+msgstr "Регистар несталих лица Србије"
 
 #: templates/missing-persons.php:29 templates/missing-persons/sidebar.php:20
 #: templates/missing-persons/single.php:28
@@ -235,21 +291,17 @@ msgstr "Нестали људи (недавно додани)"
 msgid "Show recently added missing people"
 msgstr "Прикажи недавно додане нестале особе"
 
-#: widgets/Latest_Missing.php:52
+#: widgets/Latest_Missing.php:53
 msgid "Title:"
 msgstr "Наслов:"
 
-#: widgets/Latest_Missing.php:56
+#: widgets/Latest_Missing.php:57
 msgid "Number of posts to show:"
 msgstr "Број постова за приказ:"
 
-#: widgets/Latest_Missing.php:61
+#: widgets/Latest_Missing.php:62
 msgid "Display \"look at the others\" link."
 msgstr "Прикажите везу „погледајте остале“."
-
-#. Plugin Name of the plugin/theme
-msgid "Register of Missing Persons of Serbia"
-msgstr "Регистар несталих лица Србије"
 
 #. Plugin URI of the plugin/theme
 msgid "https://www.nestalisrbija.rs/"
@@ -257,11 +309,11 @@ msgstr "https://www.nestalisrbija.rs/"
 
 #. Description of the plugin/theme
 msgid ""
-"Show on your site all missing persons from the central Register of Missing "
-"Persons of Serbia"
+"Display on your site all missing persons from the central Register of "
+"Missing Persons of Serbia."
 msgstr ""
 "Прикажите на свом сајту сва нестала лица из Централног регистра несталих "
-"лица Србије"
+"лица Србије."
 
 #. Author of the plugin/theme
 msgid "Ivijan-Stefan Sipić"
