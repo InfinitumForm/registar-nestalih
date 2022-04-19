@@ -15,7 +15,7 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 	
 	// PRIVATE: Main construct
 	private function __construct() {
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ &$this, 'enqueue_scripts' ] );
 	}
 	
 	// Get URL

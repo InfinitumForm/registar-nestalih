@@ -32,11 +32,11 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		// On plugin uninstallation
 		register_uninstall_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'uninstall_plugin' ] );
 		// Load translations
-		add_action( 'plugins_loaded', [ $this, 'register_textdomain' ], 10, 0 );
+		add_action( 'plugins_loaded', [ &$this, 'register_textdomain' ], 10, 0 );
 		// Register plugin classes
 		$this->register_plugin_classes();
 		// Load remote actions
-		add_action( 'init', [ $this, 'remote_actions' ], 1, 0 );
+		add_action( 'init', [ &$this, 'remote_actions' ], 1, 0 );
 	}
 
 	// Load remote actions

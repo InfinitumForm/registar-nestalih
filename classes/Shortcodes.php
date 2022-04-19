@@ -21,7 +21,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	// Register shortcodes
 	public function register( string $tag, $callback ) {
 		if( !shortcode_exists( $tag ) ) {
-			add_shortcode( $tag, [$this, $callback] );
+			add_shortcode( $tag, [&$this, $callback] );
 		}
 	}
 	

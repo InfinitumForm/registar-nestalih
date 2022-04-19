@@ -15,10 +15,10 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 	
 	// PRIVATE: Main construct
 	private function __construct() {
-		add_action( 'registar_nestalih_before_main_container', [$this, 'do_missing_persons_search'], 10 );
-		add_action( 'registar_nestalih_pagination', [$this, 'do_missing_persons_pagination'] );
-		add_action( 'registar_nestalih_breadcrumb', [$this, 'do_breadcrumb'] );
-		add_filter( 'document_title_parts', [$this, 'document_title_parts'], 100, 2 );
+		add_action( 'registar_nestalih_before_main_container', [&$this, 'do_missing_persons_search'], 10 );
+		add_action( 'registar_nestalih_pagination', [&$this, 'do_missing_persons_pagination'] );
+		add_action( 'registar_nestalih_breadcrumb', [&$this, 'do_breadcrumb'] );
+		add_filter( 'document_title_parts', [&$this, 'document_title_parts'], 100, 2 );
 	}
 	
 	// Get date format

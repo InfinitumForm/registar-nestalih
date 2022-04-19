@@ -20,9 +20,9 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 		// here will be option
 		$this->page_id = Registar_Nestalih_Options::get('main-page');
 		
-		add_action( 'init', [$this, 'add_rewrite_rule'], 1 );
-		add_action( 'query_vars', [$this, 'query_vars'] );
-		add_action( 'template_redirect', [$this, 'wp_redirect'] );
+		add_action( 'init', [&$this, 'add_rewrite_rule'], 1 );
+		add_action( 'query_vars', [&$this, 'query_vars'] );
+		add_action( 'template_redirect', [&$this, 'wp_redirect'] );
 	}
 	
 	// Get page

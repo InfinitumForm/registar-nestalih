@@ -28,7 +28,7 @@ if(!class_exists('Registar_Nestalih_Requirements')) : class Registar_Nestalih_Re
 			}
 		}
 		
-		add_action( "in_plugin_update_message-{$this->slug}/{$this->slug}.php", array(&$this, 'in_plugin_update_message'), 10, 2 );
+		add_action( "in_plugin_update_message-{$this->slug}/{$this->slug}.php", [&$this, 'in_plugin_update_message'], 10, 2 );
 	}
 	
 	/*
