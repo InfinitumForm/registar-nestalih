@@ -98,12 +98,10 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 		$active_theme_path = rtrim(get_stylesheet_directory(), '/');
 		$plugin_path = MISSING_PERSONS_ROOT;
 		
-		$location = $active_theme_path . '/registar-nestalih';
-		if( !file_exists($location) ) {
-			$location = $plugin_path . '/templates';
+		$path = $active_theme_path . '/registar-nestalih/' . $template . '.php';
+		if( !file_exists($path) ) {
+			$path = $plugin_path . '/templates/' . $template . '.php';
 		}
-		
-		$path = $location . '/' . $template . '.php';
 		
 		if( file_exists($path) ) {
 			global $missing_response;
