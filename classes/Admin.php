@@ -109,7 +109,10 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	
 	// Admin page
 	public function page__missing_persons () {
-		$pages = get_pages();
+		$pages = get_pages([
+			'post_status' => 'publish,private',
+			'post_type' => 'page'
+		]);
 		$options = get_option( 'registar_nestalih' );
 	?>
 <div class="wrap">
@@ -165,6 +168,21 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 					<label for="open-in-new-window-1">
 						<input type="radio" id="open-in-new-window-1" name="registar-nestalih[open-in-new-window]" value="0" <?php 
 							checked( ($options['open-in-new-window'] ?? 0), 0 ); 
+						?> /> <?php _e('No', Registar_Nestalih::TEXTDOMAIN); ?>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e('Enable sending information about the person', Registar_Nestalih::TEXTDOMAIN); ?></th>
+				<td>
+					<label for="enable-notification-0">
+						<input type="radio" id="enable-notification-0" name="registar-nestalih[enable-notification]" value="1" <?php 
+							checked( ($options['enable-notification'] ?? 0), 1 ); 
+						?> /> <?php _e('Yes', Registar_Nestalih::TEXTDOMAIN); ?>
+					</label>&nbsp;&nbsp;&nbsp;
+					<label for="enable-notification-1">
+						<input type="radio" id="enable-notification-1" name="registar-nestalih[enable-notification]" value="0" <?php 
+							checked( ($options['enable-notification'] ?? 0), 0 ); 
 						?> /> <?php _e('No', Registar_Nestalih::TEXTDOMAIN); ?>
 					</label>
 				</td>

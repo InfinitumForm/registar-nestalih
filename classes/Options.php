@@ -11,7 +11,8 @@ if( !class_exists('Registar_Nestalih_Options') ) : class Registar_Nestalih_Optio
 		'pagination-slug' => 'page',
 		'search-slug' => 'search',
 		'person-slug' => 'person',
-		'open-in-new-window' => 0
+		'open-in-new-window' => 0,
+		'enable-notification' => 1
 	];
 	
 	/*

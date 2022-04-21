@@ -82,7 +82,8 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 		wp_localize_script( Registar_Nestalih::TEXTDOMAIN, 'registar_nestalih', [
 			'ajax' => admin_url('/admin-ajax.php'),
 			'label' => [
-				'loading' => __('Please wait...', Registar_Nestalih::TEXTDOMAIN)
+				'loading' => __('Please wait...', Registar_Nestalih::TEXTDOMAIN),
+				'form_error' => __('All fields in this form are required. Fill in the fields and send a message.', Registar_Nestalih::TEXTDOMAIN),
 			]
 		] );
 	}

@@ -159,4 +159,36 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 		return date_i18n( $this->date_format, strtotime($this->datum_prijave . ' 01:00:01'));
 	}
 	
+	// Send notification message
+	public function send_information( $fields = [] ) {
+		$fields = $_POST['missing-persons'] ?? $fields;
+
+		if( !empty($fields) && wp_verify_nonce(($fields['nonce'] ?? ''), 'missing-persons-form-' . $this->id()) ) {
+			
+			if( $response = wp_remote_post( 'https://nestaliapi.delfin.rs/api/save_info_o_osobi', [
+				'body' => [
+					'nestale_osobe_id' 		=> $this->id(),
+					'informacije_o_osobi' 	=> ($fields['message'] ?? NULL),
+					'ime_prezime' 			=> ($fields['first_last_name'] ?? NULL),
+					'telefon' 				=> ($fields['phone'] ?? NULL),
+					'email' 				=> ($fields['email'] ?? NULL)
+				],
+			] ) ) {
+				$response = json_decode($response['body']);
+				
+				if($response->result) {
+					if( isset($_POST['missing-persons']) ) {
+						unset($_POST['missing-persons']);
+					}
+					
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
+		return NULL;
+	}
+	
 } endif;

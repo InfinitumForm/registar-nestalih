@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-04-19 10:47+0200\n"
-"PO-Revision-Date: 2022-04-19 10:51+0200\n"
+"POT-Creation-Date: 2022-04-21 12:58+0200\n"
+"PO-Revision-Date: 2022-04-21 13:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -42,7 +42,7 @@ msgstr "Дајте нам пет ако желите!"
 msgid "5 Stars?"
 msgstr "5 звезда?"
 
-#: classes/Admin.php:71 classes/Admin.php:123
+#: classes/Admin.php:71 classes/Admin.php:126
 msgid "Missing Persons Page"
 msgstr "Страница несталих особа"
 
@@ -50,51 +50,64 @@ msgstr "Страница несталих особа"
 msgid "Missing Persons"
 msgstr "Нестале особе"
 
-#: classes/Admin.php:116
+#: classes/Admin.php:119
 msgid "Plugin Settings"
 msgstr "Подешавање додатка"
 
-#: classes/Admin.php:119
+#: classes/Admin.php:122
 msgid "Missing Persons Settings"
 msgstr "Подешавање додатка несталих особа"
 
-#: classes/Admin.php:120
+#: classes/Admin.php:123
 msgid "This option sets the API and shortcode for missing persons."
 msgstr "Ова опција поставља АПИ и кратки код за нестале особе."
 
-#: classes/Admin.php:126
+#: classes/Admin.php:129
 msgid "Select a Page"
 msgstr "Одаберите страницу"
 
-#: classes/Admin.php:140
+#: classes/Admin.php:143
 msgid "Pagination slug"
 msgstr "Пермалинк пагинације"
 
-#: classes/Admin.php:146
+#: classes/Admin.php:149
 msgid "Search slug"
 msgstr "Пермалинк претраге"
 
-#: classes/Admin.php:152
+#: classes/Admin.php:155
 msgid "Person slug"
 msgstr "Пермалинк особе"
 
-#: classes/Admin.php:158
+#: classes/Admin.php:161
 msgid "Open links in new window"
 msgstr "Отвори у новом прозору"
 
-#: classes/Admin.php:163
+#: classes/Admin.php:166 classes/Admin.php:181
 msgid "Yes"
 msgstr "Да"
 
-#: classes/Admin.php:168
+#: classes/Admin.php:171 classes/Admin.php:186
 msgid "No"
 msgstr "Не"
 
-#: classes/Admin.php:173
+#: classes/Admin.php:176
+msgid "Enable sending information about the person"
+msgstr "Омогућите слање информација о особи"
+
+#: classes/Admin.php:191
 msgid "Save"
 msgstr "Сними"
 
-#: classes/Init.php:140
+#: classes/Content.php:154
+#, php-format
+msgid "Information about %s sent successfully."
+msgstr "Информације о %s су успешно послате."
+
+#: classes/Content.php:161
+msgid "The message was not sent due to technical problems."
+msgstr "Порука није послата због техничких проблема."
+
+#: classes/Init.php:138
 msgid "Missing persons"
 msgstr "Нестале особе"
 
@@ -132,6 +145,11 @@ msgstr ""
 #: classes/Template.php:85
 msgid "Please wait..."
 msgstr "Молимо причекајте..."
+
+#: classes/Template.php:86
+msgid ""
+"All fields in this form are required. Fill in the fields and send a message."
+msgstr "Сва поља у овом обрасцу су обавезна. Попуните поља и пошаљите поруку."
 
 #: classes/Yoast_SEO.php:78
 #, php-format
@@ -176,6 +194,35 @@ msgstr "(недефинисано)"
 msgid "More Informations"
 msgstr "Више информација"
 
+#: templates/missing-persons/contact-form.php:9
+#: templates/missing-persons/sidebar.php:23
+msgid "Do you know anything about this person?"
+msgstr "Да ли знате нешто о овој особи?"
+
+#: templates/missing-persons/contact-form.php:14
+msgid "Enter all information about this person in detail..."
+msgstr "Детаљно унесите све податке о овој особи..."
+
+#: templates/missing-persons/contact-form.php:19
+msgid "First and Last name"
+msgstr "Име и презиме"
+
+#: templates/missing-persons/contact-form.php:20
+msgid "Your First and Last name"
+msgstr "Ваше пуно име и презиме"
+
+#: templates/missing-persons/contact-form.php:25
+msgid "Your e-mail"
+msgstr "Емаил"
+
+#: templates/missing-persons/contact-form.php:31
+msgid "Your phone number"
+msgstr "Ваш број телефона"
+
+#: templates/missing-persons/contact-form.php:37
+msgid "Send Message"
+msgstr "Пошаљи поруку"
+
 #: templates/missing-persons/pagination.php:13
 #: templates/missing-persons/pagination.php:21
 msgid "Previous"
@@ -198,10 +245,6 @@ msgstr "Претрага по имену, презимену, локацији..
 #: templates/missing-persons/search-form.php:16
 msgid "Search"
 msgstr "Претрага"
-
-#: templates/missing-persons/sidebar.php:23
-msgid "Do you know anything about this person?"
-msgstr "Да ли знате нешто о овој особи?"
 
 #: templates/missing-persons/sidebar.php:32
 msgid "Look at the others"

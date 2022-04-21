@@ -194,3 +194,17 @@
 		margin-top:32px;
 	}
 }
+
+#missing-persons-form {
+	margin-bottom:64px;
+}
+
+#missing-persons-form .asterisk-required {
+	color: #cc0000;
+	font-weight:900;
+}
+
+#missing-persons-form .form-control.has-error {
+	border-color:#cc0000;
+	color: #cc0000;
+}

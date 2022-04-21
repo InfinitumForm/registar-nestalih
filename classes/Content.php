@@ -18,6 +18,12 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		add_action( 'registar_nestalih_before_main_container', [&$this, 'do_missing_persons_search'], 10 );
 		add_action( 'registar_nestalih_pagination', [&$this, 'do_missing_persons_pagination'] );
 		add_action( 'registar_nestalih_breadcrumb', [&$this, 'do_breadcrumb'] );
+		
+		if( Registar_Nestalih_Options::get('enable-notification') ) {
+			add_action( 'registar_nestalih_before_single_container', [&$this, 'do_missing_persons_contact_form_http'] );
+			add_action( 'registar_nestalih_after_single_container', [&$this, 'do_missing_persons_contact_form'] );
+		}
+		
 		add_filter( 'document_title_parts', [&$this, 'document_title_parts'], 100, 2 );
 	}
 	
@@ -134,6 +140,33 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		}
 		
 		Registar_Nestalih_Template::get('missing-persons/search-form', $response);
+	}
+	
+	// Contact form HTTP response
+	public function do_missing_persons_contact_form_http ( $response ) {
+		$send_message = $response->send_information();
+		
+		if(NULL !== $send_message) {
+			if( $send_message ) {
+				printf(
+					'<div class="alert alert-success" role="alert">%s</div>',
+					sprintf(
+						__('Information about %s sent successfully.', Registar_Nestalih::TEXTDOMAIN),
+						$response->ime_prezime
+					)
+				);
+			} else {
+				printf(
+					'<div class="alert alert-danger" role="alert">%s</div>',
+					__('The message was not sent due to technical problems.', Registar_Nestalih::TEXTDOMAIN)
+				);
+			}
+		}
+	}
+	
+	// Add contact form to the single
+	public function do_missing_persons_contact_form ( $response ) {
+		Registar_Nestalih_Template::get('missing-persons/contact-form', $response);
 	}
 	
 } endif;
