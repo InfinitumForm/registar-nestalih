@@ -44,9 +44,8 @@ if ( ! defined( 'MISSING_PERSONS_FILE' ) ) {
 	define( 'MISSING_PERSONS_FILE', __FILE__ );
 }
 
-if ( ! defined( 'MISSING_PERSONS_CACHE_IN_HOURS' ) ) {
-	define( 'MISSING_PERSONS_CACHE_IN_HOURS', 1 );
-}
+// Load main constants
+include_once MISSING_PERSONS_ROOT . '/constants.php';
 
 // Load main class
 include_once MISSING_PERSONS_ROOT . '/classes/Init.php';

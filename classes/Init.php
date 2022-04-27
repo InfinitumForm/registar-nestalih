@@ -47,6 +47,10 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 	// Register plugin classes
 	public function register_plugin_classes(){
 		$register_classes = apply_filters( 'registar_nestalih_classes', [
+			MISSING_PERSONS_ROOT . '/classes/Utilities.php' => [
+				'class' => 'Registar_Nestalih_U',
+				'load' => false
+			],
 			MISSING_PERSONS_ROOT . '/classes/Options.php' => [
 				'class' => 'Registar_Nestalih_Options',
 				'load' => false

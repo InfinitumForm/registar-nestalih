@@ -1,18 +1,22 @@
 (function($){
 	$(document).ready(function(){
 		// Add orientation classes to the images
-		$('.missing-item-image > img, img.missing-person-photo').each(function(){
-			var $image = $(this),
-				$w = $image.width(),
-				$h = $image.height();
+		$('.missing-item-image > img, img.missing-person-photo, #missing-persons-single-container .missing-person-personal-image > .missing-item-image > img').each(function(){
+			$(this).load(function(){
+				var $image = $(this);
 				
-			if( $h > $w ) {
-				$image.addClass('img-portrait');
-			} else if( $h === $w ) {
-				$image.addClass('img-square');
-			} else {
-				$image.addClass('img-landscape');
-			}
+				setTimeout(function(){
+					var $w = $image.width(),
+						$h = $image.height();
+					if( $h > $w ) {
+						$image.addClass('img-portrait');
+					} else if( $h === $w ) {
+						$image.addClass('img-square');
+					} else {
+						$image.addClass('img-landscape');
+					}
+				}, 100);
+			});
 		});
 	});
 	

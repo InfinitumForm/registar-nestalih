@@ -61,7 +61,7 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 				}
 			}
 			
-			set_transient($cache_name, $posts, (HOUR_IN_SECONDS*MISSING_PERSONS_CACHE_IN_HOURS));
+			set_transient($cache_name, $posts, (MINUTE_IN_SECONDS*MISSING_PERSONS_CACHE_IN_MINUTES));
 			$__get_missing[$cache_name] = $posts;
 		}
 		

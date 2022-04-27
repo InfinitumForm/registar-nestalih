@@ -23,6 +23,7 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 		add_action( 'init', [&$this, 'add_rewrite_rule'], 1 );
 		add_action( 'query_vars', [&$this, 'query_vars'] );
 		add_action( 'template_redirect', [&$this, 'wp_redirect'] );
+		add_action( 'template_redirect', [&$this, 'push_notification'] );
 	}
 	
 	// Get page
@@ -40,10 +41,12 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 	public function add_rewrite_rule () {
 		global $wp;
 		
-		add_rewrite_tag('%registar_nestalih_list%', '([^&]+)');
-		add_rewrite_tag('%registar_nestalih_id%', '([^&]+)');
+		add_rewrite_tag('%registar_nestalih_list%', '([0-9]+)');
+		add_rewrite_tag('%registar_nestalih_id%', '([0-9]+)');
 		add_rewrite_tag('%registar_nestalih_name%', '([^&]+)');
 		add_rewrite_tag('%registar_nestalih_search%', '([^&]+)');
+		add_rewrite_tag('%registar_nestalih_push_notification%', '([^&]+)');
+		add_rewrite_tag('%registar_nestalih_hash%', '([^&]+)');
 		
 		$page_data = self::get_post();
 		
@@ -78,6 +81,13 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 			'index.php?pagename=' . $page_data->post_name . '&registar_nestalih_search=$matches[1]&registar_nestalih_list=$matches[2]',
 			'top'
 		);
+		
+		// Endpoint URL Push notification https://yoursite.com/rnp-notification/{ID}
+		add_rewrite_rule(
+			'rnp-notification/([^/]*)',
+			'index.php?registar_nestalih_push_notification=true&registar_nestalih_hash=$matches[1]',
+			'top'
+		);
 	}
 	
 	// Add rewrite query vars
@@ -86,6 +96,8 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 		$query_vars[] = 'registar_nestalih_id';
 		$query_vars[] = 'registar_nestalih_name';
 		$query_vars[] = 'registar_nestalih_search';
+		$query_vars[] = 'registar_nestalih_push_notification';
+		$query_vars[] = 'registar_nestalih_hash';
 		return $query_vars;
 	}
 	
@@ -134,6 +146,34 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 		if( $redirect && wp_safe_redirect($redirect) ) {
 			exit;
 		}
+	}
+	
+	public function push_notification () {
+		global $wp_query;
+		
+		$push_notification = ( $wp_query->get( 'registar_nestalih_push_notification' ) ?? false );
+		
+		if( $push_notification ) {
+			if( Registar_Nestalih_U::key() === $wp_query->get( 'registar_nestalih_hash' ) ) {
+				wp_send_json([
+					'status' => __('Success!', Registar_Nestalih::TEXTDOMAIN),
+					'id' => Registar_Nestalih_U::id(),
+					'timestamp'=>date('c'),
+					'error' => false,
+					'code' => 200
+				], 200);
+				Registar_Nestalih_U::cache_flush(true);
+				Registar_Nestalih_API::flush_cache();
+			} else {
+				wp_send_json([
+				'status' => __('Sync key does not match.', Registar_Nestalih::TEXTDOMAIN),
+				'error' => true,
+				'code' => 401
+			], 401);
+			}
+			exit;
+		}
+		
 	}
 	
 } endif;

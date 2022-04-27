@@ -38,8 +38,8 @@ do_action('registar_nestalih_before_single_container', $missing);
 					<li class="list-group-item active">
 						<?php _e('Personal description', Registar_Nestalih::TEXTDOMAIN); ?>
 					</li>
-					<li class="list-group-item"><b><?php _e('Height:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo $missing->visina; ?>cm</span></li>
-					<li class="list-group-item"><b><?php _e('Weight:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo $missing->tezina; ?>kg</span></li>
+					<li class="list-group-item"><b><?php _e('Height:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo $missing->visina; ?></span></li>
+					<li class="list-group-item"><b><?php _e('Weight:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo $missing->tezina; ?></span></li>
 					<li class="list-group-item"><b><?php _e('Eye color:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo $missing->boja_ociju; ?></span></li>
 					<li class="list-group-item"><b><?php _e('Heir color:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo $missing->boja_kose; ?></span></li>
 				</ul>

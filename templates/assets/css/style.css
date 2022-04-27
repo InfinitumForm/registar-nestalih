@@ -208,3 +208,39 @@
 	border-color:#cc0000;
 	color: #cc0000;
 }
+
+#missing-persons-single-container .missing-person-personal-image > .missing-item-image{
+	display:table;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:15px;
+	min-width:400px;
+	max-width:768px;
+	position:relative;
+	padding:0;
+	background:#ffffff;
+	overflow:hidden;
+}
+
+@media all and (max-width:425px) {
+	#missing-persons-single-container .missing-person-personal-image > .missing-item-image{
+		min-width:300px;
+	}
+}
+
+@media all and (max-width:325px) {
+	#missing-persons-single-container .missing-person-personal-image > .missing-item-image{
+		min-width:200px;
+	}
+}
+
+@media all and (max-width:225px) {
+	#missing-persons-single-container .missing-person-personal-image > .missing-item-image{
+		min-width:100px;
+	}
+}
+
+#missing-persons-single-container .missing-person-personal-image > .missing-item-image > img{
+	width: 100% !important;
+    max-width: inherit !important;
+}
