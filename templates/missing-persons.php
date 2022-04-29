@@ -18,20 +18,20 @@ do_action('registar_nestalih_before_main_container', $missing_response);
 	?>
 	<div class="col col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 missing-item missing-item-<?php echo absint($i); ?> missing-item-id-<?php echo absint($missing->id); ?>" id="missing-item-<?php echo sanitize_title($missing->ime_prezime); ?>">
 		<div class="card">
-			<a class="missing-item-image card-img-top" href="<?php echo $missing->profile_url(); ?>" title="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"<?php echo $target_blank; ?>>
-				<img src="<?php echo $missing->profile_image(); ?>" alt="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>">
+			<a class="missing-item-image card-img-top" href="<?php echo esc_url( $missing->profile_url() ); ?>" title="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"<?php echo $target_blank; ?>>
+				<img src="<?php echo esc_url( $missing->profile_image() ); ?>" alt="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>">
 			</a>
 			<div class="card-body">
 				<h3 class="card-title missing-item-title">
-					<a href="<?php echo $missing->profile_url(); ?>"<?php echo $target_blank; ?>><?php echo esc_html($missing->ime_prezime); ?></a>
+					<a href="<?php echo esc_url( $missing->profile_url() ); ?>"<?php echo $target_blank; ?>><?php echo esc_html($missing->ime_prezime); ?></a>
 				</h3>
 				<ul class="list-group missing-item-info">
-					<li class="list-group-item"><b><?php _e('Gender:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo esc_html($missing->pol); ?></span></li>
-					<li class="list-group-item"><b><?php _e('Age:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo $missing->age(); ?></span></li>
-					<li class="list-group-item"><b><?php _e('Place of disappearance:', Registar_Nestalih::TEXTDOMAIN); ?></b> <span><?php echo esc_html($missing->mesto_nestanka ? $missing->mesto_nestanka : __('(undefined)', Registar_Nestalih::TEXTDOMAIN)); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Gender:', 'registar-nestalih'); ?></b> <span><?php echo esc_html( $missing->pol ); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Age:', 'registar-nestalih'); ?></b> <span><?php echo esc_html( $missing->age() ); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Place of disappearance:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->mesto_nestanka ? $missing->mesto_nestanka : __('(undefined)', 'registar-nestalih')); ?></span></li>
 				</ul>
-				<a class="btn btn-primary" href="<?php echo $missing->profile_url(); ?>" title="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"<?php echo $target_blank; ?>>
-					<?php _e('More Informations', Registar_Nestalih::TEXTDOMAIN); ?>
+				<a class="btn btn-primary" href="<?php echo esc_url( $missing->profile_url() ); ?>" title="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"<?php echo $target_blank; ?>>
+					<?php _e('More Informations', 'registar-nestalih'); ?>
 				</a>
 			</div>
 		</div>	

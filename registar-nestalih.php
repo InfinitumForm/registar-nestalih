@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Register of Missing Persons of Serbia
+ * Plugin Name:       Registar Nestalih
  * Plugin URI:        https://www.nestalisrbija.rs/
  * Description:       Display on your site all missing persons from the central Register of Missing Persons of Serbia.
  * Version:           1.0.0
@@ -36,13 +36,11 @@
 if ( ! defined( 'WPINC' ) ) { die( "Don't mess with us." ); }
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-if ( ! defined( 'MISSING_PERSONS_ROOT' ) ) {
-	define( 'MISSING_PERSONS_ROOT', __DIR__ );
-}
+// Define plugin file (changes not allowed)
+define( 'MISSING_PERSONS_FILE', __FILE__ );
 
-if ( ! defined( 'MISSING_PERSONS_FILE' ) ) {
-	define( 'MISSING_PERSONS_FILE', __FILE__ );
-}
+// Define plugin path (changes not allowed)
+define( 'MISSING_PERSONS_ROOT', rtrim(plugin_dir_path( MISSING_PERSONS_FILE ), '\\/') );
 
 // Load main constants
 include_once MISSING_PERSONS_ROOT . '/constants.php';
@@ -54,8 +52,8 @@ include_once MISSING_PERSONS_ROOT . '/classes/Init.php';
 include_once MISSING_PERSONS_ROOT . '/classes/Requirements.php';
 if(Registar_Nestalih_Requirements::passes([
 	'file' => MISSING_PERSONS_FILE,
-	'title' => __('Register of Missing Persons of Serbia', Registar_Nestalih::TEXTDOMAIN),
-	'slug' => Registar_Nestalih::TEXTDOMAIN
+	'title' => __('Register of Missing Persons of Serbia', 'registar-nestalih'),
+	'slug' => 'registar-nestalih'
 ])) {
 	// Load plugin
 	Registar_Nestalih::instance();

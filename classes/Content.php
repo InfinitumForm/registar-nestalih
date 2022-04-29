@@ -151,14 +151,14 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 				printf(
 					'<div class="alert alert-success" role="alert">%s</div>',
 					sprintf(
-						__('Information about %s sent successfully.', Registar_Nestalih::TEXTDOMAIN),
+						__('Information about %s sent successfully.', 'registar-nestalih'),
 						$response->ime_prezime
 					)
 				);
 			} else {
 				printf(
 					'<div class="alert alert-danger" role="alert">%s</div>',
-					__('The message was not sent due to technical problems.', Registar_Nestalih::TEXTDOMAIN)
+					__('The message was not sent due to technical problems.', 'registar-nestalih')
 				);
 			}
 		}

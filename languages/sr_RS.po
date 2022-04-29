@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-04-27 15:12+0200\n"
-"PO-Revision-Date: 2022-04-27 15:13+0200\n"
+"POT-Creation-Date: 2022-04-29 09:51+0200\n"
+"PO-Revision-Date: 2022-04-29 09:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -107,7 +107,7 @@ msgstr "Информације о %s су успешно послате."
 msgid "The message was not sent due to technical problems."
 msgstr "Порука није послата због техничких проблема."
 
-#: classes/Init.php:142
+#: classes/Init.php:147
 msgid "Missing persons"
 msgstr "Нестале особе"
 
@@ -175,7 +175,7 @@ msgid "%s (%d) is missing"
 msgstr "%s (%d) је нестао"
 
 #. Plugin Name of the plugin/theme
-#: registar-nestalih.php:57
+#: registar-nestalih.php:55
 msgid "Register of Missing Persons of Serbia"
 msgstr "Регистар несталих лица Србије"
 
@@ -322,15 +322,15 @@ msgstr "Датум пријаве:"
 msgid "Other informations"
 msgstr "Остале информације"
 
-#: templates/missing-persons/single.php:63
+#: templates/missing-persons/single.php:64
 msgid "Circumstances of disappearance:"
 msgstr "Околности нестанка:"
 
-#: templates/missing-persons/single.php:68
+#: templates/missing-persons/single.php:71
 msgid "Description at the time of disappearance:"
 msgstr "Место нестанка:"
 
-#: templates/missing-persons/single.php:73
+#: templates/missing-persons/single.php:78
 msgid "Additional information:"
 msgstr "Додатне информације:"
 

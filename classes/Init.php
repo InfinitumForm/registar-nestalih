@@ -46,48 +46,53 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 
 	// Register plugin classes
 	public function register_plugin_classes(){
+		
+		// Keep this in the place
+		$root = realpath(__DIR__);
+		
+		// Include files
 		$register_classes = apply_filters( 'registar_nestalih_classes', [
-			MISSING_PERSONS_ROOT . '/classes/Utilities.php' => [
+			$root . '/Utilities.php' => [
 				'class' => 'Registar_Nestalih_U',
 				'load' => false
 			],
-			MISSING_PERSONS_ROOT . '/classes/Options.php' => [
+			$root . '/Options.php' => [
 				'class' => 'Registar_Nestalih_Options',
 				'load' => false
 			],
-			MISSING_PERSONS_ROOT . '/classes/API.php' => [
+			$root . '/API.php' => [
 				'class' => 'Registar_Nestalih_API',
 				'load' => false
 			],
-			MISSING_PERSONS_ROOT . '/classes/Render.php' => [
+			$root . '/Render.php' => [
 				'class' => 'Registar_Nestalih_Render',
 				'load' => false
 			],
-			MISSING_PERSONS_ROOT . '/classes/Template.php' => [
+			$root . '/Template.php' => [
 				'class' => 'Registar_Nestalih_Template',
 				'load' => true
 			],
-			MISSING_PERSONS_ROOT . '/classes/Content.php' => [
+			$root . '/Content.php' => [
 				'class' => 'Registar_Nestalih_Content',
 				'load' => true
 			],
-			MISSING_PERSONS_ROOT . '/classes/Rewrite.php' => [
+			$root . '/Rewrite.php' => [
 				'class' => 'Registar_Nestalih_Rewrite',
 				'load' => true
 			],
-			MISSING_PERSONS_ROOT . '/classes/Admin.php' => [
+			$root . '/Admin.php' => [
 				'class' => 'Registar_Nestalih_Admin',
 				'load' => true
 			],
-			MISSING_PERSONS_ROOT . '/classes/Shortcodes.php' => [
+			$root . '/Shortcodes.php' => [
 				'class' => 'Registar_Nestalih_Shortcodes',
 				'load' => true
 			],
-			MISSING_PERSONS_ROOT . '/classes/Widgets.php' => [
+			$root . '/Widgets.php' => [
 				'class' => 'Registar_Nestalih_Widgets',
 				'load' => true
 			],
-			MISSING_PERSONS_ROOT . '/classes/Yoast_SEO.php' => [
+			$root . '/Yoast_SEO.php' => [
 				'class' => 'Registar_Nestalih_Yoast_SEO',
 				'load' => true
 			]

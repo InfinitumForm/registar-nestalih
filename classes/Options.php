@@ -154,7 +154,7 @@ if( !class_exists('Registar_Nestalih_Options') ) : class Registar_Nestalih_Optio
 			if(is_numeric($str))
 			{
 				if(intval( $str ) == $str) {
-					$str = intval( $str );
+					$str = absint( $str );
 				} else if(floatval($str) == $str) {
 					$str = floatval( $str );
 				} else {
@@ -163,7 +163,8 @@ if( !class_exists('Registar_Nestalih_Options') ) : class Registar_Nestalih_Optio
 			}
 			else if(filter_var($str, FILTER_VALIDATE_URL) !== false)
 			{
-				return esc_url($str);
+				$str = esc_url( sanitize_url( $str ) );
+				return mb_strtolower($str);
 			}
 			else if(preg_match('/^([0-9a-z-_.]+@[0-9a-z-_.]+.[a-z]{2,8})$/i', $str))
 			{

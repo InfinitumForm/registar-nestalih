@@ -161,7 +161,7 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 	
 	// Send notification message
 	public function send_information( $fields = [] ) {
-		$fields = $_POST['missing-persons'] ?? $fields;
+		$fields = sanitize_text_field($_POST['missing-persons'] ?? $fields);
 
 		if( !empty($fields) && wp_verify_nonce(($fields['nonce'] ?? ''), 'missing-persons-form-' . $this->id()) ) {
 			

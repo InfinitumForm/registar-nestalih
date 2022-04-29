@@ -75,7 +75,7 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 					$response = new Registar_Nestalih_Render($response);
 					if($response->ime_prezime) {
 						$desc = sprintf(
-							__( '%s (%d) is missing on %s in %s, from place %s', Registar_Nestalih::TEXTDOMAIN),
+							__( '%s (%d) is missing on %s in %s, from place %s', 'registar-nestalih'),
 							$response->ime_prezime,
 							$response->age(),
 							$response->missing_date(),
@@ -105,8 +105,8 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 						$title = sprintf(
 							(
 								$current_filter == 'wpseo_title' 
-								? __( '%s (%d) is missing %s', Registar_Nestalih::TEXTDOMAIN)
-								: __( '%s (%d) is missing', Registar_Nestalih::TEXTDOMAIN)
+								? __( '%s (%d) is missing %s', 'registar-nestalih')
+								: __( '%s (%d) is missing', 'registar-nestalih')
 							),
 							$response->ime_prezime,
 							$response->age(),

@@ -77,13 +77,13 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 		$js_url = self::url('assets/js/script.js');	
 		$js_path = self::path('assets/js/script.js');
 		
-		wp_register_style( Registar_Nestalih::TEXTDOMAIN, $css_url, 1, 'RV-1.' . absint(filesize($css_path)) );		
-		wp_register_script( Registar_Nestalih::TEXTDOMAIN, $js_url, ['jquery'], 'RV-1.' . absint(filesize($js_path)), true );
-		wp_localize_script( Registar_Nestalih::TEXTDOMAIN, 'registar_nestalih', [
+		wp_register_style( 'registar-nestalih', $css_url, 1, 'RV-1.' . absint(filesize($css_path)) );		
+		wp_register_script( 'registar-nestalih', $js_url, ['jquery'], 'RV-1.' . absint(filesize($js_path)), true );
+		wp_localize_script( 'registar-nestalih', 'registar_nestalih', [
 			'ajax' => admin_url('/admin-ajax.php'),
 			'label' => [
-				'loading' => __('Please wait...', Registar_Nestalih::TEXTDOMAIN),
-				'form_error' => __('All fields in this form are required. Fill in the fields and send a message.', Registar_Nestalih::TEXTDOMAIN),
+				'loading' => __('Please wait...', 'registar-nestalih'),
+				'form_error' => __('All fields in this form are required. Fill in the fields and send a message.', 'registar-nestalih'),
 			]
 		] );
 	}

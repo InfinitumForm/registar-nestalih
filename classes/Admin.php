@@ -30,7 +30,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		$links = array_merge( $links, [
 			'settings'	=> sprintf(
 				'<a href="' . self_admin_url( 'admin.php?page=missing-persons' ) . '" class="cfgeo-plugins-action-settings">%s</a>', 
-				esc_html__( 'Settings', Registar_Nestalih::TEXTDOMAIN )
+				esc_html__( 'Settings', 'registar-nestalih' )
 			)
 		] );
 		return $links;
@@ -45,18 +45,18 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				'registar_nestalih_donate' => sprintf(
 					'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-donation">%s</a>',
 					esc_url( 'https://donacije.cnzd.rs/proizvod/donirajte/' ),
-					esc_html__( 'Donate', Registar_Nestalih::TEXTDOMAIN )
+					esc_html__( 'Donate', 'registar-nestalih' )
 				),
 				'registar_nestalih_foundation'	=> sprintf(
 					'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-foundation">%s</a>',
 					esc_url( 'https://cnzd.rs/' ),
-					esc_html__( 'Foundation', Registar_Nestalih::TEXTDOMAIN )
+					esc_html__( 'Foundation', 'registar-nestalih' )
 				),
 				'registar_nestalih_vote'	=> sprintf(
 					'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-vote" title="%s"><span style="color:#ffa000; font-size: 15px; bottom: -1px; position: relative;">&#9733;&#9733;&#9733;&#9733;&#9733;</span> %s</a>',
 					esc_url( 'https://wordpress.org/support/plugin/registar-nestalih/reviews/?filter=5' ),
-					esc_attr__( 'Give us five if you like!', Registar_Nestalih::TEXTDOMAIN ),
-					esc_html__( '5 Stars?', Registar_Nestalih::TEXTDOMAIN )
+					esc_attr__( 'Give us five if you like!', 'registar-nestalih' ),
+					esc_html__( '5 Stars?', 'registar-nestalih' )
 				)
 			);
 
@@ -68,7 +68,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	// Display posts state
 	public function display_post_states ($states, $post) {
 		if ( ( 'page' == get_post_type( $post->ID ) ) && ( Registar_Nestalih_Options::get('main-page') === $post->ID )) {
-			$states[] = __( 'Missing Persons Page', Registar_Nestalih::TEXTDOMAIN );
+			$states[] = __( 'Missing Persons Page', 'registar-nestalih' );
 		}
 		return $states;
 	}
@@ -76,8 +76,8 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	// Add menu pages
 	public function admin_menu () {
 		add_menu_page(
-			__( 'Missing Persons', Registar_Nestalih::TEXTDOMAIN ),
-			__( 'Missing Persons', Registar_Nestalih::TEXTDOMAIN ),
+			__( 'Missing Persons', 'registar-nestalih' ),
+			__( 'Missing Persons', 'registar-nestalih' ),
 			'manage_options',
 			'missing-persons',
 			[ $this, 'page__missing_persons' ],
@@ -97,8 +97,8 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	
 	// Sanitize fields
 	function register_setting__missing_persons() {
-		if( wp_verify_nonce( ($_POST['__nonce'] ?? NULL), Registar_Nestalih::TEXTDOMAIN ) && isset($_POST[Registar_Nestalih::TEXTDOMAIN]) ) {
-			if( Registar_Nestalih_Options::set( $_POST[Registar_Nestalih::TEXTDOMAIN] ) ) {			
+		if( wp_verify_nonce( ($_POST['__nonce'] ?? NULL), 'registar-nestalih' ) && isset($_POST['registar-nestalih']) ) {
+			if( Registar_Nestalih_Options::set( $_POST['registar-nestalih'] ) ) {			
 				if( function_exists('flush_rewrite_rules') ) {
 					Registar_Nestalih_API::flush_cache();
 					flush_rewrite_rules();
@@ -116,20 +116,20 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		$options = get_option( 'registar_nestalih' );
 	?>
 <div class="wrap">
-	<h1><?php _e('Plugin Settings', Registar_Nestalih::TEXTDOMAIN); ?></h1>
+	<h1><?php _e('Plugin Settings', 'registar-nestalih'); ?></h1>
 	<hr>
 	<form method="post">
-		<h3><?php _e('Missing Persons Settings', Registar_Nestalih::TEXTDOMAIN); ?></h3>
-		<p><?php _e('This option sets the API and shortcode for missing persons.', Registar_Nestalih::TEXTDOMAIN); ?></p>
+		<h3><?php _e('Missing Persons Settings', 'registar-nestalih'); ?></h3>
+		<p><?php _e('This option sets the API and shortcode for missing persons.', 'registar-nestalih'); ?></p>
 		<table class="form-table" role="presentation">
 			<tr>
-				<th scope="row"><?php _e('Missing Persons Page', Registar_Nestalih::TEXTDOMAIN); ?></th>
+				<th scope="row"><?php _e('Missing Persons Page', 'registar-nestalih'); ?></th>
 				<td>
 					<select name="registar-nestalih[main-page]">
-						<option value="">- <?php _e('Select a Page', Registar_Nestalih::TEXTDOMAIN); ?> -</option>
+						<option value="">- <?php _e('Select a Page', 'registar-nestalih'); ?> -</option>
 						<?php foreach( $pages as $page ) { ?>
 							<option value="<?php 
-								echo $page->ID; 
+								echo absint($page->ID); 
 							?>" <?php 
 								selected( ($options['main-page'] ?? NULL), $page->ID ); 
 							?>><?php 
@@ -140,56 +140,56 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php _e('Pagination slug', Registar_Nestalih::TEXTDOMAIN); ?></th>
+				<th scope="row"><?php _e('Pagination slug', 'registar-nestalih'); ?></th>
 				<td>
 					<input type="text" name="registar-nestalih[pagination-slug]" value="<?php echo esc_attr( ($options['pagination-slug'] ?? 'page') ); ?>" placeholder="page" />
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php _e('Search slug', Registar_Nestalih::TEXTDOMAIN); ?></th>
+				<th scope="row"><?php _e('Search slug', 'registar-nestalih'); ?></th>
 				<td>
 					<input type="text" name="registar-nestalih[search-slug]" value="<?php echo esc_attr( ($options['search-slug'] ?? 'search') ); ?>" placeholder="search" />
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php _e('Person slug', Registar_Nestalih::TEXTDOMAIN); ?></th>
+				<th scope="row"><?php _e('Person slug', 'registar-nestalih'); ?></th>
 				<td>
 					<input type="text" name="registar-nestalih[person-slug]" value="<?php echo esc_attr( ($options['person-slug'] ?? 'person') ); ?>" placeholder="person" />
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php _e('Open links in new window', Registar_Nestalih::TEXTDOMAIN); ?></th>
+				<th scope="row"><?php _e('Open links in new window', 'registar-nestalih'); ?></th>
 				<td>
 					<label for="open-in-new-window-0">
 						<input type="radio" id="open-in-new-window-0" name="registar-nestalih[open-in-new-window]" value="1" <?php 
 							checked( ($options['open-in-new-window'] ?? 0), 1 ); 
-						?> /> <?php _e('Yes', Registar_Nestalih::TEXTDOMAIN); ?>
+						?> /> <?php _e('Yes', 'registar-nestalih'); ?>
 					</label>&nbsp;&nbsp;&nbsp;
 					<label for="open-in-new-window-1">
 						<input type="radio" id="open-in-new-window-1" name="registar-nestalih[open-in-new-window]" value="0" <?php 
 							checked( ($options['open-in-new-window'] ?? 0), 0 ); 
-						?> /> <?php _e('No', Registar_Nestalih::TEXTDOMAIN); ?>
+						?> /> <?php _e('No', 'registar-nestalih'); ?>
 					</label>
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php _e('Enable sending information about the person', Registar_Nestalih::TEXTDOMAIN); ?></th>
+				<th scope="row"><?php _e('Enable sending information about the person', 'registar-nestalih'); ?></th>
 				<td>
 					<label for="enable-notification-0">
 						<input type="radio" id="enable-notification-0" name="registar-nestalih[enable-notification]" value="1" <?php 
 							checked( ($options['enable-notification'] ?? 0), 1 ); 
-						?> /> <?php _e('Yes', Registar_Nestalih::TEXTDOMAIN); ?>
+						?> /> <?php _e('Yes', 'registar-nestalih'); ?>
 					</label>&nbsp;&nbsp;&nbsp;
 					<label for="enable-notification-1">
 						<input type="radio" id="enable-notification-1" name="registar-nestalih[enable-notification]" value="0" <?php 
 							checked( ($options['enable-notification'] ?? 0), 0 ); 
-						?> /> <?php _e('No', Registar_Nestalih::TEXTDOMAIN); ?>
+						?> /> <?php _e('No', 'registar-nestalih'); ?>
 					</label>
 				</td>
 			</tr>
 		</table>
-		<?php submit_button( __('Save', Registar_Nestalih::TEXTDOMAIN) ); ?>
-		<input type="hidden" name="__nonce" value="<?php echo esc_attr( wp_create_nonce(Registar_Nestalih::TEXTDOMAIN) ); ?>" />
+		<?php submit_button( __('Save', 'registar-nestalih') ); ?>
+		<input type="hidden" name="__nonce" value="<?php echo esc_attr( wp_create_nonce('registar-nestalih') ); ?>" />
 	</form>
 </div>
 	<?php }

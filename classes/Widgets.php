@@ -22,26 +22,33 @@ if( !class_exists('Registar_Nestalih_Widgets') ) : class Registar_Nestalih_Widge
 		
 		// For each class include file and collect widgets
 		$load_widgets = [];
-		foreach($classes as $i => $class){
-			$widget_path = MISSING_PERSONS_ROOT . '/widgets/' . str_replace('Registar_Nestalih_Widget_', '', $class) . '.php';
+		
+		// Find widgets root
+		$widgets_root = dirname( realpath(__DIR__) ) . '/widgets/';
 
-			// Include
-			if(!class_exists($class) && file_exists($widget_path)) {
-				include_once $widget_path;
-			}
+		// Load widget classes
+		if( file_exists($widgets_root) ) {
+			foreach($classes as $i => $class){
+				$widget_path = $widgets_root . str_replace('Registar_Nestalih_Widget_', '', $class) . '.php';
 
-			// Register widget
-			if( class_exists($class) ) {
-				$load_widgets[] = $class;
-			}
-		}
-		// Register widget
-		if( !empty($load_widgets) ) {
-			add_action( 'widgets_init', function() use ($load_widgets){
-				foreach($load_widgets as $widget) {
-					register_widget( $widget );
+				// Include
+				if(!class_exists($class) && file_exists($widget_path)) {
+					include_once $widget_path;
 				}
-			} );
+
+				// Register widget
+				if( class_exists($class) ) {
+					$load_widgets[] = $class;
+				}
+			}
+			// Register widget
+			if( !empty($load_widgets) ) {
+				add_action( 'widgets_init', function() use ($load_widgets){
+					foreach($load_widgets as $widget) {
+						register_widget( $widget );
+					}
+				} );
+			}
 		}
 	}
 }

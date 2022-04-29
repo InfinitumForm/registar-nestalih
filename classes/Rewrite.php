@@ -120,7 +120,7 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 					$redirect = sprintf(
 						'%s/%s',
 						rtrim($current_url, '/'),
-						trim( esc_html( $_POST['registar_nestalih_search'] ) )
+						sanitize_text_field( $_POST['registar_nestalih_search'] )
 					);
 				}
 			}
@@ -135,7 +135,7 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 					]);
 				} else {					
 					$redirect = add_query_arg([
-						'registar_nestalih_search' => trim( esc_html( $_POST['registar_nestalih_search'] ) )
+						'registar_nestalih_search' => sanitize_text_field( $_POST['registar_nestalih_search'] )
 					]);
 				}
 			}
@@ -156,7 +156,7 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 		if( $push_notification ) {
 			if( Registar_Nestalih_U::key() === $wp_query->get( 'registar_nestalih_hash' ) ) {
 				wp_send_json([
-					'status' => __('Success!', Registar_Nestalih::TEXTDOMAIN),
+					'status' => __('Success!', 'registar-nestalih'),
 					'id' => Registar_Nestalih_U::id(),
 					'timestamp'=>date('c'),
 					'error' => false,
@@ -166,7 +166,7 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 				Registar_Nestalih_API::flush_cache();
 			} else {
 				wp_send_json([
-				'status' => __('Sync key does not match.', Registar_Nestalih::TEXTDOMAIN),
+				'status' => __('Sync key does not match.', 'registar-nestalih'),
 				'error' => true,
 				'code' => 401
 			], 401);
