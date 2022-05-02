@@ -51,7 +51,7 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 		foreach($data as $key => $value) {
 			
 			if( property_exists($this, $key) ) {
-				$this->{$key} = $value;
+				$this->{$key} = self::senitize( $value );
 			}
 		}
 		
@@ -74,7 +74,7 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 	public function profile_image () {
 		if( empty($this->icon) ) {
 			$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-male.gif');
-			if( in_array(mb_strtolower($this->pol), ['ženski', 'zenski', 'woman', 'female', 'f']) ) {
+			if( in_array(mb_strtolower($this->pol), ['ženа', 'ženskо', 'ženski', 'zenа', 'zenskо', 'zenski', 'woman', 'female', 'f']) ) {
 				$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-female.gif');
 			}
 		}
@@ -161,22 +161,36 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 	
 	// Send notification message
 	public function send_information( $fields = [] ) {
-		$fields = sanitize_text_field($_POST['missing-persons'] ?? $fields);
+		
+		$defaults = [
+			'message' 			=> NULL,
+			'first_last_name' 	=> NULL,
+			'phone' 			=> NULL,
+			'email' 			=> NULL,
+			'nonce' 			=> NULL
+		];
+		
+		$post = ($_POST['missing-persons'] ?? $defaults);
+		if( !is_array($post) ) {
+			$post = $defaults;
+		}
+		
+		$fields = array_map('trim', $post ?? $fields);
 
 		if( !empty($fields) && wp_verify_nonce(($fields['nonce'] ?? ''), 'missing-persons-form-' . $this->id()) ) {
 			
 			if( $response = wp_remote_post( 'https://nestaliapi.delfin.rs/api/save_info_o_osobi', [
 				'body' => [
-					'nestale_osobe_id' 		=> $this->id(),
-					'informacije_o_osobi' 	=> ($fields['message'] ?? NULL),
-					'ime_prezime' 			=> ($fields['first_last_name'] ?? NULL),
-					'telefon' 				=> ($fields['phone'] ?? NULL),
-					'email' 				=> ($fields['email'] ?? NULL)
+					'nestale_osobe_id' 		=> absint($this->id()),
+					'informacije_o_osobi' 	=> sanitize_textarea_field($fields['message'] ?? NULL),
+					'ime_prezime' 			=> sanitize_text_field($fields['first_last_name'] ?? NULL),
+					'telefon' 				=> sanitize_text_field($fields['phone'] ?? NULL),
+					'email' 				=> sanitize_email($fields['email'] ?? NULL)
 				],
 			] ) ) {
 				$response = json_decode($response['body']);
 				
-				if($response->result) {
+				if( $response->result ?? NULL ) {
 					if( isset($_POST['missing-persons']) ) {
 						unset($_POST['missing-persons']);
 					}
@@ -189,6 +203,48 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 		}
 		
 		return NULL;
+	}
+	
+	// Clean and escape data
+	private static function senitize ( $str ) {
+		
+		if( is_array($str) ) {
+			$array = array();
+			foreach( $str as $k => $v ) {
+				$array[$k] = self::senitize( $v );
+			}
+			return $array;
+		} else if( empty($str) && $str != 0 ) {
+			return NULL;
+		} else if ( is_numeric($str) ) {
+			if( absint($str) == $str ) {
+				return absint($str);
+			} else if( floatval($str) == $str ) {
+				return floatval($str);
+			}
+		} else if ( is_string($str) ) {
+			if ( preg_match('/[a-z0-9\.-_]+\@[a-z0-9\.-_]+/i', $str) ) {
+				return sanitize_email($str);
+			} else if ( preg_match('/https?\:\/\//i', $str) ) {
+				return sanitize_url($str);
+			}
+		}
+		
+		$str = html_entity_decode($str);
+		if(preg_match('/<\/?[a-z][\s\S]*>/i', $str)) {
+			$str = wp_kses(
+				$str,
+				wp_kses_allowed_html('post')
+			);
+		} else {
+			$str = sanitize_text_field( $str );
+		}
+		
+		if( in_array($str, array('-', '/')) ) {
+			$str = NULL;
+		}
+		
+		return $str;
 	}
 	
 } endif;

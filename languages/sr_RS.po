@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-04-29 09:51+0200\n"
-"PO-Revision-Date: 2022-04-29 09:51+0200\n"
+"POT-Creation-Date: 2022-05-02 12:39+0200\n"
+"PO-Revision-Date: 2022-05-02 12:40+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -174,7 +174,6 @@ msgstr "%s (%d) је нестао %s"
 msgid "%s (%d) is missing"
 msgstr "%s (%d) је нестао"
 
-#. Plugin Name of the plugin/theme
 #: registar-nestalih.php:55
 msgid "Register of Missing Persons of Serbia"
 msgstr "Регистар несталих лица Србије"
@@ -193,41 +192,48 @@ msgstr "Старост:"
 msgid "Place of disappearance:"
 msgstr "Место нестанка:"
 
-#: templates/missing-persons.php:31 templates/missing-persons/single.php:33
+#: templates/missing-persons.php:31 templates/missing-persons/single.php:28
+#: templates/missing-persons/single.php:31
+#: templates/missing-persons/single.php:32
+#: templates/missing-persons/single.php:33
+#: templates/missing-persons/single.php:41
+#: templates/missing-persons/single.php:42
+#: templates/missing-persons/single.php:43
+#: templates/missing-persons/single.php:44
 #: templates/missing-persons/single.php:54
 msgid "(undefined)"
-msgstr "(недефинисано)"
+msgstr "(непознато)"
 
 #: templates/missing-persons.php:34
 msgid "More Informations"
 msgstr "Више информација"
 
-#: templates/missing-persons/contact-form.php:9
+#: templates/missing-persons/contact-form.php:16
 #: templates/missing-persons/sidebar.php:23
 msgid "Do you know anything about this person?"
 msgstr "Да ли знате нешто о овој особи?"
 
-#: templates/missing-persons/contact-form.php:14
+#: templates/missing-persons/contact-form.php:21
 msgid "Enter all information about this person in detail..."
 msgstr "Детаљно унесите све податке о овој особи..."
 
-#: templates/missing-persons/contact-form.php:19
+#: templates/missing-persons/contact-form.php:26
 msgid "First and Last name"
 msgstr "Име и презиме"
 
-#: templates/missing-persons/contact-form.php:20
+#: templates/missing-persons/contact-form.php:27
 msgid "Your First and Last name"
 msgstr "Ваше пуно име и презиме"
 
-#: templates/missing-persons/contact-form.php:25
+#: templates/missing-persons/contact-form.php:32
 msgid "Your e-mail"
 msgstr "Емаил"
 
-#: templates/missing-persons/contact-form.php:31
+#: templates/missing-persons/contact-form.php:38
 msgid "Your phone number"
 msgstr "Ваш број телефона"
 
-#: templates/missing-persons/contact-form.php:37
+#: templates/missing-persons/contact-form.php:44
 msgid "Send Message"
 msgstr "Пошаљи поруку"
 
@@ -276,7 +282,7 @@ msgstr "Датум рођења:"
 
 #: templates/missing-persons/single.php:31
 msgid "Place of Birth:"
-msgstr "Датум рођења:"
+msgstr "Место рођења:"
 
 #: templates/missing-persons/single.php:32
 msgid "Citizenship:"
@@ -353,6 +359,10 @@ msgstr "Број постова за приказ:"
 #: widgets/Latest_Missing.php:62
 msgid "Display \"look at the others\" link."
 msgstr "Прикажите везу „погледајте остале“."
+
+#. Plugin Name of the plugin/theme
+msgid "Registar Nestalih"
+msgstr ""
 
 #. Plugin URI of the plugin/theme
 msgid "https://www.nestalisrbija.rs/"

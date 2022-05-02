@@ -25,11 +25,11 @@ do_action('registar_nestalih_before_single_container', $missing);
 					</li>
 					<li class="list-group-item"><b><?php _e('First Name:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->first_name()); ?></span></li>
 					<li class="list-group-item"><b><?php _e('Last Name:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->last_name()); ?></span></li>
-					<li class="list-group-item"><b><?php _e('Gender:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->pol); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Gender:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->pol ?? __('(undefined)', 'registar-nestalih')); ?></span></li>
 					<li class="list-group-item"><b><?php _e('Age:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->age()); ?></span></li>
 					<li class="list-group-item"><b><?php _e('Date of Birth:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->birth_date()); ?></span></li>
-					<li class="list-group-item"><b><?php _e('Place of Birth:', 'registar-nestalih'); ?></b> <?php echo esc_html($missing->mesto_rodjenja); ?></li>
-					<li class="list-group-item"><b><?php _e('Citizenship:', 'registar-nestalih'); ?></b> <?php echo esc_html($missing->drzavljanstvo); ?></li>
+					<li class="list-group-item"><b><?php _e('Place of Birth:', 'registar-nestalih'); ?></b> <?php echo esc_html($missing->mesto_rodjenja ?? __('(undefined)', 'registar-nestalih')); ?></li>
+					<li class="list-group-item"><b><?php _e('Citizenship:', 'registar-nestalih'); ?></b> <?php echo esc_html($missing->drzavljanstvo ?? __('(undefined)', 'registar-nestalih')); ?></li>
 					<li class="list-group-item"><b><?php _e('Residence:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->prebivaliste ? $missing->prebivaliste : __('(undefined)', 'registar-nestalih')); ?></span></li>
 				</ul>
 			</div>
@@ -38,14 +38,19 @@ do_action('registar_nestalih_before_single_container', $missing);
 					<li class="list-group-item active">
 						<?php _e('Personal description', 'registar-nestalih'); ?>
 					</li>
-					<li class="list-group-item"><b><?php _e('Height:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->visina); ?></span></li>
-					<li class="list-group-item"><b><?php _e('Weight:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->tezina); ?></span></li>
-					<li class="list-group-item"><b><?php _e('Eye color:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->boja_ociju); ?></span></li>
-					<li class="list-group-item"><b><?php _e('Heir color:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->boja_kose); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Height:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->visina ?? __('(undefined)', 'registar-nestalih')); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Weight:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->tezina ?? __('(undefined)', 'registar-nestalih')); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Eye color:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->boja_ociju ?? __('(undefined)', 'registar-nestalih')); ?></span></li>
+					<li class="list-group-item"><b><?php _e('Heir color:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->boja_kose ?? __('(undefined)', 'registar-nestalih')); ?></span></li>
 				</ul>
 			</div>
 		</div>
 
+		<?php if( !empty( array_filter( [
+			$missing->missing_date(),
+			$missing->mesto_nestanka,
+			$missing->reporting_date()
+		] ) ) ) : ?>
 		<ul class="list-group missing-person-details-about-missing">
 			<li class="list-group-item active">
 				<?php _e('Details about missing', 'registar-nestalih'); ?>
@@ -54,7 +59,13 @@ do_action('registar_nestalih_before_single_container', $missing);
 			<li class="list-group-item"><b><?php _e('Place of disappearance:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->mesto_nestanka ? $missing->mesto_nestanka : __('(undefined)', 'registar-nestalih')); ?></span></li>
 			<li class="list-group-item"><b><?php _e('Reported date:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->reporting_date()); ?></span></li>
 		</ul>
+		<?php endif; ?>
 		
+		<?php if( !empty( array_filter( [
+			$missing->okolnosti_nestanka,
+			$missing->opis_nestanka,
+			$missing->dodatne_informacije
+		] ) ) ) : ?>
 		<ul class="list-group missing-person-other-informations">
 			<li class="list-group-item active">
 				<?php _e('Other informations', 'registar-nestalih'); ?>
@@ -81,6 +92,7 @@ do_action('registar_nestalih_before_single_container', $missing);
 			</li>
 			<?php endif; ?>
 		</ul>
+		<?php endif; ?>
 		
 	</div>
 </div>
