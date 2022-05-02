@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-05-02 12:39+0200\n"
-"PO-Revision-Date: 2022-05-02 12:40+0200\n"
+"POT-Creation-Date: 2022-05-02 13:27+0200\n"
+"PO-Revision-Date: 2022-05-02 13:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -183,16 +183,8 @@ msgstr "Регистар несталих лица Србије"
 msgid "Gender:"
 msgstr "Пол:"
 
-#: templates/missing-persons.php:30 templates/missing-persons/sidebar.php:21
-#: templates/missing-persons/single.php:29
-msgid "Age:"
-msgstr "Старост:"
-
-#: templates/missing-persons.php:31 templates/missing-persons/single.php:54
-msgid "Place of disappearance:"
-msgstr "Место нестанка:"
-
-#: templates/missing-persons.php:31 templates/missing-persons/single.php:28
+#: templates/missing-persons.php:29 templates/missing-persons.php:31
+#: templates/missing-persons/single.php:28
 #: templates/missing-persons/single.php:31
 #: templates/missing-persons/single.php:32
 #: templates/missing-persons/single.php:33
@@ -200,9 +192,18 @@ msgstr "Место нестанка:"
 #: templates/missing-persons/single.php:42
 #: templates/missing-persons/single.php:43
 #: templates/missing-persons/single.php:44
-#: templates/missing-persons/single.php:54
+#: templates/missing-persons/single.php:59
 msgid "(undefined)"
 msgstr "(непознато)"
+
+#: templates/missing-persons.php:30 templates/missing-persons/sidebar.php:21
+#: templates/missing-persons/single.php:29
+msgid "Age:"
+msgstr "Старост:"
+
+#: templates/missing-persons.php:31 templates/missing-persons/single.php:59
+msgid "Place of disappearance:"
+msgstr "Место нестанка:"
 
 #: templates/missing-persons.php:34
 msgid "More Informations"
@@ -252,11 +253,11 @@ msgstr "%d од %d"
 msgid "Next"
 msgstr "Следеће"
 
-#: templates/missing-persons/search-form.php:14
+#: templates/missing-persons/search-form.php:16
 msgid "Search by first name, last name, location..."
 msgstr "Претрага по имену, презимену, локацији..."
 
-#: templates/missing-persons/search-form.php:16
+#: templates/missing-persons/search-form.php:18
 msgid "Search"
 msgstr "Претрага"
 
@@ -312,31 +313,31 @@ msgstr "Боја очију:"
 msgid "Heir color:"
 msgstr "Боја косе:"
 
-#: templates/missing-persons/single.php:51
+#: templates/missing-persons/single.php:56
 msgid "Details about missing"
 msgstr "Детаљи о нестанку"
 
-#: templates/missing-persons/single.php:53
+#: templates/missing-persons/single.php:58
 msgid "Missing date:"
 msgstr "Датум нестанка:"
 
-#: templates/missing-persons/single.php:55
+#: templates/missing-persons/single.php:60
 msgid "Reported date:"
 msgstr "Датум пријаве:"
 
-#: templates/missing-persons/single.php:60
+#: templates/missing-persons/single.php:71
 msgid "Other informations"
 msgstr "Остале информације"
 
-#: templates/missing-persons/single.php:64
+#: templates/missing-persons/single.php:75
 msgid "Circumstances of disappearance:"
 msgstr "Околности нестанка:"
 
-#: templates/missing-persons/single.php:71
+#: templates/missing-persons/single.php:82
 msgid "Description at the time of disappearance:"
 msgstr "Место нестанка:"
 
-#: templates/missing-persons/single.php:78
+#: templates/missing-persons/single.php:89
 msgid "Additional information:"
 msgstr "Додатне информације:"
 
