@@ -50,16 +50,16 @@ if( !class_exists('Registar_Nestalih_Widget_Latest_Missing') ) : class Registar_
 		$see_others = $instance[ 'see_others' ] ?? 1;
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_html_e( $title ); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'per_page' ); ?>"><?php _e( 'Number of posts to show:', 'registar-nestalih' ); ?></label>
-			<input class="tiny-text" id="<?php echo $this->get_field_id( 'per_page' ); ?>" name="<?php echo $this->get_field_name( 'per_page' ); ?>" type="number" step="1" min="1"  value="<?php echo esc_attr( $per_page ); ?>" size="3">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'per_page' ) ); ?>"><?php _e( 'Number of posts to show:', 'registar-nestalih' ); ?></label>
+			<input class="tiny-text" id="<?php echo esc_attr( $this->get_field_id( 'per_page' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'per_page' ) ); ?>" type="number" step="1" min="1"  value="<?php echo esc_attr( $per_page ); ?>" size="3">
 		</p>
 		<p>
-			<input class="checkbox " id="<?php echo $this->get_field_id( 'see_others' ); ?>" name="<?php echo $this->get_field_name( 'see_others' ); ?>" type="checkbox" value="1" <?php checked($see_others, 1); ?>>
-			<label for="<?php echo $this->get_field_id( 'see_others' ); ?>"><?php _e( 'Display "look at the others" link.', 'registar-nestalih' ); ?></label>
+			<input class="checkbox " id="<?php echo esc_attr( $this->get_field_id( 'see_others' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'see_others' ) ); ?>" type="checkbox" value="1" <?php checked($see_others, 1); ?>>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'see_others' ) ); ?>"><?php _e( 'Display "look at the others" link.', 'registar-nestalih' ); ?></label>
 		</p>
 		<?php
 	}
@@ -67,8 +67,8 @@ if( !class_exists('Registar_Nestalih_Widget_Latest_Missing') ) : class Registar_
 	// Updating widget replacing old instances with new
 	public function update( $new_instance, $old_instance ) {
 		$instance = [];
-		$instance['title'] = ( ! empty( $new_instance['title'] ?? NULL ) ) ? strip_tags( $new_instance['title'] ) : '';
-		$instance['per_page'] = ( ! empty( $new_instance['per_page'] ?? NULL ) ) ? absint( $new_instance['per_page'] ) : 5;
+		$instance['title'] = ( ( ! empty( $new_instance['title'] ?? NULL ) ) ? strip_tags( $new_instance['title'] ) : '' );
+		$instance['per_page'] = ( ( ! empty( $new_instance['per_page'] ?? NULL ) ) ? absint( $new_instance['per_page'] ) : 5 );
 		$instance['see_others'] = absint( $new_instance['see_others'] ?? 0 );
 		return $instance;
 	}
