@@ -37,10 +37,14 @@ if ( ! defined( 'WPINC' ) ) { die( "Don't mess with us." ); }
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 // Define plugin file (changes not allowed)
-define( 'MISSING_PERSONS_FILE', __FILE__ );
+if ( ! defined( 'MISSING_PERSONS_FILE' ) ) {
+	define( 'MISSING_PERSONS_FILE', __FILE__ );
+}
 
 // Define plugin path (changes not allowed)
-define( 'MISSING_PERSONS_ROOT', rtrim(plugin_dir_path( MISSING_PERSONS_FILE ), '\\/') );
+if ( ! defined( 'MISSING_PERSONS_ROOT' ) ) {
+	define( 'MISSING_PERSONS_ROOT', rtrim(plugin_dir_path( MISSING_PERSONS_FILE ), '\\/') );
+}
 
 // Load main constants
 include_once MISSING_PERSONS_ROOT . '/constants.php';

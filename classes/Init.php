@@ -27,8 +27,6 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		register_activation_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'register_plugin_activation' ] );
 		// Register deactivation hook
 		register_deactivation_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'register_plugin_deactivation' ] );
-		// On plugin uninstallation
-		register_uninstall_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'uninstall_plugin' ] );
 		// Load translations
 		add_action( 'plugins_loaded', [ &$this, 'register_textdomain' ], 10, 0 );
 		// Register plugin classes
@@ -179,21 +177,6 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		
 		// Flush rewrite rules
 		flush_rewrite_rules();
-	}
-	
-	// On plugin uninstallation
-	public static function uninstall_plugin () {
-		if ( ! current_user_can( 'activate_plugins' ) ) {
-			return;
-		}
-
-		// Delete options
-		if(get_option(self::TEXTDOMAIN . '-activation')) {
-			delete_option(self::TEXTDOMAIN . '-activation');
-		}
-		if(get_option(self::TEXTDOMAIN . '-deactivation')) {
-			delete_option(self::TEXTDOMAIN . '-deactivation');
-		}
 	}
 	
 	// Register site translations

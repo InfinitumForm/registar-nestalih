@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 global $missing_response;
 
-$target_blank = (Registar_Nestalih_Options::get('open-in-new-window', 0) == 1 ? ' target="blank"' : ''); 
+$target_blank = (Registar_Nestalih_Options::get('open-in-new-window', 0) == 1 ? ' target="_blank"' : ''); 
 
 do_action('registar_nestalih_before_main_container', $missing_response);
 ?>
@@ -30,7 +30,7 @@ do_action('registar_nestalih_before_main_container', $missing_response);
 					<li class="list-group-item"><b><?php _e('Age:', 'registar-nestalih'); ?></b> <span><?php echo esc_html( $missing->age() ); ?></span></li>
 					<li class="list-group-item"><b><?php _e('Place of disappearance:', 'registar-nestalih'); ?></b> <span><?php echo esc_html($missing->mesto_nestanka ? $missing->mesto_nestanka : __('(undefined)', 'registar-nestalih')); ?></span></li>
 				</ul>
-				<a class="btn btn-primary" href="<?php echo esc_url( $missing->profile_url() ); ?>" title="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"<?php echo $target_blank; ?>>
+				<a class="btn btn-primary" href="<?php echo esc_url( $missing->profile_url() ); ?>" title="<?php echo esc_attr(esc_html($missing->ime_prezime)); ?>"<?php echo esc_html($target_blank); ?>>
 					<?php _e('More Informations', 'registar-nestalih'); ?>
 				</a>
 			</div>
