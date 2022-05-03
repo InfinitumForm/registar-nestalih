@@ -1,0 +1,351 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Ivijan-Stefan Stipic
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Registar Nestalih 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-03 09:57+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: registar-nestalih.php:55
+msgid "Register of Missing Persons of Serbia"
+msgstr ""
+
+#: classes/Admin.php:33
+msgid "Settings"
+msgstr ""
+
+#: classes/Admin.php:48
+msgid "Donate"
+msgstr ""
+
+#: classes/Admin.php:53
+msgid "Foundation"
+msgstr ""
+
+#: classes/Admin.php:58
+msgid "Give us five if you like!"
+msgstr ""
+
+#: classes/Admin.php:59
+msgid "5 Stars?"
+msgstr ""
+
+#: classes/Admin.php:71 classes/Admin.php:126
+msgid "Missing Persons Page"
+msgstr ""
+
+#: classes/Admin.php:79 classes/Admin.php:80 widgets/Latest_Missing.php:48
+msgid "Missing Persons"
+msgstr ""
+
+#: classes/Admin.php:119
+msgid "Plugin Settings"
+msgstr ""
+
+#: classes/Admin.php:122
+msgid "Missing Persons Settings"
+msgstr ""
+
+#: classes/Admin.php:123
+msgid "This option sets the API and shortcode for missing persons."
+msgstr ""
+
+#: classes/Admin.php:129
+msgid "Select a Page"
+msgstr ""
+
+#: classes/Admin.php:143
+msgid "Pagination slug"
+msgstr ""
+
+#: classes/Admin.php:149
+msgid "Search slug"
+msgstr ""
+
+#: classes/Admin.php:155
+msgid "Person slug"
+msgstr ""
+
+#: classes/Admin.php:161
+msgid "Open links in new window"
+msgstr ""
+
+#: classes/Admin.php:166 classes/Admin.php:181
+msgid "Yes"
+msgstr ""
+
+#: classes/Admin.php:171 classes/Admin.php:186
+msgid "No"
+msgstr ""
+
+#: classes/Admin.php:176
+msgid "Enable sending information about the person"
+msgstr ""
+
+#: classes/Admin.php:191
+msgid "Save"
+msgstr ""
+
+#: classes/Content.php:154
+#, php-format
+msgid "Information about %s sent successfully."
+msgstr ""
+
+#: classes/Content.php:161
+msgid "The message was not sent due to technical problems."
+msgstr ""
+
+#: classes/Init.php:147
+msgid "Missing persons"
+msgstr ""
+
+#: classes/Requirements.php:62
+#, php-format
+msgid ""
+"The %1$s cannot run on PHP versions older than PHP %2$s. Please contact your "
+"host and ask them to upgrade."
+msgstr ""
+
+#: classes/Requirements.php:78
+#, php-format
+msgid ""
+"The %1$s cannot run on WordPress versions older than %2$s. Please update "
+"your WordPress installation."
+msgstr ""
+
+#: classes/Requirements.php:115
+#, php-format
+msgid "Important upgrade notice for the version %s:"
+msgstr ""
+
+#: classes/Requirements.php:129
+msgid ""
+"NOTE: Before doing the update, it would be a good idea to backup your "
+"WordPress installations and settings."
+msgstr ""
+
+#: classes/Rewrite.php:159
+msgid "Success!"
+msgstr ""
+
+#: classes/Rewrite.php:169
+msgid "Sync key does not match."
+msgstr ""
+
+#: classes/Template.php:85
+msgid "Please wait..."
+msgstr ""
+
+#: classes/Template.php:86
+msgid ""
+"All fields in this form are required. Fill in the fields and send a message."
+msgstr ""
+
+#: classes/Yoast_SEO.php:78
+#, php-format
+msgid "%s (%d) is missing on %s in %s, from place %s"
+msgstr ""
+
+#: classes/Yoast_SEO.php:108
+#, php-format
+msgid "%s (%d) is missing %s"
+msgstr ""
+
+#: classes/Yoast_SEO.php:109
+#, php-format
+msgid "%s (%d) is missing"
+msgstr ""
+
+#: templates/missing-persons.php:29 templates/missing-persons/sidebar.php:20
+#: templates/missing-persons/single.php:28
+msgid "Gender:"
+msgstr ""
+
+#: templates/missing-persons.php:29 templates/missing-persons.php:31
+#: templates/missing-persons/single.php:28
+#: templates/missing-persons/single.php:31
+#: templates/missing-persons/single.php:32
+#: templates/missing-persons/single.php:33
+#: templates/missing-persons/single.php:41
+#: templates/missing-persons/single.php:42
+#: templates/missing-persons/single.php:43
+#: templates/missing-persons/single.php:44
+#: templates/missing-persons/single.php:59
+msgid "(undefined)"
+msgstr ""
+
+#: templates/missing-persons.php:30 templates/missing-persons/sidebar.php:21
+#: templates/missing-persons/single.php:29
+msgid "Age:"
+msgstr ""
+
+#: templates/missing-persons.php:31 templates/missing-persons/single.php:59
+msgid "Place of disappearance:"
+msgstr ""
+
+#: templates/missing-persons.php:34
+msgid "More Informations"
+msgstr ""
+
+#: templates/missing-persons/contact-form.php:16
+#: templates/missing-persons/sidebar.php:23
+msgid "Do you know anything about this person?"
+msgstr ""
+
+#: templates/missing-persons/contact-form.php:21
+msgid "Enter all information about this person in detail..."
+msgstr ""
+
+#: templates/missing-persons/contact-form.php:26
+msgid "First and Last name"
+msgstr ""
+
+#: templates/missing-persons/contact-form.php:27
+msgid "Your First and Last name"
+msgstr ""
+
+#: templates/missing-persons/contact-form.php:32
+msgid "Your e-mail"
+msgstr ""
+
+#: templates/missing-persons/contact-form.php:38
+msgid "Your phone number"
+msgstr ""
+
+#: templates/missing-persons/contact-form.php:44
+msgid "Send Message"
+msgstr ""
+
+#: templates/missing-persons/pagination.php:13
+#: templates/missing-persons/pagination.php:21
+msgid "Previous"
+msgstr ""
+
+#: templates/missing-persons/pagination.php:24
+#, php-format
+msgid "%d of %d"
+msgstr ""
+
+#: templates/missing-persons/pagination.php:29
+#: templates/missing-persons/pagination.php:37
+msgid "Next"
+msgstr ""
+
+#: templates/missing-persons/search-form.php:16
+msgid "Search by first name, last name, location..."
+msgstr ""
+
+#: templates/missing-persons/search-form.php:18
+msgid "Search"
+msgstr ""
+
+#: templates/missing-persons/sidebar.php:32
+msgid "Look at the others"
+msgstr ""
+
+#: templates/missing-persons/single.php:24
+msgid "Personal information"
+msgstr ""
+
+#: templates/missing-persons/single.php:26
+msgid "First Name:"
+msgstr ""
+
+#: templates/missing-persons/single.php:27
+msgid "Last Name:"
+msgstr ""
+
+#: templates/missing-persons/single.php:30
+msgid "Date of Birth:"
+msgstr ""
+
+#: templates/missing-persons/single.php:31
+msgid "Place of Birth:"
+msgstr ""
+
+#: templates/missing-persons/single.php:32
+msgid "Citizenship:"
+msgstr ""
+
+#: templates/missing-persons/single.php:33
+msgid "Residence:"
+msgstr ""
+
+#: templates/missing-persons/single.php:39
+msgid "Personal description"
+msgstr ""
+
+#: templates/missing-persons/single.php:41
+msgid "Height:"
+msgstr ""
+
+#: templates/missing-persons/single.php:42
+msgid "Weight:"
+msgstr ""
+
+#: templates/missing-persons/single.php:43
+msgid "Eye color:"
+msgstr ""
+
+#: templates/missing-persons/single.php:44
+msgid "Heir color:"
+msgstr ""
+
+#: templates/missing-persons/single.php:56
+msgid "Details about missing"
+msgstr ""
+
+#: templates/missing-persons/single.php:58
+msgid "Missing date:"
+msgstr ""
+
+#: templates/missing-persons/single.php:60
+msgid "Reported date:"
+msgstr ""
+
+#: templates/missing-persons/single.php:71
+msgid "Other informations"
+msgstr ""
+
+#: templates/missing-persons/single.php:75
+msgid "Circumstances of disappearance:"
+msgstr ""
+
+#: templates/missing-persons/single.php:82
+msgid "Description at the time of disappearance:"
+msgstr ""
+
+#: templates/missing-persons/single.php:89
+msgid "Additional information:"
+msgstr ""
+
+#: widgets/Latest_Missing.php:13
+msgid "Missing People (recently added)"
+msgstr ""
+
+#: widgets/Latest_Missing.php:16
+msgid "Show recently added missing people"
+msgstr ""
+
+#: widgets/Latest_Missing.php:53
+msgid "Title:"
+msgstr ""
+
+#: widgets/Latest_Missing.php:57
+msgid "Number of posts to show:"
+msgstr ""
+
+#: widgets/Latest_Missing.php:62
+msgid "Display \"look at the others\" link."
+msgstr ""
