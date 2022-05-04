@@ -1,4 +1,4 @@
-REGISTAR NESTALIH [![PHP Version Require](http://poser.pugx.org/phpunit/phpunit/require/php?style=for-the-badge)](https://github.com/infinitumForm/registar-nestalih)
+REGISTAR NESTALIH
 ========
 
 Prvi WordPress plugin za [Registar nestalih lica u Republici Srbiji](https://www.nestalisrbija.rs/).
