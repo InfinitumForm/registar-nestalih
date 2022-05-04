@@ -37,3 +37,5 @@ Registra nestalih lica Srbije pružila je Ambasada Australije u Srbiji
 
 ## KONTAKT I PODRŠKA
 Ako imate neki tehnički problem prilikom instalacije ovog dodatka ili bilo kakvo pitanje u vezi upotrebe, kontaktirajte autora na e-mail: ivijan.stefan@csi.org.rs
+
+Takođe prijavite bilo kakav problem, ideju ili reči podrške za razvoj ovog projekta, bićemo veoma zahvalni!
