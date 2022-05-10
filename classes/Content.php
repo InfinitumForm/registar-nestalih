@@ -79,7 +79,7 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		global $last_page, $next_page, $prev_page, $current_page;
 		
 		// Get last page
-		$last_page = ceil(absint($response->total)/absint($response->per_page));
+		$last_page = ceil(absint($response->total??0)/absint($response->per_page??0));
 		
 		$current_page = absint($response->current_page ?? 0);
 

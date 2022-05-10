@@ -28,6 +28,10 @@ if(!class_exists('Registar_Nestalih_Requirements')) : class Registar_Nestalih_Re
 			}
 		}
 		
+		if( is_admin() ) {
+			$this->update_database_alert();
+		}
+		
 		add_action( "in_plugin_update_message-{$this->slug}/{$this->slug}.php", [&$this, 'in_plugin_update_message'], 10, 2 );
 	}
 	
@@ -48,6 +52,26 @@ if(!class_exists('Registar_Nestalih_Requirements')) : class Registar_Nestalih_Re
 		}
 		
 		return $passes;
+	}
+	
+	/*
+	 * Update database alert 
+	 */
+	private function update_database_alert() {
+		$current_db_version = (get_option('registar-nestalih-db-version') ?? '0.0.0');
+		if( version_compare($current_db_version, MISSING_PERSONS_DB_VERSION, '!=') ) {
+			add_action( 'admin_notices', function () {
+				echo '<div class="notice notice-info" id="registar-nestalih-database-update">';
+					echo '<p><strong>'.sprintf(__('%1$s database update required!', 'registar-nestalih'), esc_html( $this->title ), esc_html( MISSING_PERSONS_DB_VERSION )).'</strong></p>';
+					echo '<p>'.sprintf(__('%1$s has been updated! To keep things running smoothly, we have to update your database to the newest version.', 'registar-nestalih'), esc_html( $this->title ), esc_html( MISSING_PERSONS_DB_VERSION )).'</p>';
+					echo '<p class="submit"><a href="'.add_query_arg([
+						'registar_nestalih_db_update' => 'true',
+						'registar_nestalih_nonce' => wp_create_nonce('registar_nestalih_db_update')
+					]).'" class="button button-primary">'.__('Update Database', 'registar-nestalih').'</a></p>';
+				echo '</div>';
+			} );
+			return false;
+		}
 	}
 
 	/*

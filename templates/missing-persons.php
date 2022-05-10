@@ -12,7 +12,7 @@ do_action('registar_nestalih_before_main_container', $missing_response);
 <div class="row missing-persons-row pt-3 pb-3" id="missing-persons-main-container">
 	<?php
 		do_action('registar_nestalih_breadcrumb', $missing_response);
-	
+		if($missing_response->data ?? NULL) :
 		foreach($missing_response->data as $i=>$missing) :
 		$missing = new Registar_Nestalih_Render($missing, $i);
 	?>
@@ -38,7 +38,13 @@ do_action('registar_nestalih_before_main_container', $missing_response);
 	</div>
 	<?php
 		endforeach;
-		
+		else:
+	?>
+	<div class="col col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 missing-item missing-item-missing">
+		<strong><?php _e('No information currently available.', 'registar-nestalih'); ?></strong>
+	</div>
+	<?php
+		endif;
 		do_action('registar_nestalih_pagination', $missing_response);
 	?>
 </div>

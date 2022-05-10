@@ -36,6 +36,11 @@
 if ( ! defined( 'WPINC' ) ) { die( "Don't mess with us." ); }
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+// Define database version
+if ( ! defined( 'MISSING_PERSONS_DB_VERSION' ) ) {
+	define( 'MISSING_PERSONS_DB_VERSION', '1.0.0' );
+}
+
 // Define plugin file (changes not allowed)
 if ( ! defined( 'MISSING_PERSONS_FILE' ) ) {
 	define( 'MISSING_PERSONS_FILE', __FILE__ );

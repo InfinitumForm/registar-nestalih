@@ -38,13 +38,13 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			return !empty($value) && in_array($key, $query_allowed) !== false;
 		}, ARRAY_FILTER_USE_BOTH);
 		
-		$cache_name = 'registar-nestalih-api-' . md5(serialize($query));
+		$cache_name = 'api-' . hash('sha512', serialize($query));
 		
 		if( $__get_missing[$cache_name] ?? NULL ) {
 			return $__get_missing[$cache_name];
 		}
 		
-		$posts = get_transient($cache_name);
+		$posts = Registar_Nestalih_Cache::get($cache_name);
 		
 		if( empty($posts) ) {
 			// Delete transients
@@ -61,7 +61,7 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 				}
 			}
 			
-			set_transient($cache_name, $posts, (MINUTE_IN_SECONDS*MISSING_PERSONS_CACHE_IN_MINUTES));
+			Registar_Nestalih_Cache::set($cache_name, $posts, (MINUTE_IN_SECONDS*MISSING_PERSONS_CACHE_IN_MINUTES));
 			$__get_missing[$cache_name] = $posts;
 		}
 		

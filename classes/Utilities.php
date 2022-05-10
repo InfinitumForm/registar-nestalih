@@ -157,5 +157,7 @@ if( !class_exists('Registar_Nestalih_U') ) : class Registar_Nestalih_U {
 					`{$wpdb->sitemeta}`.`option_name` LIKE '_site_transient_timeout_registar-nestalih-%'
 			)");
 		}
+		
+		Registar_Nestalih_Cache::flush();
 	}
 } endif;

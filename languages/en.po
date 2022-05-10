@@ -1,25 +1,25 @@
-# Registar Nestalih.
-# Copyright (C) 2022 Ivijan-Stefan Stipic
-# This file is distributed under the same license as the PACKAGE package.
-# Ivijan-Stefan Stipic <infinitumform@gmail.com>, 2022.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Registar Nestalih 1.0.0\n"
-"Report-Msgid-Bugs-To: infinitumform@gmail.com\n"
-"POT-Creation-Date: 2022-05-03 09:57+0200\n"
-"PO-Revision-Date: 2022-05-03 09:57+0200\n"
-"Last-Translator: Ivijan-Stefan Stipic <infinitumform@gmail.com>\n"
-"Language-Team: INFiNITUM FORM <office@infinitumform.com>\n"
+"Project-Id-Version: Register of Missing Persons of Serbia\n"
+"POT-Creation-Date: 2022-05-10 14:14+0200\n"
+"PO-Revision-Date: 2022-05-10 14:14+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: registar-nestalih.php:55
-msgid "Register of Missing Persons of Serbia"
-msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: registar-nestalih.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
 #: classes/Admin.php:33
 msgid "Settings"
@@ -106,30 +106,46 @@ msgstr ""
 msgid "The message was not sent due to technical problems."
 msgstr ""
 
-#: classes/Init.php:147
+#: classes/Init.php:180
 msgid "Missing persons"
 msgstr ""
 
-#: classes/Requirements.php:62
+#: classes/Requirements.php:65
+#, php-format
+msgid "%1$s database update required!"
+msgstr ""
+
+#: classes/Requirements.php:66
+#, php-format
+msgid ""
+"%1$s has been updated! To keep things running smoothly, we have to update "
+"your database to the newest version."
+msgstr ""
+
+#: classes/Requirements.php:70
+msgid "Update Database"
+msgstr ""
+
+#: classes/Requirements.php:86
 #, php-format
 msgid ""
 "The %1$s cannot run on PHP versions older than PHP %2$s. Please contact your "
 "host and ask them to upgrade."
 msgstr ""
 
-#: classes/Requirements.php:78
+#: classes/Requirements.php:102
 #, php-format
 msgid ""
 "The %1$s cannot run on WordPress versions older than %2$s. Please update "
 "your WordPress installation."
 msgstr ""
 
-#: classes/Requirements.php:115
+#: classes/Requirements.php:139
 #, php-format
 msgid "Important upgrade notice for the version %s:"
 msgstr ""
 
-#: classes/Requirements.php:129
+#: classes/Requirements.php:153
 msgid ""
 "NOTE: Before doing the update, it would be a good idea to backup your "
 "WordPress installations and settings."
@@ -152,19 +168,23 @@ msgid ""
 "All fields in this form are required. Fill in the fields and send a message."
 msgstr ""
 
-#: classes/Yoast_SEO.php:78
+#: classes/Yoast_SEO.php:81
 #, php-format
 msgid "%s (%d) is missing on %s in %s, from place %s"
 msgstr ""
 
-#: classes/Yoast_SEO.php:108
+#: classes/Yoast_SEO.php:111
 #, php-format
 msgid "%s (%d) is missing %s"
 msgstr ""
 
-#: classes/Yoast_SEO.php:109
+#: classes/Yoast_SEO.php:112
 #, php-format
 msgid "%s (%d) is missing"
+msgstr ""
+
+#: registar-nestalih.php:64
+msgid "Register of Missing Persons of Serbia"
 msgstr ""
 
 #: templates/missing-persons.php:29 templates/missing-persons/sidebar.php:20
@@ -196,6 +216,10 @@ msgstr ""
 
 #: templates/missing-persons.php:34
 msgid "More Informations"
+msgstr ""
+
+#: templates/missing-persons.php:44
+msgid "No information currently available."
 msgstr ""
 
 #: templates/missing-persons/contact-form.php:16
@@ -348,4 +372,26 @@ msgstr ""
 
 #: widgets/Latest_Missing.php:62
 msgid "Display \"look at the others\" link."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Register of Missing Persons in Serbia"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.nestalisrbija.rs/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Display on your site all missing persons from the central Register of "
+"Missing Persons of Serbia."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Ivijan-Stefan Sipić"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://infinitumform.com/"
 msgstr ""

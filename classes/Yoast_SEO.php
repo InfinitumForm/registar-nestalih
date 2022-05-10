@@ -236,9 +236,12 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 		
 		if( NULL === $response ) {
 			$response = Registar_Nestalih_API::get();
-			$response = array_map( function( $return ) {
-				return new Registar_Nestalih_Render($return);
-			}, $response );
+			
+			if( is_array($response) ) {
+				$response = array_map( function( $return ) {
+					return new Registar_Nestalih_Render($return);
+				}, $response );
+			}
 		}
 		
 		return $response;

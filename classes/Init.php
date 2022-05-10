@@ -23,16 +23,47 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 	
 	// PRIVATE: Main construct
 	private function __construct() {
+		// Register plugin classes
+		$this->wpdb_tables();
+		// Register plugin classes
+		$this->register_plugin_classes();
 		// Register activation hook
 		register_activation_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'register_plugin_activation' ] );
 		// Register deactivation hook
 		register_deactivation_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'register_plugin_deactivation' ] );
 		// Load translations
 		add_action( 'plugins_loaded', [ &$this, 'register_textdomain' ], 10, 0 );
-		// Register plugin classes
-		$this->register_plugin_classes();
+		// Update database
+		if( is_admin() ) {
+			add_action('plugins_loaded', [&$this, 'update_database'], 20, 0);
+		}
 		// Load remote actions
 		add_action( 'init', [ &$this, 'remote_actions' ], 1, 0 );
+	}
+	
+	// Load remote actions
+	public function wpdb_tables(){
+		global $wpdb;
+		$wpdb->registar_nestalih_cache = $wpdb->get_blog_prefix() . 'registar_nestalih_cache';
+	}
+	
+	// Update database
+	public function update_database(){
+		if(
+			($_GET['registar_nestalih_db_update'] ?? NULL) == 'true'
+			&& wp_verify_nonce( ($_GET['registar_nestalih_nonce'] ?? NULL), 'registar_nestalih_db_update' )
+		) {
+			// Register cache table
+			Registar_Nestalih_Cache::table_install();
+			// Update database version
+			update_option(self::TEXTDOMAIN . '-db-version', MISSING_PERSONS_DB_VERSION, false);
+			
+			$url = remove_query_arg( 'registar_nestalih_db_update' );
+			$url = remove_query_arg( 'registar_nestalih_nonce', $url );
+			if( wp_safe_redirect($url) ) {
+				exit;
+			}
+		}
 	}
 
 	// Load remote actions
@@ -50,6 +81,10 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		
 		// Include files
 		$register_classes = apply_filters( 'registar_nestalih_classes', [
+			$root . '/Cache.php' => [
+				'class' => 'Registar_Nestalih_Cache',
+				'load' => true
+			],
 			$root . '/Utilities.php' => [
 				'class' => 'Registar_Nestalih_U',
 				'load' => false
@@ -152,6 +187,15 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 			}
 		}
 		
+		// Install missing tables
+		$current_db_version = get_option(self::TEXTDOMAIN . '-db-version');
+		if( empty($current_db_version) || version_compare($current_db_version, MISSING_PERSONS_DB_VERSION, '!=') )
+		{
+			// Register cache table
+			Registar_Nestalih_Cache::table_install();
+			// Update database version
+			update_option(self::TEXTDOMAIN . '-db-version', MISSING_PERSONS_DB_VERSION, false);
+		}		
 		// Flush rewrite rules
 		flush_rewrite_rules();
 	}
@@ -174,6 +218,9 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		} else {
 			add_option(self::TEXTDOMAIN . '-deactivation', [date('Y-m-d H:i:s')], false);
 		}
+		
+		// Clear plugin cache
+		Registar_Nestalih_U::flush_plugin_cache();
 		
 		// Flush rewrite rules
 		flush_rewrite_rules();
