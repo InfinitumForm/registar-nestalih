@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Registar Nestalih
+ * Plugin Name:       Register of Missing Persons in Serbia
  * Plugin URI:        https://www.nestalisrbija.rs/
  * Description:       Display on your site all missing persons from the central Register of Missing Persons of Serbia.
  * Version:           1.0.0

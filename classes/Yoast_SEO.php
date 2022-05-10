@@ -15,6 +15,9 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 	
 	// PRIVATE: Main construct
 	private function __construct() {
+		if( !function_exists('is_plugin_active') ) {
+			include_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
 		if( is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
 			add_filter( 'wpseo_sitemap_index', [&$this, 'wpseo_sitemap_index'] );
 			add_action( 'init', [&$this, 'init'] );

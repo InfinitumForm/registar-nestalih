@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-05-03 09:08+0200\n"
-"PO-Revision-Date: 2022-05-03 09:08+0200\n"
+"POT-Creation-Date: 2022-05-10 09:10+0200\n"
+"PO-Revision-Date: 2022-05-10 09:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -107,7 +107,7 @@ msgstr "Информације о %s су успешно послате."
 msgid "The message was not sent due to technical problems."
 msgstr "Порука није послата због техничких проблема."
 
-#: classes/Init.php:147
+#: classes/Init.php:145
 msgid "Missing persons"
 msgstr "Нестале особе"
 
@@ -159,22 +159,22 @@ msgid ""
 "All fields in this form are required. Fill in the fields and send a message."
 msgstr "Сва поља у овом обрасцу су обавезна. Попуните поља и пошаљите поруку."
 
-#: classes/Yoast_SEO.php:78
+#: classes/Yoast_SEO.php:81
 #, php-format
 msgid "%s (%d) is missing on %s in %s, from place %s"
 msgstr "%s (%d) је нестао дана %s у %s, из места %s"
 
-#: classes/Yoast_SEO.php:108
+#: classes/Yoast_SEO.php:111
 #, php-format
 msgid "%s (%d) is missing %s"
 msgstr "%s (%d) је нестао %s"
 
-#: classes/Yoast_SEO.php:109
+#: classes/Yoast_SEO.php:112
 #, php-format
 msgid "%s (%d) is missing"
 msgstr "%s (%d) је нестао"
 
-#: registar-nestalih.php:55
+#: registar-nestalih.php:59
 msgid "Register of Missing Persons of Serbia"
 msgstr "Регистар несталих лица Србије"
 
@@ -362,8 +362,8 @@ msgid "Display \"look at the others\" link."
 msgstr "Прикажите везу „погледајте остале“."
 
 #. Plugin Name of the plugin/theme
-msgid "Registar Nestalih"
-msgstr ""
+msgid "Register of Missing Persons in Serbia"
+msgstr "Регистар несталих лица Србије"
 
 #. Plugin URI of the plugin/theme
 msgid "https://www.nestalisrbija.rs/"

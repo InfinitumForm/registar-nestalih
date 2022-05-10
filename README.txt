@@ -1,4 +1,4 @@
-=== Registar Nestalih ===
+=== Register of Missing Persons in Serbia ===
 Contributors: ivijanstefan, creativform
 Tags: library, register, missing persons 
 Requires at least: 5.0
