@@ -34,6 +34,7 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 	
 	protected $date_format = 'Y-m-d';
 	protected $index;
+	private $is_female;
 	
 	public function __construct( $data, $index = 0 ) {
 		
@@ -74,11 +75,67 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 	public function profile_image () {
 		if( empty($this->icon) ) {
 			$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-male.gif');
-			if( in_array(mb_strtolower($this->pol), ['ženа', 'ženskо', 'ženski', 'zenа', 'zenskо', 'zenski', 'woman', 'female', 'f']) ) {
+			if( $this->is_female() ) {
 				$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-female.gif');
 			}
+		} else {
+			
+			/* @todo: Get image from remote URL, save into uploads folder and display it */
+			
 		}
 		return esc_url($this->icon);
+	}
+	
+	// Generate image link
+	/*
+	public function profile_image_self(){
+		if( empty($this->id) ) {
+			return '#';
+		}
+		
+		$page = Registar_Nestalih_Options::get('main-page');
+		
+		if( empty($page) ) {
+			return NULL;
+		}
+		
+		if( get_option('permalink_structure') ) {
+			$page_link = get_page_link( $page );
+			$url = sprintf(
+				'%s/%s/%d',
+				rtrim($page_link, '/'),
+				'img',
+				absint($this->id)
+			);
+		} else {
+			$url = add_query_arg([
+				'registar_nestalih_img_id' => absint($this->id)
+			]);
+		}
+		
+		return esc_url($url);
+	}
+	*/
+	
+	public function profile_base64_image () {
+		// image to string conversion
+		$image = file_get_contents($this->profile_image()); 
+		  
+		// image string data into base64
+		echo base64_encode($image); 
+	}
+	
+	// Is profile female
+	public function is_female() {
+		if(NULL === $this->is_female) {
+			$this->is_female = in_array(mb_strtolower($this->pol), ['ženа', 'ženskо', 'ženski', 'zenа', 'zenskо', 'zenski', 'woman', 'female', 'f', 'ž', 'z']);
+		}
+		return $this->is_female;
+	}
+	
+	// Is profile male
+	public function is_male() {
+		return !$this->is_female();
 	}
 	
 	// Generate URL

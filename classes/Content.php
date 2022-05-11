@@ -25,7 +25,56 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		}
 		
 		add_filter( 'document_title_parts', [&$this, 'document_title_parts'], 100, 2 );
+		
+	//	add_action( 'template_redirect', [&$this, 'load_image'], 99, 0 );
 	}
+	
+	// load image from the site
+	/*
+	public function load_image() {
+		static $cache = [];
+		global $wp_query;
+		
+		$person_id = $wp_query->get( 'registar_nestalih_img_id' );
+		
+		$image = NULL;
+		$filename = 'avatar';
+		
+		
+		if( isset($cache[$person_id]) ) {
+			$image = $cache[$person_id]['image'];
+			$filename = $cache[$person_id]['filename'];
+		} else {		
+			if( $person_id )	{
+				if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
+					$response = new Registar_Nestalih_Render($response);
+					if( $get_image = $response->profile_image() ) {
+						$image = file_get_contents($get_image);
+					}
+					$filename = sanitize_title($response->ime_prezime);
+				}
+			}
+			
+			if( empty($image) ) {
+				$image = file_get_contents(Registar_Nestalih_Template::path('assets/images/no-image-male.gif'));
+			}
+			
+			$cache[$person_id]['image'] = $image;
+			$cache[$person_id]['filename'] = $filename;
+		}
+		
+		header('Content-type: image/jpeg');
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: no-store, no-cache');
+		header('Pragma: public');
+		header('Content-Disposition: inline; filename="' . $filename . '.jpg"');
+		
+		echo $image;
+		
+		exit;
+	}
+	*/
 	
 	// Get date format
 	public static function get_date_format() {

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-05-10 14:14+0200\n"
-"PO-Revision-Date: 2022-05-10 14:14+0200\n"
+"POT-Creation-Date: 2022-05-11 12:51+0200\n"
+"PO-Revision-Date: 2022-05-11 12:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -168,18 +168,39 @@ msgid ""
 "All fields in this form are required. Fill in the fields and send a message."
 msgstr ""
 
-#: classes/Yoast_SEO.php:81
+#: classes/Yoast_SEO.php:83
 #, php-format
+msgctxt "female title"
 msgid "%s (%d) is missing on %s in %s, from place %s"
 msgstr ""
 
-#: classes/Yoast_SEO.php:111
+#: classes/Yoast_SEO.php:84
 #, php-format
+msgctxt "male title"
+msgid "%s (%d) is missing on %s in %s, from place %s"
+msgstr ""
+
+#: classes/Yoast_SEO.php:117
+#, php-format
+msgctxt "female title"
 msgid "%s (%d) is missing %s"
 msgstr ""
 
-#: classes/Yoast_SEO.php:112
+#: classes/Yoast_SEO.php:118
 #, php-format
+msgctxt "male title"
+msgid "%s (%d) is missing %s"
+msgstr ""
+
+#: classes/Yoast_SEO.php:122
+#, php-format
+msgctxt "female title"
+msgid "%s (%d) is missing"
+msgstr ""
+
+#: classes/Yoast_SEO.php:123
+#, php-format
+msgctxt "male title"
 msgid "%s (%d) is missing"
 msgstr ""
 

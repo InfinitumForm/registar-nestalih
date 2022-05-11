@@ -54,14 +54,17 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 	
 	public function add_share_images ($img) {
 		global $wp_query;
+		
+		/*
+		 * @todo: enable images if there is no default image
+		 * https://github.com/Yoast/wordpress-seo/issues/1060
+		 */
 
 		if( $this->is_active() ) {
 			if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )	{
 				if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
 					$response = new Registar_Nestalih_Render($response);
-					if($response->icon) {
-						$img = $response->icon;
-					}
+					$img = $response->profile_image();
 				}
 			}
 		}
@@ -78,7 +81,11 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 					$response = new Registar_Nestalih_Render($response);
 					if($response->ime_prezime) {
 						$desc = sprintf(
-							__( '%s (%d) is missing on %s in %s, from place %s', 'registar-nestalih'),
+							(
+								$response->is_female() 
+								? _x( '%s (%d) is missing on %s in %s, from place %s', 'female title', 'registar-nestalih') 
+								: _x( '%s (%d) is missing on %s in %s, from place %s', 'male title', 'registar-nestalih')
+							),
 							$response->ime_prezime,
 							$response->age(),
 							$response->missing_date(),
@@ -108,8 +115,16 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 						$title = sprintf(
 							(
 								$current_filter == 'wpseo_title' 
-								? __( '%s (%d) is missing %s', 'registar-nestalih')
-								: __( '%s (%d) is missing', 'registar-nestalih')
+								? (
+									$response->is_female() 
+									? _x( '%s (%d) is missing %s', 'female title', 'registar-nestalih') 
+									: _x( '%s (%d) is missing %s', 'male title', 'registar-nestalih')
+								)
+								: (
+									$response->is_female() 
+									? _x( '%s (%d) is missing', 'female title', 'registar-nestalih') 
+									: _x( '%s (%d) is missing', 'male title', 'registar-nestalih')
+								)
 							),
 							$response->ime_prezime,
 							$response->age(),
