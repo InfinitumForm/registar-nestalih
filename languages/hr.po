@@ -1,0 +1,430 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Register of Missing Persons of Serbia\n"
+"POT-Creation-Date: 2022-05-11 12:49+0200\n"
+"PO-Revision-Date: 2022-05-11 14:30+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: registar-nestalih.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: classes/Admin.php:33
+msgid "Settings"
+msgstr "Postavke"
+
+#: classes/Admin.php:48
+msgid "Donate"
+msgstr "Doniraj"
+
+#: classes/Admin.php:53
+msgid "Foundation"
+msgstr "Osnivač"
+
+#: classes/Admin.php:58
+msgid "Give us five if you like!"
+msgstr "Dajte nam pet ako želite!"
+
+#: classes/Admin.php:59
+msgid "5 Stars?"
+msgstr "5 zvjezdica?"
+
+#: classes/Admin.php:71 classes/Admin.php:126
+msgid "Missing Persons Page"
+msgstr "Stranica nestalih osoba"
+
+#: classes/Admin.php:79 classes/Admin.php:80 widgets/Latest_Missing.php:48
+msgid "Missing Persons"
+msgstr "Nestale osobe"
+
+#: classes/Admin.php:119
+msgid "Plugin Settings"
+msgstr "Podešavanje dodatka"
+
+#: classes/Admin.php:122
+msgid "Missing Persons Settings"
+msgstr "Postavke za nestale osobe"
+
+#: classes/Admin.php:123
+msgid "This option sets the API and shortcode for missing persons."
+msgstr "Ova opcija postavlja API i kratki kod za nestale osobe."
+
+#: classes/Admin.php:129
+msgid "Select a Page"
+msgstr "Odaberite stranicu"
+
+#: classes/Admin.php:143
+msgid "Pagination slug"
+msgstr "Permalink za paginaciju"
+
+#: classes/Admin.php:149
+msgid "Search slug"
+msgstr "Permalink za pretragu"
+
+#: classes/Admin.php:155
+msgid "Person slug"
+msgstr "Permalink za osobu"
+
+#: classes/Admin.php:161
+msgid "Open links in new window"
+msgstr "Otvorite veze u novom prozoru"
+
+#: classes/Admin.php:166 classes/Admin.php:181
+msgid "Yes"
+msgstr "Da"
+
+#: classes/Admin.php:171 classes/Admin.php:186
+msgid "No"
+msgstr "Ne"
+
+#: classes/Admin.php:176
+msgid "Enable sending information about the person"
+msgstr "Omogućite slanje informacija o osobi"
+
+#: classes/Admin.php:191
+msgid "Save"
+msgstr "Spremi"
+
+#: classes/Content.php:154
+#, php-format
+msgid "Information about %s sent successfully."
+msgstr "Informacije o %s uspješno su poslane."
+
+#: classes/Content.php:161
+msgid "The message was not sent due to technical problems."
+msgstr "Poruka nije poslana zbog tehničkih problema."
+
+#: classes/Init.php:180
+msgid "Missing persons"
+msgstr "Nestale osobe"
+
+#: classes/Requirements.php:65
+#, php-format
+msgid "%1$s database update required!"
+msgstr "Potrebno je ažuriranje baze podataka za %1$s!"
+
+#: classes/Requirements.php:66
+#, php-format
+msgid ""
+"%1$s has been updated! To keep things running smoothly, we have to update "
+"your database to the newest version."
+msgstr ""
+"%1$s je ažuriran! Kako bi stvari funkcionirale glatko, moramo ažurirati vašu "
+"bazu podataka na najnoviju verziju."
+
+#: classes/Requirements.php:70
+msgid "Update Database"
+msgstr "Ažurirajte bazu podataka"
+
+#: classes/Requirements.php:86
+#, php-format
+msgid ""
+"The %1$s cannot run on PHP versions older than PHP %2$s. Please contact your "
+"host and ask them to upgrade."
+msgstr ""
+"%1$s ne može se izvoditi na PHP verzijama starijim od PHP %2$s. Molimo "
+"kontaktirajte svog administratora i zamolite ga za nadogradnju."
+
+#: classes/Requirements.php:102
+#, php-format
+msgid ""
+"The %1$s cannot run on WordPress versions older than %2$s. Please update "
+"your WordPress installation."
+msgstr ""
+"%1$s ne može se izvoditi na WordPress verzijama starijim od %2$s. Ažurirajte "
+"svoju WordPress instalaciju."
+
+#: classes/Requirements.php:139
+#, php-format
+msgid "Important upgrade notice for the version %s:"
+msgstr "Važna obavijest o nadogradnji za verziju %s:"
+
+#: classes/Requirements.php:153
+msgid ""
+"NOTE: Before doing the update, it would be a good idea to backup your "
+"WordPress installations and settings."
+msgstr ""
+"NAPOMENA: Prije ažuriranja bilo bi dobro napraviti sigurnosnu kopiju "
+"WordPress instalacija i postavki."
+
+#: classes/Rewrite.php:159
+msgid "Success!"
+msgstr "Uspjeh!"
+
+#: classes/Rewrite.php:169
+msgid "Sync key does not match."
+msgstr "Ključ za sinkronizaciju ne odgovara."
+
+#: classes/Template.php:85
+msgid "Please wait..."
+msgstr "Molimo pričekajte..."
+
+#: classes/Template.php:86
+msgid ""
+"All fields in this form are required. Fill in the fields and send a message."
+msgstr ""
+"Sva polja u ovom obrascu su obavezna. Ispunite polja i pošaljite poruku."
+
+#: classes/Yoast_SEO.php:83
+#, php-format
+msgctxt "female title"
+msgid "%s (%d) is missing on %s in %s, from place %s"
+msgstr "%s (%d) nestala na %s u %s, iz %s"
+
+#: classes/Yoast_SEO.php:84
+#, php-format
+msgctxt "male title"
+msgid "%s (%d) is missing on %s in %s, from place %s"
+msgstr "%s (%d) nestao dana %s u %s, iz %s"
+
+#: classes/Yoast_SEO.php:117
+#, php-format
+msgctxt "female title"
+msgid "%s (%d) is missing %s"
+msgstr "%s (%d) nestala %s"
+
+#: classes/Yoast_SEO.php:118
+#, php-format
+msgctxt "male title"
+msgid "%s (%d) is missing %s"
+msgstr "%s (%d) nestao %s"
+
+#: classes/Yoast_SEO.php:122
+#, php-format
+msgctxt "female title"
+msgid "%s (%d) is missing"
+msgstr "Nestala %s (%d)."
+
+#: classes/Yoast_SEO.php:123
+#, php-format
+msgctxt "male title"
+msgid "%s (%d) is missing"
+msgstr "Nestao %s (%d)."
+
+#: registar-nestalih.php:64
+msgid "Register of Missing Persons of Serbia"
+msgstr "Registar nestalih lica Srbije"
+
+#: templates/missing-persons.php:29 templates/missing-persons/sidebar.php:20
+#: templates/missing-persons/single.php:28
+msgid "Gender:"
+msgstr "Spol:"
+
+#: templates/missing-persons.php:29 templates/missing-persons.php:31
+#: templates/missing-persons/single.php:28
+#: templates/missing-persons/single.php:31
+#: templates/missing-persons/single.php:32
+#: templates/missing-persons/single.php:33
+#: templates/missing-persons/single.php:41
+#: templates/missing-persons/single.php:42
+#: templates/missing-persons/single.php:43
+#: templates/missing-persons/single.php:44
+#: templates/missing-persons/single.php:59
+msgid "(undefined)"
+msgstr "(nedefiniran)"
+
+#: templates/missing-persons.php:30 templates/missing-persons/sidebar.php:21
+#: templates/missing-persons/single.php:29
+msgid "Age:"
+msgstr "Starost:"
+
+#: templates/missing-persons.php:31 templates/missing-persons/single.php:59
+msgid "Place of disappearance:"
+msgstr "Mjesto nestanka:"
+
+#: templates/missing-persons.php:34
+msgid "More Informations"
+msgstr "Više informacija"
+
+#: templates/missing-persons.php:44
+msgid "No information currently available."
+msgstr "Trenutno nema dostupnih informacija."
+
+#: templates/missing-persons/contact-form.php:16
+#: templates/missing-persons/sidebar.php:23
+msgid "Do you know anything about this person?"
+msgstr "Znaš li išta o ovoj osobi?"
+
+#: templates/missing-persons/contact-form.php:21
+msgid "Enter all information about this person in detail..."
+msgstr "Detaljno unesi sve podatke o ovoj osobi..."
+
+#: templates/missing-persons/contact-form.php:26
+msgid "First and Last name"
+msgstr "Ime i prezime"
+
+#: templates/missing-persons/contact-form.php:27
+msgid "Your First and Last name"
+msgstr "Tvoje ime i prezime"
+
+#: templates/missing-persons/contact-form.php:32
+msgid "Your e-mail"
+msgstr "Tvoj email"
+
+#: templates/missing-persons/contact-form.php:38
+msgid "Your phone number"
+msgstr "Tvoj broj telefona"
+
+#: templates/missing-persons/contact-form.php:44
+msgid "Send Message"
+msgstr "Pošalji poruku"
+
+#: templates/missing-persons/pagination.php:13
+#: templates/missing-persons/pagination.php:21
+msgid "Previous"
+msgstr "Prethodni"
+
+#: templates/missing-persons/pagination.php:24
+#, php-format
+msgid "%d of %d"
+msgstr "%d od %d"
+
+#: templates/missing-persons/pagination.php:29
+#: templates/missing-persons/pagination.php:37
+msgid "Next"
+msgstr "Sljedeći"
+
+#: templates/missing-persons/search-form.php:16
+msgid "Search by first name, last name, location..."
+msgstr "Traži po imenu, prezimenu, lokaciji..."
+
+#: templates/missing-persons/search-form.php:18
+msgid "Search"
+msgstr "Traži"
+
+#: templates/missing-persons/sidebar.php:32
+msgid "Look at the others"
+msgstr "Pogledaj ostale"
+
+#: templates/missing-persons/single.php:24
+msgid "Personal information"
+msgstr "Osobne informacije"
+
+#: templates/missing-persons/single.php:26
+msgid "First Name:"
+msgstr "Ime:"
+
+#: templates/missing-persons/single.php:27
+msgid "Last Name:"
+msgstr "Prezime"
+
+#: templates/missing-persons/single.php:30
+msgid "Date of Birth:"
+msgstr "Datum rođenja:"
+
+#: templates/missing-persons/single.php:31
+msgid "Place of Birth:"
+msgstr "Mjesto rođenja:"
+
+#: templates/missing-persons/single.php:32
+msgid "Citizenship:"
+msgstr "Državljanstvo:"
+
+#: templates/missing-persons/single.php:33
+msgid "Residence:"
+msgstr "Prebivalište:"
+
+#: templates/missing-persons/single.php:39
+msgid "Personal description"
+msgstr "Osobni opis"
+
+#: templates/missing-persons/single.php:41
+msgid "Height:"
+msgstr "Visina:"
+
+#: templates/missing-persons/single.php:42
+msgid "Weight:"
+msgstr "Težina:"
+
+#: templates/missing-persons/single.php:43
+msgid "Eye color:"
+msgstr "Boja očiju:"
+
+#: templates/missing-persons/single.php:44
+msgid "Heir color:"
+msgstr "Boja kose:"
+
+#: templates/missing-persons/single.php:56
+msgid "Details about missing"
+msgstr "Detalji o nestalim"
+
+#: templates/missing-persons/single.php:58
+msgid "Missing date:"
+msgstr "Datum nestanka:"
+
+#: templates/missing-persons/single.php:60
+msgid "Reported date:"
+msgstr "Datum prijave:"
+
+#: templates/missing-persons/single.php:71
+msgid "Other informations"
+msgstr "Ostale informacije"
+
+#: templates/missing-persons/single.php:75
+msgid "Circumstances of disappearance:"
+msgstr "Okolnosti nestanka:"
+
+#: templates/missing-persons/single.php:82
+msgid "Description at the time of disappearance:"
+msgstr "Opis u trenutku nestanka:"
+
+#: templates/missing-persons/single.php:89
+msgid "Additional information:"
+msgstr "Dodatne informacije:"
+
+#: widgets/Latest_Missing.php:13
+msgid "Missing People (recently added)"
+msgstr "Nestale osobe (nedavno dodane)"
+
+#: widgets/Latest_Missing.php:16
+msgid "Show recently added missing people"
+msgstr "Prikaži nedavno dodane nestale osobe"
+
+#: widgets/Latest_Missing.php:53
+msgid "Title:"
+msgstr "Naslov:"
+
+#: widgets/Latest_Missing.php:57
+msgid "Number of posts to show:"
+msgstr "Broj objava koje se prikazuju:"
+
+#: widgets/Latest_Missing.php:62
+msgid "Display \"look at the others\" link."
+msgstr "Prikaži vezu \"pogledaj ostale\"."
+
+#. Plugin Name of the plugin/theme
+msgid "Register of Missing Persons in Serbia"
+msgstr "Registar nestalih osoba u Srbiji"
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.nestalisrbija.rs/"
+msgstr "https://www.nestalisrbija.rs/"
+
+#. Description of the plugin/theme
+msgid ""
+"Display on your site all missing persons from the central Register of "
+"Missing Persons of Serbia."
+msgstr ""
+"Prikažite na svojoj stranici sve nestale osobe iz Centralnog registra "
+"nestalih osoba Srbije."
+
+#. Author of the plugin/theme
+msgid "Ivijan-Stefan Sipić"
+msgstr "Ivijan-Stefan Sipić"
+
+#. Author URI of the plugin/theme
+msgid "https://infinitumform.com/"
+msgstr "https://infinitumform.com/"
