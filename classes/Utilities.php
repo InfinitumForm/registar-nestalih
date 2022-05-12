@@ -160,4 +160,40 @@ if( !class_exists('Registar_Nestalih_U') ) : class Registar_Nestalih_U {
 		
 		Registar_Nestalih_Cache::flush();
 	}
+	
+	/*
+	 * Remove directory
+	 * @verson    1.0.0
+	*/
+	function rmdir($dir) {
+		
+		if( strlen($dir, MISSING_PERSONS_IMG_UPLOAD_DIR) === false ) {
+			return false;
+		}
+		
+		if( DIRECTORY_SEPARATOR === '\\' ) {
+			$dir = str_replace('/', DIRECTORY_SEPARATOR, $dir);
+		}
+		
+		if ( !is_dir($dir) || is_link($dir) ) {
+			return unlink($dir);
+		}
+
+		foreach (scandir($dir) as $file) {
+			if ( in_array($file, ['.', '..'], true) ) {
+				continue;
+			}
+			
+			if ( !self::rmdir($dir . DIRECTORY_SEPARATOR . $file) ) {
+				
+				chmod($dir . DIRECTORY_SEPARATOR . $file, 0777);
+				
+				if ( !self::rmdir($dir . DIRECTORY_SEPARATOR . $file) ) {
+					return false;
+				}
+			}
+		}
+		
+		return rmdir($dir);
+	}
 } endif;

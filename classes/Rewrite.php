@@ -43,7 +43,6 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 		
 		add_rewrite_tag('%registar_nestalih_list%', '([0-9]+)');
 		add_rewrite_tag('%registar_nestalih_id%', '([0-9]+)');
-	//	add_rewrite_tag('%registar_nestalih_img_id%', '([0-9]+)');
 		add_rewrite_tag('%registar_nestalih_name%', '([^&]+)');
 		add_rewrite_tag('%registar_nestalih_search%', '([^&]+)');
 		add_rewrite_tag('%registar_nestalih_push_notification%', '([^&]+)');
@@ -68,13 +67,6 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 			'index.php?pagename=' . $page_data->post_name . '&registar_nestalih_id=$matches[1]&registar_nestalih_name=$matches[2]',
 			'top'
 		);
-		
-		// Profile image
-	/*	add_rewrite_rule(
-			$page_data->post_name . '/img/([0-9]+)[/]?$',
-			'index.php?action=registar_nestalih_img&registar_nestalih_img_id=$matches[1]',
-			'top'
-		);*/
 		
 		// Search
 		add_rewrite_rule(
@@ -102,7 +94,6 @@ if( !class_exists('Registar_Nestalih_Rewrite') ) : class Registar_Nestalih_Rewri
 	public function query_vars( $query_vars ) {
 		$query_vars[] = 'registar_nestalih_list';
 		$query_vars[] = 'registar_nestalih_id';
-	//	$query_vars[] = 'registar_nestalih_img_id';
 		$query_vars[] = 'registar_nestalih_name';
 		$query_vars[] = 'registar_nestalih_search';
 		$query_vars[] = 'registar_nestalih_push_notification';

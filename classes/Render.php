@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render {
 	
-	public $id;
+	public $id = 0;
 	public $ime_prezime;
 	public $policijska_stanica;
 	public $pol;
@@ -71,8 +71,38 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
         throw new Exception('No such method: ' . get_class($this) . '->$function()');
     }
 	
-	// generate image URL
+	// Get ID
+	public function id() {
+		return absint($this->id);
+	}
+	
+	// Generate safe image URL
 	public function profile_image () {
+		if( empty($this->icon) ) {
+			$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-male.gif');
+			if( $this->is_female() ) {
+				$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-female.gif');
+			}
+		} else {
+			$upload_dir = wp_upload_dir();
+			$folder = MISSING_PERSONS_IMG_UPLOAD_DIR;
+			
+			$ext = explode('.', $this->icon);
+			$ext = '.' . strtolower(end($ext));
+			
+			$image = ($upload_dir['basedir'] . $folder . '/' . $this->id() . '/' . $this->id() . $ext);
+			$image_url = ($upload_dir['baseurl'] . $folder . '/' . $this->id() . '/' . $this->id() . $ext);
+			
+			if( file_exists($image) ) {
+				$this->icon = $image_url;
+			}
+		}
+		
+		return esc_url($this->icon);
+	}
+
+	// Generate safe image URL from local server
+	public function profile_image_self(){
 		if( empty($this->icon) ) {
 			$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-male.gif');
 			if( $this->is_female() ) {
@@ -81,41 +111,56 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 		} else {
 			
 			/* @todo: Get image from remote URL, save into uploads folder and display it */
+			$upload_dir = wp_upload_dir();
+			$folder = MISSING_PERSONS_IMG_UPLOAD_DIR;
+			// Create base dir
+			if( !file_exists($upload_dir['basedir'] . $folder) ) {
+				mkdir($upload_dir['basedir'] . $folder, 0755, true);
+				touch($upload_dir['basedir'] . $folder . '/index.php');
+			}
 			
+			// Create user dir
+			if( file_exists($upload_dir['basedir'] . $folder) ) {
+				if( !file_exists($upload_dir['basedir'] . $folder . '/' . $this->id()) ) {
+					mkdir($upload_dir['basedir'] . $folder . '/' . $this->id(), 0755, true);
+					touch($upload_dir['basedir'] . $folder . '/' . $this->id() . '/index.php');
+				}
+				
+				// Upload image
+				if( file_exists($upload_dir['basedir'] . $folder . '/' . $this->id()) ) {
+					$ext = explode('.', $this->icon);
+					$ext = '.' . strtolower(end($ext));
+					
+					if(in_array($ext, ['.jpg','.jpeg','.png','.gif','.webp'])) {
+						
+						$image = ($upload_dir['basedir'] . $folder . '/' . $this->id() . '/' . $this->id() . $ext);
+						$image_url = ($upload_dir['baseurl'] . $folder . '/' . $this->id() . '/' . $this->id() . $ext);
+						
+						if( !file_exists($image) ) {
+							
+							if( !( function_exists('copy') && copy($this->icon, $image)) ) {
+								file_put_contents($image, file_get_contents($this->icon));
+							}
+							
+							if( file_exists($image) ) {
+								$this->icon = $image_url;
+							}
+							
+						} else {
+							$this->icon = $image_url;
+						}
+					} else {
+						$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-male.gif');
+						if( $this->is_female() ) {
+							$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-female.gif');
+						}
+					}
+				}
+			}
 		}
 		return esc_url($this->icon);
 	}
 	
-	// Generate image link
-	/*
-	public function profile_image_self(){
-		if( empty($this->id) ) {
-			return '#';
-		}
-		
-		$page = Registar_Nestalih_Options::get('main-page');
-		
-		if( empty($page) ) {
-			return NULL;
-		}
-		
-		if( get_option('permalink_structure') ) {
-			$page_link = get_page_link( $page );
-			$url = sprintf(
-				'%s/%s/%d',
-				rtrim($page_link, '/'),
-				'img',
-				absint($this->id)
-			);
-		} else {
-			$url = add_query_arg([
-				'registar_nestalih_img_id' => absint($this->id)
-			]);
-		}
-		
-		return esc_url($url);
-	}
-	*/
 	
 	public function profile_base64_image () {
 		// image to string conversion

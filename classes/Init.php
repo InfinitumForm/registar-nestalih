@@ -224,6 +224,14 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		
 		// Flush rewrite rules
 		flush_rewrite_rules();
+		
+		// Delete files from uploads dir
+		$upload_dir = wp_upload_dir();
+		$folder = MISSING_PERSONS_IMG_UPLOAD_DIR;
+		
+		if( file_exists($upload_dir['basedir'] . $folder) ) {
+			Registar_Nestalih_U::rmdir($upload_dir['basedir'] . $folder);
+		}
 	}
 	
 	// Register site translations

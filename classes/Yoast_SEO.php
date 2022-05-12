@@ -22,6 +22,7 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 			add_filter( 'wpseo_sitemap_index', [&$this, 'wpseo_sitemap_index'] );
 			add_action( 'init', [&$this, 'init'] );
 			
+			add_action( 'wpseo_add_opengraph_additional_images', [&$this, 'add_default_share_images'], 99, 1 );
 			add_filter( 'wpseo_opengraph_image', [&$this, 'add_share_images'], 10, 1 );
 			add_filter( 'wpseo_twitter_image', [&$this, 'add_share_images'], 10, 1 );
 			
@@ -52,19 +53,27 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 		return $pass;
 	}
 	
-	public function add_share_images ($img) {
+	public function add_default_share_images( $opengraph_image ) {
 		global $wp_query;
 		
-		/*
-		 * @todo: enable images if there is no default image
-		 * https://github.com/Yoast/wordpress-seo/issues/1060
-		 */
-
-		if( $this->is_active() ) {
+		if ( $this->is_active() && !$opengraph_image->has_images() ) {
 			if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )	{
 				if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
 					$response = new Registar_Nestalih_Render($response);
-					$img = $response->profile_image();
+					$opengraph_image->add_image('registar-nestalih-single-seo-img');
+				}
+			}
+		}
+	}
+	
+	public function add_share_images ($img) {
+		global $wp_query;
+
+		if( $this->is_active() || $img === 'registar-nestalih-single-seo-img' ) {
+			if( $person_id = $wp_query->get( 'registar_nestalih_id' ) )	{
+				if( $response = Registar_Nestalih_API::get( ['id' => $person_id] ) ) {
+					$response = new Registar_Nestalih_Render($response);
+					$img = $response->profile_image_self();
 				}
 			}
 		}
