@@ -99,7 +99,7 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 							$response->age(),
 							$response->missing_date(),
 							$response->mesto_nestanka,
-							$response->prebivaliste
+							$response->mesto_rodjenja
 						);
 					}
 				}

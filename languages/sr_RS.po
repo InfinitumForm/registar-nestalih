@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
 "POT-Creation-Date: 2022-05-11 12:49+0200\n"
-"PO-Revision-Date: 2022-05-11 12:51+0200\n"
+"PO-Revision-Date: 2022-05-12 14:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -378,7 +378,7 @@ msgstr "Околности нестанка:"
 
 #: templates/missing-persons/single.php:82
 msgid "Description at the time of disappearance:"
-msgstr "Место нестанка:"
+msgstr "Опис у тренутку нестанка:"
 
 #: templates/missing-persons/single.php:89
 msgid "Additional information:"
