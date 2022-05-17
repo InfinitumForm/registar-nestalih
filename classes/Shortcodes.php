@@ -16,6 +16,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	// PRIVATE: Main construct
 	private function __construct() {
 		$this->register( 'registar_nestalih', 'callback__registar_nestalih' );
+		$this->register( 'registar_nestalih_prijava', 'callback__registar_nestalih_prijava' );
 	}
 	
 	// Register shortcodes
@@ -58,7 +59,12 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		
 		$response = Registar_Nestalih_API::get( $query );
 		
-		wp_enqueue_style( 'registar-nestalih' );
+		if( Registar_Nestalih_Options::get('enable-bootstrap', 0) ) {
+			wp_enqueue_style( 'registar-nestalih-bootstrap' );
+			wp_enqueue_style( 'registar-nestalih' );
+		} else {
+			wp_enqueue_style( 'registar-nestalih' );
+		}
 		wp_enqueue_script( 'registar-nestalih' );
 		
 		if( $attr['person'] && $attr['person'] > 0 ) {
@@ -66,6 +72,25 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		} else {
 			return Registar_Nestalih_Content::render('missing-persons', $response);
 		}
+	}
+	
+	// Register Nestalih
+	public function callback__registar_nestalih_prijava	($attr, $content='', $tag) {
+		global $wp_query;
+		
+		$attr = shortcode_atts( [
+			
+		], $attr, $tag );
+		
+		if( Registar_Nestalih_Options::get('enable-bootstrap', 0) ) {
+			wp_enqueue_style( 'registar-nestalih-bootstrap' );
+			wp_enqueue_style( 'registar-nestalih' );
+		} else {
+			wp_enqueue_style( 'registar-nestalih' );
+		}
+		wp_enqueue_script( 'registar-nestalih' );
+		
+		return Registar_Nestalih_Content::render('report-disappearance');
 	}
 	
 } endif;

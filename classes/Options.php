@@ -12,7 +12,8 @@ if( !class_exists('Registar_Nestalih_Options') ) : class Registar_Nestalih_Optio
 		'search-slug' => 'search',
 		'person-slug' => 'person',
 		'open-in-new-window' => 0,
-		'enable-notification' => 1
+		'enable-notification' => 1,
+		'enable-bootstrap' => 0
 	];
 	
 	/*

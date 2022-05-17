@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-05-11 12:49+0200\n"
-"PO-Revision-Date: 2022-05-12 14:18+0200\n"
+"POT-Creation-Date: 2022-05-17 13:27+0200\n"
+"PO-Revision-Date: 2022-05-17 13:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -82,11 +82,11 @@ msgstr "Пермалинк особе"
 msgid "Open links in new window"
 msgstr "Отвори у новом прозору"
 
-#: classes/Admin.php:166 classes/Admin.php:181
+#: classes/Admin.php:166 classes/Admin.php:181 classes/Admin.php:201
 msgid "Yes"
 msgstr "Да"
 
-#: classes/Admin.php:171 classes/Admin.php:186
+#: classes/Admin.php:171 classes/Admin.php:186 classes/Admin.php:206
 msgid "No"
 msgstr "Не"
 
@@ -94,16 +94,36 @@ msgstr "Не"
 msgid "Enable sending information about the person"
 msgstr "Омогућите слање информација о особи"
 
-#: classes/Admin.php:191
+#: classes/Admin.php:192
+msgid "Utility"
+msgstr "Корисне опције"
+
+#: classes/Admin.php:193
+msgid "Small but useful options."
+msgstr "Мале, али корисне опције."
+
+#: classes/Admin.php:196
+msgid "CSS support"
+msgstr "ЦСС Подршка"
+
+#: classes/Admin.php:208
+msgid ""
+"If you activate this option, we will insert the basic Twitter Bootstrap CSS "
+"to style the tabs and columns while the rest of the design will be intact."
+msgstr ""
+"Ако активирате ову опцију, убацићемо основни Твитер Бутстрап за стилизовање "
+"картица и колона док ће остатак дизајна остати нетакнут."
+
+#: classes/Admin.php:212
 msgid "Save"
 msgstr "Сними"
 
-#: classes/Content.php:154
+#: classes/Content.php:155
 #, php-format
 msgid "Information about %s sent successfully."
 msgstr "Информације о %s су успешно послате."
 
-#: classes/Content.php:161
+#: classes/Content.php:162
 msgid "The message was not sent due to technical problems."
 msgstr "Порука није послата због техничких проблема."
 
@@ -168,46 +188,46 @@ msgstr "Успех!"
 msgid "Sync key does not match."
 msgstr "Синхронизациони кључ није одговарајући."
 
-#: classes/Template.php:85
+#: classes/Template.php:96
 msgid "Please wait..."
 msgstr "Молимо причекајте..."
 
-#: classes/Template.php:86
+#: classes/Template.php:97
 msgid ""
 "All fields in this form are required. Fill in the fields and send a message."
 msgstr "Сва поља у овом обрасцу су обавезна. Попуните поља и пошаљите поруку."
 
-#: classes/Yoast_SEO.php:83
+#: classes/Yoast_SEO.php:95
 #, php-format
 msgctxt "female title"
 msgid "%s (%d) is missing on %s in %s, from place %s"
 msgstr "%s (%d) је нестала дана %s у %s, из места %s"
 
-#: classes/Yoast_SEO.php:84
+#: classes/Yoast_SEO.php:96
 #, php-format
 msgctxt "male title"
 msgid "%s (%d) is missing on %s in %s, from place %s"
 msgstr "%s (%d) је нестао дана %s у %s, из места %s"
 
-#: classes/Yoast_SEO.php:117
+#: classes/Yoast_SEO.php:129
 #, php-format
 msgctxt "female title"
 msgid "%s (%d) is missing %s"
 msgstr "%s (%d) је нестала %s"
 
-#: classes/Yoast_SEO.php:118
+#: classes/Yoast_SEO.php:130
 #, php-format
 msgctxt "male title"
 msgid "%s (%d) is missing %s"
 msgstr "%s (%d) је нестао %s"
 
-#: classes/Yoast_SEO.php:122
+#: classes/Yoast_SEO.php:134
 #, php-format
 msgctxt "female title"
 msgid "%s (%d) is missing"
 msgstr "%s (%d) је нестала"
 
-#: classes/Yoast_SEO.php:123
+#: classes/Yoast_SEO.php:135
 #, php-format
 msgctxt "male title"
 msgid "%s (%d) is missing"
@@ -295,6 +315,138 @@ msgstr "%d од %d"
 #: templates/missing-persons/pagination.php:37
 msgid "Next"
 msgstr "Следеће"
+
+#: templates/missing-persons/report-disappearance-form.php:34
+msgid "Report missing person"
+msgstr "Пријавите несталу особу"
+
+#: templates/missing-persons/report-disappearance-form.php:39
+msgid "First Name"
+msgstr "Име"
+
+#: templates/missing-persons/report-disappearance-form.php:45
+msgid "Last name"
+msgstr "Презиме"
+
+#: templates/missing-persons/report-disappearance-form.php:52
+msgid "Gender"
+msgstr "Пол"
+
+#: templates/missing-persons/report-disappearance-form.php:54
+msgid "Male"
+msgstr "Мушки"
+
+#: templates/missing-persons/report-disappearance-form.php:55
+msgid "Female"
+msgstr "Женски"
+
+#: templates/missing-persons/report-disappearance-form.php:56
+msgctxt "undefined gender in the form."
+msgid "Undefined"
+msgstr "Недефинисано"
+
+#: templates/missing-persons/report-disappearance-form.php:62
+msgid "Date of birth"
+msgstr "Датум рођења"
+
+#: templates/missing-persons/report-disappearance-form.php:70
+msgid "Place of birth"
+msgstr "Место рођења"
+
+#: templates/missing-persons/report-disappearance-form.php:76
+msgid "Citizenship"
+msgstr "Држављанство"
+
+#: templates/missing-persons/report-disappearance-form.php:82
+msgid "Residence"
+msgstr "Пребивалиште"
+
+#: templates/missing-persons/report-disappearance-form.php:89
+msgid "Height (in centimeters)"
+msgstr "Висина (у центиметрима)"
+
+#: templates/missing-persons/report-disappearance-form.php:95
+msgid "Weight (in kilograms)"
+msgstr "Тежина (у килограмима)"
+
+#: templates/missing-persons/report-disappearance-form.php:102
+msgid "Hair Color"
+msgstr "Боја косе"
+
+#: templates/missing-persons/report-disappearance-form.php:108
+msgid "Eye Color"
+msgstr "Боја очију"
+
+#: templates/missing-persons/report-disappearance-form.php:114
+msgid "Picture of a missing person"
+msgstr "Слика нестале особе"
+
+#: templates/missing-persons/report-disappearance-form.php:121
+msgid "Information about the disappearance"
+msgstr "Информација о нестанку"
+
+#: templates/missing-persons/report-disappearance-form.php:121
+msgid "Please be precise with the information."
+msgstr "Будите прецизни са информацијама."
+
+#: templates/missing-persons/report-disappearance-form.php:124
+msgid "Date of disappearance"
+msgstr "Датум нестанка"
+
+#: templates/missing-persons/report-disappearance-form.php:131
+msgid "Place of disappearance"
+msgstr "Место нестанка"
+
+#: templates/missing-persons/report-disappearance-form.php:138
+msgid "Date of report"
+msgstr "Датум пријаве"
+
+#: templates/missing-persons/report-disappearance-form.php:145
+msgid "Police station"
+msgstr "Полицијска станица"
+
+#: templates/missing-persons/report-disappearance-form.php:152
+msgid "Additional information"
+msgstr "Додатне информације"
+
+#: templates/missing-persons/report-disappearance-form.php:161
+msgid "Disappearance description"
+msgstr "Опис нестанка"
+
+#: templates/missing-persons/report-disappearance-form.php:170
+msgid "Circumstances of disappearance"
+msgstr "Околности нестанка"
+
+#: templates/missing-persons/report-disappearance-form.php:179
+msgid "Applicant information"
+msgstr "Додатне информације:"
+
+#: templates/missing-persons/report-disappearance-form.php:179
+msgid ""
+"This information is hidden from the global public and serves for direct "
+"contact."
+msgstr ""
+"Ове информације су скривене од глобалне јавности и служе за директан контакт."
+
+#: templates/missing-persons/report-disappearance-form.php:183
+msgid "Name and last name of the applicant"
+msgstr "Име и презиме подносиоца захтева"
+
+#: templates/missing-persons/report-disappearance-form.php:189
+msgid "Applicant's telephone"
+msgstr "Телефон подносиоца захтева"
+
+#: templates/missing-persons/report-disappearance-form.php:196
+msgid "Email of the applicant"
+msgstr "Е-маил подносиоца захтева"
+
+#: templates/missing-persons/report-disappearance-form.php:202
+msgid "Relationship with a missing person"
+msgstr "Веза са несталом особом"
+
+#: templates/missing-persons/report-disappearance-form.php:209
+msgid "External link"
+msgstr "Екстерна веза"
 
 #: templates/missing-persons/search-form.php:16
 msgid "Search by first name, last name, location..."

@@ -188,6 +188,27 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				</td>
 			</tr>
 		</table>
+		<hr>
+		<h3><?php _e('Utility', 'registar-nestalih'); ?></h3>
+		<p><?php _e('Small but useful options.', 'registar-nestalih'); ?></p>
+		<table class="form-table" role="utility">
+			<tr>
+				<th scope="row"><?php _e('CSS support', 'registar-nestalih'); ?></th>
+				<td>
+					<label for="enable-bootstrap-0">
+						<input type="radio" id="enable-bootstrap-0" name="registar-nestalih[enable-bootstrap]" value="1" <?php 
+							checked( ($options['enable-bootstrap'] ?? 0), 1 ); 
+						?> /> <?php _e('Yes', 'registar-nestalih'); ?>
+					</label>&nbsp;&nbsp;&nbsp;
+					<label for="enable-bootstrap-1">
+						<input type="radio" id="enable-bootstrap-1" name="registar-nestalih[enable-bootstrap]" value="0" <?php 
+							checked( ($options['enable-bootstrap'] ?? 0), 0 ); 
+						?> /> <?php _e('No', 'registar-nestalih'); ?>
+					</label>
+					<p class="description"><?php _e('If you activate this option, we will insert the basic Twitter Bootstrap CSS to style the tabs and columns while the rest of the design will be intact.', 'registar-nestalih'); ?></p>
+				</td>
+			</tr>
+		</table>
 		<?php submit_button( __('Save', 'registar-nestalih') ); ?>
 		<input type="hidden" name="__nonce" value="<?php echo esc_attr( wp_create_nonce('registar-nestalih') ); ?>" />
 	</form>

@@ -17,7 +17,7 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 	private function __construct() {
 		add_action( 'wp_enqueue_scripts', [ &$this, 'enqueue_scripts' ] );
 	}
-	
+
 	// Get URL
 	public static function url ($location) {
 		static $cache = [];
@@ -71,13 +71,24 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 	// Register plugin scripts
 	public function enqueue_scripts() {
 		
+		$bootstrap_css_url = self::url('assets/css/bootstrap.min.css');
+		$bootstrap_css_path = self::path('assets/css/bootstrap.min.css');
+		
 		$css_url = self::url('assets/css/style.css');
 		$css_path = self::path('assets/css/style.css');
 		
 		$js_url = self::url('assets/js/script.js');	
 		$js_path = self::path('assets/js/script.js');
 		
-		wp_register_style( 'registar-nestalih', $css_url, 1, 'RV-1.' . absint(filesize($css_path)) );		
+		wp_register_style( 'registar-nestalih', $css_url, 1, 'RV-1.' . absint(filesize($css_path)) );
+		
+		if( Registar_Nestalih_Options::get('enable-bootstrap', 0) ) {
+			wp_register_style( 'registar-nestalih-bootstrap', $bootstrap_css_url, 1, 'RV-1.' . absint(filesize($bootstrap_css_path)) );
+			wp_register_style( 'registar-nestalih', $css_url, ['registar-nestalih-bootstrap'], 'RV-1.' . absint(filesize($css_path)) );
+		} else {
+			wp_register_style( 'registar-nestalih', $css_url, 1, 'RV-1.' . absint(filesize($css_path)) );
+		}
+		
 		wp_register_script( 'registar-nestalih', $js_url, ['jquery'], 'RV-1.' . absint(filesize($js_path)), true );
 		wp_localize_script( 'registar-nestalih', 'registar_nestalih', [
 			'ajax' => admin_url('/admin-ajax.php'),

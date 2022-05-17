@@ -244,3 +244,13 @@
 	width: 100% !important;
     max-width: inherit !important;
 }
+
+fieldset > legend{
+	line-height: normal;
+}
+fieldset{
+	margin-top:32px;
+}
+fieldset > legend > small{
+	font-size: 18px;
+}
