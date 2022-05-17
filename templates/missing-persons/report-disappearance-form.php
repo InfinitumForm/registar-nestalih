@@ -112,7 +112,8 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 		<div class="col col-12 col-sm-12">
 			<div class="form-group">
 				<label for="report-missing-person-image"><?php _e('Picture of a missing person', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="file" class="form-control-file required"  name="report-missing-person[image]" id="report-missing-person-image" tabindex="12">
+				<input type="file" class="form-control-file required"  name="report-missing-person[image]" id="report-missing-person-image" tabindex="12" accept=".jpeg,.jpg,.png,.webp,.gif">
+				<p><?php _e('Allowed formats: JPEG, JPG, PNG, GIF and WEBP', 'registar-nestalih'); ?></p>
 			</div>
 		</div>
 	</fieldset>
@@ -209,6 +210,12 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 				<label for="report-missing-person-external-link"><?php _e('External link', 'registar-nestalih'); ?></label>
 				<input type="url" class="form-control" name="report-missing-person[external_link]" id="report-missing-person-external-link" tabindex="24" value="<?php echo esc_url($external_link); ?>">
 			</div>
+		</div>
+		
+		<div class="col col-12 col-sm-12 col-md-12 col-lg-12" id="report-missing-person-form-errors"></div>
+		<div class="col col-12 col-sm-12 col-md-12 col-lg-12">
+			<button type="submit" class="btn btn-primary" tabindex="25"><?php _e('Report missing person', 'registar-nestalih'); ?></button>
+			<input type="hidden" name="report-missing-person[nonce]" value="<?php echo esc_attr( wp_create_nonce( 'report-missing-person-form' ) ); ?>">
 		</div>
 		
 	</fieldset>

@@ -24,6 +24,8 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 			add_action( 'registar_nestalih_after_single_container', [&$this, 'do_missing_persons_contact_form'] );
 		}
 		
+		add_action( 'registar_nestalih_before_report_disappearance_form_container', [&$this, 'do_missing_persons_report_disappearance_form_http'] );
+		
 		add_filter( 'document_title_parts', [&$this, 'document_title_parts'], 100, 2 );
 	}
 	
@@ -162,6 +164,12 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 					__('The message was not sent due to technical problems.', 'registar-nestalih')
 				);
 			}
+		}
+	}
+	
+	public function do_missing_persons_report_disappearance_form_http ( $response ) {
+		if($_POST['report-missing-person'] ?? NULL) {
+			echo '<pre>', var_dump( $_POST['report-missing-person'] ), '</pre>';
 		}
 	}
 	
