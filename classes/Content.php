@@ -169,7 +169,18 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 	
 	public function do_missing_persons_report_disappearance_form_http ( $response ) {
 		if($_POST['report-missing-person'] ?? NULL) {
-			echo '<pre>', var_dump( $_POST['report-missing-person'] ), '</pre>';
+		/*
+			echo '<pre>', var_dump( [
+				'POST' => $_POST['report-missing-person'],
+				'FILES' => ($_FILES['report-missing-person'] ?? NULL)
+			] ), '</pre>';
+		
+			echo '<pre>$query_allowed = [';
+			foreach($_POST['report-missing-person'] as $key => $value) {
+				echo "'{$key}',";
+			}
+			echo '];</pre>';
+		*/
 		}
 	}
 	

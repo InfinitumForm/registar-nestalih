@@ -195,16 +195,19 @@
 	}
 }
 
-#missing-persons-form {
+#missing-persons-form,
+#report-missing-person-form {
 	margin-bottom:64px;
 }
 
-#missing-persons-form .asterisk-required {
+#missing-persons-form .asterisk-required,
+#report-missing-person-form .asterisk-required {
 	color: #cc0000;
 	font-weight:900;
 }
 
-#missing-persons-form .form-control.has-error {
+#missing-persons-form .form-control.has-error,
+#report-missing-person-form .form-control.has-error {
 	border-color:#cc0000;
 	color: #cc0000;
 }

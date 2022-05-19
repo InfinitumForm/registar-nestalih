@@ -21,6 +21,11 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 		return self::instance()->__sanitize_query( self::instance()->__get_missing( $query ) );
 	}
 	
+	// Report missing person 
+	public static function report_missing_person( array $query = [] ) {
+		return self::instance()->__sanitize_query( self::instance()->__report_missing_person( $query ) );
+	}
+	
 	// PRIVATE: Get missing persons
 	private function __get_missing( array $query = [] ) {
 		static $__get_missing;
@@ -68,6 +73,52 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 		return $posts;
 	}
 	
+	// PRIVATE: Report missing person
+	private function __report_missing_person( array $query = [] ) {
+		
+		if( is_array($query) )
+		{
+			// Allowed query
+			$query_allowed = ['first_name','last_name','gender','date_of_birth','place_of_birth','citizenship','residence','height','weight','hair_color','eye_color','date_of_disappearance','place_of_disappearance','date_of_report','police_station','additional_information','disappearance_description','circumstances_disappearance','applicant_name','applicant_telephone','applicant_email','applicant_relationship','external_link','nonce'];
+			
+			// Filter query
+			$query = (object)array_filter($query, function($value, $key) use ($query_allowed){
+				return !empty($value) && in_array($key, $query_allowed) !== false;
+			}, ARRAY_FILTER_USE_BOTH);
+			
+			// Build name
+			$full_name = join( ' ', array_filter( array_map( 'trim', [
+				sanitize_text_field($query->first_name ?? NULL),
+				sanitize_text_field($query->last_name ?? NULL)
+			] ) ) );
+			
+			// Build raw POST arguments
+			$args = [
+				'ime_prezime' => $full_name,
+				'policijska_stanica' => sanitize_text_field($query->police_station ?? NULL),
+				'pol' => sanitize_text_field($query->gender ?? NULL),
+				'datum_rodjenja' => sanitize_text_field($query->date_of_birth ?? NULL),
+				'mesto_rodjenja' => sanitize_text_field($query->place_of_birth ?? NULL),
+				'drzavljanstvo' => sanitize_text_field($query->citizenship ?? NULL),
+				'prebivaliste' => sanitize_text_field($query->residence ?? NULL),
+				'visina' => floatval($query->height ?? NULL),
+				'tezina' => floatval($query->weight ?? NULL),
+				'boja_kose' => sanitize_text_field($query->hair_color ?? NULL),
+				'boja_ociju' => sanitize_text_field($query->eye_color ?? NULL),
+				'datum_nestanka' => sanitize_text_field($query->date_of_disappearance ?? NULL),
+				'mesto_nestanka' => sanitize_text_field($query->place_of_disappearance ?? NULL),
+				'dodatne_informacije' => sanitize_textarea_field($query->additional_information ?? NULL),
+				'opis_nestanka' => sanitize_textarea_field($query->disappearance_description ?? NULL),
+				'okolnosti_nestanka' => sanitize_textarea_field($query->circumstances_disappearance ?? NULL),
+				'ime_prezime_podnosioca' => sanitize_text_field($query->applicant_name ?? NULL),
+				'telefon_podnosioca' => sanitize_text_field($query->applicant_telephone ?? NULL),
+				'email_podnosioca' => sanitize_email($query->applicant_email ?? NULL),
+				'odnos_sa_nestalom_osobom' => sanitize_text_field($query->applicant_relationship ?? NULL)
+			];
+		}
+		
+		return false;
+	}
 	
 	// PRIVATE: Seralize and protect query
 	private function __sanitize_query( $query ) {

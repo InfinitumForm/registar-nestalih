@@ -32,28 +32,28 @@ $external_link 			= sanitize_url($POST['external_link'] ?? NULL);
 
 do_action('registar_nestalih_before_report_disappearance_form_container', $missing_response); ?>
 <h3 id="missing-persons-form-title"><label for="report-missing-person-first-name"><?php _e('Report missing person', 'registar-nestalih'); ?></label></h3>
-<form method="post" id="report-missing-person-form">
+<form method="post" id="report-missing-person-form" enctype="multipart/form-data">
 	<fieldset class="row">
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-first-name"><?php _e('First Name', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[first_name]" id="report-missing-person-first-name" tabindex="1" value="<?php echo esc_attr($first_name); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[first_name]" id="report-missing-person-first-name" tabindex="1" value="<?php echo esc_attr($first_name); ?>" required>
 			</div>
 		</div>
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-last-name"><?php _e('Last name', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[last_name]" id="report-missing-person-last-name" tabindex="2" value="<?php echo esc_attr($last_name); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[last_name]" id="report-missing-person-last-name" tabindex="2" value="<?php echo esc_attr($last_name); ?>" required>
 			</div>
 		</div>
 		
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-gender"><?php _e('Gender', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<select class="form-control required" name="report-missing-person[gender]" id="report-missing-person-gender" tabindex="3">
-					<option value="Muško"<?php selected('Muško', $gender); ?>><?php _e('Male', 'registar-nestalih'); ?></option>
-					<option value="Žensko"<?php selected('Žensko', $gender); ?>><?php _e('Female', 'registar-nestalih'); ?></option>
-					<option value="Nedefinisano"<?php selected('Nedefinisano', $gender); ?>><?php echo _x('Undefined', 'undefined gender in the form.', 'registar-nestalih'); ?></option>
+				<select class="form-control required" name="report-missing-person[gender]" id="report-missing-person-gender" tabindex="3" required>
+					<option value=""<?php selected('', $gender); ?>><?php echo _x('Undefined', 'undefined gender in the form.', 'registar-nestalih'); ?></option>
+					<option value="Muški"<?php selected('Muški', $gender); ?>><?php _e('Male', 'registar-nestalih'); ?></option>
+					<option value="Ženski"<?php selected('Ženski', $gender); ?>><?php _e('Female', 'registar-nestalih'); ?></option>
 				</select>
 			</div>
 		</div>
@@ -61,58 +61,58 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 			<div class="form-group">
 				<label for="report-missing-person-date-of-birth"><?php _e('Date of birth', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
 				<input type="date" class="form-control required" name="report-missing-person[date_of_birth]" id="report-missing-person-date-of-birth" tabindex="4" value="<?php echo esc_attr($date_of_birth); ?>" placeholder="dd.mm.yyyy"
-        min="<?php echo esc_attr(date('Y-m-d', strtotime('-100 Years'))); ?>" max="<?php echo esc_attr(date('Y-m-d')); ?>">
+        min="<?php echo esc_attr(date('Y-m-d', strtotime('-100 Years'))); ?>" max="<?php echo esc_attr(date('Y-m-d')); ?>" required>
 			</div>
 		</div>
 		
 		<div class="col col-12 col-sm-12 col-md-4 col-lg-4">
 			<div class="form-group">
 				<label for="report-missing-person-place-of-birth"><?php _e('Place of birth', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[place_of_birth]" id="report-missing-person-place-of-birth" tabindex="5" value="<?php echo esc_attr($place_of_birth); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[place_of_birth]" id="report-missing-person-place-of-birth" tabindex="5" value="<?php echo esc_attr($place_of_birth); ?>" required>
 			</div>
 		</div>
 		<div class="col col-12 col-sm-12 col-md-4 col-lg-4">
 			<div class="form-group">
 				<label for="report-missing-person-citizenship"><?php _e('Citizenship', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[citizenship]" id="report-missing-person-citizenship" tabindex="6" value="<?php echo esc_attr($citizenship); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[citizenship]" id="report-missing-person-citizenship" tabindex="6" value="<?php echo esc_attr($citizenship); ?>" required>
 			</div>
 		</div>
 		<div class="col col-12 col-sm-12 col-md-4 col-lg-4">
 			<div class="form-group">
 				<label for="report-missing-person-residence"><?php _e('Residence', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[citizenship]" id="report-missing-person-residence" tabindex="7" value="<?php echo esc_attr($residence); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[residence]" id="report-missing-person-residence" tabindex="7" value="<?php echo esc_attr($residence); ?>" required>
 			</div>
 		</div>
 		
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-height"><?php _e('Height (in centimeters)', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="number" step="0.1" min="0" max="300" class="form-control required" name="report-missing-person[height]" id="report-missing-person-height" tabindex="8" value="<?php echo esc_attr($height); ?>">
+				<input type="number" step="0.1" min="0" max="300" class="form-control required" name="report-missing-person[height]" id="report-missing-person-height" tabindex="8" value="<?php echo esc_attr($height); ?>" required>
 			</div>
 		</div>
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-weight"><?php _e('Weight (in kilograms)', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="number" step="0.1" min="0" max="300" class="form-control required" name="report-missing-person[weight]" id="report-missing-person-weight" tabindex="9" value="<?php echo esc_attr($weight); ?>">
+				<input type="number" step="0.1" min="0" max="300" class="form-control required" name="report-missing-person[weight]" id="report-missing-person-weight" tabindex="9" value="<?php echo esc_attr($weight); ?>" required>
 			</div>
 		</div>
 		
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-hair-color"><?php _e('Hair Color', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[hair_color]" id="report-missing-person-hair-color" tabindex="10" value="<?php echo esc_attr($hair_color); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[hair_color]" id="report-missing-person-hair-color" tabindex="10" value="<?php echo esc_attr($hair_color); ?>" required>
 			</div>
 		</div>
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-eye-color"><?php _e('Eye Color', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[eye_color]" id="report-missing-person-eye-color" tabindex="11" value="<?php echo esc_attr($eye_color); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[eye_color]" id="report-missing-person-eye-color" tabindex="11" value="<?php echo esc_attr($eye_color); ?>" required>
 			</div>
 		</div>
 		<div class="col col-12 col-sm-12">
 			<div class="form-group">
 				<label for="report-missing-person-image"><?php _e('Picture of a missing person', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="file" class="form-control-file required"  name="report-missing-person[image]" id="report-missing-person-image" tabindex="12" accept=".jpeg,.jpg,.png,.webp,.gif">
+				<input type="file" class="form-control-file required"  name="report-missing-person[image]" id="report-missing-person-image" tabindex="12" accept=".jpeg,.jpg,.png,.webp,.gif" required>
 				<p><?php _e('Allowed formats: JPEG, JPG, PNG, GIF and WEBP', 'registar-nestalih'); ?></p>
 			</div>
 		</div>
@@ -124,13 +124,13 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 			<div class="form-group">
 				<label for="report-missing-person-date-of-disappearance"><?php _e('Date of disappearance', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
 				<input type="date" class="form-control required" name="report-missing-person[date_of_disappearance]" id="report-missing-person-date-of-disappearance" tabindex="13" value="<?php echo esc_attr($date_of_disappearance); ?>" placeholder="dd.mm.yyyy"
-        min="<?php echo esc_attr(date('Y-m-d', strtotime('-100 Years'))); ?>" max="<?php echo esc_attr(date('Y-m-d')); ?>">
+        min="<?php echo esc_attr(date('Y-m-d', strtotime('-100 Years'))); ?>" max="<?php echo esc_attr(date('Y-m-d')); ?>" required>
 			</div>
 		</div>
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-place-of-disappearance"><?php _e('Place of disappearance', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[place_of_disappearance]" id="report-missing-person-place-of-disappearance" tabindex="14" value="<?php echo esc_attr($place_of_disappearance); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[place_of_disappearance]" id="report-missing-person-place-of-disappearance" tabindex="14" value="<?php echo esc_attr($place_of_disappearance); ?>" required>
 			</div>
 		</div>
 		
@@ -144,34 +144,28 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-police-station"><?php _e('Police station', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[police_station]" id="report-missing-person-police-station" tabindex="16" value="<?php echo esc_attr($police_station); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[police_station]" id="report-missing-person-police-station" tabindex="16" value="<?php echo esc_attr($police_station); ?>" required>
 			</div>
 		</div>
 		
 		<div class="col col-12 col-sm-12">
 			<div class="form-group">
 				<label for="report-missing-person-additional-information"><?php _e('Additional information', 'registar-nestalih'); ?></label>
-				<textarea class="form-control" name="report-missing-person[additional_information]" id="report-missing-person-additional-information" tabindex="17" rows="6">
-					<?php echo wp_kses_post($additional_information); ?>
-				</textarea>
+				<textarea class="form-control" name="report-missing-person[additional_information]" id="report-missing-person-additional-information" tabindex="17" rows="6"><?php echo wp_kses_post($additional_information); ?></textarea>
 			</div>
 		</div>
 		
 		<div class="col col-12 col-sm-12">
 			<div class="form-group">
 				<label for="report-missing-person-disappearance-description"><?php _e('Disappearance description', 'registar-nestalih'); ?></label>
-				<textarea class="form-control" name="report-missing-person[disappearance_description]" id="report-missing-person-disappearance-description" tabindex="18" rows="6">
-					<?php echo wp_kses_post($disappearance_description); ?>
-				</textarea>
+				<textarea class="form-control" name="report-missing-person[disappearance_description]" id="report-missing-person-disappearance-description" tabindex="18" rows="6"><?php echo wp_kses_post($disappearance_description); ?></textarea>
 			</div>
 		</div>
 		
 		<div class="col col-12 col-sm-12">
 			<div class="form-group">
 				<label for="report-missing-person-circumstances-disappearance"><?php _e('Circumstances of disappearance', 'registar-nestalih'); ?></label>
-				<textarea class="form-control" name="report-missing-person[circumstances_disappearance]" id="report-missing-person-circumstances-disappearance" tabindex="19" rows="6">
-					<?php echo wp_kses_post($circumstances_disappearance); ?>
-				</textarea>
+				<textarea class="form-control" name="report-missing-person[circumstances_disappearance]" id="report-missing-person-circumstances-disappearance" tabindex="19" rows="6"><?php echo wp_kses_post($circumstances_disappearance); ?></textarea>
 			</div>
 		</div>
 	</fieldset>
@@ -182,26 +176,26 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-applicant-name"><?php _e('Name and last name of the applicant', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[applicant_name]" id="report-missing-person-applicant-name" tabindex="20" value="<?php echo esc_attr($applicant_name); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[applicant_name]" id="report-missing-person-applicant-name" tabindex="20" value="<?php echo esc_attr($applicant_name); ?>" required>
 			</div>
 		</div>
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-applicant-telephone"><?php _e('Applicant\'s telephone', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[applicant_telephone]" id="report-missing-person-applicant-telephone" tabindex="21" value="<?php echo esc_attr($applicant_telephone); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[applicant_telephone]" id="report-missing-person-applicant-telephone" tabindex="21" value="<?php echo esc_attr($applicant_telephone); ?>" required>
 			</div>
 		</div>
 		
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-applicant-email"><?php _e('Email of the applicant', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[applicant_email]" id="report-missing-person-applicant-email" tabindex="22" value="<?php echo esc_attr($applicant_email); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[applicant_email]" id="report-missing-person-applicant-email" tabindex="22" value="<?php echo esc_attr($applicant_email); ?>" required>
 			</div>
 		</div>
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
 				<label for="report-missing-person-applicant-relationship"><?php _e('Relationship with a missing person', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[applicant_relationship]" id="report-missing-person-applicant-relationship" tabindex="23" value="<?php echo esc_attr($applicant_relationship); ?>">
+				<input type="text" class="form-control required" name="report-missing-person[applicant_relationship]" id="report-missing-person-applicant-relationship" tabindex="23" value="<?php echo esc_attr($applicant_relationship); ?>" required>
 			</div>
 		</div>
 		
