@@ -94,26 +94,35 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			
 			// Build raw POST arguments
 			$args = [
-				'ime_prezime' => $full_name,
-				'policijska_stanica' => sanitize_text_field($query->police_station ?? NULL),
-				'pol' => sanitize_text_field($query->gender ?? NULL),
-				'datum_rodjenja' => sanitize_text_field($query->date_of_birth ?? NULL),
-				'mesto_rodjenja' => sanitize_text_field($query->place_of_birth ?? NULL),
-				'drzavljanstvo' => sanitize_text_field($query->citizenship ?? NULL),
-				'prebivaliste' => sanitize_text_field($query->residence ?? NULL),
-				'visina' => floatval($query->height ?? NULL),
-				'tezina' => floatval($query->weight ?? NULL),
-				'boja_kose' => sanitize_text_field($query->hair_color ?? NULL),
-				'boja_ociju' => sanitize_text_field($query->eye_color ?? NULL),
-				'datum_nestanka' => sanitize_text_field($query->date_of_disappearance ?? NULL),
-				'mesto_nestanka' => sanitize_text_field($query->place_of_disappearance ?? NULL),
-				'dodatne_informacije' => sanitize_textarea_field($query->additional_information ?? NULL),
-				'opis_nestanka' => sanitize_textarea_field($query->disappearance_description ?? NULL),
-				'okolnosti_nestanka' => sanitize_textarea_field($query->circumstances_disappearance ?? NULL),
-				'ime_prezime_podnosioca' => sanitize_text_field($query->applicant_name ?? NULL),
-				'telefon_podnosioca' => sanitize_text_field($query->applicant_telephone ?? NULL),
-				'email_podnosioca' => sanitize_email($query->applicant_email ?? NULL),
-				'odnos_sa_nestalom_osobom' => sanitize_text_field($query->applicant_relationship ?? NULL)
+				'method'      => 'POST',
+				'headers'     => [
+					'accept'        => 'application/json', // The API returns JSON
+					'content-type'  => 'multipart/form-data', // Set content type to binary
+				],
+				'body' => [
+					'ime_prezime' => $full_name,
+					'policijska_stanica' => sanitize_text_field($query->police_station ?? NULL),
+					'pol' => sanitize_text_field($query->gender ?? NULL),
+					'datum_rodjenja' => sanitize_text_field($query->date_of_birth ?? NULL),
+					'mesto_rodjenja' => sanitize_text_field($query->place_of_birth ?? NULL),
+					'drzavljanstvo' => sanitize_text_field($query->citizenship ?? NULL),
+					'prebivaliste' => sanitize_text_field($query->residence ?? NULL),
+					'visina' => floatval($query->height ?? NULL),
+					'tezina' => floatval($query->weight ?? NULL),
+					'boja_kose' => sanitize_text_field($query->hair_color ?? NULL),
+					'boja_ociju' => sanitize_text_field($query->eye_color ?? NULL),
+					'datum_nestanka' => sanitize_text_field($query->date_of_disappearance ?? NULL),
+					'mesto_nestanka' => sanitize_text_field($query->place_of_disappearance ?? NULL),
+					'dodatne_informacije' => sanitize_textarea_field($query->additional_information ?? NULL),
+					'opis_nestanka' => sanitize_textarea_field($query->disappearance_description ?? NULL),
+					'okolnosti_nestanka' => sanitize_textarea_field($query->circumstances_disappearance ?? NULL),
+					'ime_prezime_podnosioca' => sanitize_text_field($query->applicant_name ?? NULL),
+					'telefon_podnosioca' => sanitize_text_field($query->applicant_telephone ?? NULL),
+					'email_podnosioca' => sanitize_email($query->applicant_email ?? NULL),
+					'odnos_sa_nestalom_osobom' => sanitize_text_field($query->applicant_relationship ?? NULL),
+					'share_link' => sanitize_url($query->external_link ?? NULL),
+					'icon' => $_FILES
+				]
 			];
 		}
 		
