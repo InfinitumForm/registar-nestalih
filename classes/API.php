@@ -56,21 +56,25 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			// Delete transients
 			$this->delete_expired_transients();
 		
+			// Enable development mode
 			if( defined('MISSING_PERSONS_DEV_MODE') && MISSING_PERSONS_DEV_MODE === true ) {
 				$this->url = $this->test_url;
 			}
 
+			// Send remote request
 			$request = wp_remote_get( add_query_arg(
 				$query,
 				"{$this->url}/nestale_osobe"
 			) );
 			
+			// If there is no errors clean it
 			if( !is_wp_error( $request ) ) {
 				if($json = wp_remote_retrieve_body( $request )) {
 					$posts = json_decode($json);
 				}
 			}
 			
+			// Set cache
 			Registar_Nestalih_Cache::set($cache_name, $posts, (MINUTE_IN_SECONDS*MISSING_PERSONS_CACHE_IN_MINUTES));
 			$__get_missing[$cache_name] = $posts;
 		}
@@ -86,10 +90,19 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			// Allowed query
 			$query_allowed = ['first_name','last_name','gender','date_of_birth','place_of_birth','citizenship','residence','height','weight','hair_color','eye_color','date_of_disappearance','place_of_disappearance','date_of_report','police_station','additional_information','disappearance_description','circumstances_disappearance','applicant_name','applicant_telephone','applicant_email','applicant_relationship','external_link','nonce'];
 			
+			// Required fields
+			$required_fields = ['first_name','last_name','gender','date_of_birth','place_of_birth','citizenship','residence','height','weight','hair_color','eye_color','date_of_disappearance','place_of_disappearance','date_of_report','police_station','applicant_name','applicant_telephone','applicant_email','applicant_relationship'];
+			
 			// Filter query
 			$query = (object)array_filter($query, function($value, $key) use ($query_allowed){
 				return !empty($value) && in_array($key, $query_allowed) !== false;
 			}, ARRAY_FILTER_USE_BOTH);
+			
+			// Verify nonce
+			if( wp_verify_nonce(($query->nonce ?? NULL), 'report-missing-person-form') ) {
+				Registar_Nestalih_Cache::set('report_missing_person_submission_error', ['nonce']);
+				return false;
+			}
 			
 			// Build name
 			$full_name = join( ' ', array_filter( array_map( 'trim', [
@@ -129,6 +142,45 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 					'icon' => $_FILES
 				]
 			];
+			
+			// Save all fields to memory
+			$field = $args['body'];
+			
+			// Find errors
+			$has_error = [];
+			foreach($required_fields as $key) {
+				if( empty($field[$key]) ) {
+					$has_error[]=$key;
+				}
+			}
+			
+			// If has error let's cache it or send POST
+			if( !empty($has_error) ) {
+				Registar_Nestalih_Cache::set('report_missing_person_submission_error', $has_error);
+				return false;
+			} else {
+				// Fix weight
+				if( !empty($field['tezina']) ) {
+					$args['body']['tezina'] = $args['body']['tezina'] . 'kg';
+				}
+				
+				// Fix height
+				if( !empty($field['visina']) ) {
+					$args['body']['visina'] = $args['body']['visina'] . 'cm';
+				}
+				
+				// Clear memory
+				unset($field);
+				
+				// Enable development mode
+				if( defined('MISSING_PERSONS_DEV_MODE') && MISSING_PERSONS_DEV_MODE === true ) {
+					$this->url = $this->test_url;
+				}
+				
+				// Send remote request
+				//	wp_remote_post("{$this->url}/save_nestala_osobe", $args);
+				return true;
+			}
 		}
 		
 		return false;
