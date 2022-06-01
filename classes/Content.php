@@ -27,6 +27,21 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		add_action( 'registar_nestalih_before_report_disappearance_form_container', [&$this, 'do_missing_persons_report_disappearance_form_http'] );
 		
 		add_filter( 'document_title_parts', [&$this, 'document_title_parts'], 100, 2 );
+		
+		if( defined('MISSING_PERSONS_DEV_MODE') && MISSING_PERSONS_DEV_MODE === true ) {
+			add_action( 'registar_nestalih_before_main_container', [&$this, 'development_notification'], 100 );
+			add_action( 'registar_nestalih_before_single_container', [&$this, 'development_notification'], 100 );
+			add_action( 'registar_nestalih_before_report_disappearance_form_container', [&$this, 'development_notification'], 100 );
+			add_action( 'registar_nestalih_before_sidebar_container', [&$this, 'development_notification'], 100 );
+		}
+	}
+	
+	// Development notification
+	public function development_notification ( $response ) {
+		printf(
+			'<div class="alert alert-info" role="alert">%s</div>',
+			__('The register of missing persons is in development mode and the content on it is intended for test purposes.', 'registar-nestalih')
+		);
 	}
 	
 	// Get date format

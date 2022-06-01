@@ -5,7 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 	// PRIVATE: API URL
-	private $url = 'https://nestaliapi.delfin.rs/api';
+	private $test_url = 'https://nestaliapi.delfin.rs/api';
+	private $url = 'https://api.nestalisrbija.rs/api';
 	
 	// Run this class on the safe and protected way
 	private static $instance;
@@ -55,6 +56,10 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			// Delete transients
 			$this->delete_expired_transients();
 		
+			if( defined('MISSING_PERSONS_DEV_MODE') && MISSING_PERSONS_DEV_MODE === true ) {
+				$this->url = $this->test_url;
+			}
+
 			$request = wp_remote_get( add_query_arg(
 				$query,
 				"{$this->url}/nestale_osobe"

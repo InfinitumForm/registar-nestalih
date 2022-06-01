@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-05-17 14:03+0200\n"
-"PO-Revision-Date: 2022-05-17 14:03+0200\n"
+"POT-Creation-Date: 2022-06-01 09:29+0200\n"
+"PO-Revision-Date: 2022-06-01 09:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -118,12 +118,19 @@ msgstr ""
 msgid "Save"
 msgstr "Сними"
 
-#: classes/Content.php:157
+#: classes/Content.php:43
+msgid ""
+"The register of missing persons is in development mode and the content on it "
+"is intended for test purposes."
+msgstr ""
+"Регистар несталих је у фази израде и садржај на њему је намењен за тестирање."
+
+#: classes/Content.php:172
 #, php-format
 msgid "Information about %s sent successfully."
 msgstr "Информације о %s су успешно послате."
 
-#: classes/Content.php:164
+#: classes/Content.php:179
 msgid "The message was not sent due to technical problems."
 msgstr "Порука није послата због техничких проблема."
 
@@ -317,7 +324,7 @@ msgid "Next"
 msgstr "Следеће"
 
 #: templates/missing-persons/report-disappearance-form.php:34
-#: templates/missing-persons/report-disappearance-form.php:217
+#: templates/missing-persons/report-disappearance-form.php:211
 msgid "Report missing person"
 msgstr "Пријавите несталу особу"
 
@@ -334,17 +341,17 @@ msgid "Gender"
 msgstr "Пол"
 
 #: templates/missing-persons/report-disappearance-form.php:54
-msgid "Male"
-msgstr "Мушки"
-
-#: templates/missing-persons/report-disappearance-form.php:55
-msgid "Female"
-msgstr "Женски"
-
-#: templates/missing-persons/report-disappearance-form.php:56
 msgctxt "undefined gender in the form."
 msgid "Undefined"
 msgstr "Недефинисано"
+
+#: templates/missing-persons/report-disappearance-form.php:55
+msgid "Male"
+msgstr "Мушки"
+
+#: templates/missing-persons/report-disappearance-form.php:56
+msgid "Female"
+msgstr "Женски"
 
 #: templates/missing-persons/report-disappearance-form.php:62
 msgid "Date of birth"
@@ -414,42 +421,42 @@ msgstr "Полицијска станица"
 msgid "Additional information"
 msgstr "Додатне информације"
 
-#: templates/missing-persons/report-disappearance-form.php:162
+#: templates/missing-persons/report-disappearance-form.php:160
 msgid "Disappearance description"
 msgstr "Опис нестанка"
 
-#: templates/missing-persons/report-disappearance-form.php:171
+#: templates/missing-persons/report-disappearance-form.php:167
 msgid "Circumstances of disappearance"
 msgstr "Околности нестанка"
 
-#: templates/missing-persons/report-disappearance-form.php:180
+#: templates/missing-persons/report-disappearance-form.php:174
 msgid "Applicant information"
 msgstr "Додатне информације:"
 
-#: templates/missing-persons/report-disappearance-form.php:180
+#: templates/missing-persons/report-disappearance-form.php:174
 msgid ""
 "This information is hidden from the global public and serves for direct "
 "contact."
 msgstr ""
 "Ове информације су скривене од глобалне јавности и служе за директан контакт."
 
-#: templates/missing-persons/report-disappearance-form.php:184
+#: templates/missing-persons/report-disappearance-form.php:178
 msgid "Name and last name of the applicant"
 msgstr "Име и презиме подносиоца захтева"
 
-#: templates/missing-persons/report-disappearance-form.php:190
+#: templates/missing-persons/report-disappearance-form.php:184
 msgid "Applicant's telephone"
 msgstr "Телефон подносиоца захтева"
 
-#: templates/missing-persons/report-disappearance-form.php:197
+#: templates/missing-persons/report-disappearance-form.php:191
 msgid "Email of the applicant"
 msgstr "Е-маил подносиоца захтева"
 
-#: templates/missing-persons/report-disappearance-form.php:203
+#: templates/missing-persons/report-disappearance-form.php:197
 msgid "Relationship with a missing person"
 msgstr "Веза са несталом особом"
 
-#: templates/missing-persons/report-disappearance-form.php:210
+#: templates/missing-persons/report-disappearance-form.php:204
 msgid "External link"
 msgstr "Екстерна веза"
 
