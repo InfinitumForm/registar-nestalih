@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-06-01 09:30+0200\n"
-"PO-Revision-Date: 2022-06-01 09:30+0200\n"
+"POT-Creation-Date: 2022-06-03 10:48+0200\n"
+"PO-Revision-Date: 2022-06-03 10:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -42,7 +42,7 @@ msgstr "Dajte nam pet ako želite!"
 msgid "5 Stars?"
 msgstr "5 zvjezdica?"
 
-#: classes/Admin.php:71 classes/Admin.php:126
+#: classes/Admin.php:71 classes/Admin.php:156
 msgid "Missing Persons Page"
 msgstr "Stranica nestalih osoba"
 
@@ -50,63 +50,87 @@ msgstr "Stranica nestalih osoba"
 msgid "Missing Persons"
 msgstr "Nestale osobe"
 
-#: classes/Admin.php:119
+#: classes/Admin.php:90 classes/Admin.php:119
+msgid "Clear Cache of Missing Persons"
+msgstr "Izbrišite predmemoriju nestalih osoba"
+
+#: classes/Admin.php:91
+msgid "Clear Cache"
+msgstr "Očisti predmemoriju"
+
+#: classes/Admin.php:111
+msgid "Clear MP Cache"
+msgstr "Očisti predmemoriju R.N."
+
+#: classes/Admin.php:145
 msgid "Plugin Settings"
 msgstr "Podešavanje dodatka"
 
-#: classes/Admin.php:122
+#: classes/Admin.php:148
+msgid "Cache"
+msgstr "Predmomorija"
+
+#: classes/Admin.php:149
+msgid ""
+"If you need to clear your plugin's cache, you have the option to use the "
+"following URL:"
+msgstr ""
+"Ako trebate očistiti predmemoriju svog dodatka, imate mogućnost upotrijebiti "
+"sljedeći URL:"
+
+#: classes/Admin.php:152
 msgid "Missing Persons Settings"
 msgstr "Postavke za nestale osobe"
 
-#: classes/Admin.php:123
+#: classes/Admin.php:153
 msgid "This option sets the API and shortcode for missing persons."
 msgstr "Ova opcija postavlja API i kratki kod za nestale osobe."
 
-#: classes/Admin.php:129
+#: classes/Admin.php:159
 msgid "Select a Page"
 msgstr "Odaberite stranicu"
 
-#: classes/Admin.php:143
+#: classes/Admin.php:173
 msgid "Pagination slug"
 msgstr "Permalink za paginaciju"
 
-#: classes/Admin.php:149
+#: classes/Admin.php:179
 msgid "Search slug"
 msgstr "Permalink za pretragu"
 
-#: classes/Admin.php:155
+#: classes/Admin.php:185
 msgid "Person slug"
 msgstr "Permalink za osobu"
 
-#: classes/Admin.php:161
+#: classes/Admin.php:191
 msgid "Open links in new window"
 msgstr "Otvorite veze u novom prozoru"
 
-#: classes/Admin.php:166 classes/Admin.php:181 classes/Admin.php:201
+#: classes/Admin.php:196 classes/Admin.php:211 classes/Admin.php:231
 msgid "Yes"
 msgstr "Da"
 
-#: classes/Admin.php:171 classes/Admin.php:186 classes/Admin.php:206
+#: classes/Admin.php:201 classes/Admin.php:216 classes/Admin.php:236
 msgid "No"
 msgstr "Ne"
 
-#: classes/Admin.php:176
+#: classes/Admin.php:206
 msgid "Enable sending information about the person"
 msgstr "Omogućite slanje informacija o osobi"
 
-#: classes/Admin.php:192
+#: classes/Admin.php:222
 msgid "Utility"
 msgstr "Korisnost"
 
-#: classes/Admin.php:193
+#: classes/Admin.php:223
 msgid "Small but useful options."
 msgstr "Male, ali korisne opcije."
 
-#: classes/Admin.php:196
+#: classes/Admin.php:226
 msgid "CSS support"
 msgstr "CSS podrška"
 
-#: classes/Admin.php:208
+#: classes/Admin.php:238
 msgid ""
 "If you activate this option, we will insert the basic Twitter Bootstrap CSS "
 "to style the tabs and columns while the rest of the design will be intact."
@@ -114,7 +138,7 @@ msgstr ""
 "Ako aktivirate ovu opciju, umetnut ćemo osnovni Twitter Bootstrap CSS za "
 "stiliziranje kartica i stupaca dok će ostatak dizajna ostati netaknut."
 
-#: classes/Admin.php:212
+#: classes/Admin.php:242
 msgid "Save"
 msgstr "Spremi"
 
@@ -135,7 +159,7 @@ msgstr "Informacije o %s uspješno su poslane."
 msgid "The message was not sent due to technical problems."
 msgstr "Poruka nije poslana zbog tehničkih problema."
 
-#: classes/Init.php:180
+#: classes/Init.php:182
 msgid "Missing persons"
 msgstr "Nestale osobe"
 
@@ -218,29 +242,29 @@ msgctxt "male title"
 msgid "%s (%d) is missing on %s in %s, from place %s"
 msgstr "%s (%d) nestao dana %s u %s, iz %s"
 
-#: classes/Yoast_SEO.php:129
+#: classes/Yoast_SEO.php:133
 #, php-format
 msgctxt "female title"
 msgid "%s (%d) is missing %s"
 msgstr "%s (%d) nestala %s"
 
-#: classes/Yoast_SEO.php:130
+#: classes/Yoast_SEO.php:134
 #, php-format
 msgctxt "male title"
 msgid "%s (%d) is missing %s"
 msgstr "%s (%d) nestao %s"
 
-#: classes/Yoast_SEO.php:134
+#: classes/Yoast_SEO.php:138
 #, php-format
 msgctxt "female title"
 msgid "%s (%d) is missing"
-msgstr "Nestala %s (%d)."
+msgstr "Nestala %s (%d)"
 
-#: classes/Yoast_SEO.php:135
+#: classes/Yoast_SEO.php:139
 #, php-format
 msgctxt "male title"
 msgid "%s (%d) is missing"
-msgstr "Nestao %s (%d)."
+msgstr "Nestao %s (%d)"
 
 #: registar-nestalih.php:64
 msgid "Register of Missing Persons of Serbia"
@@ -484,7 +508,7 @@ msgstr "Ime:"
 
 #: templates/missing-persons/single.php:27
 msgid "Last Name:"
-msgstr "Prezime"
+msgstr "Prezime:"
 
 #: templates/missing-persons/single.php:30
 msgid "Date of Birth:"

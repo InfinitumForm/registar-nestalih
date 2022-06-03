@@ -18,7 +18,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	// PRIVATE: Main construct
 	private function __construct() {
 		add_action( 'admin_menu', [&$this, 'admin_menu'], 90, 1 );
-		add_action( 'admin_bar_menu', [&$this, 'admin_bar_menu'], 1 );
+		add_action( 'admin_bar_menu', [&$this, 'admin_bar_menu'], 100 );
 		add_action( 'admin_init', [&$this, 'register_setting__missing_persons'] );
 		add_filter( 'display_post_states' , [&$this, 'display_post_states'], 10, 2 );
 		add_filter( 'plugin_action_links_' . plugin_basename(MISSING_PERSONS_FILE), [&$this, 'plugin_action_links'] );
@@ -84,6 +84,20 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			'dashicons-heart',
 			6
 		);
+		
+		add_submenu_page(
+			'missing-persons',
+			__( 'Clear Cache of Missing Persons', 'registar-nestalih' ),
+			__( 'Clear Cache', 'registar-nestalih' ),
+			'manage_options',
+			add_query_arg(
+				[
+					'registar_nestalih_clear_cache' => 'true',
+					'registar_nestalih_cache_nonce' => wp_create_nonce('registar-nestalih-clear-cache')
+				],
+				admin_url('/admin.php?page=missing-persons')
+			)
+		);
 	}
 	
 	// Add links to admin bar
@@ -92,7 +106,19 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			return $wp_admin_bar;
 		}
 		
-		/* TO DO */
+        $wp_admin_bar->add_node( [
+            'id' => 'registar-nestalih-clear-cache', // Set the ID of your custom link
+            'title' => __( 'Clear MP Cache', 'registar-nestalih' ), // Set the title of your link
+            'href' => add_query_arg([
+				'registar_nestalih_clear_cache' => 'true',
+				'registar_nestalih_cache_nonce' => wp_create_nonce('registar-nestalih-clear-cache')
+			]), // Define the destination of your link
+            'meta' => [
+                'target' => '_self', // Change to _blank for launching in a new window
+                'class' => 'registar-nestalih-clear-cache-link', // Add a class to your link
+                'title' => __( 'Clear Cache of Missing Persons', 'registar-nestalih' ) // Add a title to your link
+			]
+        ] );
 	}
 	
 	// Sanitize fields

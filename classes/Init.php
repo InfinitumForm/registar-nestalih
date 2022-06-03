@@ -31,6 +31,8 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		register_activation_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'register_plugin_activation' ] );
 		// Register deactivation hook
 		register_deactivation_hook( MISSING_PERSONS_FILE,  [ 'Registar_Nestalih', 'register_plugin_deactivation' ] );
+		// Clear cache
+		add_action( 'plugins_loaded', [ &$this, 'clear_plugin_cache' ], 1, 0 );
 		// Load translations
 		add_action( 'plugins_loaded', [ &$this, 'register_textdomain' ], 10, 0 );
 		// Update database
@@ -195,9 +197,12 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 			Registar_Nestalih_Cache::table_install();
 			// Update database version
 			update_option(self::TEXTDOMAIN . '-db-version', MISSING_PERSONS_DB_VERSION, false);
-		}		
+		}
+		
 		// Flush rewrite rules
-		flush_rewrite_rules();
+		if( function_exists('flush_rewrite_rules') ) {
+			flush_rewrite_rules();
+		}
 	}
 	
 	// On plugin Dectivation
@@ -223,7 +228,9 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		Registar_Nestalih_U::flush_plugin_cache();
 		
 		// Flush rewrite rules
-		flush_rewrite_rules();
+		if( function_exists('flush_rewrite_rules') ) {
+			flush_rewrite_rules();
+		}
 		
 		// Delete files from uploads dir
 		$upload_dir = wp_upload_dir();
@@ -264,6 +271,36 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 			// Or old fashion way
 			if ( ! $loaded && function_exists('load_plugin_textdomain') ) {
 				load_plugin_textdomain( self::TEXTDOMAIN, false, $domain_path );
+			}
+		}
+	}
+	
+	public function clear_plugin_cache () {
+		if(wp_verify_nonce(($_REQUEST['registar_nestalih_cache_nonce'] ?? NULL), 'registar-nestalih-clear-cache')) {
+			if(isset($_REQUEST['registar_nestalih_clear_cache']) && $_REQUEST['registar_nestalih_clear_cache'] == 'true') {
+				// Clear plugin cache
+				Registar_Nestalih_U::flush_plugin_cache();
+				
+				// Flush rewrite rules
+				if( function_exists('flush_rewrite_rules') ) {
+					flush_rewrite_rules();
+				}
+				
+				// Delete files from uploads dir
+				$upload_dir = wp_upload_dir();
+				$folder = MISSING_PERSONS_IMG_UPLOAD_DIR;
+				
+				if( file_exists($upload_dir['basedir'] . $folder) ) {
+					Registar_Nestalih_U::rmdir($upload_dir['basedir'] . $folder);
+				}
+				
+				// Clear URL
+				if( wp_safe_redirect(remove_query_arg([
+					'registar_nestalih_clear_cache',
+					'registar_nestalih_cache_nonce'
+				])) ){
+					exit;
+				}
 			}
 		}
 	}

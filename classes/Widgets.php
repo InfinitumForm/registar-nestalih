@@ -15,19 +15,32 @@ if( !class_exists('Registar_Nestalih_Widgets') ) : class Registar_Nestalih_Widge
 	
 	// PRIVATE: Main construct
 	private function __construct() {
+		add_action('after_setup_theme', [&$this, 'register'], 10);
+	}
+	
+	/* 
+	 * Register widgets
+	 * @verson    1.0.0
+	 */
+	public function register(){
 		// Call main classes
-		$classes = [
+		$classes = apply_filters('registar_nestalih_widget_classes', [
 			'Registar_Nestalih_Widget_Latest_Missing',
-		];
+		]);
 		
 		// For each class include file and collect widgets
 		$load_widgets = [];
 		
 		// Find widgets root
-		$widgets_root = dirname( realpath(__DIR__) ) . '/widgets/';
+		$widgets_root = apply_filters(
+			'registar_nestalih_widget_classes_root',
+			(MISSING_PERSONS_ROOT . '/widgets/'),			// Direct path
+			(dirname( realpath(__DIR__) ) . '/widgets/')	// Alternate path
+		);
 
 		// Load widget classes
 		if( file_exists($widgets_root) ) {
+			// Chenck and include widgets
 			foreach($classes as $i => $class){
 				$widget_path = $widgets_root . str_replace('Registar_Nestalih_Widget_', '', $class) . '.php';
 
@@ -36,20 +49,26 @@ if( !class_exists('Registar_Nestalih_Widgets') ) : class Registar_Nestalih_Widge
 					include_once $widget_path;
 				}
 
-				// Register widget
+				// Load
 				if( class_exists($class) ) {
 					$load_widgets[] = $class;
 				}
 			}
+			
 			// Register widget
 			if( !empty($load_widgets) ) {
 				add_action( 'widgets_init', function() use ($load_widgets){
 					foreach($load_widgets as $widget) {
-						register_widget( $widget );
+						if( class_exists($widget) ) {
+							register_widget( $widget );
+						}
 					}
 				} );
 			}
 		}
+		
+		// Clear memory
+		unset($load_widgets);
 	}
 }
 endif;

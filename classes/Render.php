@@ -90,11 +90,18 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 			$ext = explode('.', $this->icon);
 			$ext = '.' . strtolower(end($ext));
 			
+			$image_jpg = ($upload_dir['basedir'] . $folder . '/' . $this->id() . '/' . $this->id() . '.jpg');
+			$image_url_jpg = ($upload_dir['baseurl'] . $folder . '/' . $this->id() . '/' . $this->id() . '.jpg');
+			
 			$image = ($upload_dir['basedir'] . $folder . '/' . $this->id() . '/' . $this->id() . $ext);
 			$image_url = ($upload_dir['baseurl'] . $folder . '/' . $this->id() . '/' . $this->id() . $ext);
 			
-			if( file_exists($image) ) {
-				$this->icon = $image_url;
+			if( file_exists($image_jpg) ) {
+				$this->icon = $image_url_jpg;
+			} else {			
+				if( file_exists($image) ) {
+					$this->icon = $image_url;
+				}
 			}
 		}
 		
@@ -137,17 +144,41 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 						$image_url = ($upload_dir['baseurl'] . $folder . '/' . $this->id() . '/' . $this->id() . $ext);
 						
 						if( !file_exists($image) ) {
+							$exists = true;
 							
-							if( !( function_exists('copy') && copy($this->icon, $image)) ) {
-								file_put_contents($image, file_get_contents($this->icon));
+							$test = wp_remote_get($this->icon, ['Content-Type' => 'application/json']);
+							if ( is_array( $test ) && ! is_wp_error( $test ) ) {
+								$test = json_decode($test['body']);
+								if($test->error_type == 'missing_inputs'){
+									$exists = false;
+								}
+								unset($test);
 							}
 							
-							if( file_exists($image) ) {
-								$this->icon = $image_url;
+							if($exists) {
+								if( !( function_exists('copy') && copy($this->icon, $image)) ) {
+									file_put_contents($image, file_get_contents($this->icon));
+								}
+								
+								if( file_exists($image) ) {
+									$this->icon = $image_url;
+								}
+							} else {
+								$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-male.gif');
+								if( $this->is_female() ) {
+									$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-female.gif');
+								}
 							}
 							
 						} else {
 							$this->icon = $image_url;
+							
+							$image_jpg = ($upload_dir['basedir'] . $folder . '/' . $this->id() . '/' . $this->id() . '.jpg');
+							$image_url_jpg = ($upload_dir['baseurl'] . $folder . '/' . $this->id() . '/' . $this->id() . '.jpg');
+							
+							if( file_exists($image_jpg) ) {
+								$this->icon = $image_url_jpg;
+							}
 						}
 					} else {
 						$this->icon = Registar_Nestalih_Template::url('assets/images/no-image-male.gif');
@@ -228,10 +259,10 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 	// Generate age
 	public function age(){
 		if( empty($this->datum_rodjenja) ) {
-			return NULL;
+			return 0;
 		}
 		
-		return date_diff(date_create($this->datum_rodjenja), date_create('now'))->y;
+		return ((int)date_diff(date_create($this->datum_rodjenja), date_create('now'))->y);
 	}
 	
 	// Generate birth date

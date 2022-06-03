@@ -101,6 +101,10 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 							$response->mesto_nestanka,
 							$response->mesto_rodjenja
 						);
+						
+						if($response->age() === 0) {
+							$desc = str_replace('(0) ', '', $desc);
+						}
 					}
 				}
 			}
@@ -139,6 +143,10 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 							$response->age(),
 							($sep_options[$wpseo_titles['separator']??NULL] ?? '-') . ' ' . get_bloginfo('name')
 						);
+						
+						if($response->age() === 0) {
+							$title = str_replace('(0) ', '', $title);
+						}
 					}
 				}
 			}

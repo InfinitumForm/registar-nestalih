@@ -148,13 +148,13 @@ if( !class_exists('Registar_Nestalih_U') ) : class Registar_Nestalih_U {
 			$wpdb->query("DELETE FROM
 				`{$wpdb->options}`
 			WHERE (
-					`{$wpdb->sitemeta}`.`option_name` LIKE '_transient_registar-nestalih-%'
+					`{$wpdb->options}`.`option_name` LIKE '_transient_registar-nestalih-%'
 				OR
-					`{$wpdb->sitemeta}`.`option_name` LIKE '_transient_timeout_registar-nestalih-%'
+					`{$wpdb->options}`.`option_name` LIKE '_transient_timeout_registar-nestalih-%'
 				OR
-					`{$wpdb->sitemeta}`.`option_name` LIKE '_site_transient_registar-nestalih-%'
+					`{$wpdb->options}`.`option_name` LIKE '_site_transient_registar-nestalih-%'
 				OR
-					`{$wpdb->sitemeta}`.`option_name` LIKE '_site_transient_timeout_registar-nestalih-%'
+					`{$wpdb->options}`.`option_name` LIKE '_site_transient_timeout_registar-nestalih-%'
 			)");
 		}
 		
