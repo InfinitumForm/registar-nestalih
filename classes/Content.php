@@ -196,6 +196,10 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 			}
 			echo '];</pre>';
 		*/
+		
+			Registar_Nestalih_API::report_missing_person($_POST['report-missing-person']);
+			echo '<pre>', var_dump( Registar_Nestalih_Cache::get('report_missing_person_submission_error') ), '</pre>';
+			Registar_Nestalih_Cache::delete('report_missing_person_submission_error');
 		}
 	}
 	

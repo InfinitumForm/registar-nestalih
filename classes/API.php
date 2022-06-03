@@ -87,19 +87,22 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 		
 		if( is_array($query) )
 		{
+			// Clean errors
+			Registar_Nestalih_Cache::delete('report_missing_person_submission_error');
+		
 			// Allowed query
 			$query_allowed = ['first_name','last_name','gender','date_of_birth','place_of_birth','citizenship','residence','height','weight','hair_color','eye_color','date_of_disappearance','place_of_disappearance','date_of_report','police_station','additional_information','disappearance_description','circumstances_disappearance','applicant_name','applicant_telephone','applicant_email','applicant_relationship','external_link','nonce'];
 			
 			// Required fields
-			$required_fields = ['first_name','last_name','gender','date_of_birth','place_of_birth','citizenship','residence','height','weight','hair_color','eye_color','date_of_disappearance','place_of_disappearance','date_of_report','police_station','applicant_name','applicant_telephone','applicant_email','applicant_relationship'];
+			$required_fields = ['ime_prezime', 'policijska_stanica', 'pol', 'datum_rodjenja', 'mesto_rodjenja', 'drzavljanstvo', 'prebivaliste', 'visina', 'tezina', 'boja_kose', 'boja_ociju', 'datum_nestanka', 'datum_prijave', 'mesto_nestanka', 'ime_prezime_podnosioca', 'telefon_podnosioca', 'email_podnosioca', 'odnos_sa_nestalom_osobom'/*, 'icon'*/];
 			
 			// Filter query
 			$query = (object)array_filter($query, function($value, $key) use ($query_allowed){
 				return !empty($value) && in_array($key, $query_allowed) !== false;
 			}, ARRAY_FILTER_USE_BOTH);
-			
+
 			// Verify nonce
-			if( wp_verify_nonce(($query->nonce ?? NULL), 'report-missing-person-form') ) {
+			if( !wp_verify_nonce(($query->nonce ?? NULL), 'report-missing-person-form') ) {
 				Registar_Nestalih_Cache::set('report_missing_person_submission_error', ['nonce']);
 				return false;
 			}
@@ -115,7 +118,7 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 				'method'      => 'POST',
 				'headers'     => [
 					'accept'        => 'application/json', // The API returns JSON
-					'content-type'  => 'multipart/form-data', // Set content type to binary
+				//	'content-type'  => 'multipart/form-data', // Set content type to binary
 				],
 				'body' => [
 					'ime_prezime' => $full_name,
@@ -130,6 +133,7 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 					'boja_kose' => sanitize_text_field($query->hair_color ?? NULL),
 					'boja_ociju' => sanitize_text_field($query->eye_color ?? NULL),
 					'datum_nestanka' => sanitize_text_field($query->date_of_disappearance ?? NULL),
+					'datum_prijave' => sanitize_text_field($query->date_of_report ?? NULL),
 					'mesto_nestanka' => sanitize_text_field($query->place_of_disappearance ?? NULL),
 					'dodatne_informacije' => sanitize_textarea_field($query->additional_information ?? NULL),
 					'opis_nestanka' => sanitize_textarea_field($query->disappearance_description ?? NULL),
@@ -138,18 +142,17 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 					'telefon_podnosioca' => sanitize_text_field($query->applicant_telephone ?? NULL),
 					'email_podnosioca' => sanitize_email($query->applicant_email ?? NULL),
 					'odnos_sa_nestalom_osobom' => sanitize_text_field($query->applicant_relationship ?? NULL),
-					'share_link' => sanitize_url($query->external_link ?? NULL),
-					'icon' => $_FILES
+					'share_link' => sanitize_url($query->external_link ?? NULL)
 				]
 			];
 			
 			// Save all fields to memory
 			$field = $args['body'];
-			
+
 			// Find errors
 			$has_error = [];
 			foreach($required_fields as $key) {
-				if( empty($field[$key]) ) {
+				if( isset($field[$key]) && empty($field[$key]) ) {
 					$has_error[]=$key;
 				}
 			}
@@ -178,12 +181,52 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 				}
 				
 				// Send remote request
-				//	wp_remote_post("{$this->url}/save_nestala_osobe", $args);
+				$save = wp_remote_post("{$this->url}/save_nestale_osobe", $args);
+				$save = json_decode($save['body'] ?? '{\'exception\':\'ErrorException\'}');
+				
+				// Upload file
+				/*
+				if( !(isset($save->exception) && $save->exception == 'ErrorException') ){
+				
+					// Upload the file
+					$local_file = Registar_Nestalih_Template::path('assets/images/no-image-male.gif');
+					$boundary = wp_generate_password( 24 );
+					if ( $local_file ) {
+						$payload = '';
+						$payload .= '--' . $boundary;
+						$payload .= "\r\n";
+						$payload .= 'Content-Disposition: form-data; name="' . 'upload' .
+							'"; filename="' . basename( $local_file ) . '"' . "\r\n";
+						//        $payload .= 'Content-Type: image/jpeg' . "\r\n";
+						$payload .= "\r\n";
+						$payload .= file_get_contents( $local_file );
+						$payload .= "\r\n";
+					
+						$payload .= '--' . $boundary . '--';
+					
+					
+						$upload = wp_remote_post("{$this->url}/uploadfile", [
+							'method'      => 'POST',
+							'headers'     => [
+							//	'accept'        => 'application/json', // The API returns JSON
+								'content-type'  => 'multipart/form-data; boundary=' . $boundary
+							],
+							'body' => $payload
+						]);
+						
+						echo '<pre>', var_dump( $payload ), '</pre>';
+						echo '<pre>', var_dump( $_FILES ), '</pre>';
+						echo '<pre>', var_dump( json_decode($upload['body'] ?? '{}') ), '</pre>';
+						
+					}
+				}
+				*/
+			//	Registar_Nestalih_Cache::set('report_missing_person_submission_error', $save);
 				return true;
 			}
 		}
 		
-		return false;
+		return NULL;
 	}
 	
 	// PRIVATE: Seralize and protect query
@@ -208,13 +251,13 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			$wpdb->query("DELETE FROM
 				`{$wpdb->options}`
 			WHERE (
-					`{$wpdb->sitemeta}`.`option_name` LIKE '_transient_registar-nestalih-api-%'
+					`{$wpdb->options}`.`option_name` LIKE '_transient_registar-nestalih-api-%'
 				OR
-					`{$wpdb->sitemeta}`.`option_name` LIKE '_transient_timeout_registar-nestalih-api-%'
+					`{$wpdb->options}`.`option_name` LIKE '_transient_timeout_registar-nestalih-api-%'
 				OR
-					`{$wpdb->sitemeta}`.`option_name` LIKE '_site_transient_registar-nestalih-api-%'
+					`{$wpdb->options}`.`option_name` LIKE '_site_transient_registar-nestalih-api-%'
 				OR
-					`{$wpdb->sitemeta}`.`option_name` LIKE '_site_transient_timeout_registar-nestalih-api-%'
+					`{$wpdb->options}`.`option_name` LIKE '_site_transient_timeout_registar-nestalih-api-%'
 			)");
 		}
 	}
