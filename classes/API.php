@@ -107,6 +107,47 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 				return false;
 			}
 			
+			// Upload the file
+			$icon = NULL;
+			if ( isset($_FILES['fileToUpload']) && isset($_FILES['fileToUpload']['name']) ) {
+				$file = explode('.', $_FILES['fileToUpload']['name']);
+				$file_name = $file[0];
+				$file_ext = strtolower($file[1]);
+				
+				if( in_array($file_ext, ['jpg', 'jpeg', 'png', 'webp']) !== false ) {
+					$headers = [
+						'Content-Type: multipart/form-data',
+						'User-Agent: '.$_SERVER['HTTP_USER_AGENT'],
+					];
+					
+					$fields = [
+						'file' => new CURLFile($_FILES['fileToUpload']['tmp_name'])
+					];
+
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL, "{$this->url}/uploadfile");
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+					curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+					curl_setopt($ch, CURLOPT_POST, true);
+					curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+					curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+					
+					if( empty( curl_error($ch) ) ) {
+						$upload = json_decode(curl_exec($ch));
+						if( $upload->result ) {
+							$icon = $upload->result;
+						} else {
+					//		Registar_Nestalih_Cache::set('report_missing_person_submission_error', ['icon_not_uploaded']);
+						}
+					} else {
+					//	Registar_Nestalih_Cache::set('report_missing_person_submission_error', ['icon_upload_error']);
+					}
+				} else {
+				//	Registar_Nestalih_Cache::set('report_missing_person_submission_error', ['icon_extension']);
+				}
+			}
+			
 			// Build name
 			$full_name = join( ' ', array_filter( array_map( 'trim', [
 				sanitize_text_field($query->first_name ?? NULL),
@@ -142,7 +183,8 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 					'telefon_podnosioca' => sanitize_text_field($query->applicant_telephone ?? NULL),
 					'email_podnosioca' => sanitize_email($query->applicant_email ?? NULL),
 					'odnos_sa_nestalom_osobom' => sanitize_text_field($query->applicant_relationship ?? NULL),
-					'share_link' => sanitize_url($query->external_link ?? NULL)
+					'share_link' => sanitize_url($query->external_link ?? NULL),
+					'icon' => $icon
 				]
 			];
 			
@@ -184,44 +226,6 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 				$save = wp_remote_post("{$this->url}/save_nestale_osobe", $args);
 				$save = json_decode($save['body'] ?? '{\'exception\':\'ErrorException\'}');
 				
-				// Upload file
-				/*
-				if( !(isset($save->exception) && $save->exception == 'ErrorException') ){
-				
-					// Upload the file
-					$local_file = Registar_Nestalih_Template::path('assets/images/no-image-male.gif');
-					$boundary = wp_generate_password( 24 );
-					if ( $local_file ) {
-						$payload = '';
-						$payload .= '--' . $boundary;
-						$payload .= "\r\n";
-						$payload .= 'Content-Disposition: form-data; name="' . 'upload' .
-							'"; filename="' . basename( $local_file ) . '"' . "\r\n";
-						//        $payload .= 'Content-Type: image/jpeg' . "\r\n";
-						$payload .= "\r\n";
-						$payload .= file_get_contents( $local_file );
-						$payload .= "\r\n";
-					
-						$payload .= '--' . $boundary . '--';
-					
-					
-						$upload = wp_remote_post("{$this->url}/uploadfile", [
-							'method'      => 'POST',
-							'headers'     => [
-							//	'accept'        => 'application/json', // The API returns JSON
-								'content-type'  => 'multipart/form-data; boundary=' . $boundary
-							],
-							'body' => $payload
-						]);
-						
-						echo '<pre>', var_dump( $payload ), '</pre>';
-						echo '<pre>', var_dump( $_FILES ), '</pre>';
-						echo '<pre>', var_dump( json_decode($upload['body'] ?? '{}') ), '</pre>';
-						
-					}
-				}
-				*/
-			//	Registar_Nestalih_Cache::set('report_missing_person_submission_error', $save);
 				return true;
 			}
 		}

@@ -214,7 +214,7 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 				'loc' => $registar->profile_url(),
 				'pri' => 1.0,
 				'mod' => $registar->created_at,
-				'chf' => 'weekly'
+				'chf' => 'daily'
 			];
 
 			$date = null;

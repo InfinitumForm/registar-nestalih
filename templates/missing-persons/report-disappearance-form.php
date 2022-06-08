@@ -112,8 +112,8 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 		<div class="col col-12 col-sm-12">
 			<div class="form-group">
 				<label for="report-missing-person-image"><?php _e('Picture of a missing person', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="file" class="form-control-file required" name="file" id="report-missing-person-image" tabindex="12" accept=".jpeg,.jpg,.png,.webp,.gif" required>
-				<p><?php _e('Allowed formats: JPEG, JPG, PNG, GIF and WEBP', 'registar-nestalih'); ?></p>
+				<input type="file" class="form-control-file required" name="fileToUpload" id="report-missing-person-image" tabindex="12" accept=".jpeg,.jpg,.png,.webp" required>
+				<p><?php _e('Allowed formats: JPEG, JPG, PNG and WEBP', 'registar-nestalih'); ?></p>
 			</div>
 		</div>
 	</fieldset>

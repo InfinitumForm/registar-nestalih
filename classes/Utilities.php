@@ -165,7 +165,7 @@ if( !class_exists('Registar_Nestalih_U') ) : class Registar_Nestalih_U {
 	 * Remove directory
 	 * @verson    1.0.0
 	*/
-	function rmdir($dir) {
+	public function rmdir($dir) {
 		
 		if( strlen($dir, MISSING_PERSONS_IMG_UPLOAD_DIR) === false ) {
 			return false;

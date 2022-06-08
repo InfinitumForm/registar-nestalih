@@ -182,24 +182,27 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		}
 	}
 	
+	// Report missing person form HTTP response
 	public function do_missing_persons_report_disappearance_form_http ( $response ) {
-		if($_POST['report-missing-person'] ?? NULL) {
-		/*
-			echo '<pre>', var_dump( [
-				'POST' => $_POST['report-missing-person'],
-				'FILES' => ($_FILES['report-missing-person'] ?? NULL)
-			] ), '</pre>';
-		
-			echo '<pre>$query_allowed = [';
-			foreach($_POST['report-missing-person'] as $key => $value) {
-				echo "'{$key}',";
-			}
-			echo '];</pre>';
-		*/
-		
+		if( isset($_POST['report-missing-person']) ) {		
 			Registar_Nestalih_API::report_missing_person($_POST['report-missing-person']);
-			echo '<pre>', var_dump( Registar_Nestalih_Cache::get('report_missing_person_submission_error') ), '</pre>';
+			
+			$errors = Registar_Nestalih_Cache::get('report_missing_person_submission_error');
 			Registar_Nestalih_Cache::delete('report_missing_person_submission_error');
+			
+			if( $errors ) {
+				printf(
+					'<div class="alert alert-danger" role="alert">%s</div>',
+					__('All fields in this form are required. Fill in the fields and send a message.', 'registar-nestalih')
+				);
+			} else {
+				printf(
+					'<div class="alert alert-success" role="alert"><h3>%s</h3><p>%s</p></div>',
+					__('The missing person was successfully reported.', 'registar-nestalih'),
+					__('You must be patient for our administrators to verify the authenticity of the information and approve the missing person\'s profile.', 'registar-nestalih')
+				);
+				unset( $_POST['report-missing-person'] );
+			}
 		}
 	}
 	
