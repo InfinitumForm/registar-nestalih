@@ -59,6 +59,74 @@ if( !class_exists('Registar_Nestalih_U') ) : class Registar_Nestalih_U {
 	}
 	
 	/*
+	 * Return plugin informations
+	 * @return        array/object
+	 * @author        Ivijan-Stefan Stipic
+	*/
+	public static function plugin_info(array $fields = [], $slug = false, $force_cache = true) {
+		static $plugin_info = [];
+		
+		$cache_name = 'registar-nestalih-plugin_info-' . md5(serialize($fields) . ($slug!==false ? $slug : 'registar-nestalih'));
+		
+		if($plugin_info[$cache_name] ?? NULL) {
+			return $plugin_info[$cache_name];
+		}
+		
+        if ( is_admin() ) {
+			if ( ! function_exists( 'plugins_api' ) ) {
+				include_once WP_ADMIN_DIR . '/includes/plugin-install.php';
+			}
+			/** Prepare our query */
+			//donate_link
+			//versions
+			$plugin_data = plugins_api( 'plugin_information', [
+				'slug' => ($slug!==false ? $slug : 'registar-nestalih'),
+				'fields' => array_merge([
+					'active_installs' => false,           // rounded int
+					'added' => false,                     // date
+					'author' => false,                    // a href html
+					'author_block_count' => false,        // int
+					'author_block_rating' => false,       // int
+					'author_profile' => false,            // url
+					'banners' => false,                   // array( [low], [high] )
+					'compatibility' => false,             // empty array?
+					'contributors' => false,              // array( array( [profile], [avatar], [display_name] )
+					'description' => false,               // string
+					'donate_link' => false,               // url
+					'download_link' => false,             // url
+					'downloaded' => false,                // int
+					// 'group' => false,                  // n/a 
+					'homepage' => false,                  // url
+					'icons' => false,                     // array( [1x] url, [2x] url )
+					'last_updated' => false,              // datetime
+					'name' => false,                      // string
+					'num_ratings' => false,               // int
+					'rating' => false,                    // int
+					'ratings' => false,                   // array( [5..0] )
+					'requires' => false,                  // version string
+					'requires_php' => false,              // version string
+					// 'reviews' => false,                // n/a, part of 'sections'
+					'screenshots' => false,               // array( array( [src],  ) )
+					'sections' => false,                  // array( [description], [installation], [changelog], [reviews], ...)
+					'short_description' => false,         // string
+					'slug' => false,                      // string
+					'support_threads' => false,           // int
+					'support_threads_resolved' => false,  // int
+					'tags' => false,                      // array( )
+					'tested' => false,                    // version string
+					'version' => false,                   // version string
+					'versions' => false,                  // array( [version] url )
+				], $fields)
+			]);
+		 	
+			// Save into current cache
+			$plugin_info[$cache_name] = $plugin_data;
+			
+			return $plugin_data;
+		}
+    }
+	
+	/*
 	 * Flush Cache
 	 * @verson    2.0.0
 	*/
