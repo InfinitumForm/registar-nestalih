@@ -112,7 +112,7 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 		<div class="col col-12 col-sm-12">
 			<div class="form-group">
 				<label for="report-missing-person-image"><?php _e('Picture of a missing person', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="file" class="form-control-file required" name="fileToUpload" id="report-missing-person-image" tabindex="12" accept=".jpeg,.jpg,.png,.webp" required>
+				<input type="file" class="form-control-file required" name="report-missing-person-image" id="report-missing-person-image" tabindex="12" accept=".jpeg,.jpg,.png,.webp" required>
 				<p><?php _e('Allowed formats: JPEG, JPG, PNG and WEBP', 'registar-nestalih'); ?></p>
 			</div>
 		</div>
@@ -194,22 +194,48 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 		</div>
 		<div class="col col-12 col-sm-12 col-md-6 col-lg-6">
 			<div class="form-group">
-				<label for="report-missing-person-applicant-relationship"><?php _e('Relationship with a missing person', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
-				<input type="text" class="form-control required" name="report-missing-person[applicant_relationship]" id="report-missing-person-applicant-relationship" tabindex="23" value="<?php echo esc_attr($applicant_relationship); ?>" required>
+				<label for="report-missing-person-applicant-relationship"><?php _e('Relationship with a missing person', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>				
+				<select class="form-control required" name="report-missing-person[applicant_relationship]" id="report-missing-person-applicant-relationship" tabindex="23" required>
+					<option value="">— <?php _e('select', 'registar-nestalih'); ?> —</option>
+					<?php
+						foreach([
+							__('Parent', 'registar-nestalih'),
+							__('Guardian', 'registar-nestalih'),
+							__('Daughter / Son', 'registar-nestalih'),
+							__('Spouse / Partner', 'registar-nestalih'),
+							__('Friend', 'registar-nestalih'),
+							__('Colleague', 'registar-nestalih'),
+							__('Other relationship (acquaintance, colleague ...)', 'registar-nestalih'),
+						] as $option) {
+							printf(
+								'<option value="%s"%s>%s</option>',
+								esc_attr($option),
+								selected($option, $applicant_relationship, false),
+								esc_html($option)
+							);
+						}
+					?>
+				</select>
 			</div>
 		</div>
 		
 		<div class="col col-12 col-sm-12">
 			<div class="form-group">
 				<label for="report-missing-person-external-link"><?php _e('External link', 'registar-nestalih'); ?></label>
-				<input type="url" class="form-control" name="report-missing-person[external_link]" id="report-missing-person-external-link" tabindex="24" value="<?php echo esc_url($external_link); ?>">
+				<input type="url" class="form-control" name="report-missing-person[external_link]" id="report-missing-person-external-link" tabindex="24" value="<?php echo esc_url($external_link); ?>" placeholder="https://">
+			</div>
+		</div>
+		
+		<div class="col col-12 col-sm-12 pt-3 pb-3">
+			<div class="form-group form-check">
+				<label><?php _e('Terms and Conditions', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
+				<label class="form-check-label" for="report-missing-person-confirm"><input type="checkbox" class="form-check-input required" id="report-missing-person-confirm" name="report-missing-person[nonce]" value="<?php echo esc_attr( wp_create_nonce( 'report-missing-person-form' ) ); ?>" tabindex="25" required> &nbsp;&nbsp;<?php _e('I accept the obligation to, as the person who reported the disappearance of this person, in case of finding the missing person, inform the Register of Missing Persons of Serbia in writing or by telephone. The Center for Missing and Abused Children, as the author of the Register of Missing Persons, cannot remove a missing person from the Register without the consent of the family/contact person who submitted the report.', 'registar-nestalih'); ?></label>
 			</div>
 		</div>
 		
 		<div class="col col-12 col-sm-12 col-md-12 col-lg-12" id="report-missing-person-form-errors"></div>
 		<div class="col col-12 col-sm-12 col-md-12 col-lg-12">
 			<button type="submit" class="btn btn-primary" tabindex="25"><?php _e('Report missing person', 'registar-nestalih'); ?></button>
-			<input type="hidden" name="report-missing-person[nonce]" value="<?php echo esc_attr( wp_create_nonce( 'report-missing-person-form' ) ); ?>">
 		</div>
 		
 	</fieldset>

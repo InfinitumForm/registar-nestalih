@@ -109,8 +109,8 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			
 			// Upload the file
 			$icon = NULL;
-			if ( isset($_FILES['fileToUpload']) && isset($_FILES['fileToUpload']['name']) ) {
-				$file = explode('.', $_FILES['fileToUpload']['name']);
+			if ( isset($_FILES['report-missing-person-image']) && isset($_FILES['report-missing-person-image']['name']) ) {
+				$file = explode('.', $_FILES['report-missing-person-image']['name']);
 				$file_name = $file[0];
 				$file_ext = strtolower($file[1]);
 				
@@ -121,7 +121,7 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 					];
 					
 					$fields = [
-						'file' => new CURLFile($_FILES['fileToUpload']['tmp_name'])
+						'file' => new CURLFile($_FILES['report-missing-person-image']['tmp_name'])
 					];
 
 					$ch = curl_init();

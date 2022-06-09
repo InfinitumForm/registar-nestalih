@@ -95,6 +95,7 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 			'label' => [
 				'loading' => __('Please wait...', 'registar-nestalih'),
 				'form_error' => __('All fields in this form are required. Fill in the fields and send a message.', 'registar-nestalih'),
+				'terms_error' => __('You must accept the terms and conditions of the Register of Missing Persons of Serbia.', 'registar-nestalih')
 			]
 		] );
 	}

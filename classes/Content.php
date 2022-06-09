@@ -196,12 +196,12 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 					__('All fields in this form are required. Fill in the fields and send a message.', 'registar-nestalih')
 				);
 			} else {
+				unset( $_POST['report-missing-person'] );
 				printf(
 					'<div class="alert alert-success" role="alert"><h3>%s</h3><p>%s</p></div>',
 					__('The missing person was successfully reported.', 'registar-nestalih'),
 					__('You must be patient for our administrators to verify the authenticity of the information and approve the missing person\'s profile.', 'registar-nestalih')
 				);
-				unset( $_POST['report-missing-person'] );
 			}
 		}
 	}

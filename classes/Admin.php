@@ -142,15 +142,42 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		$options = get_option( 'registar_nestalih' );
 	?>
 <div class="wrap">
-	<a href="https://www.nestalisrbija.rs/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/registar-nestalih-lica-srbije.png')); ?>" alt="<?php esc_attr_e('Register of Missing Persons of Serbia', 'registar-nestalih'); ?>" style="display:block, width:90%; max-width:300px;" ></a>
+	<a href="https://www.nestalisrbija.rs/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/registar-nestalih-lica-srbije.png')); ?>" alt="<?php esc_attr_e('Register of Missing Persons of Serbia', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:300px;" ></a>
 	<hr>
 	<div id="poststuff" class="metabox-holder has-right-sidebar">
 		<div class="inner-sidebar" id="<?php echo 'registar-nestalih'; ?>-settings-sidebar">
 			<div id="side-sortables" class="meta-box-sortables ui-sortable">
 				
+				<div class="postbox" id="cnzd">
+					<div class="hndle centeralign" style="text-align:center"><a href="https://cnzd.rs/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/cnzd-srbija-logo.png')); ?>" alt="<?php esc_attr_e('The Center for Missing and Abused Children of Serbia', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:300px; margin: 15px auto;" ></a></div>
+					<div class="inside flex">
+					<?php
+						printf(
+							'<p>%s</p>',
+							__('The Center for Missing and Abused Children does not charge for the support it provides through the Net Patrol and Missing Serbia projects, as well as psychological and legal assistance to the wards. That is why your support is important to us - together we can make the world a safer place for all our children!', 'registar-nestalih')
+						);
+						printf(
+							'<p>%s</p>',
+							sprintf(
+								__('Support the work of the foundation by %1$s or %2$s in the web store.', 'registar-nestalih'),
+								'<a href="https://donacije.cnzd.rs/proizvod/donirajte/" target="_blank">' . __('donating', 'registar-nestalih') . '</a>',
+								'<a href="https://cnzd.rs/online-store/" target="_blank">' . __('purchasing products', 'registar-nestalih') . '</a>'
+							)
+						);
+						printf(
+							'<p>%s</p>',
+							sprintf(
+								__('You can also %1$s of the association.', 'registar-nestalih'),
+								'<a href="https://clanarina.cnzd.rs/" target="_blank">' . __('become a member', 'registar-nestalih') . '</a>'
+							)
+						);
+					?>
+					</div>
+				</div>
+				
 				<?php if($plugin_info = Registar_Nestalih_U::plugin_info(array('contributors' => true, 'donate_link' => true))) : if(!empty($plugin_info->contributors)) : ?>
 				<div class="postbox" id="contributors">
-					<h3 class="hndle" style="margin-bottom:0;padding-bottom:0;"><span class="dashicons dashicons-superhero-alt"></span> <span><?php _e('Contributors & Developers', 'registar-nestalih'); ?></span></h3><hr>
+					<h3 class="hndle" style="margin-bottom:0;padding-bottom:0;"><span><?php _e('Contributors & Developers', 'registar-nestalih'); ?></span></h3><hr>
 					<div class="inside flex">
 						<?php foreach(($plugin_info->contributors ?? []) as $username => $info) : $info = (object)$info; ?>
 						<div class="contributor contributor-<?php echo $username; ?>" id="contributor-<?php echo $username; ?>">
@@ -167,8 +194,8 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				</div>
 				<?php endif; endif; ?>
 				
-				<div class="textcenter" id="developed-by" style="text-align:center">
-					<a href="https://infinitumform.com/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/developed-by.png')); ?>" alt="<?php esc_attr_e('Developed by: INFINITUM FORM', 'registar-nestalih'); ?>" style="display:block, width:90%; max-width:210px; margin-left:auto; margin-right:auto;" ></a>
+				<div class="centeralign" id="developed-by" style="text-align:center">
+					<a href="https://infinitumform.com/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/developed-by.png')); ?>" alt="<?php esc_attr_e('Developed by: INFINITUM FORM', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:210px; margin-left:auto; margin-right:auto;" ></a>
 				</div>
 			</div>
 		</div>

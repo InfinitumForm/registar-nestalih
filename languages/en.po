@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-06-03 10:50+0200\n"
-"PO-Revision-Date: 2022-06-03 10:50+0200\n"
+"POT-Creation-Date: 2022-06-09 13:46+0200\n"
+"PO-Revision-Date: 2022-06-09 13:46+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: registar-nestalih.php\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "5 Stars?"
 msgstr ""
 
-#: classes/Admin.php:71 classes/Admin.php:156
+#: classes/Admin.php:71 classes/Admin.php:214
 msgid "Missing Persons Page"
 msgstr ""
 
@@ -61,79 +61,133 @@ msgstr ""
 msgid "Clear MP Cache"
 msgstr ""
 
-#: classes/Admin.php:145
-msgid "Plugin Settings"
+#: classes/Admin.php:145 registar-nestalih.php:64
+msgid "Register of Missing Persons of Serbia"
 msgstr ""
 
-#: classes/Admin.php:148
+#: classes/Admin.php:152
+msgid "The Center for Missing and Abused Children of Serbia"
+msgstr ""
+
+#: classes/Admin.php:157
+msgid ""
+"The Center for Missing and Abused Children does not charge for the support "
+"it provides through the Net Patrol and Missing Serbia projects, as well as "
+"psychological and legal assistance to the wards. That is why your support is "
+"important to us - together we can make the world a safer place for all our "
+"children!"
+msgstr ""
+
+#: classes/Admin.php:162
+#, php-format
+msgid "Support the work of the foundation by %1$s or %2$s in the web store."
+msgstr ""
+
+#: classes/Admin.php:163
+msgid "donating"
+msgstr ""
+
+#: classes/Admin.php:164
+msgid "purchasing products"
+msgstr ""
+
+#: classes/Admin.php:170
+#, php-format
+msgid "You can also %1$s of the association."
+msgstr ""
+
+#: classes/Admin.php:171
+msgid "become a member"
+msgstr ""
+
+#: classes/Admin.php:180
+msgid "Contributors & Developers"
+msgstr ""
+
+#: classes/Admin.php:192
+#, php-format
+msgid ""
+"If you want to support our work and effort, if you have new ideas or want to "
+"improve the existing code, %s."
+msgstr ""
+
+#: classes/Admin.php:192
+msgid "join our team"
+msgstr ""
+
+#: classes/Admin.php:198
+msgid "Developed by: INFINITUM FORM"
+msgstr ""
+
+#: classes/Admin.php:206
 msgid "Cache"
 msgstr ""
 
-#: classes/Admin.php:149
+#: classes/Admin.php:207
 msgid ""
 "If you need to clear your plugin's cache, you have the option to use the "
 "following URL:"
 msgstr ""
 
-#: classes/Admin.php:152
+#: classes/Admin.php:210
 msgid "Missing Persons Settings"
 msgstr ""
 
-#: classes/Admin.php:153
+#: classes/Admin.php:211
 msgid "This option sets the API and shortcode for missing persons."
 msgstr ""
 
-#: classes/Admin.php:159
+#: classes/Admin.php:217
 msgid "Select a Page"
 msgstr ""
 
-#: classes/Admin.php:173
+#: classes/Admin.php:231
 msgid "Pagination slug"
 msgstr ""
 
-#: classes/Admin.php:179
+#: classes/Admin.php:237
 msgid "Search slug"
 msgstr ""
 
-#: classes/Admin.php:185
+#: classes/Admin.php:243
 msgid "Person slug"
 msgstr ""
 
-#: classes/Admin.php:191
+#: classes/Admin.php:249
 msgid "Open links in new window"
 msgstr ""
 
-#: classes/Admin.php:196 classes/Admin.php:211 classes/Admin.php:231
+#: classes/Admin.php:254 classes/Admin.php:269 classes/Admin.php:289
 msgid "Yes"
 msgstr ""
 
-#: classes/Admin.php:201 classes/Admin.php:216 classes/Admin.php:236
+#: classes/Admin.php:259 classes/Admin.php:274 classes/Admin.php:294
 msgid "No"
 msgstr ""
 
-#: classes/Admin.php:206
+#: classes/Admin.php:264
 msgid "Enable sending information about the person"
 msgstr ""
 
-#: classes/Admin.php:222
+#: classes/Admin.php:280
 msgid "Utility"
 msgstr ""
 
-#: classes/Admin.php:223
+#: classes/Admin.php:281
 msgid "Small but useful options."
 msgstr ""
 
-#: classes/Admin.php:226
+#: classes/Admin.php:284
 msgid "CSS support"
 msgstr ""
 
-#: classes/Admin.php:238
+#: classes/Admin.php:296
 msgid ""
 "If you activate this option, we will insert the basic Twitter Bootstrap CSS "
 "to style the tabs and columns while the rest of the design will be intact."
 msgstr ""
 
-#: classes/Admin.php:242
+#: classes/Admin.php:300
 msgid "Save"
 msgstr ""
 
@@ -150,6 +204,21 @@ msgstr ""
 
 #: classes/Content.php:179
 msgid "The message was not sent due to technical problems."
+msgstr ""
+
+#: classes/Content.php:196 classes/Template.php:97
+msgid ""
+"All fields in this form are required. Fill in the fields and send a message."
+msgstr ""
+
+#: classes/Content.php:202
+msgid "The missing person was successfully reported."
+msgstr ""
+
+#: classes/Content.php:203
+msgid ""
+"You must be patient for our administrators to verify the authenticity of the "
+"information and approve the missing person's profile."
 msgstr ""
 
 #: classes/Init.php:182
@@ -209,9 +278,10 @@ msgstr ""
 msgid "Please wait..."
 msgstr ""
 
-#: classes/Template.php:97
+#: classes/Template.php:98
 msgid ""
-"All fields in this form are required. Fill in the fields and send a message."
+"You must accept the terms and conditions of the Register of Missing Persons "
+"of Serbia."
 msgstr ""
 
 #: classes/Yoast_SEO.php:95
@@ -248,10 +318,6 @@ msgstr ""
 #, php-format
 msgctxt "male title"
 msgid "%s (%d) is missing"
-msgstr ""
-
-#: registar-nestalih.php:64
-msgid "Register of Missing Persons of Serbia"
 msgstr ""
 
 #: templates/missing-persons.php:29 templates/missing-persons/sidebar.php:20
@@ -334,7 +400,7 @@ msgid "Next"
 msgstr ""
 
 #: templates/missing-persons/report-disappearance-form.php:34
-#: templates/missing-persons/report-disappearance-form.php:211
+#: templates/missing-persons/report-disappearance-form.php:238
 msgid "Report missing person"
 msgstr ""
 
@@ -400,7 +466,7 @@ msgid "Picture of a missing person"
 msgstr ""
 
 #: templates/missing-persons/report-disappearance-form.php:116
-msgid "Allowed formats: JPEG, JPG, PNG, GIF and WEBP"
+msgid "Allowed formats: JPEG, JPG, PNG and WEBP"
 msgstr ""
 
 #: templates/missing-persons/report-disappearance-form.php:122
@@ -465,8 +531,54 @@ msgstr ""
 msgid "Relationship with a missing person"
 msgstr ""
 
+#: templates/missing-persons/report-disappearance-form.php:199
+msgid "select"
+msgstr ""
+
+#: templates/missing-persons/report-disappearance-form.php:202
+msgid "Parent"
+msgstr ""
+
+#: templates/missing-persons/report-disappearance-form.php:203
+msgid "Guardian"
+msgstr ""
+
 #: templates/missing-persons/report-disappearance-form.php:204
+msgid "Daughter / Son"
+msgstr ""
+
+#: templates/missing-persons/report-disappearance-form.php:205
+msgid "Spouse / Partner"
+msgstr ""
+
+#: templates/missing-persons/report-disappearance-form.php:206
+msgid "Friend"
+msgstr ""
+
+#: templates/missing-persons/report-disappearance-form.php:207
+msgid "Colleague"
+msgstr ""
+
+#: templates/missing-persons/report-disappearance-form.php:208
+msgid "Other relationship (acquaintance, colleague ...)"
+msgstr ""
+
+#: templates/missing-persons/report-disappearance-form.php:224
 msgid "External link"
+msgstr ""
+
+#: templates/missing-persons/report-disappearance-form.php:231
+msgid "Terms and Conditions"
+msgstr ""
+
+#: templates/missing-persons/report-disappearance-form.php:232
+msgid ""
+"I accept the obligation to, as the person who reported the disappearance of "
+"this person, in case of finding the missing person, inform the Register of "
+"Missing Persons of Serbia in writing or by telephone. The Center for Missing "
+"and Abused Children, as the author of the Register of Missing Persons, "
+"cannot remove a missing person from the Register without the consent of the "
+"family/contact person who submitted the report."
 msgstr ""
 
 #: templates/missing-persons/search-form.php:16

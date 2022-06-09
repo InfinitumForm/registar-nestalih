@@ -48,7 +48,8 @@
 	$('#report-missing-person-form').find('textarea.required, input.required, select.required').prop('required', false);
 	$(document).on('submit', '#report-missing-person-form', function(e){
 		var $this = $(this),
-			$has_error = false;
+			$has_error = false,
+			$not_confirmed = false;
 		
 		$this.find(".has-error").removeClass('has-error');
 		$('#report-missing-person-form-errors').html('');
@@ -61,9 +62,20 @@
 			}
 		});
 		
+		if( !$this.find('#report-missing-person-confirm').prop('checked') ) {
+			$not_confirmed = true;
+			$has_error = true;
+			$this.find('#report-missing-person-confirm').addClass('has-error');
+			$this.find('#report-missing-person-confirm').parent().addClass('has-error');
+		}
+		
 		if( $has_error ) {
 			e.preventDefault();
-			$('#report-missing-person-form-errors').html('<div class="alert alert-danger" role="alert">' + registar_nestalih.label.form_error + '</div>');
+			if($not_confirmed) {
+				$('#report-missing-person-form-errors').html('<div class="alert alert-danger" role="alert">' + registar_nestalih.label.terms_error + '</div>');
+			} else {
+				$('#report-missing-person-form-errors').html('<div class="alert alert-danger" role="alert">' + registar_nestalih.label.form_error + '</div>');
+			}
 			return;
 		}
 	});
