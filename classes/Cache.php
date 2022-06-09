@@ -283,7 +283,7 @@ if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
 			dbDelta("
 			CREATE TABLE IF NOT EXISTS {$wpdb->registar_nestalih_cache} (
 				`key` varchar(255) NOT NULL,
-				`value` text NOT NULL,
+				`value` longtext NOT NULL,
 				`expire` int(11) NOT NULL DEFAULT 0,
 				UNIQUE KEY `cache_key` (`key`),
 				KEY `cache_expire` (`expire`)
@@ -296,7 +296,7 @@ if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
 	 * Check is value is serialized
 	 * @verson    1.0.0
 	 */
-	private static function is_serialized( $data, $strict = true ) {
+	public static function is_serialized( $data, $strict = true ) {
 		// If it isn't a string, it isn't serialized.
 		if ( ! is_string( $data ) ) {
 			return false;

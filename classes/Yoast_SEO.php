@@ -187,10 +187,10 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 		$date = $wpseo_sitemaps->get_last_modified('post');
 
 		$smp = [
-			'<sitemap>',
-			'<loc>' . home_url('/registar-nestalih-sitemap.xml') .'</loc>',
-			'<lastmod>' . htmlspecialchars( $date ) . '</lastmod>',
-			'</sitemap>'
+			"\t".'<sitemap>',
+			"\t\t".'<loc>' . home_url('/registar-nestalih-sitemap.xml') .'</loc>',
+			"\t\t".'<lastmod>' . htmlspecialchars( $date ) . '</lastmod>',
+			"\t".'</sitemap>' . PHP_EOL
 		];
 
 
@@ -200,66 +200,74 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 	// Create sitemap
 	public function wpseo_do_sitemap_registar_nestalih ($building_function) {
 		global $wpseo_sitemaps;
-
-		wp_reset_query();
-		wp_reset_postdata();
 		
-		$registar_nestalih = $this->get_registar_nestalih();
+		$sitemap = Registar_Nestalih_Cache::get('yoast-seo-sitemap');
 		
-		$output = [];
-		
-		foreach ($registar_nestalih as $key => $registar ) {
+		if( empty($sitemap) )
+		{
+			wp_reset_query();
+			wp_reset_postdata();
+			
+			$registar_nestalih = $this->get_registar_nestalih();
+			$output = [];
+			
+			foreach ($registar_nestalih as $key => $registar ) {
 
-			$url = [
-				'loc' => $registar->profile_url(),
-				'pri' => 1.0,
-				'mod' => $registar->created_at,
-				'chf' => 'daily'
-			];
+				$url = [
+					'loc' => $registar->profile_url(),
+					'pri' => 1.0,
+					'mod' => $registar->created_at,
+					'chf' => 'daily'
+				];
 
-			$date = null;
-			if ( ! empty( $url['mod'] ) ) {
-				$date = YoastSEO()->helpers->date->format( $url['mod'] );
-			}
+				$date = null;
+				if ( ! empty( $url['mod'] ) ) {
+					$date = YoastSEO()->helpers->date->format( $url['mod'] );
+				}
 
-			$url['loc'] = htmlspecialchars( $url['loc'], ENT_COMPAT, 'UTF-8', false );
+				$url['loc'] = htmlspecialchars( $url['loc'], ENT_COMPAT, 'UTF-8', false );
 
-			$output []= "\t<url>";
-			$output []= "\t\t<loc>" . $url['loc'] . '</loc>';
-			if( !empty( $date ) ) {
-				$output []= "\t\t<lastmod>" . htmlspecialchars( $date, ENT_COMPAT, 'UTF-8', false ) . '</lastmod>';
+				$output []= '<url>';
+				$output []= '<loc>' . $url['loc'] . '</loc>';
+				if( !empty( $date ) ) {
+					$output []= '<lastmod>' . htmlspecialchars( $date, ENT_COMPAT, 'UTF-8', false ) . '</lastmod>';
+				}
+				
+				if($registar->icon) {
+					$output []= '<image:image>';
+					$output []= '<image:loc>' . $registar->icon . '</image:loc>';
+					$output []= '</image:image>';
+				}
+				
+				$output []= '</url>';
+
 			}
 			
-			if($registar->icon) {
-				$output []= "\t\t<image:image>";
-				$output []= "\t\t\t\t<image:loc>" . $registar->icon . "</image:loc>";
-				$output []= "\t\t</image:image>";
+			if ( empty( $output ) ) {
+				$wpseo_sitemaps->bad_sitemap = true;
+				return;
 			}
-			
-			$output []= "\t</url>";
 
+			//Build the full sitemap
+			$sitemap = '<urlset ' 
+				. 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+				. 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" '
+				. 'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd '
+				. 'http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" '
+				. 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'
+			. '>'
+				. join('', $output) 
+			. '</urlset>';
+
+			unset($output);
+			
+			Registar_Nestalih_Cache::set('yoast-seo-sitemap', $sitemap, HOUR_IN_SECONDS);
 		}
-		
-		if ( empty( $output ) ) {
-            $wpseo_sitemaps->bad_sitemap = true;
-            return;
-        }
-
-        //Build the full sitemap
-        $sitemap = '<urlset ' 
-			. 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-			. 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" '
-			. 'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd '
-			. 'http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" '
-			. 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'
-		. '>' . "\n"
-			. join("\n", $output) 
-		. "\n</urlset>";
-
-		unset($output);
 
         //echo $sitemap;
-        $wpseo_sitemaps->set_sitemap($sitemap);
+		if( !empty($sitemap) ) {
+			$wpseo_sitemaps->set_sitemap($sitemap);
+		}
 	}
 	
 	// Get registar nestalih
@@ -275,7 +283,7 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 				}, $response );
 			}
 		}
-		
+
 		return $response;
 	}
 	
