@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-06-09 13:46+0200\n"
-"PO-Revision-Date: 2022-06-09 13:46+0200\n"
+"POT-Creation-Date: 2022-06-10 12:49+0200\n"
+"PO-Revision-Date: 2022-06-10 12:49+0200\n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: https://infinitumform.com\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "5 Stars?"
 msgstr ""
 
-#: classes/Admin.php:71 classes/Admin.php:214
+#: classes/Admin.php:71 classes/Admin.php:215
 msgid "Missing Persons Page"
 msgstr ""
 
@@ -61,15 +61,15 @@ msgstr ""
 msgid "Clear MP Cache"
 msgstr ""
 
-#: classes/Admin.php:145 registar-nestalih.php:64
+#: classes/Admin.php:146 classes/Admin.php:333 registar-nestalih.php:64
 msgid "Register of Missing Persons of Serbia"
 msgstr ""
 
-#: classes/Admin.php:152
+#: classes/Admin.php:153
 msgid "The Center for Missing and Abused Children of Serbia"
 msgstr ""
 
-#: classes/Admin.php:157
+#: classes/Admin.php:158
 msgid ""
 "The Center for Missing and Abused Children does not charge for the support "
 "it provides through the Net Patrol and Missing Serbia projects, as well as "
@@ -78,117 +78,156 @@ msgid ""
 "children!"
 msgstr ""
 
-#: classes/Admin.php:162
+#: classes/Admin.php:163
 #, php-format
 msgid "Support the work of the foundation by %1$s or %2$s in the web store."
 msgstr ""
 
-#: classes/Admin.php:163
+#: classes/Admin.php:164
 msgid "donating"
 msgstr ""
 
-#: classes/Admin.php:164
+#: classes/Admin.php:165
 msgid "purchasing products"
 msgstr ""
 
-#: classes/Admin.php:170
+#: classes/Admin.php:171
 #, php-format
 msgid "You can also %1$s of the association."
 msgstr ""
 
-#: classes/Admin.php:171
+#: classes/Admin.php:172
 msgid "become a member"
 msgstr ""
 
-#: classes/Admin.php:180
+#: classes/Admin.php:181
 msgid "Contributors & Developers"
 msgstr ""
 
-#: classes/Admin.php:192
+#: classes/Admin.php:193
 #, php-format
 msgid ""
 "If you want to support our work and effort, if you have new ideas or want to "
 "improve the existing code, %s."
 msgstr ""
 
-#: classes/Admin.php:192
+#: classes/Admin.php:193
 msgid "join our team"
 msgstr ""
 
-#: classes/Admin.php:198
+#: classes/Admin.php:199
 msgid "Developed by: INFINITUM FORM"
 msgstr ""
 
-#: classes/Admin.php:206
+#: classes/Admin.php:207
 msgid "Cache"
 msgstr ""
 
-#: classes/Admin.php:207
+#: classes/Admin.php:208
 msgid ""
 "If you need to clear your plugin's cache, you have the option to use the "
 "following URL:"
 msgstr ""
 
-#: classes/Admin.php:210
+#: classes/Admin.php:211
 msgid "Missing Persons Settings"
 msgstr ""
 
-#: classes/Admin.php:211
+#: classes/Admin.php:212
 msgid "This option sets the API and shortcode for missing persons."
 msgstr ""
 
-#: classes/Admin.php:217
+#: classes/Admin.php:218
 msgid "Select a Page"
 msgstr ""
 
-#: classes/Admin.php:231
+#: classes/Admin.php:232
 msgid "Pagination slug"
 msgstr ""
 
-#: classes/Admin.php:237
+#: classes/Admin.php:238
 msgid "Search slug"
 msgstr ""
 
-#: classes/Admin.php:243
+#: classes/Admin.php:244
 msgid "Person slug"
 msgstr ""
 
-#: classes/Admin.php:249
+#: classes/Admin.php:250
 msgid "Open links in new window"
 msgstr ""
 
-#: classes/Admin.php:254 classes/Admin.php:269 classes/Admin.php:289
+#: classes/Admin.php:255 classes/Admin.php:270 classes/Admin.php:290
 msgid "Yes"
 msgstr ""
 
-#: classes/Admin.php:259 classes/Admin.php:274 classes/Admin.php:294
+#: classes/Admin.php:260 classes/Admin.php:275 classes/Admin.php:295
 msgid "No"
 msgstr ""
 
-#: classes/Admin.php:264
+#: classes/Admin.php:265
 msgid "Enable sending information about the person"
 msgstr ""
 
-#: classes/Admin.php:280
+#: classes/Admin.php:281
 msgid "Utility"
 msgstr ""
 
-#: classes/Admin.php:281
+#: classes/Admin.php:282
 msgid "Small but useful options."
 msgstr ""
 
-#: classes/Admin.php:284
+#: classes/Admin.php:285
 msgid "CSS support"
 msgstr ""
 
-#: classes/Admin.php:296
+#: classes/Admin.php:297
 msgid ""
 "If you activate this option, we will insert the basic Twitter Bootstrap CSS "
 "to style the tabs and columns while the rest of the design will be intact."
 msgstr ""
 
-#: classes/Admin.php:300
+#: classes/Admin.php:301
 msgid "Save"
+msgstr ""
+
+#: classes/Admin.php:318
+msgid ""
+"This site uses the Register of Missing Persons of Serbia to present to "
+"public and private visitors the information about missing persons from the "
+"Republic of Serbia, but there may also be missing persons from the "
+"Federation of Bosnia and Herzegovina and the Republic of Croatia."
+msgstr ""
+
+#: classes/Admin.php:320
+#, php-format
+msgid ""
+"The Register of Missing Persons of Serbia is owned by the %s of the Republic "
+"of Serbia"
+msgstr ""
+
+#: classes/Admin.php:321
+msgid "Center for Missing and Abused Children"
+msgstr ""
+
+#: classes/Admin.php:323
+msgid ""
+"The Center for Missing and Abused Children is a non-profit organization "
+"established in accordance with the Law on Endowments and Foundations of the "
+"Republic of Serbia, June 2, 2015, with the basic task of improving the "
+"safety of children in Serbia."
+msgstr ""
+
+#: classes/Admin.php:325
+#, php-format
+msgid ""
+"The Register of Missing Persons of Serbia is available 24 hours a day at "
+"%1$s. The register will be completed in accordance with the available data "
+"on missing persons to the Foundation. Within the data for each missing "
+"person, the citizens will have the opportunity to leave information about "
+"the missing person in a specially designated field, and thus contribute to a "
+"better and more efficient search. The editorial board of the register is "
+"available 24 hours a day via the address %2$s or via free phone number %3$s"
 msgstr ""
 
 #: classes/Content.php:43

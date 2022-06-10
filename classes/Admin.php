@@ -123,6 +123,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	
 	// Sanitize fields
 	function register_setting__missing_persons() {
+		$this->add_privacy_policy();
 		if( wp_verify_nonce( ($_POST['__nonce'] ?? NULL), 'registar-nestalih' ) && isset($_POST['registar-nestalih']) ) {
 			if( Registar_Nestalih_Options::set( $_POST['registar-nestalih'] ) ) {			
 				if( function_exists('flush_rewrite_rules') ) {
@@ -307,5 +308,31 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 
 </div>
 	<?php }
+	
+	public function add_privacy_policy () {
+		if ( ! function_exists( 'wp_add_privacy_policy_content' ) ) {
+			return;
+		}
+		
+		$privacy_policy = array(
+			__( 'This site uses the Register of Missing Persons of Serbia to present to public and private visitors the information about missing persons from the Republic of Serbia, but there may also be missing persons from the Federation of Bosnia and Herzegovina and the Republic of Croatia.', 'registar-nestalih' ),
+			sprintf(
+				__( 'The Register of Missing Persons of Serbia is owned by the %s of the Republic of Serbia.', 'registar-nestalih' ),
+				'<a href="https://cnzd.rs/" target="_blank">'.__('Center for Missing and Abused Children', 'registar-nestalih' ).'</a>',
+			),
+			__( 'The Center for Missing and Abused Children is a non-profit organization established in accordance with the Law on Endowments and Foundations of the Republic of Serbia, June 2, 2015, with the basic task of improving the safety of children in Serbia.', 'registar-nestalih' ),
+			sprintf(
+				__( 'The Register of Missing Persons of Serbia is available 24 hours a day at %1$s. The register will be completed in accordance with the available data on missing persons to the Foundation. Within the data for each missing person, the citizens will have the opportunity to leave information about the missing person in a specially designated field, and thus contribute to a better and more efficient search. The editorial board of the register is available 24 hours a day via the address %2$s or via free phone number %3$s.', 'registar-nestalih' ),
+				'<a href="https://www.nestalisrbija.rs/" target="_blank">www.nestalisrbija.rs</a>',
+				'<a href="mailto:info@nestalisrbija.rs">info@nestalisrbija.rs</a>',
+				'<a href="tel:+381800200880">0800/200-880</a>'
+			)
+		);
+	 
+		wp_add_privacy_policy_content(
+			__( 'Register of Missing Persons of Serbia', 'registar-nestalih' ),
+			wp_kses_post( wpautop( join((PHP_EOL . PHP_EOL), $privacy_policy), false ) )
+		);
+	}
 	
 } endif;
