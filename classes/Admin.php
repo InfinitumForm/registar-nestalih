@@ -141,8 +141,49 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			'post_type' => 'page'
 		]);
 		$options = get_option( 'registar_nestalih' );
+		
+		add_action('admin_footer', function(){ ?>
+<style>
+	#registar-nestalih-admin #contributors .contributor a,
+	#registar-nestalih-admin #contributors .contributor a *{
+		text-decoration:none !important;
+		text-align:center;
+		border:none;
+		display:block;
+	}
+
+	#registar-nestalih-admin #contributors .inside.flex{
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+
+	#registar-nestalih-admin #contributors .inside.flex .contributor{
+		flex: 0 0 50%;
+		max-width: 50%;
+		margin:24px 0 0 0;
+	}
+
+	#registar-nestalih-admin #contributors .contributor+.contributor{
+		
+	}
+
+	#registar-nestalih-admin #contributors .contributor h3{
+		padding:0;
+		margin:0;
+		font-size: 0.9em;
+	}
+
+	#registar-nestalih-admin #contributors .contributor img{
+		dsplay:block;
+		margin:0 auto;
+		max-width:100%;
+	}
+</style>
+		<?php });
 	?>
-<div class="wrap">
+<div class="wrap" id="registar-nestalih-admin">
 	<a href="https://www.nestalisrbija.rs/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/registar-nestalih-lica-srbije.png')); ?>" alt="<?php esc_attr_e('Register of Missing Persons of Serbia', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:300px;" ></a>
 	<hr>
 	<div id="poststuff" class="metabox-holder has-right-sidebar">
@@ -150,8 +191,8 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			<div id="side-sortables" class="meta-box-sortables ui-sortable">
 				
 				<div class="postbox" id="cnzd">
-					<div class="hndle centeralign" style="text-align:center"><a href="https://cnzd.rs/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/cnzd-srbija-logo.png')); ?>" alt="<?php esc_attr_e('The Center for Missing and Abused Children of Serbia', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:300px; margin: 15px auto;" ></a></div>
-					<div class="inside flex">
+					<div class="hndle centeralign" style="text-align:center"><a href="https://cnzd.rs/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/cnzd-srbija-logo.png')); ?>" alt="<?php echo esc_attr(_x('The Center for Missing and Abused Children of Serbia', 'Admin sidebar title', 'registar-nestalih')); ?>" style="display:block; width:90%; max-width:300px; margin: 15px auto;" ></a></div>
+					<div class="inside">
 					<?php
 						printf(
 							'<p>%s</p>',
@@ -318,11 +359,11 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			__( 'This site uses the Register of Missing Persons of Serbia to present to public and private visitors the information about missing persons from the Republic of Serbia, but there may also be missing persons from the Federation of Bosnia and Herzegovina and the Republic of Croatia.', 'registar-nestalih' ),
 			sprintf(
 				__( 'The Register of Missing Persons of Serbia is owned by the %s of the Republic of Serbia.', 'registar-nestalih' ),
-				'<a href="https://cnzd.rs/" target="_blank">'.__('Center for Missing and Abused Children', 'registar-nestalih' ).'</a>',
+				'<a href="https://cnzd.rs/" target="_blank">'._x('Center for Missing and Abused Children', 'Privacy policy sentence', 'registar-nestalih' ).'</a>',
 			),
 			__( 'The Center for Missing and Abused Children is a non-profit organization established in accordance with the Law on Endowments and Foundations of the Republic of Serbia, June 2, 2015, with the basic task of improving the safety of children in Serbia.', 'registar-nestalih' ),
 			sprintf(
-				__( 'The Register of Missing Persons of Serbia is available 24 hours a day at %1$s. The register will be completed in accordance with the available data on missing persons to the Foundation. Within the data for each missing person, the citizens will have the opportunity to leave information about the missing person in a specially designated field, and thus contribute to a better and more efficient search. The editorial board of the register is available 24 hours a day via the address %2$s or via free phone number %3$s.', 'registar-nestalih' ),
+				__( 'The Register of Missing Persons of Serbia is available 24 hours a day at %1$s. The register will be completed in accordance with the available data on missing persons to the Center. Within the data for each missing person, the citizens will have the opportunity to leave information about the missing person in a specially designated field, and thus contribute to a better and more efficient search. The editorial board of the register is available 24 hours a day via the address %2$s or via free phone number %3$s.', 'registar-nestalih' ),
 				'<a href="https://www.nestalisrbija.rs/" target="_blank">www.nestalisrbija.rs</a>',
 				'<a href="mailto:info@nestalisrbija.rs">info@nestalisrbija.rs</a>',
 				'<a href="tel:+381800200880">0800/200-880</a>'
@@ -330,7 +371,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		);
 	 
 		wp_add_privacy_policy_content(
-			__( 'Register of Missing Persons of Serbia', 'registar-nestalih' ),
+			_x( 'Register of Missing Persons of Serbia', 'Privacy policy title', 'registar-nestalih' ),
 			wp_kses_post( wpautop( join((PHP_EOL . PHP_EOL), $privacy_policy), false ) )
 		);
 	}

@@ -92,8 +92,8 @@ if( !class_exists('Registar_Nestalih_Yoast_SEO') ) : class Registar_Nestalih_Yoa
 						$desc = sprintf(
 							(
 								$response->is_female() 
-								? _x( '%s (%d) is missing on %s in %s, from place %s', 'female title', 'registar-nestalih') 
-								: _x( '%s (%d) is missing on %s in %s, from place %s', 'male title', 'registar-nestalih')
+								? _x( '%s (%d) is missing on %s in %s, from place %s', 'Female title', 'registar-nestalih') 
+								: _x( '%s (%d) is missing on %s in %s, from place %s', 'Male title', 'registar-nestalih')
 							),
 							$response->ime_prezime,
 							$response->age(),

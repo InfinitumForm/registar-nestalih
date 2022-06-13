@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-06-10 12:49+0200\n"
-"PO-Revision-Date: 2022-06-10 12:49+0200\n"
+"POT-Creation-Date: 2022-06-13 11:16+0200\n"
+"PO-Revision-Date: 2022-06-13 11:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: https://infinitumform.com\n"
 "Language: en\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "5 Stars?"
 msgstr ""
 
-#: classes/Admin.php:71 classes/Admin.php:215
+#: classes/Admin.php:71 classes/Admin.php:256
 msgid "Missing Persons Page"
 msgstr ""
 
@@ -61,15 +61,16 @@ msgstr ""
 msgid "Clear MP Cache"
 msgstr ""
 
-#: classes/Admin.php:146 classes/Admin.php:333 registar-nestalih.php:64
+#: classes/Admin.php:187 registar-nestalih.php:64
 msgid "Register of Missing Persons of Serbia"
 msgstr ""
 
-#: classes/Admin.php:153
+#: classes/Admin.php:194
+msgctxt "Admin sidebar title"
 msgid "The Center for Missing and Abused Children of Serbia"
 msgstr ""
 
-#: classes/Admin.php:158
+#: classes/Admin.php:199
 msgid ""
 "The Center for Missing and Abused Children does not charge for the support "
 "it provides through the Net Patrol and Missing Serbia projects, as well as "
@@ -78,120 +79,120 @@ msgid ""
 "children!"
 msgstr ""
 
-#: classes/Admin.php:163
+#: classes/Admin.php:204
 #, php-format
 msgid "Support the work of the foundation by %1$s or %2$s in the web store."
 msgstr ""
 
-#: classes/Admin.php:164
+#: classes/Admin.php:205
 msgid "donating"
 msgstr ""
 
-#: classes/Admin.php:165
+#: classes/Admin.php:206
 msgid "purchasing products"
 msgstr ""
 
-#: classes/Admin.php:171
+#: classes/Admin.php:212
 #, php-format
 msgid "You can also %1$s of the association."
 msgstr ""
 
-#: classes/Admin.php:172
+#: classes/Admin.php:213
 msgid "become a member"
 msgstr ""
 
-#: classes/Admin.php:181
+#: classes/Admin.php:222
 msgid "Contributors & Developers"
 msgstr ""
 
-#: classes/Admin.php:193
+#: classes/Admin.php:234
 #, php-format
 msgid ""
 "If you want to support our work and effort, if you have new ideas or want to "
 "improve the existing code, %s."
 msgstr ""
 
-#: classes/Admin.php:193
+#: classes/Admin.php:234
 msgid "join our team"
 msgstr ""
 
-#: classes/Admin.php:199
+#: classes/Admin.php:240
 msgid "Developed by: INFINITUM FORM"
 msgstr ""
 
-#: classes/Admin.php:207
+#: classes/Admin.php:248
 msgid "Cache"
 msgstr ""
 
-#: classes/Admin.php:208
+#: classes/Admin.php:249
 msgid ""
 "If you need to clear your plugin's cache, you have the option to use the "
 "following URL:"
 msgstr ""
 
-#: classes/Admin.php:211
+#: classes/Admin.php:252
 msgid "Missing Persons Settings"
 msgstr ""
 
-#: classes/Admin.php:212
+#: classes/Admin.php:253
 msgid "This option sets the API and shortcode for missing persons."
 msgstr ""
 
-#: classes/Admin.php:218
+#: classes/Admin.php:259
 msgid "Select a Page"
 msgstr ""
 
-#: classes/Admin.php:232
+#: classes/Admin.php:273
 msgid "Pagination slug"
 msgstr ""
 
-#: classes/Admin.php:238
+#: classes/Admin.php:279
 msgid "Search slug"
 msgstr ""
 
-#: classes/Admin.php:244
+#: classes/Admin.php:285
 msgid "Person slug"
 msgstr ""
 
-#: classes/Admin.php:250
+#: classes/Admin.php:291
 msgid "Open links in new window"
 msgstr ""
 
-#: classes/Admin.php:255 classes/Admin.php:270 classes/Admin.php:290
+#: classes/Admin.php:296 classes/Admin.php:311 classes/Admin.php:331
 msgid "Yes"
 msgstr ""
 
-#: classes/Admin.php:260 classes/Admin.php:275 classes/Admin.php:295
+#: classes/Admin.php:301 classes/Admin.php:316 classes/Admin.php:336
 msgid "No"
 msgstr ""
 
-#: classes/Admin.php:265
+#: classes/Admin.php:306
 msgid "Enable sending information about the person"
 msgstr ""
 
-#: classes/Admin.php:281
+#: classes/Admin.php:322
 msgid "Utility"
 msgstr ""
 
-#: classes/Admin.php:282
+#: classes/Admin.php:323
 msgid "Small but useful options."
 msgstr ""
 
-#: classes/Admin.php:285
+#: classes/Admin.php:326
 msgid "CSS support"
 msgstr ""
 
-#: classes/Admin.php:297
+#: classes/Admin.php:338
 msgid ""
 "If you activate this option, we will insert the basic Twitter Bootstrap CSS "
 "to style the tabs and columns while the rest of the design will be intact."
 msgstr ""
 
-#: classes/Admin.php:301
+#: classes/Admin.php:342
 msgid "Save"
 msgstr ""
 
-#: classes/Admin.php:318
+#: classes/Admin.php:359
 msgid ""
 "This site uses the Register of Missing Persons of Serbia to present to "
 "public and private visitors the information about missing persons from the "
@@ -199,18 +200,19 @@ msgid ""
 "Federation of Bosnia and Herzegovina and the Republic of Croatia."
 msgstr ""
 
-#: classes/Admin.php:320
+#: classes/Admin.php:361
 #, php-format
 msgid ""
 "The Register of Missing Persons of Serbia is owned by the %s of the Republic "
-"of Serbia"
+"of Serbia."
 msgstr ""
 
-#: classes/Admin.php:321
+#: classes/Admin.php:362
+msgctxt "Privacy policy sentence"
 msgid "Center for Missing and Abused Children"
 msgstr ""
 
-#: classes/Admin.php:323
+#: classes/Admin.php:364
 msgid ""
 "The Center for Missing and Abused Children is a non-profit organization "
 "established in accordance with the Law on Endowments and Foundations of the "
@@ -218,16 +220,21 @@ msgid ""
 "safety of children in Serbia."
 msgstr ""
 
-#: classes/Admin.php:325
+#: classes/Admin.php:366
 #, php-format
 msgid ""
 "The Register of Missing Persons of Serbia is available 24 hours a day at "
 "%1$s. The register will be completed in accordance with the available data "
-"on missing persons to the Foundation. Within the data for each missing "
-"person, the citizens will have the opportunity to leave information about "
-"the missing person in a specially designated field, and thus contribute to a "
+"on missing persons to the Center. Within the data for each missing person, "
+"the citizens will have the opportunity to leave information about the "
+"missing person in a specially designated field, and thus contribute to a "
 "better and more efficient search. The editorial board of the register is "
-"available 24 hours a day via the address %2$s or via free phone number %3$s"
+"available 24 hours a day via the address %2$s or via free phone number %3$s."
+msgstr ""
+
+#: classes/Admin.php:374
+msgctxt "Privacy policy title"
+msgid "Register of Missing Persons of Serbia"
 msgstr ""
 
 #: classes/Content.php:43
@@ -325,13 +332,13 @@ msgstr ""
 
 #: classes/Yoast_SEO.php:95
 #, php-format
-msgctxt "female title"
+msgctxt "Female title"
 msgid "%s (%d) is missing on %s in %s, from place %s"
 msgstr ""
 
 #: classes/Yoast_SEO.php:96
 #, php-format
-msgctxt "male title"
+msgctxt "Male title"
 msgid "%s (%d) is missing on %s in %s, from place %s"
 msgstr ""
 
