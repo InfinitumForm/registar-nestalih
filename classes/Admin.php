@@ -87,6 +87,14 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		
 		add_submenu_page(
 			'missing-persons',
+			__( 'News', 'registar-nestalih' ),
+			__( 'News', 'registar-nestalih' ),
+			'manage_options',
+			admin_url('/edit.php?post_type=missing-persons-news')
+		);
+		
+		add_submenu_page(
+			'missing-persons',
 			__( 'Clear Cache of Missing Persons', 'registar-nestalih' ),
 			__( 'Clear Cache', 'registar-nestalih' ),
 			'manage_options',
@@ -288,6 +296,12 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 							</td>
 						</tr>
 						<tr>
+							<th scope="row"><?php _e('News slug', 'registar-nestalih'); ?></th>
+							<td>
+								<input type="text" name="registar-nestalih[news-slug]" value="<?php echo esc_attr( ($options['news-slug'] ?? 'missing-persons-news') ); ?>" placeholder="missing-persons-news" />
+							</td>
+						</tr>
+						<tr>
 							<th scope="row"><?php _e('Open links in new window', 'registar-nestalih'); ?></th>
 							<td>
 								<label for="open-in-new-window-0">
@@ -359,7 +373,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			__( 'This site uses the Register of Missing Persons of Serbia to present to public and private visitors the information about missing persons from the Republic of Serbia, but there may also be missing persons from the Federation of Bosnia and Herzegovina and the Republic of Croatia.', 'registar-nestalih' ),
 			sprintf(
 				__( 'The Register of Missing Persons of Serbia is owned by the %s of the Republic of Serbia.', 'registar-nestalih' ),
-				'<a href="https://cnzd.rs/" target="_blank">'._x('Center for Missing and Abused Children', 'Privacy policy sentence', 'registar-nestalih' ).'</a>',
+				'<a href="https://cnzd.rs/" target="_blank">'._x('Center for Missing and Abused Children', 'Privacy policy sentence', 'registar-nestalih' ).'</a>'
 			),
 			__( 'The Center for Missing and Abused Children is a non-profit organization established in accordance with the Law on Endowments and Foundations of the Republic of Serbia, June 2, 2015, with the basic task of improving the safety of children in Serbia.', 'registar-nestalih' ),
 			sprintf(

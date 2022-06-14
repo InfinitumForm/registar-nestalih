@@ -117,7 +117,7 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 			}
 		} else {
 			
-			/* @todo: Get image from remote URL, save into uploads folder and display it */
+			/* Get image from remote URL, save into uploads folder and display it */
 			$upload_dir = wp_upload_dir();
 			$folder = MISSING_PERSONS_IMG_UPLOAD_DIR;
 			// Create base dir
@@ -258,11 +258,24 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 	
 	// Generate age
 	public function age(){
-		if( empty($this->datum_rodjenja) ) {
-			return 0;
+		static $age = [];
+		
+		if( $age[$this->id()] ?? true ) {
+			if( empty($this->datum_rodjenja) ) {
+				$age[$this->id()] = 0;
+			} else {		
+				if( strpos($this->datum_rodjenja, '/') !== false ) {
+					$date = explode('/', $this->datum_rodjenja);
+					$date = "{$date[2]}-{$date[1]}-{$date[0]}";
+				} else {
+					$date = $this->datum_rodjenja;
+				}
+				
+				$age[$this->id()] = ((int)date_diff(date_create($date), date_create('now'))->y);
+			}
 		}
 		
-		return ((int)date_diff(date_create($this->datum_rodjenja), date_create('now'))->y);
+		return $age[$this->id()] ?? 0;
 	}
 	
 	// Generate birth date

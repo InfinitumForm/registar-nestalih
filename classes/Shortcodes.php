@@ -17,6 +17,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	private function __construct() {
 		$this->register( 'registar_nestalih', 'callback__registar_nestalih' );
 		$this->register( 'registar_nestalih_prijava', 'callback__registar_nestalih_prijava' );
+		$this->register( 'registar_nestalih_vesti', 'callback__registar_nestalih_vesti' );
 	}
 	
 	// Register shortcodes
@@ -26,7 +27,9 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		}
 	}
 	
-	// Register Nestalih
+	/*
+	 * Register Nestalih
+	 */
 	public function callback__registar_nestalih	($attr, $content='', $tag) {
 		global $wp_query;
 		
@@ -74,7 +77,9 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		}
 	}
 	
-	// Register Nestalih
+	/*
+	 * Register Nestalih Prijava
+	 */
 	public function callback__registar_nestalih_prijava	($attr, $content='', $tag) {
 		global $wp_query;
 		
@@ -91,6 +96,21 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		wp_enqueue_script( 'registar-nestalih' );
 		
 		return Registar_Nestalih_Content::render('report-disappearance');
+	}
+	
+	/*
+	 * Register Nestalih Vesti
+	 */
+	public function callback__registar_nestalih_vesti ($attr, $content='', $tag) {
+		global $wp_query;
+		
+		$attr = shortcode_atts( [
+			
+		], $attr, $tag );
+		
+		echo '<pre>', var_dump( Registar_Nestalih_API::get_news( [] ) ), '</pre>';
+		
+		return '';
 	}
 	
 } endif;

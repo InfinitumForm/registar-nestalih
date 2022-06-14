@@ -11,6 +11,7 @@ if( !class_exists('Registar_Nestalih_Options') ) : class Registar_Nestalih_Optio
 		'pagination-slug' => 'page',
 		'search-slug' => 'search',
 		'person-slug' => 'person',
+		'news-slug' => 'missing-persons-news',
 		'open-in-new-window' => 0,
 		'enable-notification' => 1,
 		'enable-bootstrap' => 0

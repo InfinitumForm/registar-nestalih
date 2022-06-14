@@ -15,6 +15,8 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 	
 	// PRIVATE: Main construct
 	private function __construct() {
+		add_action( 'init', [__CLASS__, 'register_post_types'] );
+		
 		add_action( 'registar_nestalih_before_main_container', [&$this, 'do_missing_persons_search'], 10 );
 		add_action( 'registar_nestalih_pagination', [&$this, 'do_missing_persons_pagination'] );
 		add_action( 'registar_nestalih_breadcrumb', [&$this, 'do_breadcrumb'] );
@@ -34,6 +36,47 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 			add_action( 'registar_nestalih_before_report_disappearance_form_container', [&$this, 'development_notification'], 100 );
 			add_action( 'registar_nestalih_before_sidebar_container', [&$this, 'development_notification'], 100 );
 		}
+	}
+	
+	// Development notification
+	public static function register_post_types ( ) {
+		register_post_type( 'missing-persons-news', [
+			'labels'				=> [
+				'name'               		=> __( 'News', 'registar-nestalih' ),
+				'singular_name'      		=> __( 'News', 'registar-nestalih' ),
+				'add_new'            		=> __( 'Add New News', 'registar-nestalih'),
+				'add_new_item'       		=> __( "Add New News", 'registar-nestalih'),
+				'edit_item'          		=> __( "Edit News", 'registar-nestalih'),
+				'new_item'           		=> __( "New News", 'registar-nestalih'),
+				'view_item'          		=> __( "View News", 'registar-nestalih'),
+				'search_items'       		=> __( "Search News", 'registar-nestalih'),
+				'not_found'          		=> __( 'No News Found', 'registar-nestalih'),
+				'not_found_in_trash' 		=> __( 'No News Found in Trash', 'registar-nestalih'),
+				'parent_item_colon'  		=> '',
+				'featured_image'	 		=> __('News Image', 'registar-nestalih'),
+				'set_featured_image'		=> __('Select News Image', 'registar-nestalih'),
+				'remove_featured_image'		=> __('Remove News Image', 'registar-nestalih'),
+				'use_featured_image'		=> __('Use News Image', 'registar-nestalih'),
+				'insert_into_item'			=> __('Insert Into News', 'registar-nestalih')
+			],
+			'public'            	=> true,
+			'exclude_from_search'	=> true,
+			'publicly_queryable'	=> true, 
+			'show_in_nav_menus'   	=> false,
+			'show_ui'           	=> true,
+			'query_var'         	=> true,
+			'hierarchical'      	=> false,
+			'has_archive'			=> true,
+			'menu_position'     	=> 20,
+			'capability_type'   	=> 'post',
+			'supports'          	=> ['title', 'editor', 'thumbnail'],
+			'menu_icon' 			=> 'dashicons-text-page',
+			'show_in_menu'			=> false,
+			'rewrite' => [ 
+				'slug' => Registar_Nestalih_Options::get('news-slug'), 
+				'with_front' => true
+			]
+		] );
 	}
 	
 	// Development notification

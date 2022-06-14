@@ -27,6 +27,11 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 		return self::instance()->__sanitize_query( self::instance()->__report_missing_person( $query ) );
 	}
 	
+	// Get news 
+	public static function get_news( array $query = [] ) {
+		return self::instance()->__sanitize_query( self::instance()->__get_news( $query ) );
+	}
+	
 	// PRIVATE: Get missing persons
 	private function __get_missing( array $query = [] ) {
 		static $__get_missing;
@@ -231,6 +236,76 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 		}
 		
 		return NULL;
+	}
+	
+	// PRIVATE: Get missing persons
+	private function __get_news( array $query = [] ) {
+		$query_allowed = [
+			'paginate',
+			'per_page',
+			'page',
+			'search',
+			'order',
+			'id'
+		];
+	
+		$query = array_filter($query, function($value, $key) use ($query_allowed){
+			return !empty($value) && in_array($key, $query_allowed) !== false;
+		}, ARRAY_FILTER_USE_BOTH);
+		
+		// Enable development mode
+		if( defined('MISSING_PERSONS_DEV_MODE') && MISSING_PERSONS_DEV_MODE === true ) {
+			$this->url = $this->test_url;
+		}
+
+		// Send remote request
+		$request = wp_remote_get( add_query_arg(
+			$query,
+			"{$this->url}/vesti"
+		) );
+		
+		// If there is no errors clean it
+		$posts = [];
+		if( !is_wp_error( $request ) ) {
+			if($json = wp_remote_retrieve_body( $request )) {
+				$posts = json_decode($json);
+			}
+		}
+		
+		return $posts; // DEBUG
+		
+		if( !empty($posts) ) {			
+			$count_posts = wp_count_posts('missing-persons-news');
+			if( count($posts) > ($count_posts->publish + $count_posts->draft + $count_posts->pending) ) {
+				foreach($posts as $post) {
+					$news_ID = wp_insert_post( [
+						'post_title'    => wp_strip_all_tags( sanitize_text_field( $post->title ) ),
+						'post_content'  => wp_kses_post( sanitize_textarea_field( $post->description ) ),
+						'post_date'		=> wp_strip_all_tags( sanitize_text_field( $post->created_at ) ),
+						'post_status'   => 'publish'
+					] );
+
+					// Upload image
+					$upload_dir = wp_upload_dir();
+					$folder = MISSING_PERSONS_IMG_UPLOAD_DIR;
+					// Create base dir
+					if( !file_exists($upload_dir['basedir'] . $folder) ) {
+						mkdir($upload_dir['basedir'] . $folder, 0755, true);
+						touch($upload_dir['basedir'] . $folder . '/index.php');
+					}
+					
+					// Create news dir
+					// https://wordpress.stackexchange.com/questions/50123/image-upload-from-url
+					if( file_exists($upload_dir['basedir'] . $folder) ) {
+						
+					}
+					
+					set_post_thumbnail( $news_ID, $thumbnail_id );
+				}
+			}
+		}
+		
+		return $posts;
 	}
 	
 	// PRIVATE: Seralize and protect query

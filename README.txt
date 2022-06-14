@@ -19,9 +19,17 @@ The Register of [Missing Persons of Serbia](https://www.nestalisrbija.rs/) was l
 
 = How to use this plugin? =
 
-After installation and activation, you should get a new page **Missing Persons**, which contains a shortcode `[registar-nestalih]` that displays a list of missing persons with search and all other functionalities.
+After installation and activation, you should get a new page **Missing Persons**, which contains a shortcode 
 
-If this page does not exist, create it and place a shortcode `[registar-nestalih]` in the content. Then in WP Admin visit the **Missing Persons** option located on the left in the admin navigation and select your missing persons page and save. In these settings you also can set a custom permalinks.
+`[registar-nestalih]`
+
+that displays a list of missing persons with search and all other functionalities.
+
+If this page does not exist, create it and place a shortcode 
+
+`[registar-nestalih]`
+
+in the content. Then in WP Admin visit the **Missing Persons** option located on the left in the admin navigation and select your missing persons page and save. In these settings you also can set a custom permalinks.
 
 After that, your plugin should work without any problems.
 
@@ -31,7 +39,11 @@ This plugin also supports widgets that display missing persons lists.
 
 In order to report a missing person, it is necessary to create a report form.
 
-You will do this by creating a new page and place shortcode `[registar_nestalih_prijava]` that will display the report missing person form on your site.
+You will do this by creating a new page and place shortcode 
+
+`[registar_nestalih_prijava]`
+
+that will display the report missing person form on your site.
 
 = Theme and plugin integration =
 

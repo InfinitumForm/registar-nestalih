@@ -199,6 +199,9 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 			update_option(self::TEXTDOMAIN . '-db-version', MISSING_PERSONS_DB_VERSION, false);
 		}
 		
+		// Register post type
+		Registar_Nestalih_Content::register_post_types();
+		
 		// Flush rewrite rules
 		if( function_exists('flush_rewrite_rules') ) {
 			flush_rewrite_rules();
@@ -226,6 +229,11 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		
 		// Clear plugin cache
 		Registar_Nestalih_U::flush_plugin_cache();
+		
+		// Unregister post type
+		if( post_type_exists('missing-persons-news') ) {
+			unregister_post_type('missing-persons-news');
+		}
 		
 		// Flush rewrite rules
 		if( function_exists('flush_rewrite_rules') ) {
