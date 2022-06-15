@@ -4,7 +4,7 @@ if ( ! defined( 'WPINC' ) ) { die( "Don't mess with us." ); }
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 if( !class_exists('Registar_Nestalih_Widget_News') ) : class Registar_Nestalih_Widget_News extends WP_Widget {	
-	function __construct() {
+	function __construct() {		
 		parent::__construct(
 			'registar_nestalih_widget_news', // Base ID
 			__('Register of Missing Persons Recent News', 'registar-nestalih'),
