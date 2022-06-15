@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-06-15 11:02+0200\n"
-"PO-Revision-Date: 2022-06-15 11:13+0200\n"
+"POT-Creation-Date: 2022-06-15 16:31+0200\n"
+"PO-Revision-Date: 2022-06-15 16:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -313,7 +313,7 @@ msgstr "Pogledaj vijesti"
 msgid "Search News"
 msgstr "Pretraži vijesti"
 
-#: classes/Content.php:59
+#: classes/Content.php:59 widgets/News.php:88
 msgid "No News Found"
 msgstr "Nisu pronađene ni jedne vijesti"
 
@@ -349,26 +349,26 @@ msgstr ""
 "Popisnik nestalih osoba je u razvoju i sadržaj u njemu namijenjen je za "
 "probne svrhe."
 
-#: classes/Content.php:221
+#: classes/Content.php:224
 #, php-format
 msgid "Information about %s sent successfully."
 msgstr "Informacije o %s uspješno su poslane."
 
-#: classes/Content.php:228
+#: classes/Content.php:231
 msgid "The message was not sent due to technical problems."
 msgstr "Poruka nije poslana zbog tehničkih problema."
 
-#: classes/Content.php:245 classes/Template.php:97
+#: classes/Content.php:248 classes/Template.php:97
 msgid ""
 "All fields in this form are required. Fill in the fields and send a message."
 msgstr ""
 "Sva polja u ovom obrascu su obavezna. Ispunite polja i pošaljite poruku."
 
-#: classes/Content.php:251
+#: classes/Content.php:254
 msgid "The missing person was successfully reported."
 msgstr "Nestanak je uspješno prijavljen."
 
-#: classes/Content.php:252
+#: classes/Content.php:255
 msgid ""
 "You must be patient for our administrators to verify the authenticity of the "
 "information and approve the missing person's profile."
@@ -850,13 +850,25 @@ msgstr "Prikaži nedavno dodane nestale osobe"
 msgid "Title:"
 msgstr "Naslov:"
 
-#: widgets/Latest_Missing.php:57
+#: widgets/Latest_Missing.php:57 widgets/News.php:55
 msgid "Number of posts to show:"
 msgstr "Broj objava koje se prikazuju:"
 
 #: widgets/Latest_Missing.php:62
 msgid "Display \"look at the others\" link."
 msgstr "Prikaži vezu \"pogledaj ostale\"."
+
+#: widgets/News.php:10
+msgid "Register of Missing Persons Recent News"
+msgstr "Najnovije vijesti registara nestalih osoba"
+
+#: widgets/News.php:12
+msgid "The most recent News from the Register of Missing Persons."
+msgstr "Najnovije vijesti iz registra nestalih osoba."
+
+#: widgets/News.php:51
+msgid "Title"
+msgstr "Naslov"
 
 #. Plugin Name of the plugin/theme
 msgid "Register of Missing Persons in Serbia"

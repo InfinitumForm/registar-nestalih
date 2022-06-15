@@ -15,18 +15,17 @@ if( !class_exists('Registar_Nestalih_Widget_News') ) : class Registar_Nestalih_W
 		add_image_size( 'missing_persons_news_widget_thumb', 85, 85, true );
 	}
 	
-	function widget($args, $instance) { //output
-		extract( $args );
+	function widget($args, $instance) {
 		// these are the widget options
 		$title = apply_filters('widget_title', $instance['title']);
 		$numberOfListings = $instance['numberOfListings'] ?? 5;
-		echo $before_widget;
+		echo $args['before_widget'];
 		// Check if title is set
-		if ( $title ) {
-			echo $before_title . $title . $after_title;
+		if ( ! empty( $title ) ) {
+			echo $args['before_title'] . $title . $args['after_title'];
 		}
 		$this->display_news($numberOfListings);
-		echo $after_widget;
+		echo $args['after_widget'];
 	}
 
 	function update($new_instance, $old_instance) {
@@ -72,10 +71,14 @@ if( !class_exists('Registar_Nestalih_Widget_News') ) : class Registar_Nestalih_W
 			echo '<ul class="missing-persons-news-widget">';
 				while ($listings->have_posts()) {
 					$listings->the_post();
-					$image = (has_post_thumbnail($post->ID)) ? get_the_post_thumbnail($post->ID, 'missing_persons_news_widget_thumb') : '<div class="noThumb"></div>'; 
+					$image = (
+						has_post_thumbnail($listings->ID) 
+						? get_the_post_thumbnail($listings->ID, 'missing_persons_news_widget_thumb') 
+						: '<div class="noThumb"></div>'
+					);
 					$listItem = '<li>' . $image; 
-					$listItem .= '<a href="' . get_permalink() . '">';
-					$listItem .= mb_strimwidth(get_the_title(), 0, 160, '...') . '</a>';
+					$listItem .= '<a href="' . esc_url( get_permalink() ) . '">';
+					$listItem .= esc_html( mb_strimwidth(get_the_title(), 0, 160, '...') ) . '</a>';
 					$listItem .= '<span>' . get_the_date() . '</span></li>'; 
 					echo $listItem; 
 				}

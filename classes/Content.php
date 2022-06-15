@@ -136,6 +136,9 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 				case 'report-disappearance':
 					Registar_Nestalih_Template::get('missing-persons/report-disappearance-form', $response);
 					break;
+				case 'widget-news':
+					Registar_Nestalih_Template::get('widget-news', $response);
+					break;
 			}
 		return ob_get_clean();
 	}
