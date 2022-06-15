@@ -26,6 +26,7 @@ if( !class_exists('Registar_Nestalih_Widgets') ) : class Registar_Nestalih_Widge
 		// Call main classes
 		$classes = apply_filters('registar_nestalih_widget_classes', [
 			'Registar_Nestalih_Widget_Latest_Missing',
+			'Registar_Nestalih_Widget_News'
 		]);
 		
 		// For each class include file and collect widgets

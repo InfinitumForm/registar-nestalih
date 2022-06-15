@@ -72,5 +72,4 @@ if( !class_exists('Registar_Nestalih_Widget_Latest_Missing') ) : class Registar_
 		$instance['see_others'] = absint( $new_instance['see_others'] ?? 0 );
 		return $instance;
 	}
-}
-endif;
+} endif;
