@@ -202,6 +202,11 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		// Register post type
 		Registar_Nestalih_Content::register_post_types();
 		
+		// Register cronjob
+		if (! wp_next_scheduled ( 'registar_nestalih_news_sync' )) {
+			wp_schedule_event( time(), 'hourly', 'registar_nestalih_news_sync' );
+		}
+		
 		// Flush rewrite rules
 		if( function_exists('flush_rewrite_rules') ) {
 			flush_rewrite_rules();
@@ -234,6 +239,11 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		if( post_type_exists('missing-persons-news') ) {
 			unregister_post_type('missing-persons-news');
 		}
+		
+		// Clear cronjob
+		$timestamp = wp_next_scheduled('registar_nestalih_news_sync');
+		wp_unschedule_event($timestamp, 'registar_nestalih_news_sync');
+		wp_clear_scheduled_hook( 'registar_nestalih_news_sync' );
 		
 		// Flush rewrite rules
 		if( function_exists('flush_rewrite_rules') ) {

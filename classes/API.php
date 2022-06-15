@@ -240,6 +240,12 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 	
 	// PRIVATE: Get missing persons
 	private function __get_news( array $query = [] ) {
+		global $wpdb;
+		
+		if( !function_exists('wp_generate_attachment_metadata') ) {
+			include_once ABSPATH  . 'wp-admin/includes/image.php';
+		}
+		
 		$query_allowed = [
 			'paginate',
 			'per_page',
@@ -272,35 +278,120 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			}
 		}
 		
-		return $posts; // DEBUG
+	//	return $posts; // DEBUG
 		
 		if( !empty($posts) ) {			
 			$count_posts = wp_count_posts('missing-persons-news');
 			if( count($posts) > ($count_posts->publish + $count_posts->draft + $count_posts->pending) ) {
-				foreach($posts as $post) {
+				
+				// Exclude existings
+				$exclude = [];
+				if( $remote_ids = wp_list_pluck($posts, 'id') ) {
+					$remote_ids_map = implode( ',', array_fill( 0, count( $remote_ids ), '%d' ) );
+					if( $post_ids = $wpdb->get_results( $wpdb->prepare("
+						SELECT `meta_value` FROM `{$wpdb->postmeta}` 
+						WHERE `{$wpdb->postmeta}`.`meta_key` = '_remote_id' 
+						AND `{$wpdb->postmeta}`.`meta_value` IN ({$remote_ids_map})
+					", $remote_ids) ) ) {
+						$exclude = wp_list_pluck($post_ids, 'meta_value');
+						$exclude = array_map('absint', $exclude);
+					}
+				}
+				
+				foreach($posts as $i=>$post) {
+					if( in_array(absint($post->id), $exclude) ) {
+						unset($posts[$i]);
+						continue;
+					}
+					
+					$description = wp_kses_post( sanitize_textarea_field( $post->description ) );
+					$get_excerpt = explode("\n", $description);
+					$excerpt = $get_excerpt[0];
+					unset($get_excerpt);
+					
 					$news_ID = wp_insert_post( [
 						'post_title'    => wp_strip_all_tags( sanitize_text_field( $post->title ) ),
-						'post_content'  => wp_kses_post( sanitize_textarea_field( $post->description ) ),
+						'post_content'  => $description,
 						'post_date'		=> wp_strip_all_tags( sanitize_text_field( $post->created_at ) ),
-						'post_status'   => 'publish'
+						'post_excerpt'	=> wp_strip_all_tags( $excerpt ),
+						'post_status'   => 'publish',
+						'post_type'		=> 'missing-persons-news',
+						'meta_input'	=> [
+							'_remote_id' => absint($post->id),
+							'_remote_image' => esc_url(sanitize_url( $post->icon )),
+							'_yoast_wpseo_metadesc' => mb_strimwidth($excerpt, 0, 160, '...')
+						]
 					] );
 
 					// Upload image
-					$upload_dir = wp_upload_dir();
-					$folder = MISSING_PERSONS_IMG_UPLOAD_DIR;
-					// Create base dir
-					if( !file_exists($upload_dir['basedir'] . $folder) ) {
-						mkdir($upload_dir['basedir'] . $folder, 0755, true);
-						touch($upload_dir['basedir'] . $folder . '/index.php');
-					}
+					$img_exists = true;
 					
-					// Create news dir
-					// https://wordpress.stackexchange.com/questions/50123/image-upload-from-url
-					if( file_exists($upload_dir['basedir'] . $folder) ) {
+					// Get extension
+					$ext = explode('.', $post->icon);
+					$ext = '.' . strtolower(end($ext));
+					
+					// Validate format
+					if(in_array($ext, ['.jpg','.jpeg','.png','.gif','.webp'])) {							
+						// Validate image exists
+						$test_image = wp_remote_get($post->icon, ['Content-Type' => 'application/json']);
+						if ( is_array( $test_image ) && ! is_wp_error( $test_image ) ) {
+							$test_image = json_decode($test_image['body']);
+							if($test_image->error_type == 'missing_inputs'){
+								$img_exists = false;
+							}
+							unset($test_image);
+						}
 						
+						// When image exists
+						if($img_exists) {
+							$upload_dir = wp_upload_dir();
+							$folder = MISSING_PERSONS_NEWS_IMG_UPLOAD_DIR;
+							
+							// Create base dir
+							if( !file_exists($upload_dir['basedir'] . $folder) ) {
+								mkdir($upload_dir['basedir'] . $folder, 0755, true);
+								touch($upload_dir['basedir'] . $folder . '/index.php');
+							}
+							
+							// Create post news folder
+							if( file_exists($upload_dir['basedir'] . $folder) ) {
+								$folder = $folder . '/' . $news_ID;
+								if( !file_exists($upload_dir['basedir'] . $folder) ) {
+									mkdir($upload_dir['basedir'] . $folder, 0755, true);
+									touch($upload_dir['basedir'] . $folder . '/index.php');
+								}
+								
+								// Let's try to upload image
+								// https://wordpress.stackexchange.com/questions/50123/image-upload-from-url
+								if( file_exists($upload_dir['basedir'] . $folder) ) {
+									$filename = sanitize_title($post->title) . $ext;
+									$image = $folder . '/' . $filename;
+									
+									if( !( function_exists('copy') && copy($post->icon, $upload_dir['basedir'] . $image)) ) {
+										file_put_contents($upload_dir['basedir'] . $image, file_get_contents($post->icon));
+									}
+									
+									// If image is uploaded let's save it and assign
+									if( file_exists($upload_dir['basedir'] . $image) ) {
+										$wp_filetype = wp_check_filetype(basename($image), null );
+										$attach_id = wp_insert_attachment( [
+											'post_mime_type' => $wp_filetype['type'],
+											'post_title' => $filename,
+											'post_content' => '',
+											'post_status' => 'inherit'
+										], $upload_dir['basedir'] . $image );
+										$imagenew = get_post( $attach_id );
+										$fullsizepath = get_attached_file( $imagenew->ID );
+										$attach_data = wp_generate_attachment_metadata( $attach_id, $fullsizepath );
+										wp_update_attachment_metadata( $attach_id, $attach_data );
+										
+										// Assign
+										set_post_thumbnail( $news_ID, $attach_id );
+									}
+								}
+							}							
+						}
 					}
-					
-					set_post_thumbnail( $news_ID, $thumbnail_id );
 				}
 			}
 		}

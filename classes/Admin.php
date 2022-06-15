@@ -20,9 +20,28 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		add_action( 'admin_menu', [&$this, 'admin_menu'], 90, 1 );
 		add_action( 'admin_bar_menu', [&$this, 'admin_bar_menu'], 100 );
 		add_action( 'admin_init', [&$this, 'register_setting__missing_persons'] );
+		add_action( 'admin_footer', [&$this, 'admin_footer'] );
 		add_filter( 'display_post_states' , [&$this, 'display_post_states'], 10, 2 );
 		add_filter( 'plugin_action_links_' . plugin_basename(MISSING_PERSONS_FILE), [&$this, 'plugin_action_links'] );
 		add_filter( 'plugin_row_meta', [&$this, 'cfgp_action_links'], 10, 2 );
+	}
+	
+	// Admin footer scripts
+	public function admin_footer () {
+		if( in_array('missing-persons-news', array_filter([
+			($_GET['post_type'] ?? NULL),
+			get_post_type( absint($_GET['post'] ?? 0) )
+		])) ) : ?>
+<script>(function($){
+	$('#toplevel_page_missing-persons')
+		.addClass('wp-has-current-submenu wp-menu-open')
+		.removeClass('wp-not-current-submenu')
+		.find('.wp-submenu.wp-submenu-wrap > li:nth-child(3)')
+		.addClass('current')
+		.find('a')
+		.addClass('current');
+}(jQuery||window.jQuery));</script>
+		<?php endif;
 	}
 	
 	// WP Hidden links by plugin setting page
@@ -85,13 +104,15 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			6
 		);
 		
-		add_submenu_page(
-			'missing-persons',
-			__( 'News', 'registar-nestalih' ),
-			__( 'News', 'registar-nestalih' ),
-			'manage_options',
-			admin_url('/edit.php?post_type=missing-persons-news')
-		);
+		if(Registar_Nestalih_Options::get('enable-news', 0)) {
+			add_submenu_page(
+				'missing-persons',
+				__( 'News', 'registar-nestalih' ),
+				__( 'News', 'registar-nestalih' ),
+				'manage_options',
+				admin_url('/edit.php?post_type=missing-persons-news')
+			);
+		}
 		
 		add_submenu_page(
 			'missing-persons',
@@ -137,6 +158,10 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				if( function_exists('flush_rewrite_rules') ) {
 					Registar_Nestalih_API::flush_cache();
 					flush_rewrite_rules();
+					if(Registar_Nestalih_Options::get('enable-news', 0)) {
+						Registar_Nestalih_API::get_news();
+					}
+					wp_safe_redirect( admin_url('/admin.php?page=missing-persons') );
 				}
 			}
 		}
@@ -296,12 +321,6 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><?php _e('News slug', 'registar-nestalih'); ?></th>
-							<td>
-								<input type="text" name="registar-nestalih[news-slug]" value="<?php echo esc_attr( ($options['news-slug'] ?? 'missing-persons-news') ); ?>" placeholder="missing-persons-news" />
-							</td>
-						</tr>
-						<tr>
 							<th scope="row"><?php _e('Open links in new window', 'registar-nestalih'); ?></th>
 							<td>
 								<label for="open-in-new-window-0">
@@ -329,6 +348,32 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 										checked( ($options['enable-notification'] ?? 0), 0 ); 
 									?> /> <?php _e('No', 'registar-nestalih'); ?>
 								</label>
+							</td>
+						</tr>
+					</table>
+					<hr>
+					<h3><?php _e('News settings', 'registar-nestalih'); ?></h3>
+					<p><?php _e('If you want, you have the opportunity to download the latest news from our application and display it on your site as a special post format intended for this purpose.', 'registar-nestalih'); ?></p>
+					<table class="form-table" role="utility">
+						<tr>
+							<th scope="row"><?php _e('Enable News', 'registar-nestalih'); ?></th>
+							<td>
+								<label for="enable-news-0">
+									<input type="radio" id="enable-news-0" name="registar-nestalih[enable-news]" value="1" <?php 
+										checked( ($options['enable-news'] ?? 0), 1 ); 
+									?> /> <?php _e('Yes', 'registar-nestalih'); ?>
+								</label>&nbsp;&nbsp;&nbsp;
+								<label for="enable-news-1">
+									<input type="radio" id="enable-news-1" name="registar-nestalih[enable-news]" value="0" <?php 
+										checked( ($options['enable-news'] ?? 0), 0 ); 
+									?> /> <?php _e('No', 'registar-nestalih'); ?>
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><?php _e('News slug', 'registar-nestalih'); ?></th>
+							<td>
+								<input type="text" name="registar-nestalih[news-slug]" value="<?php echo esc_attr( ($options['news-slug'] ?? 'missing-persons-news') ); ?>" placeholder="missing-persons-news" />
 							</td>
 						</tr>
 					</table>

@@ -15,7 +15,9 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 	
 	// PRIVATE: Main construct
 	private function __construct() {
-		add_action( 'init', [__CLASS__, 'register_post_types'] );
+		if(Registar_Nestalih_Options::get('enable-news', 0)) {
+			add_action( 'init', [__CLASS__, 'register_post_types'] );
+		}
 		
 		add_action( 'registar_nestalih_before_main_container', [&$this, 'do_missing_persons_search'], 10 );
 		add_action( 'registar_nestalih_pagination', [&$this, 'do_missing_persons_pagination'] );
@@ -36,14 +38,18 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 			add_action( 'registar_nestalih_before_report_disappearance_form_container', [&$this, 'development_notification'], 100 );
 			add_action( 'registar_nestalih_before_sidebar_container', [&$this, 'development_notification'], 100 );
 		}
+		
+		if(Registar_Nestalih_Options::get('enable-news', 0)) {
+			add_action( 'registar_nestalih_news_sync', ['Registar_Nestalih_API', 'get_news'], 10, 0 );
+		}
 	}
 	
 	// Development notification
 	public static function register_post_types ( ) {
 		register_post_type( 'missing-persons-news', [
 			'labels'				=> [
-				'name'               		=> __( 'News', 'registar-nestalih' ),
-				'singular_name'      		=> __( 'News', 'registar-nestalih' ),
+				'name'               		=> __( 'Missing Persons News', 'registar-nestalih' ),
+				'singular_name'      		=> __( 'Missing Persons News', 'registar-nestalih' ),
 				'add_new'            		=> __( 'Add New News', 'registar-nestalih'),
 				'add_new_item'       		=> __( "Add New News", 'registar-nestalih'),
 				'edit_item'          		=> __( "Edit News", 'registar-nestalih'),
@@ -62,7 +68,7 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 			'public'            	=> true,
 			'exclude_from_search'	=> true,
 			'publicly_queryable'	=> true, 
-			'show_in_nav_menus'   	=> false,
+			'show_in_nav_menus'   	=> true,
 			'show_ui'           	=> true,
 			'query_var'         	=> true,
 			'hierarchical'      	=> false,

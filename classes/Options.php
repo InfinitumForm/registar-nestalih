@@ -14,7 +14,8 @@ if( !class_exists('Registar_Nestalih_Options') ) : class Registar_Nestalih_Optio
 		'news-slug' => 'missing-persons-news',
 		'open-in-new-window' => 0,
 		'enable-notification' => 1,
-		'enable-bootstrap' => 0
+		'enable-bootstrap' => 0,
+		'enable-news' => 0
 	];
 	
 	/*

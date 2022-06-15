@@ -35,8 +35,13 @@ if ( ! defined( 'MISSING_PERSONS_CACHE_IN_MINUTES' ) ) {
 	define( 'MISSING_PERSONS_CACHE_IN_MINUTES', 60 );
 }
 
-// Set filename in /uploads folder
+// Set filename in /uploads folder for missing persons
 if ( ! defined( 'MISSING_PERSONS_IMG_UPLOAD_DIR' ) ) {
 	define( 'MISSING_PERSONS_IMG_UPLOAD_DIR', '/registar-nestalih' );
+}
+
+// Set filename in /uploads folder for news
+if ( ! defined( 'MISSING_PERSONS_NEWS_IMG_UPLOAD_DIR' ) ) {
+	define( 'MISSING_PERSONS_NEWS_IMG_UPLOAD_DIR', '/registar-nestalih-news' );
 }
 
