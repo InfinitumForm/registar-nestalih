@@ -4,7 +4,7 @@ Tags: library, register, missing persons
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,10 @@ If you need to create your own style for this plugin, you need to create new dir
 
 == Changelog ==
 
+= 1.0.2 =
+* Added News functionality
+* Fixed age and API bugs
+
 = 1.0.1 =
 * Improved UX
 * Update translations
@@ -70,9 +74,9 @@ If you need to create your own style for this plugin, you need to create new dir
 
 == Upgrade Notice ==
 
-= 1.0.1 =
-* Improved UX
-* Update translations
+= 1.0.2 =
+* Added News functionality
+* Fixed age and API bugs
 
 == Frequently Asked Questions ==
 

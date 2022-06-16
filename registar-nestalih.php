@@ -3,11 +3,11 @@
  * Plugin Name:       Register of Missing Persons in Serbia
  * Plugin URI:        https://www.nestalisrbija.rs/
  * Description:       Display on your site all missing persons from the central Register of Missing Persons of Serbia.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Ivijan-Stefan Sipić
  * Author URI:        https://infinitumform.com/
  * Requires at least: 5.0
- * Tested up to:      5.9
+ * Tested up to:      6.0
  * Requires PHP:      7.0
  * License:           GPL v2 or later
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

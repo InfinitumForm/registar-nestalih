@@ -48,16 +48,12 @@ if( !class_exists('Registar_Nestalih_Widget_News') ) : class Registar_Nestalih_W
 	}
 	?>
 		<p>
-		<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'registar-nestalih'); ?></label>
-		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'registar-nestalih'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id('numberOfListings'); ?>"><?php _e('Number of posts to show:', 'registar-nestalih'); ?></label>		
-		<select id="<?php echo $this->get_field_id('numberOfListings'); ?>"  name="<?php echo $this->get_field_name('numberOfListings'); ?>">
-			<?php for($x=1;$x<=20;$x++): ?>
-			<option <?php echo $x == $numberOfListings ? 'selected="selected"' : '';?> value="<?php echo $x;?>"><?php echo $x; ?></option>
-			<?php endfor;?>
-		</select>
+			<label for="<?php echo $this->get_field_id('numberOfListings'); ?>"><?php _e('Number of posts to show:', 'registar-nestalih'); ?></label> 
+			<input class="tiny-text" id="<?php echo $this->get_field_id('numberOfListings'); ?>" name="<?php echo $this->get_field_name('numberOfListings'); ?>" type="number" step="1" min="1" value="<?php echo esc_attr( absint($numberOfListings) ); ?>" size="3">
 		</p>		 
 	<?php
 	}
@@ -65,28 +61,9 @@ if( !class_exists('Registar_Nestalih_Widget_News') ) : class Registar_Nestalih_W
 	function display_news($numberOfListings) { //html
 		global $post;
 		add_image_size( 'missing_persons_news_widget_thumb', 85, 85, true );
-		$listings = new WP_Query();
-		$listings->query('post_type=missing-persons-news&posts_per_page=' . $numberOfListings );	
-		if($listings->found_posts > 0) {
-			echo '<ul class="missing-persons-news-widget">';
-				while ($listings->have_posts()) {
-					$listings->the_post();
-					$image = (
-						has_post_thumbnail($listings->ID) 
-						? get_the_post_thumbnail($listings->ID, 'missing_persons_news_widget_thumb') 
-						: '<div class="noThumb"></div>'
-					);
-					$listItem = '<li>' . $image; 
-					$listItem .= '<a href="' . esc_url( get_permalink() ) . '">';
-					$listItem .= esc_html( mb_strimwidth(get_the_title(), 0, 160, '...') ) . '</a>';
-					$listItem .= '<span>' . get_the_date() . '</span></li>'; 
-					echo $listItem; 
-				}
-			echo '</ul>';
-			wp_reset_postdata(); 
-		}else{
-			echo '<p style="padding:25px;">' . __('No News Found', 'registar-nestalih') . '</p>';
-		} 
+		echo Registar_Nestalih_Content::render('widget-recent-news', [
+			'posts_per_page' => $numberOfListings
+		]);
 	}
 	
 } endif;
