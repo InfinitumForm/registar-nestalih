@@ -32,6 +32,11 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 		return self::instance()->__sanitize_query( self::instance()->__get_news( $query ) );
 	}
 	
+	// Get questions and answers 
+	public static function get_qa( array $query = [] ) {
+		return self::instance()->__sanitize_query( self::instance()->__get_qa( $query ) );
+	}
+	
 	// PRIVATE: Get missing persons
 	private function __get_missing( array $query = [] ) {
 		static $__get_missing;
@@ -236,6 +241,94 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 		}
 		
 		return NULL;
+	}
+	
+	// PRIVATE: Get questions and answers
+	private function __get_qa( array $query = [] ) {
+		global $wpdb;
+		
+		if( !function_exists('wp_generate_attachment_metadata') ) {
+			include_once ABSPATH  . 'wp-admin/includes/image.php';
+		}
+		
+		$query_allowed = [
+			'paginate',
+			'per_page',
+			'page',
+			'search',
+			'order',
+			'id'
+		];
+	
+		$query = array_filter($query, function($value, $key) use ($query_allowed){
+			return !empty($value) && in_array($key, $query_allowed) !== false;
+		}, ARRAY_FILTER_USE_BOTH);
+		
+		// Enable development mode
+		if( defined('MISSING_PERSONS_DEV_MODE') && MISSING_PERSONS_DEV_MODE === true ) {
+			$this->url = $this->test_url;
+		}
+
+		// Send remote request
+		$request = wp_remote_get( add_query_arg(
+			$query,
+			"{$this->url}/qa/pitanja_i_saveti"
+		) );
+		
+		// If there is no errors clean it
+		$posts = [];
+		if( !is_wp_error( $request ) ) {
+			if($json = wp_remote_retrieve_body( $request )) {
+				$posts = json_decode($json);
+				// Render
+				if( is_array($posts) ) {
+					foreach($posts as &$post) {
+						
+						$post->id = absint($post->id);
+						$post->question = strip_tags($post->question);
+						$post->answer = wp_kses_post( sanitize_textarea_field($post->answer) );
+						$post->created_at = date(get_option( 'date_format' ), strtotime($post->created_at));
+						if( isset($post->icon) ) {
+							unset($post->icon);
+						}
+						
+						$content = explode("\n", $post->answer);
+						
+						$list_exists = false;
+						foreach($content as $i => &$part) {
+							
+							$part = preg_replace('"<a[^>]+>.+?</a>(*SKIP)(*FAIL)|\b(?:https?)://\S+"', '<a href="$0">$0</a>', $part);
+							$part = preg_replace('"<a[^>]+>.+?</a>(*SKIP)(*FAIL)|\b(\S+@\S+\.\S+)\S+"', '<a href="mailto:$0">$0</a>', $part);
+							
+							if( preg_match_all('/^([1-9]+)\.\s(.*?)(\n|$)/i', $part, $match) ) {
+								if( !$list_exists ) {
+									$list_exists = true;
+									$part = '<ol><li>' . nl2br($match[2][0]) . '</li>';
+								} else {
+									$part = '<li>' . nl2br($match[2][0]) . '</li>';
+								}
+								continue;
+							} else if( $list_exists ) {
+								$list_exists = false;
+								$content[$i-1] = $content[$i-1].'</ol>';
+								continue;
+							} else {
+								$part = '<p>' . nl2br($part) . '</p>';
+							}
+						}
+						
+						if( $list_exists ) {
+							$list_exists = false;
+							$content[count($content)-1] = $content[count($content)-1].'</ol>';
+						}
+						
+						$post->answer = join("\n", $content);
+					}
+				}
+			}
+		}
+		
+		return $posts;
 	}
 	
 	// PRIVATE: Get missing persons

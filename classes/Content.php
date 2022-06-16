@@ -139,6 +139,9 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 				case 'widget-recent-news':
 					Registar_Nestalih_Template::get('widgets/recent-news', $response);
 					break;
+				case 'question-and-answer':
+					Registar_Nestalih_Template::get('question-and-answer', $response);
+					break;
 			}
 		return ob_get_clean();
 	}

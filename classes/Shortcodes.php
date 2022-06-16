@@ -17,6 +17,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	private function __construct() {
 		$this->register( 'registar_nestalih', 'callback__registar_nestalih' );
 		$this->register( 'registar_nestalih_prijava', 'callback__registar_nestalih_prijava' );
+		$this->register( 'registar_nestalih_pitanja_saveti', 'callback__registar_nestalih_pitanja_saveti' );
 	}
 	
 	// Register shortcodes
@@ -95,6 +96,18 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		wp_enqueue_script( 'registar-nestalih' );
 		
 		return Registar_Nestalih_Content::render('report-disappearance');
+	}
+	
+	public function callback__registar_nestalih_pitanja_saveti ($attr, $content='', $tag) {
+		global $wp_query;
+		
+		$attr = shortcode_atts( [
+			
+		], $attr, $tag );
+		
+		$response = Registar_Nestalih_API::get_qa();
+
+		return Registar_Nestalih_Content::render('question-and-answer', $response);
 	}
 	
 } endif;
