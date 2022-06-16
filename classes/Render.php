@@ -284,7 +284,14 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 			return NULL;
 		}
 		
-		return date_i18n( $this->date_format, strtotime($this->datum_rodjenja . ' 01:00:01'));
+		if( strpos($this->datum_rodjenja, '/') !== false ) {
+			$date = explode('/', $this->datum_rodjenja);
+			$date = "{$date[2]}-{$date[1]}-{$date[0]}";
+		} else {
+			$date = $this->datum_rodjenja;
+		}
+		
+		return date_i18n( $this->date_format, strtotime($date . ' 01:00:01'));
 	}
 	
 	// Generate missing date
@@ -293,7 +300,14 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 			return NULL;
 		}
 		
-		return date_i18n( $this->date_format, strtotime($this->datum_nestanka . ' 01:00:01'));
+		if( strpos($this->datum_nestanka, '/') !== false ) {
+			$date = explode('/', $this->datum_nestanka);
+			$date = "{$date[2]}-{$date[1]}-{$date[0]}";
+		} else {
+			$date = $this->datum_nestanka;
+		}
+		
+		return date_i18n( $this->date_format, strtotime($date . ' 01:00:01'));
 	}
 	
 	// Generate reporting date
@@ -302,7 +316,14 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 			return NULL;
 		}
 		
-		return date_i18n( $this->date_format, strtotime($this->datum_prijave . ' 01:00:01'));
+		if( strpos($this->datum_prijave, '/') !== false ) {
+			$date = explode('/', $this->datum_prijave);
+			$date = "{$date[2]}-{$date[1]}-{$date[0]}";
+		} else {
+			$date = $this->datum_prijave;
+		}
+		
+		return date_i18n( $this->date_format, strtotime($date . ' 01:00:01'));
 	}
 	
 	// Send notification message

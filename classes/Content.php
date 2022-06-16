@@ -142,6 +142,9 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 				case 'question-and-answer':
 					Registar_Nestalih_Template::get('question-and-answer', $response);
 					break;
+				case 'amber-alert':
+					Registar_Nestalih_Template::get('amber-alert', $response);
+					break;
 			}
 		return ob_get_clean();
 	}

@@ -18,6 +18,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		$this->register( 'registar_nestalih', 'callback__registar_nestalih' );
 		$this->register( 'registar_nestalih_prijava', 'callback__registar_nestalih_prijava' );
 		$this->register( 'registar_nestalih_pitanja_saveti', 'callback__registar_nestalih_pitanja_saveti' );
+		$this->register( 'registar_nestalih_amber_alert', 'callback__registar_nestalih_amber_alert' );
 	}
 	
 	// Register shortcodes
@@ -98,6 +99,9 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		return Registar_Nestalih_Content::render('report-disappearance');
 	}
 	
+	/*
+	 * Register Nestalih Questons & Answers
+	 */
 	public function callback__registar_nestalih_pitanja_saveti ($attr, $content='', $tag) {
 		global $wp_query;
 		
@@ -106,8 +110,23 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		], $attr, $tag );
 		
 		$response = Registar_Nestalih_API::get_qa();
-
+		
 		return Registar_Nestalih_Content::render('question-and-answer', $response);
+	}
+	
+	/*
+	 * Register Nestalih Amber Alert
+	 */
+	public function callback__registar_nestalih_amber_alert ($attr, $content='', $tag) {
+		global $wp_query;
+		
+		$attr = shortcode_atts( [
+			
+		], $attr, $tag );
+		
+		$response = Registar_Nestalih_API::get_amber_alert();
+		
+		return Registar_Nestalih_Content::render('amber-alert', $response);
 	}
 	
 } endif;
