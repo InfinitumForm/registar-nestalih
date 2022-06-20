@@ -34,13 +34,13 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				'registar-nestalih-highlight',
 				MISSING_PERSONS_URL . '/assets/css/highlight.min.css',
 				1,
-				'1.' . filesize(MISSING_PERSONS_PATH . '/assets/css/highlight.min.css')
+				'1.' . filesize(MISSING_PERSONS_ROOT . '/assets/css/highlight.min.css')
 			);
 			wp_enqueue_style(
 				'registar-nestalih-admin',
 				MISSING_PERSONS_URL . '/assets/css/admin.css',
 				['registar-nestalih-highlight'],
-				'1.' . filesize(MISSING_PERSONS_PATH . '/assets/css/admin.css')
+				'1.' . filesize(MISSING_PERSONS_ROOT . '/assets/css/admin.css')
 			);
 		}
 	}
@@ -173,14 +173,18 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	function register_setting__missing_persons() {
 		$this->add_privacy_policy();
 		if( wp_verify_nonce( ($_POST['__nonce'] ?? NULL), 'registar-nestalih' ) && isset($_POST['registar-nestalih']) ) {
-			if( Registar_Nestalih_Options::set( $_POST['registar-nestalih'] ) ) {			
+			if( Registar_Nestalih_Options::set( $_POST['registar-nestalih'] ) ) {
+				Registar_Nestalih_API::flush_cache();				
 				if( function_exists('flush_rewrite_rules') ) {
-					Registar_Nestalih_API::flush_cache();
 					flush_rewrite_rules();
-					if(Registar_Nestalih_Options::get('enable-news', 0)) {
-						Registar_Nestalih_API::get_news();
-					}
-					wp_safe_redirect( admin_url('/admin.php?page=missing-persons') );
+				}
+				
+				if(Registar_Nestalih_Options::get('enable-news', 0)) {
+					Registar_Nestalih_API::get_news();
+				}
+				
+				if( wp_safe_redirect( admin_url('/admin.php?page=missing-persons') ) ) {
+					exit;
 				}
 			}
 		}
