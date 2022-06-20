@@ -24,6 +24,25 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		add_filter( 'display_post_states' , [&$this, 'display_post_states'], 10, 2 );
 		add_filter( 'plugin_action_links_' . plugin_basename(MISSING_PERSONS_FILE), [&$this, 'plugin_action_links'] );
 		add_filter( 'plugin_row_meta', [&$this, 'cfgp_action_links'], 10, 2 );
+		add_action( 'admin_enqueue_scripts', [&$this, 'admin_enqueue_scripts'], 90, 1 );
+	}
+	
+	// Include admin scripts
+	public function admin_enqueue_scripts ( $page ) {
+		if( 'toplevel_page_missing-persons' === $page ) {
+			wp_enqueue_style(
+				'registar-nestalih-highlight',
+				MISSING_PERSONS_URL . '/assets/css/highlight.min.css',
+				1,
+				'1.' . filesize(MISSING_PERSONS_PATH . '/assets/css/highlight.min.css')
+			);
+			wp_enqueue_style(
+				'registar-nestalih-admin',
+				MISSING_PERSONS_URL . '/assets/css/admin.css',
+				['registar-nestalih-highlight'],
+				'1.' . filesize(MISSING_PERSONS_PATH . '/assets/css/admin.css')
+			);
+		}
 	}
 	
 	// Admin footer scripts
@@ -176,44 +195,29 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		$options = get_option( 'registar_nestalih' );
 		
 		add_action('admin_footer', function(){ ?>
-<style>
-	#registar-nestalih-admin #contributors .contributor a,
-	#registar-nestalih-admin #contributors .contributor a *{
-		text-decoration:none !important;
-		text-align:center;
-		border:none;
-		display:block;
-	}
-
-	#registar-nestalih-admin #contributors .inside.flex{
-		display: -ms-flexbox;
-		display: flex;
-		-ms-flex-wrap: wrap;
-		flex-wrap: wrap;
-	}
-
-	#registar-nestalih-admin #contributors .inside.flex .contributor{
-		flex: 0 0 50%;
-		max-width: 50%;
-		margin:24px 0 0 0;
-	}
-
-	#registar-nestalih-admin #contributors .contributor+.contributor{
+<script>
+( function($) {
+	$('.wp-tab-bar a').click(function(event){
+		event.preventDefault();
 		
-	}
+		// Limit effect to the container element.
+		var context = $(this).closest('.wp-tab-bar').parent();
+		$('.wp-tab-bar a', context).removeClass('wp-tab-active');
+		$(this).addClass('wp-tab-active');
+		$('.wp-tab-panel', context).hide();
+		$( $(this).attr('href'), context ).show();
+	});
 
-	#registar-nestalih-admin #contributors .contributor h3{
-		padding:0;
-		margin:0;
-		font-size: 0.9em;
-	}
-
-	#registar-nestalih-admin #contributors .contributor img{
-		dsplay:block;
-		margin:0 auto;
-		max-width:100%;
-	}
-</style>
+	// Make setting wp-tab-active optional.
+	$('.wp-tab-bar').each(function(){
+		if ( $('.wp-tab-active', this).length ) {
+			$('.wp-tab-active', this).click();
+		} else {
+			$('a', this).first().click();
+		}
+	});
+}(jQuery || window.jQuery));
+</script>
 		<?php });
 	?>
 <div class="wrap" id="registar-nestalih-admin">
@@ -221,6 +225,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	<hr>
 	<div id="poststuff" class="metabox-holder has-right-sidebar">
 		<div class="inner-sidebar" id="<?php echo 'registar-nestalih'; ?>-settings-sidebar">
+		
 			<div id="side-sortables" class="meta-box-sortables ui-sortable">
 				
 				<div class="postbox" id="cnzd">
@@ -277,130 +282,189 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	 
 		<div id="post-body">
 			<div id="post-body-content">
-				<form method="post">
-					<h3><?php _e('Cache', 'registar-nestalih'); ?></h3>
-					<p><?php _e('If you need to clear your plugin\'s cache, you have the option to use the following URL:', 'registar-nestalih'); ?></p>
-					<p><code><?php echo home_url('/rnp-notification/' . Registar_Nestalih_U::key()); ?></code></p>
-					
-					<h3><?php _e('Missing Persons Settings', 'registar-nestalih'); ?></h3>
-					<p><?php _e('This option sets the API and shortcode for missing persons.', 'registar-nestalih'); ?></p>
-					<table class="form-table" role="presentation">
-						<tr>
-							<th scope="row"><?php _e('Missing Persons Page', 'registar-nestalih'); ?></th>
-							<td>
-								<select name="registar-nestalih[main-page]">
-									<option value="">- <?php _e('Select a Page', 'registar-nestalih'); ?> -</option>
-									<?php foreach( $pages as $page ) { ?>
-										<option value="<?php 
-											echo absint($page->ID); 
-										?>" <?php 
-											selected( ($options['main-page'] ?? NULL), $page->ID ); 
-										?>><?php 
-											echo esc_html($page->post_title); 
-										?></option>
-									<?php }; ?>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row"><?php _e('Pagination slug', 'registar-nestalih'); ?></th>
-							<td>
-								<input type="text" name="registar-nestalih[pagination-slug]" value="<?php echo esc_attr( ($options['pagination-slug'] ?? 'page') ); ?>" placeholder="page" />
-							</td>
-						</tr>
-						<tr>
-							<th scope="row"><?php _e('Search slug', 'registar-nestalih'); ?></th>
-							<td>
-								<input type="text" name="registar-nestalih[search-slug]" value="<?php echo esc_attr( ($options['search-slug'] ?? 'search') ); ?>" placeholder="search" />
-							</td>
-						</tr>
-						<tr>
-							<th scope="row"><?php _e('Person slug', 'registar-nestalih'); ?></th>
-							<td>
-								<input type="text" name="registar-nestalih[person-slug]" value="<?php echo esc_attr( ($options['person-slug'] ?? 'person') ); ?>" placeholder="person" />
-							</td>
-						</tr>
-						<tr>
-							<th scope="row"><?php _e('Open links in new window', 'registar-nestalih'); ?></th>
-							<td>
-								<label for="open-in-new-window-0">
-									<input type="radio" id="open-in-new-window-0" name="registar-nestalih[open-in-new-window]" value="1" <?php 
-										checked( ($options['open-in-new-window'] ?? 0), 1 ); 
-									?> /> <?php _e('Yes', 'registar-nestalih'); ?>
-								</label>&nbsp;&nbsp;&nbsp;
-								<label for="open-in-new-window-1">
-									<input type="radio" id="open-in-new-window-1" name="registar-nestalih[open-in-new-window]" value="0" <?php 
-										checked( ($options['open-in-new-window'] ?? 0), 0 ); 
-									?> /> <?php _e('No', 'registar-nestalih'); ?>
-								</label>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row"><?php _e('Enable sending information about the person', 'registar-nestalih'); ?></th>
-							<td>
-								<label for="enable-notification-0">
-									<input type="radio" id="enable-notification-0" name="registar-nestalih[enable-notification]" value="1" <?php 
-										checked( ($options['enable-notification'] ?? 0), 1 ); 
-									?> /> <?php _e('Yes', 'registar-nestalih'); ?>
-								</label>&nbsp;&nbsp;&nbsp;
-								<label for="enable-notification-1">
-									<input type="radio" id="enable-notification-1" name="registar-nestalih[enable-notification]" value="0" <?php 
-										checked( ($options['enable-notification'] ?? 0), 0 ); 
-									?> /> <?php _e('No', 'registar-nestalih'); ?>
-								</label>
-							</td>
-						</tr>
-					</table>
-					<hr>
-					<h3><?php _e('News settings', 'registar-nestalih'); ?></h3>
-					<p><?php _e('If you want, you have the opportunity to download the latest news from our application and display it on your site as a special post format intended for this purpose.', 'registar-nestalih'); ?></p>
-					<table class="form-table" role="utility">
-						<tr>
-							<th scope="row"><?php _e('Enable News', 'registar-nestalih'); ?></th>
-							<td>
-								<label for="enable-news-0">
-									<input type="radio" id="enable-news-0" name="registar-nestalih[enable-news]" value="1" <?php 
-										checked( ($options['enable-news'] ?? 0), 1 ); 
-									?> /> <?php _e('Yes', 'registar-nestalih'); ?>
-								</label>&nbsp;&nbsp;&nbsp;
-								<label for="enable-news-1">
-									<input type="radio" id="enable-news-1" name="registar-nestalih[enable-news]" value="0" <?php 
-										checked( ($options['enable-news'] ?? 0), 0 ); 
-									?> /> <?php _e('No', 'registar-nestalih'); ?>
-								</label>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row"><?php _e('News slug', 'registar-nestalih'); ?></th>
-							<td>
-								<input type="text" name="registar-nestalih[news-slug]" value="<?php echo esc_attr( ($options['news-slug'] ?? 'missing-persons-news') ); ?>" placeholder="missing-persons-news" />
-							</td>
-						</tr>
-					</table>
-					<hr>
-					<h3><?php _e('Utility', 'registar-nestalih'); ?></h3>
-					<p><?php _e('Small but useful options.', 'registar-nestalih'); ?></p>
-					<table class="form-table" role="utility">
-						<tr>
-							<th scope="row"><?php _e('CSS support', 'registar-nestalih'); ?></th>
-							<td>
-								<label for="enable-bootstrap-0">
-									<input type="radio" id="enable-bootstrap-0" name="registar-nestalih[enable-bootstrap]" value="1" <?php 
-										checked( ($options['enable-bootstrap'] ?? 0), 1 ); 
-									?> /> <?php _e('Yes', 'registar-nestalih'); ?>
-								</label>&nbsp;&nbsp;&nbsp;
-								<label for="enable-bootstrap-1">
-									<input type="radio" id="enable-bootstrap-1" name="registar-nestalih[enable-bootstrap]" value="0" <?php 
-										checked( ($options['enable-bootstrap'] ?? 0), 0 ); 
-									?> /> <?php _e('No', 'registar-nestalih'); ?>
-								</label>
-								<p class="description"><?php _e('If you activate this option, we will insert the basic Twitter Bootstrap CSS to style the tabs and columns while the rest of the design will be intact.', 'registar-nestalih'); ?></p>
-							</td>
-						</tr>
-					</table>
-					<?php submit_button( __('Save', 'registar-nestalih') ); ?>
-					<input type="hidden" name="__nonce" value="<?php echo esc_attr( wp_create_nonce('registar-nestalih') ); ?>" />
-				</form>
+
+<h2 class="wp-tab-bar">
+	<a href="#settings" class="wp-tab-active"><?php _e('Settings', 'registar-nestalih'); ?></a>
+	<a href="#shortcodes"><?php _e('Available Shortcodes', 'registar-nestalih'); ?></a>
+</h2>
+
+<!-- Settings -->
+<div class="wp-tab-panel" id="settings">
+	<form method="post">				
+		<h3><?php _e('Cache', 'registar-nestalih'); ?></h3>
+		<p><?php _e('If you need to clear your plugin\'s cache, you have the option to use the following URL:', 'registar-nestalih'); ?></p>
+		<p><code><?php echo home_url('/rnp-notification/' . Registar_Nestalih_U::key()); ?></code></p>
+		
+		<h3><?php _e('Missing Persons Settings', 'registar-nestalih'); ?></h3>
+		<p><?php _e('This option sets the API and shortcode for missing persons.', 'registar-nestalih'); ?></p>
+		<table class="form-table" role="presentation">
+			<tr>
+				<th scope="row"><?php _e('Missing Persons Page', 'registar-nestalih'); ?></th>
+				<td>
+					<select name="registar-nestalih[main-page]">
+						<option value="">- <?php _e('Select a Page', 'registar-nestalih'); ?> -</option>
+						<?php foreach( $pages as $page ) { ?>
+							<option value="<?php 
+								echo absint($page->ID); 
+							?>" <?php 
+								selected( ($options['main-page'] ?? NULL), $page->ID ); 
+							?>><?php 
+								echo esc_html($page->post_title); 
+							?></option>
+						<?php }; ?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e('Pagination slug', 'registar-nestalih'); ?></th>
+				<td>
+					<input type="text" name="registar-nestalih[pagination-slug]" value="<?php echo esc_attr( ($options['pagination-slug'] ?? 'page') ); ?>" placeholder="page" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e('Search slug', 'registar-nestalih'); ?></th>
+				<td>
+					<input type="text" name="registar-nestalih[search-slug]" value="<?php echo esc_attr( ($options['search-slug'] ?? 'search') ); ?>" placeholder="search" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e('Person slug', 'registar-nestalih'); ?></th>
+				<td>
+					<input type="text" name="registar-nestalih[person-slug]" value="<?php echo esc_attr( ($options['person-slug'] ?? 'person') ); ?>" placeholder="person" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e('Open links in new window', 'registar-nestalih'); ?></th>
+				<td>
+					<label for="open-in-new-window-0">
+						<input type="radio" id="open-in-new-window-0" name="registar-nestalih[open-in-new-window]" value="1" <?php 
+							checked( ($options['open-in-new-window'] ?? 0), 1 ); 
+						?> /> <?php _e('Yes', 'registar-nestalih'); ?>
+					</label>&nbsp;&nbsp;&nbsp;
+					<label for="open-in-new-window-1">
+						<input type="radio" id="open-in-new-window-1" name="registar-nestalih[open-in-new-window]" value="0" <?php 
+							checked( ($options['open-in-new-window'] ?? 0), 0 ); 
+						?> /> <?php _e('No', 'registar-nestalih'); ?>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e('Enable sending information about the person', 'registar-nestalih'); ?></th>
+				<td>
+					<label for="enable-notification-0">
+						<input type="radio" id="enable-notification-0" name="registar-nestalih[enable-notification]" value="1" <?php 
+							checked( ($options['enable-notification'] ?? 0), 1 ); 
+						?> /> <?php _e('Yes', 'registar-nestalih'); ?>
+					</label>&nbsp;&nbsp;&nbsp;
+					<label for="enable-notification-1">
+						<input type="radio" id="enable-notification-1" name="registar-nestalih[enable-notification]" value="0" <?php 
+							checked( ($options['enable-notification'] ?? 0), 0 ); 
+						?> /> <?php _e('No', 'registar-nestalih'); ?>
+					</label>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<h3><?php _e('News settings', 'registar-nestalih'); ?></h3>
+		<p><?php _e('If you want, you have the opportunity to download the latest news from our application and display it on your site as a special post format intended for this purpose.', 'registar-nestalih'); ?></p>
+		<table class="form-table" role="utility">
+			<tr>
+				<th scope="row"><?php _e('Enable News', 'registar-nestalih'); ?></th>
+				<td>
+					<label for="enable-news-0">
+						<input type="radio" id="enable-news-0" name="registar-nestalih[enable-news]" value="1" <?php 
+							checked( ($options['enable-news'] ?? 0), 1 ); 
+						?> /> <?php _e('Yes', 'registar-nestalih'); ?>
+					</label>&nbsp;&nbsp;&nbsp;
+					<label for="enable-news-1">
+						<input type="radio" id="enable-news-1" name="registar-nestalih[enable-news]" value="0" <?php 
+							checked( ($options['enable-news'] ?? 0), 0 ); 
+						?> /> <?php _e('No', 'registar-nestalih'); ?>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e('News slug', 'registar-nestalih'); ?></th>
+				<td>
+					<input type="text" name="registar-nestalih[news-slug]" value="<?php echo esc_attr( ($options['news-slug'] ?? 'missing-persons-news') ); ?>" placeholder="missing-persons-news" />
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<h3><?php _e('Utility', 'registar-nestalih'); ?></h3>
+		<p><?php _e('Small but useful options.', 'registar-nestalih'); ?></p>
+		<table class="form-table" role="utility">
+			<tr>
+				<th scope="row"><?php _e('CSS support', 'registar-nestalih'); ?></th>
+				<td>
+					<label for="enable-bootstrap-0">
+						<input type="radio" id="enable-bootstrap-0" name="registar-nestalih[enable-bootstrap]" value="1" <?php 
+							checked( ($options['enable-bootstrap'] ?? 0), 1 ); 
+						?> /> <?php _e('Yes', 'registar-nestalih'); ?>
+					</label>&nbsp;&nbsp;&nbsp;
+					<label for="enable-bootstrap-1">
+						<input type="radio" id="enable-bootstrap-1" name="registar-nestalih[enable-bootstrap]" value="0" <?php 
+							checked( ($options['enable-bootstrap'] ?? 0), 0 ); 
+						?> /> <?php _e('No', 'registar-nestalih'); ?>
+					</label>
+					<p class="description"><?php _e('If you activate this option, we will insert the basic Twitter Bootstrap CSS to style the tabs and columns while the rest of the design will be intact.', 'registar-nestalih'); ?></p>
+				</td>
+			</tr>
+		</table>
+		<?php submit_button( __('Save', 'registar-nestalih') ); ?>
+		<input type="hidden" name="__nonce" value="<?php echo esc_attr( wp_create_nonce('registar-nestalih') ); ?>" />
+	</form>
+</div>
+<!-- End Settings -->
+
+<!-- Shortcodes -->
+<div class="wp-tab-panel" id="shortcodes" style="display: none;">
+	<h3><span><?php _e('Register of Missing Persons', 'registar-nestalih'); ?></span></h3>
+	<p><?php _e('Print the advanced search page and view all missing persons from the global database.', 'registar-nestalih'); ?></p>
+	<p><code class="lang-txt hljs plaintext">[<span class="hljs-title">registar_nestalih</span>]</code></p>
+	<strong><?php _e('Optional shortcodes:', 'registar-nestalih'); ?></strong>
+	<ul>
+		<li><code>per_page</code> - <?php _e('(optional) number of items per page', 'registar-nestalih'); ?></li>
+		<li><code>page</code> - <?php _e('(optional) page number', 'registar-nestalih'); ?></li>
+		<li><code>search</code> - <?php _e('(optional) search terms', 'registar-nestalih'); ?></li>
+		<?php if( defined('MISSING_PERSONS_GOD_MODE') && MISSING_PERSONS_GOD_MODE ) : ?>
+			<li><code>order</code> - <?php _e('(optional) order by, (use a minus sign for DESC before the parameter)', 'registar-nestalih'); ?></li>
+			<li><code>person</code> - <?php _e('(optional) person ID for individual missing person', 'registar-nestalih'); ?></li>
+		<?php endif; ?>
+	</ul>
+	
+	<h3><span><?php _e('Report of a Missing Person', 'registar-nestalih'); ?></span></h3>
+	<p><?php _e('Prints the missing person registration form in the central register.', 'registar-nestalih'); ?></p>
+	<p><code class="lang-txt hljs plaintext">[<span class="hljs-title">registar_nestalih_prijava</span>]</code></p>
+	
+	<h3><span><?php _e('Questions and Answers from the Register of Missing Persons Website', 'registar-nestalih'); ?></span></h3>
+	<p><?php _e('Displays questions and answers from the missing persons site.', 'registar-nestalih'); ?></p>
+	<p><code class="lang-txt hljs plaintext">[<span class="hljs-title">registar_nestalih_pitanja_saveti</span>]</code></p>
+	<strong><?php _e('Optional shortcodes:', 'registar-nestalih'); ?></strong>
+	<ul>
+		<li><code>per_page</code> - <?php _e('(optional) number of items per page', 'registar-nestalih'); ?></li>
+		<li><code>page</code> - <?php _e('(optional) page number', 'registar-nestalih'); ?></li>
+		<li><code>search</code> - <?php _e('(optional) search terms', 'registar-nestalih'); ?></li>
+		<?php if( defined('MISSING_PERSONS_GOD_MODE') && MISSING_PERSONS_GOD_MODE ) : ?>
+			<li><code>order</code> - <?php _e('(optional) order by, (use a minus sign for DESC before the parameter)', 'registar-nestalih'); ?></li>
+		<?php endif; ?>
+	</ul>
+	
+	<h3><span><?php _e('Amber Alert information from the Missing Persons Register website.', 'registar-nestalih'); ?></span></h3>
+	<p><?php _e('Displays amber alert informations from the missing persons site.', 'registar-nestalih'); ?></p>
+	<p><code class="lang-txt hljs plaintext">[<span class="hljs-title">registar_nestalih_amber_alert</span>]</code></p>
+	<strong><?php _e('Optional shortcodes:', 'registar-nestalih'); ?></strong>
+	<ul>
+		<li><code>per_page</code> - <?php _e('(optional) number of items per page', 'registar-nestalih'); ?></li>
+		<li><code>page</code> - <?php _e('(optional) page number', 'registar-nestalih'); ?></li>
+		<li><code>search</code> - <?php _e('(optional) search terms', 'registar-nestalih'); ?></li>
+		<?php if( defined('MISSING_PERSONS_GOD_MODE') && MISSING_PERSONS_GOD_MODE ) : ?>
+			<li><code>order</code> - <?php _e('(optional) order by, (use a minus sign for DESC before the parameter)', 'registar-nestalih'); ?></li>
+		<?php endif; ?>
+	</ul>
+</div>
+<!-- End Shortcodes -->
+
 			</div>
 		</div>
 		<br class="clear">

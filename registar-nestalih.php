@@ -51,6 +51,11 @@ if ( ! defined( 'MISSING_PERSONS_ROOT' ) ) {
 	define( 'MISSING_PERSONS_ROOT', rtrim(plugin_dir_path( MISSING_PERSONS_FILE ), '\\/') );
 }
 
+// Define plugin url (changes not allowed)
+if ( ! defined( 'MISSING_PERSONS_URL' ) ) {
+	define( 'MISSING_PERSONS_URL', rtrim(plugin_dir_url( MISSING_PERSONS_FILE ), '\\/') );
+}
+
 // Load main constants
 include_once MISSING_PERSONS_ROOT . '/constants.php';
 

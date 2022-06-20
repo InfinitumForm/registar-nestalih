@@ -82,8 +82,6 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	 * Register Nestalih Prijava
 	 */
 	public function callback__registar_nestalih_prijava	($attr, $content='', $tag) {
-		global $wp_query;
-		
 		$attr = shortcode_atts( [
 			
 		], $attr, $tag );
@@ -102,12 +100,24 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	/*
 	 * Register Nestalih Questons & Answers
 	 */
-	public function callback__registar_nestalih_pitanja_saveti ($attr, $content='', $tag) {
-		global $wp_query;
+	public function callback__registar_nestalih_pitanja_saveti ($attr, $content='', $tag) {	
+		$attr = array_filter( shortcode_atts( [
+			'per_page'	=> NULL,
+			'page'		=> NULL,
+			'search'	=> NULL,
+			'order'		=> NULL
+		], $attr, $tag ) );
 		
-		$attr = shortcode_atts( [
-			
-		], $attr, $tag );
+		$query = [];
+		if( $attr['per_page'] ?? NULL ) {
+			$query = [
+				'paginate'	=> 'true',
+				'per_page'	=> absint($attr['per_page']),
+				'page'		=> absint($attr['page']),
+				'search'	=> sanitize_text_field($attr['search']),
+				'order'		=> sanitize_text_field($attr['order'])
+			];
+		}
 		
 		$response = Registar_Nestalih_API::get_qa();
 		
@@ -118,13 +128,25 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	 * Register Nestalih Amber Alert
 	 */
 	public function callback__registar_nestalih_amber_alert ($attr, $content='', $tag) {
-		global $wp_query;
+		$attr = array_filter( shortcode_atts( [
+			'per_page'	=> NULL,
+			'page'		=> NULL,
+			'search'	=> NULL,
+			'order'		=> NULL
+		], $attr, $tag ) );
 		
-		$attr = shortcode_atts( [
-			
-		], $attr, $tag );
+		$query = [];
+		if( $attr['per_page'] ?? NULL ) {
+			$query = [
+				'paginate'	=> 'true',
+				'per_page'	=> absint($attr['per_page']),
+				'page'		=> absint($attr['page']),
+				'search'	=> sanitize_text_field($attr['search']),
+				'order'		=> sanitize_text_field($attr['order'])
+			];
+		}
 		
-		$response = Registar_Nestalih_API::get_amber_alert();
+		$response = Registar_Nestalih_API::get_amber_alert($query);
 		
 		return Registar_Nestalih_Content::render('amber-alert', $response);
 	}

@@ -1,0 +1,70 @@
+#registar-nestalih-admin #contributors .contributor a,
+#registar-nestalih-admin #contributors .contributor a *{
+	text-decoration:none !important;
+	text-align:center;
+	border:none;
+	display:block;
+}
+
+#registar-nestalih-admin #contributors .inside.flex{
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+#registar-nestalih-admin #contributors .inside.flex .contributor{
+	flex: 0 0 50%;
+	max-width: 50%;
+	margin:24px 0 0 0;
+}
+
+#registar-nestalih-admin #contributors .contributor+.contributor{
+	
+}
+
+#registar-nestalih-admin #contributors .contributor h3{
+	padding:0;
+	margin:0;
+	font-size: 0.9em;
+}
+
+#registar-nestalih-admin #contributors .contributor img{
+	dsplay:block;
+	margin:0 auto;
+	max-width:100%;
+}
+
+#registar-nestalih-admin #post-body-content .wp-tab-panel {
+	max-height: none;
+	overflow: inherit;
+}
+
+#registar-nestalih-admin #post-body-content .wp-tab-bar{
+	margin-top: 0;
+	margin-bottom: 1px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#registar-nestalih-admin #post-body-content .wp-tab-bar > a	{
+	padding: 10px 15px 10px;
+	outline: none;
+	font-weight:400;
+}
+
+#registar-nestalih-admin #post-body-content .wp-tab-bar > a.wp-tab-active {
+	font-weight:600;
+}
+
+#registar-nestalih-admin #post-body-content .wp-tab-bar > a:focus,
+#registar-nestalih-admin #post-body-content .wp-tab-bar > a:active {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+#registar-nestalih-admin #post-body-content #shortcodes p+h3,
+#registar-nestalih-admin #post-body-content #shortcodes ul+h3,
+#registar-nestalih-admin #post-body-content #shortcodes ol+h3 {
+	margin-top:32px;
+}
