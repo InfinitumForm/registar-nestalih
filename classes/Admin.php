@@ -78,28 +78,25 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	public function cfgp_action_links( $links, $file )
 	{
 		if( plugin_basename( MISSING_PERSONS_FILE ) == $file )
-		{
-			$row_meta = array(
-				'registar_nestalih_donate' => sprintf(
-					'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-donation">%s</a>',
-					esc_url( 'https://donacije.cnzd.rs/proizvod/donirajte/' ),
-					esc_html__( 'Donate', 'registar-nestalih' )
-				),
-				'registar_nestalih_foundation'	=> sprintf(
-					'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-foundation">%s</a>',
-					esc_url( 'https://cnzd.rs/' ),
-					esc_html__( 'Foundation', 'registar-nestalih' )
-				),
-				'registar_nestalih_vote'	=> sprintf(
-					'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-vote" title="%s"><span style="color:#ffa000; font-size: 15px; bottom: -1px; position: relative;">&#9733;&#9733;&#9733;&#9733;&#9733;</span> %s</a>',
-					esc_url( 'https://wordpress.org/support/plugin/registar-nestalih/reviews/?filter=5' ),
-					esc_attr__( 'Give us five if you like!', 'registar-nestalih' ),
-					esc_html__( '5 Stars?', 'registar-nestalih' )
-				)
+		{			
+			$links['registar_nestalih_donate'] = sprintf(
+				'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-donation">%s</a>',
+				esc_url( 'https://donacije.cnzd.rs/proizvod/donirajte/' ),
+				esc_html__( 'Donate', 'registar-nestalih' )
 			);
-
-			$links = array_merge( $links, $row_meta );
+			$links['registar_nestalih_foundation'] = sprintf(
+				'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-foundation">%s</a>',
+				esc_url( 'https://cnzd.rs/' ),
+				esc_html__( 'Foundation', 'registar-nestalih' )
+			);
+			$links['registar_nestalih_vote'] = sprintf(
+				'<a href="%s" target="_blank" rel="noopener noreferrer" class="registar-nestalih-plugins-action-vote" title="%s"><span style="color:#ffa000; font-size: 15px; bottom: -1px; position: relative;">&#9733;&#9733;&#9733;&#9733;&#9733;</span> %s</a>',
+				esc_url( 'https://wordpress.org/support/plugin/registar-nestalih/reviews/?filter=5' ).'#new-post',
+				esc_attr__( 'Give us five if you like!', 'registar-nestalih' ),
+				esc_html__( '5 Stars?', 'registar-nestalih' )
+			);
 		}
+		
 		return $links;
 	}
 	
