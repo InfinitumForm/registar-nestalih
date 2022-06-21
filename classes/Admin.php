@@ -154,19 +154,53 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			return $wp_admin_bar;
 		}
 		
-        $wp_admin_bar->add_node( [
-            'id' => 'registar-nestalih-clear-cache', // Set the ID of your custom link
-            'title' => __( 'Clear MP Cache', 'registar-nestalih' ), // Set the title of your link
-            'href' => add_query_arg([
+		$wp_admin_bar->add_node(array(
+			'id' => 'missing-persons',
+			'title' => __( 'Missing Persons', 'registar-nestalih' ), 
+			'href' => esc_url(admin_url('admin.php?page=missing-persons')), 
+			'meta' => array(
+				'class' => 'missing-persons',
+				'title' => __( 'Missing Persons', 'registar-nestalih' ),
+			)
+		));
+		
+		
+		
+		$wp_admin_bar->add_menu(array(
+			'parent' => 'missing-persons',
+			'id' => 'missing-persons-link',
+			'title' => __( 'Missing Persons', 'registar-nestalih' ), 
+			'href' => esc_url(admin_url('admin.php?page=missing-persons')), 
+			'meta' => array(
+				'class' => 'missing-persons-link',
+				'title' => __( 'Missing Persons', 'registar-nestalih' ),
+			)
+		));
+		
+		$wp_admin_bar->add_menu(array(
+			'parent' => 'missing-persons',
+			'id' => 'missing-persons-news',
+			'title' => __( 'News', 'registar-nestalih' ), 
+			'href' => esc_url(admin_url('edit.php?post_type=missing-persons-news')), 
+			'meta' => array(
+				'class' => 'missing-persons-news',
+				'title' => __( 'News', 'registar-nestalih' ),
+			)
+		));
+		
+		$wp_admin_bar->add_menu(array(
+			'parent' => 'missing-persons',
+			'id' => 'registar-nestalih-clear-cache',
+			'title' => __( 'Clear Cache', 'registar-nestalih' ), 
+			'href' => esc_url(add_query_arg([
 				'registar_nestalih_clear_cache' => 'true',
 				'registar_nestalih_cache_nonce' => wp_create_nonce('registar-nestalih-clear-cache')
-			]), // Define the destination of your link
-            'meta' => [
-                'target' => '_self', // Change to _blank for launching in a new window
-                'class' => 'registar-nestalih-clear-cache-link', // Add a class to your link
-                'title' => __( 'Clear Cache of Missing Persons', 'registar-nestalih' ) // Add a title to your link
-			]
-        ] );
+			])), 
+			'meta' => array(
+				'class' => 'registar-nestalih-clear-cache',
+				'title' => __( 'Clear Cache of Missing Persons', 'registar-nestalih' ),
+			)
+		));
 	}
 	
 	// Sanitize fields
@@ -225,7 +259,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		<?php });
 	?>
 <div class="wrap" id="registar-nestalih-admin">
-	<a href="https://www.nestalisrbija.rs/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/registar-nestalih-lica-srbije.png')); ?>" alt="<?php esc_attr_e('Register of Missing Persons of Serbia', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:300px;" ></a>
+	<a href="https://www.nestalisrbija.rs/" target="_blank" id="logo"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/registar-nestalih-lica-srbije.png')); ?>" alt="<?php esc_attr_e('Register of Missing Persons of Serbia', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:300px;" ></a>
 	<hr>
 	<div id="poststuff" class="metabox-holder has-right-sidebar">
 		<div class="inner-sidebar" id="<?php echo 'registar-nestalih'; ?>-settings-sidebar">

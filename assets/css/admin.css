@@ -6,6 +6,10 @@
 	display:block;
 }
 
+#registar-nestalih-admin #logo {
+	display:table;
+}
+
 #registar-nestalih-admin #contributors .inside.flex{
 	display: -ms-flexbox;
 	display: flex;
