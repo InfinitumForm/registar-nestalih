@@ -174,16 +174,18 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			)
 		));
 		
-		$wp_admin_bar->add_menu(array(
-			'parent' => 'missing-persons',
-			'id' => 'missing-persons-news',
-			'title' => __( 'News', 'registar-nestalih' ), 
-			'href' => esc_url(admin_url('edit.php?post_type=missing-persons-news')), 
-			'meta' => array(
-				'class' => 'missing-persons-news',
-				'title' => __( 'News', 'registar-nestalih' ),
-			)
-		));
+		if(Registar_Nestalih_Options::get('enable-news', 0)) {
+			$wp_admin_bar->add_menu(array(
+				'parent' => 'missing-persons',
+				'id' => 'missing-persons-news',
+				'title' => __( 'News', 'registar-nestalih' ), 
+				'href' => esc_url(admin_url('edit.php?post_type=missing-persons-news')), 
+				'meta' => array(
+					'class' => 'missing-persons-news',
+					'title' => __( 'News', 'registar-nestalih' ),
+				)
+			));
+		}
 		
 		$wp_admin_bar->add_menu(array(
 			'parent' => 'missing-persons',
