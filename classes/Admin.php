@@ -34,13 +34,13 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				'registar-nestalih-highlight',
 				MISSING_PERSONS_URL . '/assets/css/highlight.min.css',
 				1,
-				'1.' . filesize(MISSING_PERSONS_ROOT . '/assets/css/highlight.min.css')
+				(string)MISSING_PERSONS_VERSION
 			);
 			wp_enqueue_style(
 				'registar-nestalih-admin',
 				MISSING_PERSONS_URL . '/assets/css/admin.css',
 				['registar-nestalih-highlight'],
-				'1.' . filesize(MISSING_PERSONS_ROOT . '/assets/css/admin.css')
+				(string)MISSING_PERSONS_VERSION
 			);
 		}
 	}

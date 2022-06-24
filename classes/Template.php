@@ -80,16 +80,16 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 		$js_url = self::url('assets/js/script.js');	
 		$js_path = self::path('assets/js/script.js');
 		
-		wp_register_style( 'registar-nestalih', $css_url, 1, '1.' . absint(filesize($css_path)) );
+		wp_register_style( 'registar-nestalih', $css_url, 1, (string)MISSING_PERSONS_VERSION );
 		
 		if( Registar_Nestalih_Options::get('enable-bootstrap', 0) ) {
-			wp_register_style( 'registar-nestalih-bootstrap', $bootstrap_css_url, 1, '1.' . absint(filesize($bootstrap_css_path)) );
-			wp_register_style( 'registar-nestalih', $css_url, ['registar-nestalih-bootstrap'], '1.' . absint(filesize($css_path)) );
+			wp_register_style( 'registar-nestalih-bootstrap', $bootstrap_css_url, 1, (string)MISSING_PERSONS_VERSION );
+			wp_register_style( 'registar-nestalih', $css_url, ['registar-nestalih-bootstrap'], (string)MISSING_PERSONS_VERSION );
 		} else {
-			wp_register_style( 'registar-nestalih', $css_url, 1, '1.' . absint(filesize($css_path)) );
+			wp_register_style( 'registar-nestalih', $css_url, 1, (string)MISSING_PERSONS_VERSION );
 		}
 		
-		wp_register_script( 'registar-nestalih', $js_url, ['jquery'], '1.' . absint(filesize($js_path)), true );
+		wp_register_script( 'registar-nestalih', $js_url, ['jquery'], (string)MISSING_PERSONS_VERSION, true );
 		wp_localize_script( 'registar-nestalih', 'registar_nestalih', [
 			'ajax' => admin_url('/admin-ajax.php'),
 			'label' => [

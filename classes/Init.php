@@ -59,7 +59,9 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 			Registar_Nestalih_Cache::table_install();
 			// Update database version
 			update_option(self::TEXTDOMAIN . '-db-version', MISSING_PERSONS_DB_VERSION, false);
-			
+			// Notify
+			Registar_Nestalih_Statistic::activation();
+			// Refresh
 			$url = remove_query_arg( 'registar_nestalih_db_update' );
 			$url = remove_query_arg( 'registar_nestalih_nonce', $url );
 			if( wp_safe_redirect($url) ) {
@@ -83,6 +85,10 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		
 		// Include files
 		$register_classes = apply_filters( 'registar_nestalih_classes', [
+			$root . '/Statistic.php' => [
+				'class' => 'Registar_Nestalih_Statistic',
+				'load' => false
+			],
 			$root . '/Cache.php' => [
 				'class' => 'Registar_Nestalih_Cache',
 				'load' => true
@@ -211,6 +217,9 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		if( function_exists('flush_rewrite_rules') ) {
 			flush_rewrite_rules();
 		}
+		
+		// Notify
+		Registar_Nestalih_Statistic::activation();
 	}
 	
 	// On plugin Dectivation
@@ -257,6 +266,9 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		if( file_exists($upload_dir['basedir'] . $folder) ) {
 			Registar_Nestalih_U::rmdir($upload_dir['basedir'] . $folder);
 		}
+		
+		// Notify
+		Registar_Nestalih_Statistic::deactivation();
 	}
 	
 	// Register site translations
