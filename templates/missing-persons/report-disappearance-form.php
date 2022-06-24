@@ -150,15 +150,8 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 		
 		<div class="col col-12 col-sm-12">
 			<div class="form-group">
-				<label for="report-missing-person-additional-information"><?php _e('Additional information', 'registar-nestalih'); ?></label>
-				<textarea class="form-control" name="report-missing-person[additional_information]" id="report-missing-person-additional-information" tabindex="17" rows="6"><?php echo wp_kses_post($additional_information); ?></textarea>
-			</div>
-		</div>
-		
-		<div class="col col-12 col-sm-12">
-			<div class="form-group">
-				<label for="report-missing-person-disappearance-description"><?php _e('Disappearance description', 'registar-nestalih'); ?></label>
-				<textarea class="form-control" name="report-missing-person[disappearance_description]" id="report-missing-person-disappearance-description" tabindex="18" rows="6"><?php echo wp_kses_post($disappearance_description); ?></textarea>
+				<label for="report-missing-person-disappearance-description"><?php _e('Disappearance description', 'registar-nestalih'); ?> <span class="asterisk-required">*</span></label>
+				<textarea class="form-control required" name="report-missing-person[disappearance_description]" id="report-missing-person-disappearance-description" tabindex="18" rows="6" required><?php echo wp_kses_post($disappearance_description); ?></textarea>
 			</div>
 		</div>
 		
@@ -166,6 +159,13 @@ do_action('registar_nestalih_before_report_disappearance_form_container', $missi
 			<div class="form-group">
 				<label for="report-missing-person-circumstances-disappearance"><?php _e('Circumstances of disappearance', 'registar-nestalih'); ?></label>
 				<textarea class="form-control" name="report-missing-person[circumstances_disappearance]" id="report-missing-person-circumstances-disappearance" tabindex="19" rows="6"><?php echo wp_kses_post($circumstances_disappearance); ?></textarea>
+			</div>
+		</div>
+		
+		<div class="col col-12 col-sm-12">
+			<div class="form-group">
+				<label for="report-missing-person-additional-information"><?php _e('Additional information', 'registar-nestalih'); ?></label>
+				<textarea class="form-control" name="report-missing-person[additional_information]" id="report-missing-person-additional-information" tabindex="17" rows="6"><?php echo wp_kses_post($additional_information); ?></textarea>
 			</div>
 		</div>
 	</fieldset>
