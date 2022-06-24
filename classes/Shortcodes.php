@@ -16,6 +16,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	// PRIVATE: Main construct
 	private function __construct() {
 		$this->register( 'registar_nestalih', 'callback__registar_nestalih' );
+		$this->register( 'registar_nestalih_najnoviji', 'callback__registar_nestalih_najnoviji' );
 		$this->register( 'registar_nestalih_prijava', 'callback__registar_nestalih_prijava' );
 		$this->register( 'registar_nestalih_pitanja_saveti', 'callback__registar_nestalih_pitanja_saveti' );
 		$this->register( 'registar_nestalih_amber_alert', 'callback__registar_nestalih_amber_alert' );
@@ -76,6 +77,51 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 		} else {
 			return Registar_Nestalih_Content::render('missing-persons', $response);
 		}
+	}
+	
+	/*
+	 * Register Nestalih Najnoviji
+	 */
+	public function callback__registar_nestalih_najnoviji ($attr, $content='', $tag) {
+		$attr = shortcode_atts( [
+			'position' => 'before'
+		], $attr, $tag );
+		
+		$missing = Registar_Nestalih_API::get([
+			'paginate' => 'true',
+			'per_page' => 1,
+			'page' => 1,
+			'order' => '-id'
+		]);
+		
+		if($missing && !empty($missing->data ?? NULL)) {
+			$missing = new Registar_Nestalih_Render($missing->data[0]);
+			
+			if( Registar_Nestalih_Options::get('enable-bootstrap', 0) ) {
+				wp_enqueue_style( 'registar-nestalih-bootstrap' );
+				wp_enqueue_style( 'registar-nestalih' );
+			} else {
+				wp_enqueue_style( 'registar-nestalih' );
+			}
+			
+			if( !empty($content) ) {
+				$prepend = $append = '';
+				
+				if( $attr['position'] == 'both' ) {
+					$prepend = $append = Registar_Nestalih_Content::render('missing-persons-in-content', $missing);
+				} else if( $attr['position'] == 'after' ) {
+					$append = Registar_Nestalih_Content::render('missing-persons-in-content', $missing);
+				} else {
+					$prepend = Registar_Nestalih_Content::render('missing-persons-in-content', $missing);
+				}
+
+				return $prepend . $content . $append;
+			} else {
+				return Registar_Nestalih_Content::render('missing-persons-in-content', $missing);
+			}
+		}
+		
+		return '';
 	}
 	
 	/*

@@ -22,15 +22,13 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		add_action( 'registar_nestalih_before_main_container', [&$this, 'do_missing_persons_search'], 10 );
 		add_action( 'registar_nestalih_pagination', [&$this, 'do_missing_persons_pagination'] );
 		add_action( 'registar_nestalih_breadcrumb', [&$this, 'do_breadcrumb'] );
+		add_action( 'registar_nestalih_before_report_disappearance_form_container', [&$this, 'do_missing_persons_report_disappearance_form_http'] );
+		add_filter( 'document_title_parts', [&$this, 'document_title_parts'], 100, 2 );
 		
 		if( Registar_Nestalih_Options::get('enable-notification') ) {
 			add_action( 'registar_nestalih_before_single_container', [&$this, 'do_missing_persons_contact_form_http'] );
 			add_action( 'registar_nestalih_after_single_container', [&$this, 'do_missing_persons_contact_form'] );
 		}
-		
-		add_action( 'registar_nestalih_before_report_disappearance_form_container', [&$this, 'do_missing_persons_report_disappearance_form_http'] );
-		
-		add_filter( 'document_title_parts', [&$this, 'document_title_parts'], 100, 2 );
 		
 		if( defined('MISSING_PERSONS_DEV_MODE') && MISSING_PERSONS_DEV_MODE === true ) {
 			add_action( 'registar_nestalih_before_main_container', [&$this, 'development_notification'], 100 );
@@ -42,9 +40,13 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		if(Registar_Nestalih_Options::get('enable-news', 0)) {
 			add_action( 'registar_nestalih_news_sync', ['Registar_Nestalih_API', 'get_news'], 10, 0 );
 		}
+		
+		if(Registar_Nestalih_Options::get('enable-latest-missing', 0)) {
+			add_action( 'the_content', [&$this, 'the_content__include_latest_missing'], 10, 1 );
+		}
 	}
 	
-	// Development notification
+	// Register Post Type
 	public static function register_post_types ( ) {
 		register_post_type( 'missing-persons-news', [
 			'labels'				=> [
@@ -125,11 +127,12 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 				case 'missing-persons':
 					Registar_Nestalih_Template::get('missing-persons', $response);
 					break;
-				
 				case 'missing-persons-single':
 					Registar_Nestalih_Template::get('missing-persons/single', $response);
 					break;
-					
+				case 'missing-persons-in-content':
+					Registar_Nestalih_Template::get('missing-persons/in-content', $response);
+					break;
 				case 'sidebar':
 					Registar_Nestalih_Template::get('missing-persons/sidebar', $response);
 					break;
@@ -267,6 +270,39 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 	// Add contact form to the single
 	public function do_missing_persons_contact_form ( $response ) {
 		Registar_Nestalih_Template::get('missing-persons/contact-form', $response);
+	}
+	
+	// Include latest missing person
+	public static function the_content__include_latest_missing ( $content ){
+
+		// Get options
+		$options = Registar_Nestalih_Options::get('latest-missing-post-types');
+
+		// Get enabled post types
+		$post_types = [];
+		if(!empty($options) && is_array($options)) {
+			foreach($options as $post_type=>$option) {
+				if( ($option['enable'] ?? NULL) === 1 ) {
+					$post_types[]= $post_type;
+				}
+			}
+		}
+
+		// Current post type
+		$current_post_type = get_post_type();
+		
+		// Enable all
+		if (
+			!empty($post_types) 
+			&& ( is_single() || is_page() ) 
+			&& in_the_loop() 
+			&& is_main_query() 
+			&& in_array($current_post_type, $post_types)
+		) {			
+			return do_shortcode('[registar_nestalih_najnoviji position="' . $options[$current_post_type]['position'] . '"]' . $content . '[/registar_nestalih_najnoviji]');
+		}
+		
+		return $content;
 	}
 	
 } endif;

@@ -229,6 +229,10 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		]);
 		$options = get_option( 'registar_nestalih' );
 		
+		$post_types = get_post_types( [
+		   'publicly_queryable'   => true
+		], 'objects' );
+		
 		add_action('admin_footer', function(){ ?>
 <script>
 ( function($) {
@@ -399,6 +403,89 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				</td>
 			</tr>
 		</table>
+		
+		
+		<hr>
+		<h3><?php _e('The latest missing person', 'registar-nestalih'); ?></h3>
+		<p><?php _e('Show the latest missing person on all selected post types so you can find them as quickly as possible.', 'registar-nestalih'); ?></p>
+		<table class="form-table" role="utility">
+			<tr>
+				<th scope="row"><?php _e('Enable display of latest missing person', 'registar-nestalih'); ?></th>
+				<td>
+					<label for="enable-latest-missing-0">
+						<input type="radio" id="enable-latest-missing-0" name="registar-nestalih[enable-latest-missing]" value="1" <?php 
+							checked( ($options['enable-latest-missing'] ?? 0), 1 ); 
+						?> /> <?php _e('Yes', 'registar-nestalih'); ?>
+					</label>&nbsp;&nbsp;&nbsp;
+					<label for="enable-latest-missing-1">
+						<input type="radio" id="enable-latest-missing-1" name="registar-nestalih[enable-latest-missing]" value="0" <?php 
+							checked( ($options['enable-latest-missing'] ?? 0), 0 ); 
+						?> /> <?php _e('No', 'registar-nestalih'); ?>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php _e('Display on the post type', 'registar-nestalih'); ?></th>
+				<td>
+					<table class="form-table" role="utility">
+					<?php 
+						foreach($post_types as $post_type=>$post_type_obj) :
+						
+						$post_type_enable = (
+							isset($options['latest-missing-post-types'])
+							? (
+								isset($options['latest-missing-post-types'][esc_attr($post_type)])
+								? (
+									isset($options['latest-missing-post-types'][esc_attr($post_type)]['enable'])
+									? $options['latest-missing-post-types'][esc_attr($post_type)]['enable'] : 0
+								) : 0
+							) : 0
+						);
+						
+						$post_type_position = (
+							isset($options['latest-missing-post-types'])
+							? (
+								isset($options['latest-missing-post-types'][esc_attr($post_type)])
+								? (
+									isset($options['latest-missing-post-types'][esc_attr($post_type)]['position'])
+									? $options['latest-missing-post-types'][esc_attr($post_type)]['position'] : 'before'
+								) : 'before'
+							) : 'before'
+						);
+					?>
+						<tr>
+							<td scope="row">
+								<label for="latest-missing-post-type-<?php echo esc_attr($post_type); ?>-enable">
+									<input type="checkbox" id="latest-missing-post-type-<?php echo esc_attr($post_type); ?>-enable" name="registar-nestalih[latest-missing-post-types][<?php echo esc_attr($post_type); ?>][enable]" value="1" <?php
+										checked( $post_type_enable, 1 ); 
+									?> /> <?php echo esc_html($post_type_obj->label); ?>
+								</label>
+							</td>
+							<td>
+								<label for="latest-missing-post-type-<?php echo esc_attr($post_type); ?>-position-0">
+									<input type="radio" id="latest-missing-post-type-<?php echo esc_attr($post_type); ?>-position-0" name="registar-nestalih[latest-missing-post-types][<?php echo esc_attr($post_type); ?>][position]" value="before" <?php
+										checked( $post_type_position, 'before' ); 
+									?> /> <?php _e('Before content', 'registar-nestalih'); ?>
+								</label>&nbsp;&nbsp;&nbsp;
+								<label for="latest-missing-post-type-<?php echo esc_attr($post_type); ?>-position-1">
+									<input type="radio" id="latest-missing-post-type-<?php echo esc_attr($post_type); ?>-position-1" name="registar-nestalih[latest-missing-post-types][<?php echo esc_attr($post_type); ?>][position]" value="after" <?php
+										checked( $post_type_position, 'after' ); 
+									?> /> <?php _e('After Content', 'registar-nestalih'); ?>
+								</label>&nbsp;&nbsp;&nbsp;
+								<label for="latest-missing-post-type-<?php echo esc_attr($post_type); ?>-position-2">
+									<input type="radio" id="latest-missing-post-type-<?php echo esc_attr($post_type); ?>-position-2" name="registar-nestalih[latest-missing-post-types][<?php echo esc_attr($post_type); ?>][position]" value="both" <?php
+										checked( $post_type_position, 'both' ); 
+									?> /> <?php _e('Both positions', 'registar-nestalih'); ?>
+								</label>
+							</td>
+						</td>
+					<?php endforeach; ?>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+		
 		<hr>
 		<h3><?php _e('News settings', 'registar-nestalih'); ?></h3>
 		<p><?php _e('If you want, you have the opportunity to download the latest news from our application and display it on your site as a special post format intended for this purpose.', 'registar-nestalih'); ?></p>
@@ -425,6 +512,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				</td>
 			</tr>
 		</table>
+		
 		<hr>
 		<h3><?php _e('Utility', 'registar-nestalih'); ?></h3>
 		<p><?php _e('Small but useful options.', 'registar-nestalih'); ?></p>
@@ -457,7 +545,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	<h3><span><?php _e('Register of Missing Persons', 'registar-nestalih'); ?></span></h3>
 	<p><?php _e('Print the advanced search page and view all missing persons from the global database.', 'registar-nestalih'); ?></p>
 	<p><code class="lang-txt hljs plaintext">[<span class="hljs-title">registar_nestalih</span>]</code></p>
-	<strong><?php _e('Optional shortcodes:', 'registar-nestalih'); ?></strong>
+	<strong><?php _e('Optional attributes:', 'registar-nestalih'); ?></strong>
 	<ul>
 		<li><code>per_page</code> - <?php _e('(optional) number of items per page', 'registar-nestalih'); ?></li>
 		<li><code>page</code> - <?php _e('(optional) page number', 'registar-nestalih'); ?></li>
@@ -468,6 +556,13 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		<?php endif; ?>
 	</ul>
 	
+	<h3><span><?php _e('The latest missing person', 'registar-nestalih'); ?></span></h3>
+	<p><?php _e('View the most recent missing person reported in the last period.', 'registar-nestalih'); ?></p>
+	<p><code class="lang-txt hljs plaintext">[<span class="hljs-title">registar_nestalih_najnoviji</span>]</code></p>
+	<?php if( defined('MISSING_PERSONS_GOD_MODE') && MISSING_PERSONS_GOD_MODE ) : ?>
+		<p><?php printf(__('This shortcode has optional attribute %s parameter that adjusts the position of the banner if the content is within the shortcode.', 'registar-nestalih'), '<code>position="before|after|both"</code>'); ?></p>
+	<?php endif; ?>
+	
 	<h3><span><?php _e('Report of a Missing Person', 'registar-nestalih'); ?></span></h3>
 	<p><?php _e('Prints the missing person registration form in the central register.', 'registar-nestalih'); ?></p>
 	<p><code class="lang-txt hljs plaintext">[<span class="hljs-title">registar_nestalih_prijava</span>]</code></p>
@@ -475,7 +570,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	<h3><span><?php _e('Questions and Answers from the Register of Missing Persons Website', 'registar-nestalih'); ?></span></h3>
 	<p><?php _e('Displays questions and answers from the missing persons site.', 'registar-nestalih'); ?></p>
 	<p><code class="lang-txt hljs plaintext">[<span class="hljs-title">registar_nestalih_pitanja_saveti</span>]</code></p>
-	<strong><?php _e('Optional shortcodes:', 'registar-nestalih'); ?></strong>
+	<strong><?php _e('Optional attributes:', 'registar-nestalih'); ?></strong>
 	<ul>
 		<li><code>per_page</code> - <?php _e('(optional) number of items per page', 'registar-nestalih'); ?></li>
 		<li><code>page</code> - <?php _e('(optional) page number', 'registar-nestalih'); ?></li>
@@ -488,7 +583,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	<h3><span><?php _e('Amber Alert information from the Missing Persons Register website.', 'registar-nestalih'); ?></span></h3>
 	<p><?php _e('Displays amber alert informations from the missing persons site.', 'registar-nestalih'); ?></p>
 	<p><code class="lang-txt hljs plaintext">[<span class="hljs-title">registar_nestalih_amber_alert</span>]</code></p>
-	<strong><?php _e('Optional shortcodes:', 'registar-nestalih'); ?></strong>
+	<strong><?php _e('Optional attributes:', 'registar-nestalih'); ?></strong>
 	<ul>
 		<li><code>per_page</code> - <?php _e('(optional) number of items per page', 'registar-nestalih'); ?></li>
 		<li><code>page</code> - <?php _e('(optional) page number', 'registar-nestalih'); ?></li>

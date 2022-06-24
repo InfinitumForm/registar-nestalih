@@ -42,6 +42,13 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 		return self::instance()->__sanitize_query( self::instance()->__get_amber_alert( $query ) );
 	}
 	
+	// Get Notification History 
+	public static function get_notification_history( array $query = [] ) {
+		return self::instance()->__sanitize_query( self::instance()->__get_notification_history( $query ) );
+	}
+	
+	
+	
 	// PRIVATE: Get missing persons
 	private function __get_missing( array $query = [] ) {
 		static $__get_missing;
@@ -246,6 +253,44 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 		}
 		
 		return NULL;
+	}
+	
+	// PRIVATE: Get push notifications
+	private function __get_notification_history( array $query = [] ) {
+		$query_allowed = [
+			'paginate',
+			'per_page',
+			'page',
+			'search',
+			'order',
+			'id'
+		];
+	
+		$query = array_filter($query, function($value, $key) use ($query_allowed){
+			return !empty($value) && in_array($key, $query_allowed) !== false;
+		}, ARRAY_FILTER_USE_BOTH);
+		
+		// Enable development mode
+		if( defined('MISSING_PERSONS_DEV_MODE') && MISSING_PERSONS_DEV_MODE === true ) {
+			$this->url = $this->test_url;
+		}
+
+		// Send remote request
+		$request = wp_remote_get( add_query_arg(
+			$query,
+			"{$this->url}/istorija_notifikacija"
+		) );
+		
+		// Get posts
+		$posts = NULL;
+		if( !is_wp_error( $request ) ) {
+			if($json = wp_remote_retrieve_body( $request )) {
+				$posts = json_decode($json);
+			}
+		}
+		
+		// Return
+		return $posts;
 	}
 	
 	// PRIVATE: Get questions and answers

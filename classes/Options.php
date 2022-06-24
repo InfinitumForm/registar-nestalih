@@ -13,9 +13,11 @@ if( !class_exists('Registar_Nestalih_Options') ) : class Registar_Nestalih_Optio
 		'person-slug' => 'person',
 		'news-slug' => 'missing-persons-news',
 		'open-in-new-window' => 0,
+		'latest-missing-post-types' => [],
 		'enable-notification' => 1,
 		'enable-bootstrap' => 0,
-		'enable-news' => 0
+		'enable-news' => 0,
+		'enable-latest-missing' => 0
 	];
 	
 	/*

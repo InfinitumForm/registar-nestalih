@@ -294,6 +294,37 @@ ul.missing-persons-news-widget li span {
 }
 
 
+.registar-nestalih-container{
+	display:block;
+	width:100%;
+	max-width:1920px;
+	padding: 15px 15px;
+    margin: 32px auto;
+	text-decoration:none;
+	color:#111;
+	background: antiquewhite;
+}
+
+.registar-nestalih-container a{
+	color:#333;
+}
+
+.registar-nestalih-container a:hover,
+.registar-nestalih-container a:focus,
+.registar-nestalih-container a:active,
+.registar-nestalih-container a:link{
+	text-decoration:none;
+}
+
+.registar-nestalih-container .missing-person-title {
+	font-size:24px;
+	margin:0 0 15px 0;
+	padding:0 0 0 0;
+}
+
+.registar-nestalih-container .missing-person-content{
+	font-size:16px;
+}
 
 fieldset>legend {
 	line-height: normal;
