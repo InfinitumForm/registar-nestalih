@@ -85,6 +85,10 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		
 		// Include files
 		$register_classes = apply_filters( 'registar_nestalih_classes', [
+			$root . '/Push_Notification.php' => [
+				'class' => 'Registar_Nestalih_Statistic',
+				'load' => false
+			],
 			$root . '/Statistic.php' => [
 				'class' => 'Registar_Nestalih_Statistic',
 				'load' => false
@@ -306,6 +310,7 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 	}
 	
 	public function clear_plugin_cache () {
+		
 		if(wp_verify_nonce(($_REQUEST['registar_nestalih_cache_nonce'] ?? NULL), 'registar-nestalih-clear-cache')) {
 			if(isset($_REQUEST['registar_nestalih_clear_cache']) && $_REQUEST['registar_nestalih_clear_cache'] == 'true') {
 				// Clear plugin cache

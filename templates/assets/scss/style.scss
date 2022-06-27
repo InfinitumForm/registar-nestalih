@@ -1,0 +1,367 @@
+// Main container
+#missing-persons-main-container {
+	.missing-item {
+		margin-bottom: 64px;
+		
+		.missing-item-image {
+			display: block;
+			position: relative;
+			z-index: 1;
+			width: 100%;
+			overflow: hidden;
+			
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+				background: transparent;
+			}
+			
+			&:after {
+				content: "";
+				display: block;
+				padding-bottom: 100%;
+			}
+			
+			>img {
+				display: block;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 105%;
+				max-width: 105%;
+				transform: translate(-50%, -50%);
+				z-index: 1;
+				pointer-events: none;
+				
+				&.img-landscape {
+					width: auto;
+					max-width: initial;
+					height: 105%;
+				}
+				
+				&.img-square {
+					width: 103%;
+					max-width: 103%;
+				}
+			}
+		}
+		
+		.missing-item-info {
+			font-size: 14px;
+			padding-left: 0;
+			margin-bottom: 20px;
+			
+			.list-group-item {
+				border: none;
+				position: relative;
+				display: block;
+				padding: 8px 15px;
+				margin-bottom: -1px;
+				
+				+.list-group-item {
+					padding-top: 0;
+				}
+			}
+		}
+	}
+}
+
+
+// Pagination
+#missing-persons-pagination {
+	text-align: center;
+	
+	.bs-pagination {
+		margin: 15px 0;
+		
+		.btn-bs-pagination {
+			border: 1px solid rgba(138, 138, 138, .5);
+			color: rgba(138, 138, 138, .95);
+			font-size: 12px;
+			padding: 0 10px;
+			display: inline-block;
+			line-height: 26px;
+			min-width: 26px;
+			text-align: center;
+			cursor: pointer;
+			text-transform: uppercase;
+			
+			&.disabled,
+			&.disabled:hover {
+				opacity: .5;
+			}
+		}
+		
+		.bs-pagination-label {
+			color: rgba(138, 138, 138, .83);
+			font-size: 12px;
+			margin-left: 5px;
+			
+			+.btn-bs-pagination {
+				margin-left: 5px;
+			}
+		}
+	}
+}
+
+
+
+// Search form
+#missing-persons-search-form {
+	margin: 15px auto;
+}
+
+
+// Widgets
+.widget {
+	&.widget_registar_nestalih_widget_latest_missing{
+		.missing-person-widget {
+			font-size: 14px;
+			color: #333333;
+			
+			+.missing-person-widget {
+				margin-top: 15px;
+			}
+			
+			&:hover,
+			&:focus {
+				color: #000000;
+			}
+			
+			p {
+				margin: 0;
+				padding: 0;
+				
+				+p {
+					margin-top: 1px;
+				}
+			}
+			
+			.missing-person-img-top {
+				padding: 0;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			.missing-person-img-top {
+				&:after {
+					content: "";
+					display: block;
+					padding-bottom: 87%;
+				}
+			}
+			
+			.missing-person-photo {
+				display: block;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 103%;
+				max-width: 103%;
+				transform: translate(-50%, -50%);
+				z-index: 1;
+				pointer-events: none;
+				
+				&.img-landscape {
+					width: auto;
+					max-width: initial;
+					height: 103%;
+				}
+				
+				&.img-square {
+					width: 103%;
+					max-width: 103%;
+				}
+			}
+			
+			.missing-person-title {
+				padding-top: 0;
+				margin: 0 0 15px 0;
+				
+				@media all and (max-width:768px) {
+					margin-top: 15px;
+				}
+			}
+			
+			.missing-person-text {
+				margin-top: 15px;
+			}
+			
+			@media all and (max-width:768px) {
+				+.missing-person-widget {
+					margin-top: 32px;
+				}
+			}
+		}
+		
+		.missing-person-see-all {
+			display: table;
+			margin-top: 15px;
+		}
+	}	
+}
+
+
+
+// Missing persons form
+#missing-persons-form,
+#report-missing-person-form {
+	margin-bottom: 64px;
+	
+	.asterisk-required {
+		color: #cc0000;
+		font-weight: 900;
+	}
+	
+	.form-control{
+		.has-error {
+			border-color: #cc0000;
+			color: #cc0000;
+		}
+	}
+}
+
+
+
+// Missing persons single page
+#missing-persons-single-container {
+	.missing-person-personal-image {
+		
+		@media all and (max-width:425px) {
+			min-width: 300px;
+		}
+
+		@media all and (max-width:325px) {
+			min-width: 200px;
+		}
+
+		@media all and (max-width:225px) {
+			min-width: 100px;
+		}
+		
+		> .missing-item-image {
+			display: table;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 15px;
+			min-width: 400px;
+			max-width: 768px;
+			position: relative;
+			padding: 0;
+			background: #ffffff;
+			overflow: hidden;
+		}
+		
+		>img {
+			width: 100% !important;
+			max-width: inherit !important;
+		}
+	}
+}
+
+
+// News widget
+ul {
+	&.missing-persons-news-widget {
+		margin-top: 10px;
+		display: block;
+		width: 100%;
+		
+		.noThumb {
+			width: 85px;
+			height: 85px;
+			background-color: #000;
+			float: left;
+			margin: 0 12px 0 0;
+		}
+		
+		li {
+			margin: 0 0 0 0;
+			list-style: none;
+			min-height: 85px;
+			line-height: 19px;
+			display: block;
+			width: 100%;
+			float: left;
+			
+			+li {
+				margin-top: 32px;
+			}
+			
+			img {
+				float: left;
+				margin: 0 12px 0 0;
+				max-width:85px;
+				max-height:85px;
+			}
+			
+			a {
+				font-weight: bold;
+				font-size: 13px;
+			}
+			
+			span {
+				display: block;
+				font-size: 11px;
+			}
+		}
+	}
+}
+
+
+
+// Missing persosns container
+.registar-nestalih-container{
+	display:block;
+	width:100%;
+	max-width:1920px;
+	padding: 15px 15px;
+    margin: 32px auto;
+	text-decoration:none;
+	color:#111;
+	background: antiquewhite;
+	
+	a{
+		color:#333;
+		
+		&:hover,
+		&:focus,
+		&:active,
+		&:link{
+			text-decoration:none;
+		}
+	}
+	
+	.missing-person-title {
+		font-size:24px;
+		margin:0 0 15px 0;
+		padding:0 0 0 0;
+	}
+	
+	.missing-person-content{
+		font-size:16px;
+	}
+}
+
+
+
+// Fieldset & legend
+fieldset{
+	margin-top: 32px;
+	
+	>legend {
+		line-height: normal;
+		
+		>small {
+			font-size: 18px;
+		}
+	}
+}
