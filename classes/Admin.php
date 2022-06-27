@@ -572,15 +572,15 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 	<h3><span><?php _e('Questions and Answers from the Register of Missing Persons Website', 'registar-nestalih'); ?></span></h3>
 	<p><?php _e('Displays questions and answers from the missing persons site.', 'registar-nestalih'); ?></p>
 	<p><code class="lang-txt hljs plaintext">[<span class="hljs-title">registar_nestalih_pitanja_saveti</span>]</code></p>
+	<?php if( defined('MISSING_PERSONS_GOD_MODE') && MISSING_PERSONS_GOD_MODE ) : ?>
 	<strong><?php _e('Optional attributes:', 'registar-nestalih'); ?></strong>
 	<ul>
 		<li><code>per_page</code> - <?php _e('(optional) number of items per page', 'registar-nestalih'); ?></li>
 		<li><code>page</code> - <?php _e('(optional) page number', 'registar-nestalih'); ?></li>
 		<li><code>search</code> - <?php _e('(optional) search terms', 'registar-nestalih'); ?></li>
-		<?php if( defined('MISSING_PERSONS_GOD_MODE') && MISSING_PERSONS_GOD_MODE ) : ?>
-			<li><code>order</code> - <?php _e('(optional) order by, (use a minus sign for DESC before the parameter)', 'registar-nestalih'); ?></li>
-		<?php endif; ?>
+		<li><code>order</code> - <?php _e('(optional) order by, (use a minus sign for DESC before the parameter)', 'registar-nestalih'); ?></li>
 	</ul>
+	<?php endif; ?>
 	
 	<h3><span><?php _e('Amber Alert information from the Missing Persons Register website.', 'registar-nestalih'); ?></span></h3>
 	<p><?php _e('Displays amber alert informations from the missing persons site.', 'registar-nestalih'); ?></p>

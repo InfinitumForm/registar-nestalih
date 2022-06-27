@@ -71,8 +71,8 @@ if( !class_exists('Registar_Nestalih_Template') ) : class Registar_Nestalih_Temp
 	// Register plugin scripts
 	public function enqueue_scripts() {
 		
-		$bootstrap_css_url = self::url('assets/css/bootstrap.min.css');
-		$bootstrap_css_path = self::path('assets/css/bootstrap.min.css');
+		$bootstrap_css_url = self::url('assets/css/bootstrap.css');
+		$bootstrap_css_path = self::path('assets/css/bootstrap.css');
 		
 		$css_url = self::url('assets/css/style.css');
 		$css_path = self::path('assets/css/style.css');

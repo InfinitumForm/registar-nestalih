@@ -148,13 +148,14 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	 */
 	public function callback__registar_nestalih_pitanja_saveti ($attr, $content='', $tag) {	
 		$attr = array_filter( shortcode_atts( [
-			'per_page'	=> NULL,
+	/*		'per_page'	=> NULL,
 			'page'		=> NULL,
 			'search'	=> NULL,
-			'order'		=> NULL
+			'order'		=> NULL	*/
 		], $attr, $tag ) );
 		
 		$query = [];
+		/*
 		if( $attr['per_page'] ?? NULL ) {
 			$query = [
 				'paginate'	=> 'true',
@@ -164,8 +165,11 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 				'order'		=> sanitize_text_field($attr['order'])
 			];
 		}
+		*/
 		
 		$response = Registar_Nestalih_API::get_qa();
+		
+		sort($response);
 		
 		return Registar_Nestalih_Content::render('question-and-answer', $response);
 	}
