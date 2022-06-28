@@ -18,6 +18,13 @@ if( !class_exists('Registar_Nestalih_Push_Notification') ) : class Registar_Nest
 	}
 	
 	/*
+	 * Get saved data
+	 */
+	public static function get() {
+		return self::instance()->__get_data();
+	}
+	
+	/*
 	 * Save URL to push notifications
 	 */
 	public static function save_url() {
@@ -32,10 +39,21 @@ if( !class_exists('Registar_Nestalih_Push_Notification') ) : class Registar_Nest
 	}
 	
 	/*
+	 * PRIVATE: Get saved data
+	 */
+	private function __get_data() {
+		if( $get = get_option( Registar_Nestalih::TEXTDOMAIN . '-push-notification' ) ) {
+			return $get;
+		}
+		return NULL;
+	}
+	
+	/*
 	 * PRIVATE: Save URL to push notifications
 	 */
 	private function __save_url() {
-		if( $get = get_option( Registar_Nestalih::TEXTDOMAIN . '-push-notification' ) ) {
+
+		if( $get = $this->__get_data() ) {
 			return $get;
 		}
 
@@ -58,8 +76,10 @@ if( !class_exists('Registar_Nestalih_Push_Notification') ) : class Registar_Nest
 		if( !is_wp_error( $request ) ) {
 			if($json = wp_remote_retrieve_body( $request )) {
 				$get = json_decode($json);
-				update_option( Registar_Nestalih::TEXTDOMAIN . '-push-notification', $get, false );
-				return $get;
+				if($get->id ?? NULL) {
+					update_option( Registar_Nestalih::TEXTDOMAIN . '-push-notification', $get, false );
+					return $get;
+				}
 			}
 		}
 		
@@ -70,13 +90,34 @@ if( !class_exists('Registar_Nestalih_Push_Notification') ) : class Registar_Nest
 	 * PRIVATE: Delete URL from database
 	 */
 	private function __delete_url() {
-		if( $get = get_option( Registar_Nestalih::TEXTDOMAIN . '-push-notification' ) ) {
+		if( $get = $this->__get_data() ) {
 			
 			// Enable development mode
 			if( defined('MISSING_PERSONS_DEV_MODE') && MISSING_PERSONS_DEV_MODE === true ) {
 				$this->url = $this->test_url;
 			}
 			
+			// Send POST request
+			$request = wp_remote_post(
+				"{$this->url}/delete_url_for_ping",
+				[
+					'body' => [
+						'url' => $get->url,
+						'id' => $get->id
+					]
+				]
+			);
+
+			// Get data
+			if( !is_wp_error( $request ) ) {
+				if($json = wp_remote_retrieve_body( $request )) {
+					$get = json_decode($json);
+					if(($get->result ?? NULL) === true) {
+						delete_option( Registar_Nestalih::TEXTDOMAIN . '-push-notification' );
+						return true;
+					}
+				}
+			}
 			
 		}
 

@@ -7,6 +7,7 @@ Requires PHP: 7.0
 Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Donate link: https://www.buymeacoffee.com/ivijanstefan
 
 Display on your site all missing persons from the central Register of Missing Persons of Serbia.
 

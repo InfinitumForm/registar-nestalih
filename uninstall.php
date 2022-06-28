@@ -25,6 +25,9 @@ if(get_option($prefix.'-deactivation')) {
 if(get_option($prefix.'-db-version')) {
 	delete_option($prefix.'-db-version');
 }
+if(get_option($prefix.'-push-notification')) {
+	delete_option($prefix.'-push-notification');
+}
 
 // Delete tables
 $db_prefix = $wpdb->get_blog_prefix();
