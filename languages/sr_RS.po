@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-06-24 11:19+0200\n"
-"PO-Revision-Date: 2022-06-24 11:23+0200\n"
+"POT-Creation-Date: 2022-06-28 10:45+0200\n"
+"PO-Revision-Date: 2022-06-28 10:48+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sr_RS\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: classes/Admin.php:71 classes/Admin.php:326
+#: classes/Admin.php:71 classes/Admin.php:328
 msgid "Settings"
 msgstr "Подешавање"
 
@@ -42,7 +42,7 @@ msgstr "Дајте нам пет ако желите!"
 msgid "5 Stars?"
 msgstr "5 звезда?"
 
-#: classes/Admin.php:106 classes/Admin.php:341
+#: classes/Admin.php:106 classes/Admin.php:339
 msgid "Missing Persons Page"
 msgstr "Страница несталих особа"
 
@@ -52,29 +52,29 @@ msgstr "Страница несталих особа"
 msgid "Missing Persons"
 msgstr "Нестале особе"
 
-#: classes/Admin.php:126 classes/Admin.php:127 classes/Admin.php:180
-#: classes/Admin.php:184
+#: classes/Admin.php:126 classes/Admin.php:127 classes/Admin.php:181
+#: classes/Admin.php:185
 msgid "News"
 msgstr "Вести"
 
-#: classes/Admin.php:135 classes/Admin.php:198
+#: classes/Admin.php:135 classes/Admin.php:200
 msgid "Clear Cache of Missing Persons"
 msgstr "Обришите кеш несталих особа"
 
-#: classes/Admin.php:136 classes/Admin.php:191
+#: classes/Admin.php:136 classes/Admin.php:193
 msgid "Clear Cache"
 msgstr "Обриши кеш"
 
-#: classes/Admin.php:263 registar-nestalih.php:68
+#: classes/Admin.php:265 registar-nestalih.php:68
 msgid "Register of Missing Persons of Serbia"
 msgstr "Регистар несталих лица Србије"
 
-#: classes/Admin.php:271
+#: classes/Admin.php:273
 msgctxt "Admin sidebar title"
 msgid "The Center for Missing and Abused Children of Serbia"
 msgstr "Центар за несталу и злостављану децу Србије"
 
-#: classes/Admin.php:276
+#: classes/Admin.php:278
 msgid ""
 "The Center for Missing and Abused Children does not charge for the support "
 "it provides through the Net Patrol and Missing Serbia projects, as well as "
@@ -87,33 +87,33 @@ msgstr ""
 "штићеницима. Због тога нам је важна Ваша подршка – заједно можемо учинити "
 "свет сигурнијим местом за сву нашу децу!"
 
-#: classes/Admin.php:281
+#: classes/Admin.php:283
 #, php-format
 msgid "Support the work of the foundation by %1$s or %2$s in the web store."
 msgstr "Подржите рад фондације %1$s или %2$s у веб продавници."
 
-#: classes/Admin.php:282
+#: classes/Admin.php:284
 msgid "donating"
 msgstr "донацијама"
 
-#: classes/Admin.php:283
+#: classes/Admin.php:285
 msgid "purchasing products"
 msgstr "куповином производа"
 
-#: classes/Admin.php:289
+#: classes/Admin.php:291
 #, php-format
 msgid "You can also %1$s of the association."
 msgstr "Такође можете %1$s нашег удружења."
 
-#: classes/Admin.php:290
+#: classes/Admin.php:292
 msgid "become a member"
 msgstr "постати члан"
 
-#: classes/Admin.php:299
+#: classes/Admin.php:301
 msgid "Contributors & Developers"
 msgstr "Сарадници и програмери"
 
-#: classes/Admin.php:311
+#: classes/Admin.php:313
 #, php-format
 msgid ""
 "If you want to support our work and effort, if you have new ideas or want to "
@@ -122,77 +122,65 @@ msgstr ""
 "Ако желите да подржите наш рад и труд, ако имате нове идеје или желите да "
 "побољшате постојећи код, %s."
 
-#: classes/Admin.php:311
+#: classes/Admin.php:313
 msgid "join our team"
 msgstr "придружи се нашем тиму"
 
-#: classes/Admin.php:317
+#: classes/Admin.php:319
 msgid "Developed by: INFINITUM FORM"
 msgstr "Израдио: ИНФИНИТУМ ФОРМ"
 
-#: classes/Admin.php:327
+#: classes/Admin.php:329
 msgid "Available Shortcodes"
 msgstr "Доступни кратки кодови"
 
-#: classes/Admin.php:333
-msgid "Cache"
-msgstr "Кеширање"
-
-#: classes/Admin.php:334
-msgid ""
-"If you need to clear your plugin's cache, you have the option to use the "
-"following URL:"
-msgstr ""
-"Ако треба да обришете кеш додатка, имате опцију да користите следећу УРЛ "
-"адресу:"
-
-#: classes/Admin.php:337
+#: classes/Admin.php:335
 msgid "Missing Persons Settings"
 msgstr "Подешавање додатка несталих особа"
 
-#: classes/Admin.php:338
+#: classes/Admin.php:336
 msgid "This option sets the API and shortcode for missing persons."
 msgstr "Ова опција поставља АПИ и кратки код за нестале особе."
 
-#: classes/Admin.php:344
+#: classes/Admin.php:342
 msgid "Select a Page"
 msgstr "Одаберите страницу"
 
-#: classes/Admin.php:358
+#: classes/Admin.php:356
 msgid "Pagination slug"
 msgstr "Пермалинк пагинације"
 
-#: classes/Admin.php:364
+#: classes/Admin.php:362
 msgid "Search slug"
 msgstr "Пермалинк претраге"
 
-#: classes/Admin.php:370
+#: classes/Admin.php:368
 msgid "Person slug"
 msgstr "Пермалинк особе"
 
-#: classes/Admin.php:376
+#: classes/Admin.php:374
 msgid "Open links in new window"
 msgstr "Отвори у новом прозору"
 
-#: classes/Admin.php:381 classes/Admin.php:396 classes/Admin.php:418
-#: classes/Admin.php:499 classes/Admin.php:526
+#: classes/Admin.php:379 classes/Admin.php:394 classes/Admin.php:416
+#: classes/Admin.php:497 classes/Admin.php:524
 msgid "Yes"
 msgstr "Да"
 
-#: classes/Admin.php:386 classes/Admin.php:401 classes/Admin.php:423
-#: classes/Admin.php:504 classes/Admin.php:531
+#: classes/Admin.php:384 classes/Admin.php:399 classes/Admin.php:421
+#: classes/Admin.php:502 classes/Admin.php:529
 msgid "No"
 msgstr "Не"
 
-#: classes/Admin.php:391
+#: classes/Admin.php:389
 msgid "Enable sending information about the person"
 msgstr "Омогућите слање информација о особи"
 
-#: classes/Admin.php:409 classes/Admin.php:559
+#: classes/Admin.php:407 classes/Admin.php:564
 msgid "The latest missing person"
 msgstr "Последње нестала особа"
 
-#: classes/Admin.php:410
+#: classes/Admin.php:408
 msgid ""
 "Show the latest missing person on all selected post types so you can find "
 "them as quickly as possible."
@@ -200,31 +188,31 @@ msgstr ""
 "Прикажите најновију несталу особу на свим одабраним типовима објава како "
 "бисте могли бити пронађена што је брже могуће."
 
-#: classes/Admin.php:413
+#: classes/Admin.php:411
 msgid "Enable display of latest missing person"
 msgstr "Омогући приказ последње нестале особе"
 
-#: classes/Admin.php:428
+#: classes/Admin.php:426
 msgid "Display on the post type"
 msgstr "Приказ на типу поста"
 
-#: classes/Admin.php:468
+#: classes/Admin.php:466
 msgid "Before content"
 msgstr "Пре садржаја"
 
-#: classes/Admin.php:473
+#: classes/Admin.php:471
 msgid "After Content"
 msgstr "После садржаја"
 
-#: classes/Admin.php:478
+#: classes/Admin.php:476
 msgid "Both positions"
 msgstr "Обе позиције"
 
-#: classes/Admin.php:490
+#: classes/Admin.php:488
 msgid "News settings"
 msgstr "Подешавање вести"
 
-#: classes/Admin.php:491
+#: classes/Admin.php:489
 msgid ""
 "If you want, you have the opportunity to download the latest news from our "
 "application and display it on your site as a special post format intended "
@@ -233,27 +221,27 @@ msgstr ""
 "Ако желите, имате могућност да преузмете најновије вести из наше апликације "
 "и прикажете их на свом сајту као посебан формат поста намењен за ову сврху."
 
-#: classes/Admin.php:494
+#: classes/Admin.php:492
 msgid "Enable News"
 msgstr "Укључите вести"
 
-#: classes/Admin.php:509
+#: classes/Admin.php:507
 msgid "News slug"
 msgstr "Пермалинк вести"
 
-#: classes/Admin.php:517
+#: classes/Admin.php:515
 msgid "Utility"
 msgstr "Корисне опције"
 
-#: classes/Admin.php:518
+#: classes/Admin.php:516
 msgid "Small but useful options."
 msgstr "Мале, али корисне опције."
 
-#: classes/Admin.php:521
+#: classes/Admin.php:519
 msgid "CSS support"
 msgstr "ЦСС Подршка"
 
-#: classes/Admin.php:533
+#: classes/Admin.php:531
 msgid ""
 "If you activate this option, we will insert the basic Twitter Bootstrap CSS "
 "to style the tabs and columns while the rest of the design will be intact."
@@ -261,15 +249,27 @@ msgstr ""
 "Ако активирате ову опцију, убацићемо основни Твитер Бутстрап за стилизовање "
 "картица и колона док ће остатак дизајна остати нетакнут."
 
-#: classes/Admin.php:537
+#: classes/Admin.php:538
+msgid "Cache"
+msgstr "Кеширање"
+
+#: classes/Admin.php:539
+msgid ""
+"If you need to clear your plugin's cache, you have the option to use the "
+"following URL:"
+msgstr ""
+"Ако треба да обришете кеш додатка, имате опцију да користите следећу УРЛ "
+"адресу:"
+
+#: classes/Admin.php:542
 msgid "Save"
 msgstr "Сними"
 
-#: classes/Admin.php:545
+#: classes/Admin.php:550
 msgid "Register of Missing Persons"
 msgstr "Регистар несталих лица Србије"
 
-#: classes/Admin.php:546
+#: classes/Admin.php:551
 msgid ""
 "Print the advanced search page and view all missing persons from the global "
 "database."
@@ -277,35 +277,35 @@ msgstr ""
 "Одштампајте страницу за напредну претрагу и погледајте све нестале особе из "
 "глобалне базе података."
 
-#: classes/Admin.php:548 classes/Admin.php:573 classes/Admin.php:586
+#: classes/Admin.php:553 classes/Admin.php:579 classes/Admin.php:591
 msgid "Optional attributes:"
 msgstr "Опциони атрибути:"
 
-#: classes/Admin.php:550 classes/Admin.php:575 classes/Admin.php:588
+#: classes/Admin.php:555 classes/Admin.php:581 classes/Admin.php:593
 msgid "(optional) number of items per page"
 msgstr "(опционо) број ставки по страници"
 
-#: classes/Admin.php:551 classes/Admin.php:576 classes/Admin.php:589
+#: classes/Admin.php:556 classes/Admin.php:582 classes/Admin.php:594
 msgid "(optional) page number"
 msgstr "(опционо) број странице"
 
-#: classes/Admin.php:552 classes/Admin.php:577 classes/Admin.php:590
+#: classes/Admin.php:557 classes/Admin.php:583 classes/Admin.php:595
 msgid "(optional) search terms"
 msgstr "(опционо) термини за претрагу"
 
-#: classes/Admin.php:554 classes/Admin.php:579 classes/Admin.php:592
+#: classes/Admin.php:559 classes/Admin.php:584 classes/Admin.php:597
 msgid "(optional) order by, (use a minus sign for DESC before the parameter)"
 msgstr "(опционо) сортирање, (користите знак минус за ДЕСЦ испред параметра)"
 
-#: classes/Admin.php:555
+#: classes/Admin.php:560
 msgid "(optional) person ID for individual missing person"
 msgstr "(опционо) ИД особе за појединачну несталу особу"
 
-#: classes/Admin.php:560
+#: classes/Admin.php:565
 msgid "View the most recent missing person reported in the last period."
 msgstr "Погледајте најскорије пријављено нестало лице у последњем периоду."
 
-#: classes/Admin.php:563
+#: classes/Admin.php:568
 #, php-format
 msgid ""
 "This shortcode has optional attribute %s parameter that adjusts the position "
@@ -314,32 +314,32 @@ msgstr ""
 "Овај кратки код има опциони параметар %s који прилагођава позицију банера "
 "ако је садржај унутар кратког кода."
 
-#: classes/Admin.php:566
+#: classes/Admin.php:571
 msgid "Report of a Missing Person"
 msgstr "Пријавите несталу особу"
 
-#: classes/Admin.php:567
+#: classes/Admin.php:572
 msgid "Prints the missing person registration form in the central register."
 msgstr "Prints the missing person registration form in the central register."
 
-#: classes/Admin.php:570
+#: classes/Admin.php:575
 msgid "Questions and Answers from the Register of Missing Persons Website"
 msgstr "Питања и одговори са сајта Регистра несталих лица Србије"
 
-#: classes/Admin.php:571
+#: classes/Admin.php:576
 msgid "Displays questions and answers from the missing persons site."
 msgstr "Приказује питања и одговоре са сајта Регистра несталих лица Србије."
 
-#: classes/Admin.php:583
+#: classes/Admin.php:588
 msgid "Amber Alert information from the Missing Persons Register website."
 msgstr "Информације о \"Амбер Алерт\" са сајта Регистра несталих лица Србије."
 
-#: classes/Admin.php:584
+#: classes/Admin.php:589
 msgid "Displays amber alert informations from the missing persons site."
 msgstr ""
 "Приказује \"Амбер Алерт\" информације са сајта Регистра несталих лица Србије."
 
-#: classes/Admin.php:612
+#: classes/Admin.php:617
 msgid ""
 "This site uses the Register of Missing Persons of Serbia to present to "
 "public and private visitors the information about missing persons from the "
@@ -351,19 +351,19 @@ msgstr ""
 "могу постојати и нестала лица из Федерације Босне и Херцеговине и Републике "
 "Хрватске."
 
-#: classes/Admin.php:614
+#: classes/Admin.php:619
 #, php-format
 msgid ""
 "The Register of Missing Persons of Serbia is owned by the %s of the Republic "
 "of Serbia."
 msgstr "Регистар несталих лица Србије је у власништву %s Републике Србије."
 
-#: classes/Admin.php:615
+#: classes/Admin.php:620
 msgctxt "Privacy policy sentence"
 msgid "Center for Missing and Abused Children"
 msgstr "Центара за несталу и злостављану децу"
 
-#: classes/Admin.php:617
+#: classes/Admin.php:622
 msgid ""
 "The Center for Missing and Abused Children is a non-profit organization "
 "established in accordance with the Law on Endowments and Foundations of the "
@@ -374,7 +374,7 @@ msgstr ""
 "складу са Законом о задужбинама и фондацијама Републике Србије, 2. јуна "
 "2015. године, са основним задатком унапређења безбедности деце у Србији."
 
-#: classes/Admin.php:619
+#: classes/Admin.php:624
 #, php-format
 msgid ""
 "The Register of Missing Persons of Serbia is available 24 hours a day at "
@@ -392,7 +392,7 @@ msgstr ""
 "допринесу бољој и ефикаснијој потрази. Уредништво регистра доступно је 24 "
 "часа на адреси %2$s или на бесплатном броју телефона %3$s."
 
-#: classes/Admin.php:627
+#: classes/Admin.php:632
 msgctxt "Privacy policy title"
 msgid "Register of Missing Persons of Serbia"
 msgstr "Регистар несталих лица Србије"
@@ -482,16 +482,37 @@ msgstr ""
 "Морате бити стрпљиви да наши администратори потврде аутентичност информација "
 "и одобре профил нестале особе."
 
-#: classes/Init.php:182
+#: classes/Init.php:192
 msgid "Missing persons"
 msgstr "Нестале особе"
 
-#: classes/Requirements.php:65
+#: classes/Requirements.php:93
+#, php-format
+msgid "%s requires the following PHP modules (extensions) to be activated:"
+msgstr "%s захтева да се активирају следећи ПХП модули (екстензије):"
+
+#: classes/Requirements.php:96
+msgid "install"
+msgstr "инсталирај"
+
+#: classes/Requirements.php:100
+msgid "Without these PHP modules you will not be able to use this plugin."
+msgstr "Без ових ПХП модула нећете моћи да користите овај додатак."
+
+#: classes/Requirements.php:101
+msgid ""
+"Your hosting providers can help you to solve this problem. Contact them and "
+"request activation of the missing PHP modules."
+msgstr ""
+"Ваши хостинг провајдери могу вам помоћи да решите овај проблем. "
+"Контактирајте их и затражите активацију ПХП модула који недостају."
+
+#: classes/Requirements.php:116
 #, php-format
 msgid "%1$s database update required!"
 msgstr "%1$s захтева ажурирање базе података!"
 
-#: classes/Requirements.php:66
+#: classes/Requirements.php:117
 #, php-format
 msgid ""
 "%1$s has been updated! To keep things running smoothly, we have to update "
@@ -500,11 +521,11 @@ msgstr ""
 "%1$s је ажуриран! Да би ствари функционисале глатко, морамо да ажурирамо "
 "вашу базу података на најновију верзију."
 
-#: classes/Requirements.php:70
+#: classes/Requirements.php:121
 msgid "Update Database"
 msgstr "Ажурирај базу података"
 
-#: classes/Requirements.php:86
+#: classes/Requirements.php:137
 #, php-format
 msgid ""
 "The %1$s cannot run on PHP versions older than PHP %2$s. Please contact your "
@@ -513,7 +534,7 @@ msgstr ""
 "%1$s не може да ради на ПХП верзијама старијим од %2$s. Контактирајте свог "
 "провајдера и замолите да надогради."
 
-#: classes/Requirements.php:102
+#: classes/Requirements.php:153
 #, php-format
 msgid ""
 "The %1$s cannot run on WordPress versions older than %2$s. Please update "
@@ -522,12 +543,12 @@ msgstr ""
 "%1$s не може да ради на верзијама ВордПрес-а старијим од %2$s. Ажурирајте "
 "своју инсталацију Вордпрес-а."
 
-#: classes/Requirements.php:139
+#: classes/Requirements.php:190
 #, php-format
 msgid "Important upgrade notice for the version %s:"
 msgstr "Важно обавештење о надоградњи за верзију %s:"
 
-#: classes/Requirements.php:153
+#: classes/Requirements.php:204
 msgid ""
 "NOTE: Before doing the update, it would be a good idea to backup your "
 "WordPress installations and settings."
@@ -628,34 +649,40 @@ msgstr "Више информација"
 msgid "No information currently available."
 msgstr "Тренутно нема доступних информација."
 
-#: templates/missing-persons/contact-form.php:16
+#: templates/missing-persons/contact-form.php:18
 #: templates/missing-persons/sidebar.php:23
 msgid "Do you know anything about this person?"
 msgstr "Да ли знате нешто о овој особи?"
 
-#: templates/missing-persons/contact-form.php:21
+#: templates/missing-persons/contact-form.php:23
 msgid "Enter all information about this person in detail..."
 msgstr "Детаљно унесите све податке о овој особи..."
 
-#: templates/missing-persons/contact-form.php:26
+#: templates/missing-persons/contact-form.php:28
 msgid "First and Last name"
 msgstr "Име и презиме"
 
-#: templates/missing-persons/contact-form.php:27
+#: templates/missing-persons/contact-form.php:29
 msgid "Your First and Last name"
 msgstr "Ваше пуно име и презиме"
 
-#: templates/missing-persons/contact-form.php:32
+#: templates/missing-persons/contact-form.php:34
 msgid "Your e-mail"
 msgstr "Емаил"
 
-#: templates/missing-persons/contact-form.php:38
+#: templates/missing-persons/contact-form.php:40
 msgid "Your phone number"
 msgstr "Ваш број телефона"
 
-#: templates/missing-persons/contact-form.php:44
+#: templates/missing-persons/contact-form.php:46
 msgid "Send Message"
 msgstr "Пошаљи поруку"
+
+#: templates/missing-persons/in-content.php:25
+#: templates/missing-persons/in-content.php:34
+#: templates/missing-persons/single.php:89
+msgid "Additional information:"
+msgstr "Додатне информације:"
 
 #: templates/missing-persons/pagination.php:13
 #: templates/missing-persons/pagination.php:21
@@ -767,16 +794,16 @@ msgid "Police station"
 msgstr "Полицијска станица"
 
 #: templates/missing-persons/report-disappearance-form.php:153
-msgid "Additional information"
-msgstr "Додатне информације"
-
-#: templates/missing-persons/report-disappearance-form.php:160
 msgid "Disappearance description"
 msgstr "Опис нестанка"
 
-#: templates/missing-persons/report-disappearance-form.php:167
+#: templates/missing-persons/report-disappearance-form.php:160
 msgid "Circumstances of disappearance"
 msgstr "Околности нестанка"
+
+#: templates/missing-persons/report-disappearance-form.php:167
+msgid "Additional information"
+msgstr "Додатне информације"
 
 #: templates/missing-persons/report-disappearance-form.php:174
 msgid "Applicant information"
@@ -944,10 +971,6 @@ msgstr "Околности нестанка:"
 msgid "Description at the time of disappearance:"
 msgstr "Опис у тренутку нестанка:"
 
-#: templates/missing-persons/single.php:89
-msgid "Additional information:"
-msgstr "Додатне информације:"
-
 #: templates/question-and-answer.php:16
 msgid "There is no questions and answers."
 msgstr "Нема питања и одговора."
@@ -990,7 +1013,7 @@ msgstr "Регистар несталих лица Србије"
 
 #. Plugin URI of the plugin/theme
 msgid "https://wordpress.org/plugins/registar-nestalih/"
-msgstr ""
+msgstr "https://wordpress.org/plugins/registar-nestalih/"
 
 #. Description of the plugin/theme
 msgid ""
@@ -1006,7 +1029,7 @@ msgstr "Ивијан-Стефан Стипић"
 
 #. Author URI of the plugin/theme
 msgid "https://profiles.wordpress.org/ivijanstefan/"
-msgstr ""
+msgstr "https://profiles.wordpress.org/ivijanstefan/"
 
 #~ msgid "Clear MP Cache"
 #~ msgstr "Обриши кеш Р.Н."

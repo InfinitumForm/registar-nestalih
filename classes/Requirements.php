@@ -10,6 +10,7 @@ if(!class_exists('Registar_Nestalih_Requirements')) : class Registar_Nestalih_Re
 	private $wp = '5.0';
 	private $slug = '';
 	private $file;
+	private $required_php_extensions = [];
 	
 	// Run this class on the safe and protected way
 	private static $instance;
@@ -32,6 +33,24 @@ if(!class_exists('Registar_Nestalih_Requirements')) : class Registar_Nestalih_Re
 			$this->update_database_alert();
 		}
 		
+		$this->required_php_extensions = array(
+			'curl_version' => (object)array(
+				'name' => esc_html( 'cURL', 'registar-nestalih'),
+				'desc' => esc_html( 'cURL PHP extension', 'registar-nestalih'),
+				'link' => esc_url('https://www.php.net/manual/en/curl.installation.php')
+			),
+			'mb_substr' => (object)array(
+				'name' => esc_html( 'Multibyte String', 'registar-nestalih'),
+				'desc' => esc_html( 'Multibyte String PHP extension (mbstring)', 'registar-nestalih'),
+				'link' => esc_url('https://www.php.net/manual/en/mbstring.installation.php')
+			),
+			'hash' => (object)array(
+				'name' => esc_html( 'Hash', 'registar-nestalih'),
+				'desc' => esc_html( 'Generate a hash value (message digest)', 'registar-nestalih'),
+				'link' => esc_url('https://www.php.net/manual/en/function.hash.php')
+			)
+		);
+		
 		add_action( "in_plugin_update_message-{$this->slug}/{$this->slug}.php", [&$this, 'in_plugin_update_message'], 10, 2 );
 	}
 	
@@ -41,7 +60,7 @@ if(!class_exists('Registar_Nestalih_Requirements')) : class Registar_Nestalih_Re
 	public static function passes( $args ) {
 		$load = self::instance( $args );
 		
-		$passes = ( $load->validate_php_version() && $load->validate_wp_version() );
+		$passes = ( $load->validate_php_modules() && $load->validate_php_version() && $load->validate_wp_version() );
 		
 		if ( ! $passes ) {
 			add_action( 'admin_notices', function () use ($load) {
@@ -52,6 +71,38 @@ if(!class_exists('Registar_Nestalih_Requirements')) : class Registar_Nestalih_Re
 		}
 		
 		return $passes;
+	}
+	
+	/*
+	 * Check PHP modules 
+	 */
+	private function validate_php_modules() {
+		if(empty($this->required_php_extensions)) {
+			return true;
+		}
+		
+		$modules = array_map('function_exists', array_keys($this->required_php_extensions));
+		$modules = array_filter($modules, function($m){return !empty($m);} );
+		
+		if ( count($modules) === count($this->required_php_extensions) ) {
+			return true;
+		}
+		
+		add_action( 'admin_notices', function () {
+			echo '<div class="notice notice-error">';
+			printf('<p><strong>%s</strong></p><ol>', sprintf(__('%s requires the following PHP modules (extensions) to be activated:', 'registar-nestalih'), $this->title));
+			foreach($this->required_php_extensions as $fn => $obj) {
+				if( !function_exists($fn) ) {
+					printf('<li>%1$s - <a href="%2s" target="_blank">%3$s</a></li>', $obj->desc, $obj->link, __('install', 'registar-nestalih'));
+				}
+			}
+			echo '</ol>';
+			printf('<p>%s</p>', __('Without these PHP modules you will not be able to use this plugin.', 'registar-nestalih'));
+			printf('<p>%s</p>', __('Your hosting providers can help you to solve this problem. Contact them and request activation of the missing PHP modules.', 'registar-nestalih'));
+			echo '</div>';
+		} );
+		
+		return false;
 	}
 	
 	/*
