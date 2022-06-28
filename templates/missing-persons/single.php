@@ -51,7 +51,7 @@ do_action('registar_nestalih_before_single_container', $missing);
 			$missing->mesto_nestanka,
 			$missing->reporting_date()
 		] ) ) ) : ?>
-		<ul class="list-group missing-person-details-about-missing">
+		<ul class="list-group missing-person-details-about-missing mt-5">
 			<li class="list-group-item active">
 				<?php _e('Details about missing', 'registar-nestalih'); ?>
 			</li>
@@ -66,7 +66,7 @@ do_action('registar_nestalih_before_single_container', $missing);
 			$missing->opis_nestanka,
 			$missing->dodatne_informacije
 		] ) ) ) : ?>
-		<ul class="list-group missing-person-other-informations">
+		<ul class="list-group missing-person-other-informations mt-5">
 			<li class="list-group-item active">
 				<?php _e('Other informations', 'registar-nestalih'); ?>
 			</li>

@@ -13,6 +13,8 @@ $email = sanitize_email($_POST['missing-persons']['email'] ?? '');
 $phone = sanitize_text_field($_POST['missing-persons']['phone'] ?? '');
 
 do_action('registar_nestalih_before_contact_form_container', $missing_response); ?>
+<div class="clearfix"></div>
+<hr class="hr mt-5 mb-5">
 <h3 id="missing-persons-form-title"><label for="missing-persons-message"><?php _e('Do you know anything about this person?', 'registar-nestalih'); ?></label></h3>
 <form method="post" id="missing-persons-form">
 	<fieldset class="row">
