@@ -331,11 +331,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 
 <!-- Settings -->
 <div class="wp-tab-panel" id="settings">
-	<form method="post">				
-		<h3><?php _e('Cache', 'registar-nestalih'); ?></h3>
-		<p><?php _e('If you need to clear your plugin\'s cache, you have the option to use the following URL:', 'registar-nestalih'); ?></p>
-		<p><code><?php echo home_url('/rnp-notification/' . Registar_Nestalih_U::key()); ?></code></p>
-		
+	<form method="post">
 		<h3><?php _e('Missing Persons Settings', 'registar-nestalih'); ?></h3>
 		<p><?php _e('This option sets the API and shortcode for missing persons.', 'registar-nestalih'); ?></p>
 		<table class="form-table" role="presentation">
@@ -536,6 +532,13 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				</td>
 			</tr>
 		</table>
+
+		<?php if( defined('MISSING_PERSONS_GOD_MODE') && MISSING_PERSONS_GOD_MODE ) : ?>
+			<hr>
+			<h3><?php _e('Cache', 'registar-nestalih'); ?></h3>
+			<p><?php _e('If you need to clear your plugin\'s cache, you have the option to use the following URL:', 'registar-nestalih'); ?></p>
+			<p><code><?php echo home_url('/rnp-notification/' . Registar_Nestalih_U::key()); ?></code></p>
+		<?php endif; ?>
 		<?php submit_button( __('Save', 'registar-nestalih') ); ?>
 		<input type="hidden" name="__nonce" value="<?php echo esc_attr( wp_create_nonce('registar-nestalih') ); ?>" />
 	</form>
