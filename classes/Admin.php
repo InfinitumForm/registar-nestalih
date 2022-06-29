@@ -21,6 +21,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		add_action( 'admin_bar_menu', [&$this, 'admin_bar_menu'], 100 );
 		add_action( 'admin_init', [&$this, 'register_setting__missing_persons'] );
 		add_action( 'admin_footer', [&$this, 'admin_footer'] );
+		add_action( 'admin_head', [&$this, 'admin_head'] );
 		add_filter( 'display_post_states' , [&$this, 'display_post_states'], 10, 2 );
 		add_filter( 'plugin_action_links_' . plugin_basename(MISSING_PERSONS_FILE), [&$this, 'plugin_action_links'] );
 		add_filter( 'plugin_row_meta', [&$this, 'cfgp_action_links'], 10, 2 );
@@ -45,8 +46,13 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		}
 	}
 	
+	// Admin head scripts
+	public function admin_head () { ?>
+<style>#adminmenu #toplevel_page_missing-persons .wp-menu-image img{width:16px !important;}#wp-admin-bar-missing-persons img {width:15px;float:left;margin:7px 5px 0 0;}</style>
+	<?php }
+	
 	// Admin footer scripts
-	public function admin_footer () {
+	public function admin_footer () { 
 		if( in_array('missing-persons-news', array_filter([
 			($_GET['post_type'] ?? NULL),
 			get_post_type( absint($_GET['post'] ?? 0) )
@@ -116,7 +122,8 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			'manage_options',
 			'missing-persons',
 			[ $this, 'page__missing_persons' ],
-			'dashicons-heart',
+		//	'dashicons-heart',
+			MISSING_PERSONS_URL . '/assets/img/rnl-logo-white.svg',
 			6
 		);
 		
@@ -153,7 +160,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		
 		$wp_admin_bar->add_node(array(
 			'id' => 'missing-persons',
-			'title' => __( 'Missing Persons', 'registar-nestalih' ), 
+			'title' => '<img src="' . MISSING_PERSONS_URL . '/assets/img/rnl-logo-white.svg" alt="">' . __( 'Missing Persons', 'registar-nestalih' ), 
 			'href' => esc_url(admin_url('admin.php?page=missing-persons')), 
 			'meta' => array(
 				'class' => 'missing-persons',
@@ -262,7 +269,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		<?php });
 	?>
 <div class="wrap" id="registar-nestalih-admin">
-	<a href="https://www.nestalisrbija.rs/" target="_blank" id="logo"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/registar-nestalih-lica-srbije.png')); ?>" alt="<?php esc_attr_e('Register of Missing Persons of Serbia', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:300px;" ></a>
+	<a href="https://www.nestalisrbija.rs/" target="_blank" id="logo"><img src="<?php echo esc_url(MISSING_PERSONS_URL . '/assets/img/rnl-logo.svg'); ?>" alt="<?php esc_attr_e('Register of Missing Persons of Serbia', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:300px;" ></a>
 	<hr>
 	<div id="poststuff" class="metabox-holder has-right-sidebar">
 		<div class="inner-sidebar" id="<?php echo 'registar-nestalih'; ?>-settings-sidebar">
@@ -270,7 +277,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 			<div id="side-sortables" class="meta-box-sortables ui-sortable">
 				
 				<div class="postbox" id="cnzd">
-					<div class="hndle centeralign" style="text-align:center"><a href="https://cnzd.rs/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/cnzd-srbija-logo.png')); ?>" alt="<?php echo esc_attr(_x('The Center for Missing and Abused Children of Serbia', 'Admin sidebar title', 'registar-nestalih')); ?>" style="display:block; width:90%; max-width:300px; margin: 15px auto;" ></a></div>
+					<div class="hndle centeralign" style="text-align:center"><a href="https://cnzd.rs/" target="_blank"><img src="<?php echo esc_url(MISSING_PERSONS_URL . '/assets/img/cnzd-srbija-logo.png'); ?>" alt="<?php echo esc_attr(_x('The Center for Missing and Abused Children of Serbia', 'Admin sidebar title', 'registar-nestalih')); ?>" style="display:block; width:90%; max-width:300px; margin: 15px auto;" ></a></div>
 					<div class="inside">
 					<?php
 						printf(
@@ -316,7 +323,7 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				<?php endif; endif; ?>
 				
 				<div class="centeralign" id="developed-by" style="text-align:center">
-					<a href="https://infinitumform.com/" target="_blank"><img src="<?php echo esc_url(Registar_Nestalih_Template::url('assets/images/developed-by.png')); ?>" alt="<?php esc_attr_e('Developed by: INFINITUM FORM', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:210px; margin-left:auto; margin-right:auto;" ></a>
+					<a href="https://infinitumform.com/" target="_blank"><img src="<?php echo esc_url(MISSING_PERSONS_URL . '/assets/img/developed-by.png'); ?>" alt="<?php esc_attr_e('Developed by: INFINITUM FORM', 'registar-nestalih'); ?>" style="display:block; width:90%; max-width:210px; margin-left:auto; margin-right:auto;" ></a>
 				</div>
 			</div>
 		</div>
