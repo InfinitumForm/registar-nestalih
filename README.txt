@@ -4,7 +4,7 @@ Tags: library, register, missing persons
 Requires at least: 5.0
 Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 1.0.6
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://www.buymeacoffee.com/ivijanstefan
@@ -62,6 +62,15 @@ If you need to create your own style for this plugin, you need to create new dir
 
 == Changelog ==
 
+= 1.0.8 =
+* Fixed news
+* Improved loading time
+* Fixed content formatting
+
+= 1.0.7 =
+* Improved admin interface
+* Fixed bugs from previous version
+
 = 1.0.6 =
 * Fixed main templates
 * Fixed main style
@@ -94,10 +103,10 @@ If you need to create your own style for this plugin, you need to create new dir
 
 == Upgrade Notice ==
 
-= 1.0.6 =
-* Fixed main templates
-* Fixed main style
-* Included push notifications
+= 1.0.8 =
+* Fixed news
+* Improved loading time
+* Fixed content formatting
 
 == Frequently Asked Questions ==
 

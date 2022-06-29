@@ -74,21 +74,21 @@ do_action('registar_nestalih_before_single_container', $missing);
 			<li class="list-group-item">
 				<b><?php _e('Circumstances of disappearance:', 'registar-nestalih'); ?></b>
 				<br>
-				<span><?php echo nl2br(esc_html($missing->okolnosti_nestanka)); ?></span>
+				<span><?php echo nl2br(esc_html($missing->okolnosti_nestanka())); ?></span>
 			</li>
 			<?php endif; ?>
 			<?php if( !empty($missing->opis_nestanka) ) : ?>
 			<li class="list-group-item">
 				<b><?php _e('Description at the time of disappearance:', 'registar-nestalih'); ?></b>
 				<br>
-				<span><?php echo nl2br(esc_html($missing->opis_nestanka)); ?></span>
+				<span><?php echo nl2br(esc_html($missing->opis_nestanka())); ?></span>
 			</li>
 			<?php endif; ?>
 			<?php if( !empty($missing->dodatne_informacije) ) : ?>
 			<li class="list-group-item">
 				<b><?php _e('Additional information:', 'registar-nestalih'); ?></b>
 				<br>
-				<span><?php echo nl2br(esc_html($missing->dodatne_informacije)); ?></span>
+				<span><?php echo nl2br(esc_html($missing->dodatne_informacije())); ?></span>
 			</li>
 			<?php endif; ?>
 		</ul>

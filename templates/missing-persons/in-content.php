@@ -17,29 +17,7 @@ $title = sprintf(
 	$missing_response->age()
 );
 
-$description = '';
-if( !empty($missing_response->okolnosti_nestanka) && strlen($missing_response->okolnosti_nestanka) < 160 ) {
-	$description = $missing_response->okolnosti_nestanka;
-	
-	if( !empty($missing_response->dodatne_informacije) ) {
-		$description.= '<br><br><b>' . __('Additional information:', 'registar-nestalih') . '</b><br>' . $missing_response->dodatne_informacije;
-	}
-	
-} else if( !empty($missing_response->okolnosti_nestanka) ) {
-	$description = $missing_response->okolnosti_nestanka;
-} else if( !empty($missing_response->opis_nestanka) && strlen($missing_response->opis_nestanka) < 160 ) {
-	$description = $missing_response->opis_nestanka;
-	
-	if( !empty($missing_response->dodatne_informacije) ) {
-		$description.= '<br><br><b>' . __('Additional information:', 'registar-nestalih') . '</b><br>' . $missing_response->dodatne_informacije;
-	}
-	
-} else if( !empty($missing_response->opis_nestanka) ) {
-	$description = $missing_response->opis_nestanka;
-} else if( !empty($missing_response->dodatne_informacije) ) {
-	$description = $missing_response->dodatne_informacije;
-}
-
+$description = $missing_response->info();
 ?>
 <div class="registar-nestalih-container">
 	<div class="row">

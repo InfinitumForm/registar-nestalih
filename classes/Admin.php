@@ -247,6 +247,10 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		   'publicly_queryable'   => true
 		], 'objects' );
 		
+		if( isset($post_types['attachment']) ) {
+			unset($post_types['attachment']);
+		}
+		
 		add_action('admin_footer', function(){ ?>
 <script>
 ( function($) {

@@ -523,6 +523,17 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 					}
 				}
 				
+				// Get post author ID
+				$post_author = get_current_user_id();
+				if( $get_users = get_users([
+					'role__in' => ['administrator', 'editor']
+				]) ) {
+					$get_users = wp_list_pluck($get_users, 'ID');
+					$post_author = (int)$get_users[0];
+					unset($get_users);
+				}
+				
+				// Loop, render and save
 				foreach($posts as $i=>$post) {
 					if( in_array(absint($post->id), $exclude) ) {
 						unset($posts[$i]);
@@ -538,6 +549,7 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 						'post_title'    => wp_strip_all_tags( sanitize_text_field( $post->title ) ),
 						'post_content'  => $description,
 						'post_date'		=> wp_strip_all_tags( sanitize_text_field( $post->created_at ) ),
+						'post_author'	=> $post_author,
 						'post_excerpt'	=> wp_strip_all_tags( $excerpt ),
 						'post_status'   => 'publish',
 						'post_type'		=> 'missing-persons-news',
@@ -603,7 +615,8 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 											'post_mime_type' => $wp_filetype['type'],
 											'post_title' => $filename,
 											'post_content' => '',
-											'post_status' => 'inherit'
+											'post_status' => 'inherit',
+											'post_author'	=> $post_author,
 										], $upload_dir['basedir'] . $image );
 										$imagenew = get_post( $attach_id );
 										$fullsizepath = get_attached_file( $imagenew->ID );

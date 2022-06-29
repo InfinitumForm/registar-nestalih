@@ -71,6 +71,59 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
         throw new Exception('No such method: ' . get_class($this) . '->$function()');
     }
 	
+	// Okolnosti nestanka
+	public function okolnosti_nestanka() {
+		if(empty($this->okolnosti_nestanka)) {
+			return '';
+		}
+		return join('', explode('\\', $this->okolnosti_nestanka));
+	}
+	
+	// Dodatne informacije
+	public function dodatne_informacije() {
+		if(empty($this->dodatne_informacije)) {
+			return '';
+		}
+		return join('', explode('\\', $this->dodatne_informacije));
+	}
+	
+	// Opis nestanka
+	public function opis_nestanka() {
+		if(empty($this->opis_nestanka)) {
+			return '';
+		}
+		return join('', explode('\\', $this->opis_nestanka));
+	}
+	
+	// Info
+	public function info() {
+		$info = '';
+		
+		if( !empty($this->okolnosti_nestanka()) && strlen($this->okolnosti_nestanka()) < 160 ) {
+			$info = $this->okolnosti_nestanka();
+			
+			if( !empty($this->dodatne_informacije()) ) {
+				$info.= '<br><br><b>' . __('Additional information:', 'registar-nestalih') . '</b><br>' . $this->dodatne_informacije();
+			}
+			
+		} else if( !empty($this->okolnosti_nestanka()) ) {
+			$info = $this->okolnosti_nestanka();
+		} else if( !empty($this->opis_nestanka()) && strlen($this->opis_nestanka()) < 160 ) {
+			$info = $this->opis_nestanka();
+			
+			if( !empty($this->dodatne_informacije()) ) {
+				$info.= '<br><br><b>' . __('Additional information:', 'registar-nestalih') . '</b><br>' . $this->dodatne_informacije();
+			}
+			
+		} else if( !empty($this->opis_nestanka()) ) {
+			$info = $this->opis_nestanka();
+		} else if( !empty($this->dodatne_informacije()) ) {
+			$info = $this->dodatne_informacije();
+		}
+		
+		return $info;
+	}
+	
 	// Get ID
 	public function id() {
 		return absint($this->id);
@@ -149,7 +202,7 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 							$test = wp_remote_get($this->icon, ['Content-Type' => 'application/json']);
 							if ( is_array( $test ) && ! is_wp_error( $test ) ) {
 								$test = json_decode($test['body']);
-								if($test->error_type == 'missing_inputs'){
+								if(($test->error_type ?? NULL) == 'missing_inputs'){
 									$exists = false;
 								}
 								unset($test);

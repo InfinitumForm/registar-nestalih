@@ -39,6 +39,7 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		
 		if(Registar_Nestalih_Options::get('enable-news', 0)) {
 			add_action( 'registar_nestalih_news_sync', ['Registar_Nestalih_API', 'get_news'], 10, 0 );
+			add_action( 'before_delete_post', [&$this, 'registar_nestalih_news_delete'], 10, 2 );
 		}
 		
 		if(Registar_Nestalih_Options::get('enable-latest-missing', 0)) {
@@ -305,4 +306,18 @@ if( !class_exists('Registar_Nestalih_Content') ) : class Registar_Nestalih_Conte
 		return $content;
 	}
 	
+	// Delete attachments related to the news on post delete
+	public static function registar_nestalih_news_delete ( $post_id, $post ) {
+
+		if( $post->post_type == 'missing-persons-news' ) {
+			if( $attachments = get_attached_media( '', $post->ID ) ) {
+				foreach ($attachments as $attachment) {
+					wp_delete_attachment( $attachment->ID, true );
+				}
+			}
+			if( $thumbnail_id = get_post_thumbnail_id($post) ) {
+				wp_delete_attachment( $thumbnail_id, true );
+			}
+		}
+	}
 } endif;
