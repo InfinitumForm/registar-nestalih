@@ -22,6 +22,11 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 		add_action( 'admin_init', [&$this, 'register_setting__missing_persons'] );
 		add_action( 'admin_footer', [&$this, 'admin_footer'] );
 		add_action( 'admin_head', [&$this, 'admin_head'] );
+		add_action( 'init', function() {
+			if( function_exists('is_admin_bar_showing') && is_admin_bar_showing() ) {
+				add_action( 'wp_head', [&$this, 'admin_head'] );
+			}
+		});
 		add_filter( 'display_post_states' , [&$this, 'display_post_states'], 10, 2 );
 		add_filter( 'plugin_action_links_' . plugin_basename(MISSING_PERSONS_FILE), [&$this, 'plugin_action_links'] );
 		add_filter( 'plugin_row_meta', [&$this, 'cfgp_action_links'], 10, 2 );
