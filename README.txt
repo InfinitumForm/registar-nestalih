@@ -134,3 +134,13 @@ The second step of the Center began in March 2017 with the launch of a campaign 
 The third step of the Center will begin with the launch of the Register of Missing Persons of Serbia, in June 2017. The goal of starting the register is the visibility of a large number of missing persons whose data and photos, apart from police records, are not available to the public. The Center is of the opinion that with such an approach, non-transparency, the general public cannot get involved in the search and contribute to the search for missing persons, primarily minors. By launching the register - the only database of missing persons from the territory of Serbia, the Center also raises public awareness about missing persons as an everyday occurrence.
 
 In addition to changing insufficiently good legal provisions and major strategic steps, the Center has been educating primary and secondary school children throughout Serbia, parents and educators in its daily work since its establishment.
+
+== Screenshots ==
+
+1. Plugin settings
+2. Shortcodes
+3. Cached News of the register of missing persons
+4. Register of Missing Persons in Serbia
+5. Missing person report form
+6. Individual missing person (details)
+7. Widgets
