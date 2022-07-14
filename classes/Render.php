@@ -191,6 +191,11 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 					$ext = explode('.', $this->icon);
 					$ext = '.' . strtolower(end($ext));
 					
+					// Fix extension
+					if($ext === '.') {
+						$ext = '.jpg';
+					}
+					
 					if(in_array($ext, ['.jpg','.jpeg','.png','.gif','.webp'])) {
 						
 						$image = ($upload_dir['basedir'] . $folder . '/' . $this->id() . '/' . $this->id() . $ext);
