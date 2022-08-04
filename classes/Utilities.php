@@ -17,7 +17,7 @@ if( !class_exists('Registar_Nestalih_U') ) : class Registar_Nestalih_U {
 			
 			if( !$ID ) {
 				$ID = ('RN_'.self::generate_token(55).'_'.self::generate_token(4));
-				add_option('Registar-Nestalih-ID', $ID, true);
+				update_option('Registar-Nestalih-ID', $ID, 'yes');
 			}
 		}
 

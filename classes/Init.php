@@ -185,7 +185,7 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 		// Plugin is new, let's do some things first time
 		else {
 			// Set activation date
-			add_option(self::TEXTDOMAIN . '-activation', [date('Y-m-d H:i:s')], false);
+			add_option(self::TEXTDOMAIN . '-activation', [date('Y-m-d H:i:s')], '', 'no');
 			
 			// Create new main plugin page
 			if( $page_id = wp_insert_post( [
@@ -245,7 +245,7 @@ if( !class_exists('Registar_Nestalih') ) : class Registar_Nestalih {
 			$deactivation[] = date('Y-m-d H:i:s');
 			update_option(self::TEXTDOMAIN . '-deactivation', $deactivation, false);
 		} else {
-			add_option(self::TEXTDOMAIN . '-deactivation', [date('Y-m-d H:i:s')], false);
+			add_option(self::TEXTDOMAIN . '-deactivation', [date('Y-m-d H:i:s')], '', 'no');
 		}
 		
 		// Clear plugin cache
