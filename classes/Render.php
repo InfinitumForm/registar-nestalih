@@ -99,39 +99,6 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 	public function info() {
 		$info = '';
 		
-		$mods = array(
-			'okolnosti' => $this->okolnosti_nestanka(),
-			'opis' => $this->opis_nestanka(),
-			'dodatne' => $this->dodatne_informacije()
-		);
-		
-		$find_mode = array_map( 'strlen', $mods );
-		
-		$find_mode_max = max($find_mode);
-		$mode = (array_flip($find_mode))[$find_mode_max];
-		
-		if( $mods[ $mode ] ?? NULL ) {
-			$info = $mods[ $mode ];			
-			unset($mods[ $mode ]);
-			
-			if($find_mode_max < 160) {
-				
-				unset($find_mode[ $mode ]);
-				
-				$find_mode_max = max($find_mode);
-				$mode = (array_flip($find_mode))[$find_mode_max];
-				
-				if( $mods[ $mode ] ?? NULL ) {
-					$info.= '<br><br><b>' . __('Additional information:', 'registar-nestalih') . '</b><br>' 
-					. $mods[ $mode ];
-				}
-			}
-			
-		}
-		
-		
-		
-		/*
 		if( !empty($this->okolnosti_nestanka()) && strlen($this->okolnosti_nestanka()) < 160 ) {
 			$info = $this->okolnosti_nestanka();
 			
@@ -153,7 +120,7 @@ if( !class_exists('Registar_Nestalih_Render') ) : class Registar_Nestalih_Render
 		} else if( !empty($this->dodatne_informacije()) ) {
 			$info = $this->dodatne_informacije();
 		}
-		*/
+		
 		return $info;
 	}
 	

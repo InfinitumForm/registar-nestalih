@@ -2,9 +2,9 @@
 Contributors: ivijanstefan, creativform
 Tags: library, register, missing persons 
 Requires at least: 5.0
-Tested up to: 6.0
+Tested up to: 6.1
 Requires PHP: 7.0
-Stable tag: 1.0.10
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://www.buymeacoffee.com/ivijanstefan
@@ -61,6 +61,11 @@ If you need to create your own style for this plugin, you need to create new dir
 3. Activate the plugin through the "Plugins" menu in WordPress
 
 == Changelog ==
+
+= 1.1.0 =
+* Added found missing person page
+* Fixed redirections
+* Fixed cache
 
 = 1.0.10 =
 * Removed deprecated functionality

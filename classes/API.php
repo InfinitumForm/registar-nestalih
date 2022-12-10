@@ -90,9 +90,24 @@ if( !class_exists('Registar_Nestalih_API') ) : class Registar_Nestalih_API {
 			) );
 			
 			// If there is no errors clean it
+			
 			if( !is_wp_error( $request ) ) {
 				if($json = wp_remote_retrieve_body( $request )) {
 					$posts = json_decode($json);
+					
+					if( $posts->error ?? NULL ) {
+						if( $page = Registar_Nestalih_Options::get('found-page') ) {
+							if( wp_safe_redirect( get_page_link($page) ) ) {
+								exit;
+							}
+						} else {
+							if( wp_safe_redirect( home_url('/404') ) ) {
+								exit;
+							}
+						}
+						
+						return;
+					}
 				}
 			}
 			

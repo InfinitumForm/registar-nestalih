@@ -71,9 +71,9 @@ if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
 	 */
     public static function add(string $key, $value, int $expire = 0) {
 		
-		$key = self::key($key);
-		
 		if(self::get($key, NULL) === NULL) {
+			
+			$key = self::key($key);
 			
 			if( !self::table_exists() ) {
 				$save = set_transient( $key, $value, $expire );
@@ -116,9 +116,9 @@ if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
 			return NULL;
 		}
 		
-		$key = self::key($key);
-		
 		if( !self::table_exists() ) {
+			$key = self::key($key);
+			
 			if( set_transient( $key, $value, $expire ) ) {
 				return $value;
 			} else {

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Register of Missing Persons of Serbia\n"
-"POT-Creation-Date: 2022-06-28 10:48+0200\n"
-"PO-Revision-Date: 2022-06-28 10:48+0200\n"
+"POT-Creation-Date: 2022-12-10 19:42+0100\n"
+"PO-Revision-Date: 2022-12-10 19:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: https://infinitumform.com\n"
 "Language: en\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: registar-nestalih.php\n"
@@ -21,59 +21,59 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: classes/Admin.php:71 classes/Admin.php:328
+#: classes/Admin.php:82 classes/Admin.php:344
 msgid "Settings"
 msgstr ""
 
-#: classes/Admin.php:85
+#: classes/Admin.php:96
 msgid "Donate"
 msgstr ""
 
-#: classes/Admin.php:90
+#: classes/Admin.php:101
 msgid "Foundation"
 msgstr ""
 
-#: classes/Admin.php:95
+#: classes/Admin.php:106
 msgid "Give us five if you like!"
 msgstr ""
 
-#: classes/Admin.php:96
+#: classes/Admin.php:107
 msgid "5 Stars?"
 msgstr ""
 
-#: classes/Admin.php:106 classes/Admin.php:339
+#: classes/Admin.php:117 classes/Admin.php:355
 msgid "Missing Persons Page"
 msgstr ""
 
-#: classes/Admin.php:114 classes/Admin.php:115 classes/Admin.php:156
-#: classes/Admin.php:160 classes/Admin.php:169 classes/Admin.php:173
+#: classes/Admin.php:125 classes/Admin.php:126 classes/Admin.php:168
+#: classes/Admin.php:172 classes/Admin.php:181 classes/Admin.php:185
 #: widgets/Latest_Missing.php:48
 msgid "Missing Persons"
 msgstr ""
 
-#: classes/Admin.php:126 classes/Admin.php:127 classes/Admin.php:181
-#: classes/Admin.php:185
+#: classes/Admin.php:138 classes/Admin.php:139 classes/Admin.php:193
+#: classes/Admin.php:197
 msgid "News"
 msgstr ""
 
-#: classes/Admin.php:135 classes/Admin.php:200
+#: classes/Admin.php:147 classes/Admin.php:212
 msgid "Clear Cache of Missing Persons"
 msgstr ""
 
-#: classes/Admin.php:136 classes/Admin.php:193
+#: classes/Admin.php:148 classes/Admin.php:205
 msgid "Clear Cache"
 msgstr ""
 
-#: classes/Admin.php:265 registar-nestalih.php:68
+#: classes/Admin.php:281 registar-nestalih.php:68
 msgid "Register of Missing Persons of Serbia"
 msgstr ""
 
-#: classes/Admin.php:273
+#: classes/Admin.php:289
 msgctxt "Admin sidebar title"
 msgid "The Center for Missing and Abused Children of Serbia"
 msgstr ""
 
-#: classes/Admin.php:278
+#: classes/Admin.php:294
 msgid ""
 "The Center for Missing and Abused Children does not charge for the support "
 "it provides through the Net Patrol and Missing Serbia projects, as well as "
@@ -82,244 +82,248 @@ msgid ""
 "children!"
 msgstr ""
 
-#: classes/Admin.php:283
+#: classes/Admin.php:299
 #, php-format
 msgid "Support the work of the foundation by %1$s or %2$s in the web store."
 msgstr ""
 
-#: classes/Admin.php:284
+#: classes/Admin.php:300
 msgid "donating"
 msgstr ""
 
-#: classes/Admin.php:285
+#: classes/Admin.php:301
 msgid "purchasing products"
 msgstr ""
 
-#: classes/Admin.php:291
+#: classes/Admin.php:307
 #, php-format
 msgid "You can also %1$s of the association."
 msgstr ""
 
-#: classes/Admin.php:292
+#: classes/Admin.php:308
 msgid "become a member"
 msgstr ""
 
-#: classes/Admin.php:301
+#: classes/Admin.php:317
 msgid "Contributors & Developers"
 msgstr ""
 
-#: classes/Admin.php:313
+#: classes/Admin.php:329
 #, php-format
 msgid ""
 "If you want to support our work and effort, if you have new ideas or want to "
 "improve the existing code, %s."
 msgstr ""
 
-#: classes/Admin.php:313
+#: classes/Admin.php:329
 msgid "join our team"
 msgstr ""
 
-#: classes/Admin.php:319
+#: classes/Admin.php:335
 msgid "Developed by: INFINITUM FORM"
 msgstr ""
 
-#: classes/Admin.php:329
+#: classes/Admin.php:345
 msgid "Available Shortcodes"
 msgstr ""
 
-#: classes/Admin.php:335
+#: classes/Admin.php:351
 msgid "Missing Persons Settings"
 msgstr ""
 
-#: classes/Admin.php:336
+#: classes/Admin.php:352
 msgid "This option sets the API and shortcode for missing persons."
 msgstr ""
 
-#: classes/Admin.php:342
+#: classes/Admin.php:358 classes/Admin.php:375
 msgid "Select a Page"
 msgstr ""
 
-#: classes/Admin.php:356
-msgid "Pagination slug"
-msgstr ""
-
-#: classes/Admin.php:362
-msgid "Search slug"
-msgstr ""
-
-#: classes/Admin.php:368
-msgid "Person slug"
-msgstr ""
-
-#: classes/Admin.php:374
-msgid "Open links in new window"
-msgstr ""
-
-#: classes/Admin.php:379 classes/Admin.php:394 classes/Admin.php:416
-#: classes/Admin.php:497 classes/Admin.php:524
-msgid "Yes"
-msgstr ""
-
-#: classes/Admin.php:384 classes/Admin.php:399 classes/Admin.php:421
-#: classes/Admin.php:502 classes/Admin.php:529
-msgid "No"
+#: classes/Admin.php:372
+msgid "Founded Person Page"
 msgstr ""
 
 #: classes/Admin.php:389
+msgid "Pagination slug"
+msgstr ""
+
+#: classes/Admin.php:395
+msgid "Search slug"
+msgstr ""
+
+#: classes/Admin.php:401
+msgid "Person slug"
+msgstr ""
+
+#: classes/Admin.php:407
+msgid "Open links in new window"
+msgstr ""
+
+#: classes/Admin.php:412 classes/Admin.php:427 classes/Admin.php:449
+#: classes/Admin.php:530 classes/Admin.php:557
+msgid "Yes"
+msgstr ""
+
+#: classes/Admin.php:417 classes/Admin.php:432 classes/Admin.php:454
+#: classes/Admin.php:535 classes/Admin.php:562
+msgid "No"
+msgstr ""
+
+#: classes/Admin.php:422
 msgid "Enable sending information about the person"
 msgstr ""
 
-#: classes/Admin.php:407 classes/Admin.php:564
+#: classes/Admin.php:440 classes/Admin.php:597
 msgid "The latest missing person"
 msgstr ""
 
-#: classes/Admin.php:408
+#: classes/Admin.php:441
 msgid ""
 "Show the latest missing person on all selected post types so you can find "
 "them as quickly as possible."
 msgstr ""
 
-#: classes/Admin.php:411
+#: classes/Admin.php:444
 msgid "Enable display of latest missing person"
 msgstr ""
 
-#: classes/Admin.php:426
+#: classes/Admin.php:459
 msgid "Display on the post type"
 msgstr ""
 
-#: classes/Admin.php:466
+#: classes/Admin.php:499
 msgid "Before content"
 msgstr ""
 
-#: classes/Admin.php:471
+#: classes/Admin.php:504
 msgid "After Content"
 msgstr ""
 
-#: classes/Admin.php:476
+#: classes/Admin.php:509
 msgid "Both positions"
 msgstr ""
 
-#: classes/Admin.php:488
+#: classes/Admin.php:521
 msgid "News settings"
 msgstr ""
 
-#: classes/Admin.php:489
+#: classes/Admin.php:522
 msgid ""
 "If you want, you have the opportunity to download the latest news from our "
 "application and display it on your site as a special post format intended "
 "for this purpose."
 msgstr ""
 
-#: classes/Admin.php:492
+#: classes/Admin.php:525
 msgid "Enable News"
 msgstr ""
 
-#: classes/Admin.php:507
+#: classes/Admin.php:540
 msgid "News slug"
 msgstr ""
 
-#: classes/Admin.php:515
+#: classes/Admin.php:548
 msgid "Utility"
 msgstr ""
 
-#: classes/Admin.php:516
+#: classes/Admin.php:549
 msgid "Small but useful options."
 msgstr ""
 
-#: classes/Admin.php:519
+#: classes/Admin.php:552
 msgid "CSS support"
 msgstr ""
 
-#: classes/Admin.php:531
+#: classes/Admin.php:564
 msgid ""
 "If you activate this option, we will insert the basic Twitter Bootstrap CSS "
 "to style the tabs and columns while the rest of the design will be intact."
 msgstr ""
 
-#: classes/Admin.php:538
+#: classes/Admin.php:571
 msgid "Cache"
 msgstr ""
 
-#: classes/Admin.php:539
+#: classes/Admin.php:572
 msgid ""
 "If you need to clear your plugin's cache, you have the option to use the "
 "following URL:"
 msgstr ""
 
-#: classes/Admin.php:542
+#: classes/Admin.php:575
 msgid "Save"
 msgstr ""
 
-#: classes/Admin.php:550
+#: classes/Admin.php:583
 msgid "Register of Missing Persons"
 msgstr ""
 
-#: classes/Admin.php:551
+#: classes/Admin.php:584
 msgid ""
 "Print the advanced search page and view all missing persons from the global "
 "database."
 msgstr ""
 
-#: classes/Admin.php:553 classes/Admin.php:579 classes/Admin.php:591
+#: classes/Admin.php:586 classes/Admin.php:612 classes/Admin.php:624
 msgid "Optional attributes:"
 msgstr ""
 
-#: classes/Admin.php:555 classes/Admin.php:581 classes/Admin.php:593
+#: classes/Admin.php:588 classes/Admin.php:614 classes/Admin.php:626
 msgid "(optional) number of items per page"
 msgstr ""
 
-#: classes/Admin.php:556 classes/Admin.php:582 classes/Admin.php:594
+#: classes/Admin.php:589 classes/Admin.php:615 classes/Admin.php:627
 msgid "(optional) page number"
 msgstr ""
 
-#: classes/Admin.php:557 classes/Admin.php:583 classes/Admin.php:595
+#: classes/Admin.php:590 classes/Admin.php:616 classes/Admin.php:628
 msgid "(optional) search terms"
 msgstr ""
 
-#: classes/Admin.php:559 classes/Admin.php:584 classes/Admin.php:597
+#: classes/Admin.php:592 classes/Admin.php:617 classes/Admin.php:630
 msgid "(optional) order by, (use a minus sign for DESC before the parameter)"
 msgstr ""
 
-#: classes/Admin.php:560
+#: classes/Admin.php:593
 msgid "(optional) person ID for individual missing person"
 msgstr ""
 
-#: classes/Admin.php:565
+#: classes/Admin.php:598
 msgid "View the most recent missing person reported in the last period."
 msgstr ""
 
-#: classes/Admin.php:568
+#: classes/Admin.php:601
 #, php-format
 msgid ""
 "This shortcode has optional attribute %s parameter that adjusts the position "
 "of the banner if the content is within the shortcode."
 msgstr ""
 
-#: classes/Admin.php:571
+#: classes/Admin.php:604
 msgid "Report of a Missing Person"
 msgstr ""
 
-#: classes/Admin.php:572
+#: classes/Admin.php:605
 msgid "Prints the missing person registration form in the central register."
 msgstr ""
 
-#: classes/Admin.php:575
+#: classes/Admin.php:608
 msgid "Questions and Answers from the Register of Missing Persons Website"
 msgstr ""
 
-#: classes/Admin.php:576
+#: classes/Admin.php:609
 msgid "Displays questions and answers from the missing persons site."
 msgstr ""
 
-#: classes/Admin.php:588
+#: classes/Admin.php:621
 msgid "Amber Alert information from the Missing Persons Register website."
 msgstr ""
 
-#: classes/Admin.php:589
+#: classes/Admin.php:622
 msgid "Displays amber alert informations from the missing persons site."
 msgstr ""
 
-#: classes/Admin.php:617
+#: classes/Admin.php:650
 msgid ""
 "This site uses the Register of Missing Persons of Serbia to present to "
 "public and private visitors the information about missing persons from the "
@@ -327,19 +331,19 @@ msgid ""
 "Federation of Bosnia and Herzegovina and the Republic of Croatia."
 msgstr ""
 
-#: classes/Admin.php:619
+#: classes/Admin.php:652
 #, php-format
 msgid ""
 "The Register of Missing Persons of Serbia is owned by the %s of the Republic "
 "of Serbia."
 msgstr ""
 
-#: classes/Admin.php:620
+#: classes/Admin.php:653
 msgctxt "Privacy policy sentence"
 msgid "Center for Missing and Abused Children"
 msgstr ""
 
-#: classes/Admin.php:622
+#: classes/Admin.php:655
 msgid ""
 "The Center for Missing and Abused Children is a non-profit organization "
 "established in accordance with the Law on Endowments and Foundations of the "
@@ -347,7 +351,7 @@ msgid ""
 "safety of children in Serbia."
 msgstr ""
 
-#: classes/Admin.php:624
+#: classes/Admin.php:657
 #, php-format
 msgid ""
 "The Register of Missing Persons of Serbia is available 24 hours a day at "
@@ -359,88 +363,88 @@ msgid ""
 "available 24 hours a day via the address %2$s or via free phone number %3$s."
 msgstr ""
 
-#: classes/Admin.php:632
+#: classes/Admin.php:665
 msgctxt "Privacy policy title"
 msgid "Register of Missing Persons of Serbia"
 msgstr ""
 
-#: classes/Content.php:53 classes/Content.php:54
+#: classes/Content.php:54 classes/Content.php:55
 msgid "Missing Persons News"
 msgstr ""
 
-#: classes/Content.php:55 classes/Content.php:56
+#: classes/Content.php:56 classes/Content.php:57
 msgid "Add New News"
 msgstr ""
 
-#: classes/Content.php:57
+#: classes/Content.php:58
 msgid "Edit News"
 msgstr ""
 
-#: classes/Content.php:58
+#: classes/Content.php:59
 msgid "New News"
 msgstr ""
 
-#: classes/Content.php:59
+#: classes/Content.php:60
 msgid "View News"
 msgstr ""
 
-#: classes/Content.php:60
+#: classes/Content.php:61
 msgid "Search News"
 msgstr ""
 
-#: classes/Content.php:61 templates/widgets/recent-news.php:30
+#: classes/Content.php:62 templates/widgets/recent-news.php:30
 msgid "No News Found"
 msgstr ""
 
-#: classes/Content.php:62
+#: classes/Content.php:63
 msgid "No News Found in Trash"
 msgstr ""
 
-#: classes/Content.php:64
+#: classes/Content.php:65
 msgid "News Image"
 msgstr ""
 
-#: classes/Content.php:65
+#: classes/Content.php:66
 msgid "Select News Image"
 msgstr ""
 
-#: classes/Content.php:66
+#: classes/Content.php:67
 msgid "Remove News Image"
 msgstr ""
 
-#: classes/Content.php:67
+#: classes/Content.php:68
 msgid "Use News Image"
 msgstr ""
 
-#: classes/Content.php:68
+#: classes/Content.php:69
 msgid "Insert Into News"
 msgstr ""
 
-#: classes/Content.php:94
+#: classes/Content.php:95
 msgid ""
 "The register of missing persons is in development mode and the content on it "
 "is intended for test purposes."
 msgstr ""
 
-#: classes/Content.php:233
+#: classes/Content.php:234
 #, php-format
 msgid "Information about %s sent successfully."
 msgstr ""
 
-#: classes/Content.php:240
+#: classes/Content.php:241
 msgid "The message was not sent due to technical problems."
 msgstr ""
 
-#: classes/Content.php:257 classes/Template.php:97
+#: classes/Content.php:258 classes/Template.php:97
 msgid ""
 "All fields in this form are required. Fill in the fields and send a message."
 msgstr ""
 
-#: classes/Content.php:263
+#: classes/Content.php:264
 msgid "The missing person was successfully reported."
 msgstr ""
 
-#: classes/Content.php:264
+#: classes/Content.php:265
 msgid ""
 "You must be patient for our administrators to verify the authenticity of the "
 "information and approve the missing person's profile."
@@ -448,6 +452,11 @@ msgstr ""
 
 #: classes/Init.php:192
 msgid "Missing persons"
+msgstr ""
+
+#: classes/Render.php:106 classes/Render.php:115
+#: templates/missing-persons/single.php:89
+msgid "Additional information:"
 msgstr ""
 
 #: classes/Requirements.php:93
@@ -630,12 +639,6 @@ msgstr ""
 
 #: templates/missing-persons/contact-form.php:46
 msgid "Send Message"
-msgstr ""
-
-#: templates/missing-persons/in-content.php:25
-#: templates/missing-persons/in-content.php:34
-#: templates/missing-persons/single.php:89
-msgid "Additional information:"
 msgstr ""
 
 #: templates/missing-persons/pagination.php:13

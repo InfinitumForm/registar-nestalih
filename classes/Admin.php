@@ -369,6 +369,23 @@ if( !class_exists('Registar_Nestalih_Admin') ) : class Registar_Nestalih_Admin {
 				</td>
 			</tr>
 			<tr>
+				<th scope="row"><?php _e('Founded Person Page', 'registar-nestalih'); ?></th>
+				<td>
+					<select name="registar-nestalih[found-page]">
+						<option value="">- <?php _e('Select a Page', 'registar-nestalih'); ?> -</option>
+						<?php foreach( $pages as $page ) { ?>
+							<option value="<?php 
+								echo absint($page->ID); 
+							?>" <?php 
+								selected( ($options['found-page'] ?? NULL), $page->ID ); 
+							?>><?php 
+								echo esc_html($page->post_title); 
+							?></option>
+						<?php }; ?>
+					</select>
+				</td>
+			</tr>
+			<tr>
 				<th scope="row"><?php _e('Pagination slug', 'registar-nestalih'); ?></th>
 				<td>
 					<input type="text" name="registar-nestalih[pagination-slug]" value="<?php echo esc_attr( ($options['pagination-slug'] ?? 'page') ); ?>" placeholder="page" />

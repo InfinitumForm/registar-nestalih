@@ -8,6 +8,7 @@ if( !class_exists('Registar_Nestalih_Options') ) : class Registar_Nestalih_Optio
 	// Default settings
 	private static $default_options = [
 		'main-page' => NULL,
+		'found-page' => NULL,
 		'pagination-slug' => 'page',
 		'search-slug' => 'search',
 		'person-slug' => 'person',
