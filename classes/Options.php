@@ -62,6 +62,11 @@ if( !class_exists('Registar_Nestalih_Options') ) : class Registar_Nestalih_Optio
 		// Get plugin options
 		$options = self::get();
 		
+		// Fix array
+		if( !$options ) {
+			$options = [];
+		}
+		
 		// Get default keys
 		$filter = array_keys(self::$default_options);
 		
