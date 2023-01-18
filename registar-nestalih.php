@@ -3,9 +3,9 @@
  * Plugin Name:       Register of Missing Persons in Serbia
  * Plugin URI:        https://wordpress.org/plugins/registar-nestalih/
  * Description:       Display on your site all missing persons from the central Register of Missing Persons of Serbia.
- * Version:           1.1.0
+ * Version:           1.1.2
  * Author:            Ivijan-Stefan Stipić
- * Author URI:        https://profiles.wordpress.org/ivijanstefan/
+ * Author URI:        https://rs.linkedin.com/in/ivijanstefanstipic
  * Requires at least: 5.0
  * Tested up to:      6.1
  * Requires PHP:      7.0
@@ -13,7 +13,6 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       registar-nestalih
  * Domain Path:       /languages
- * Network:           true
  *
  * Copyright (C) 2022 Ivijan-Stefan Stipic
  *

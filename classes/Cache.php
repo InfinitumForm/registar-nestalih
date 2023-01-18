@@ -9,6 +9,8 @@
  * @version       1.0.0
  */
 if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
+	// Cache the DB values
+	private static $cache = [];
 	
 	// Run this class on the safe and protected way
 	private static $instance;
@@ -35,11 +37,17 @@ if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
 	public static function get( string $key, $default=NULL ) {
 		
 		$key = self::key($key);
+		
+		if( self::$cache[$key] ?? NULL ) {
+			return self::$cache[$key];
+		}
 
 		if( !self::table_exists() ) {
 			if( $transient = get_transient( $key ) ) {
+				self::$cache[$key] = $transient;
 				return $transient;
 			} else {
+				self::$cache[$key] = $default;
 				return $default;
 			}
 		}
@@ -57,9 +65,12 @@ if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
 			if(is_serialized($result) || self::is_serialized($result)){
 				$result = unserialize($result);
 			}
+			
+			self::$cache[$key] = $result;
 			return $result;
 		}
 		
+		self::$cache[$key] = $default;
 		return $default;
 	}
 	
@@ -95,6 +106,7 @@ if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
 			}
 			
 			if($save && !is_wp_error($save)){
+				self::$cache[$key] = $value;
 				return $value;
 			}
 			
@@ -170,6 +182,7 @@ if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
 		}
 		
 		if($save && !is_wp_error($save)){
+			self::$cache[$key] = $value;
 			return $value;
 		}
 		
@@ -185,12 +198,15 @@ if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
 		
 		$key = self::key($key);
 		
+		if( self::$cache[$key] ?? NULL ) {
+			unset(self::$cache[$key]);
+		}
+		
 		if( !self::table_exists() ) {
 			return delete_transient( $key );
 		}
 		
 		global $wpdb;
-		
 		return $wpdb->query( $wpdb->prepare("DELETE FROM `{$wpdb->registar_nestalih_cache}` WHERE `key` = %s", $key ));
     }
 	
@@ -198,6 +214,7 @@ if(!class_exists('Registar_Nestalih_Cache')) : class Registar_Nestalih_Cache {
 	 * Clears all cached data
 	 */
 	public static function flush() {
+		self::$cache = [];
 		
 		if( !self::table_exists() ) {
 			CFGP_U::flush_plugin_cache();

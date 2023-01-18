@@ -32,7 +32,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	/*
 	 * Register Nestalih
 	 */
-	public function callback__registar_nestalih	($attr, $content='', $tag) {
+	public function callback__registar_nestalih	($attr, $content='', $tag='registar_nestalih') {
 		global $wp_query;
 		
 		$attr = shortcode_atts( [
@@ -82,7 +82,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	/*
 	 * Register Nestalih Najnoviji
 	 */
-	public function callback__registar_nestalih_najnoviji ($attr, $content='', $tag) {
+	public function callback__registar_nestalih_najnoviji ($attr, $content='', $tag='registar_nestalih_najnoviji') {
 		$attr = shortcode_atts( [
 			'position' => 'before'
 		], $attr, $tag );
@@ -127,7 +127,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	/*
 	 * Register Nestalih Prijava
 	 */
-	public function callback__registar_nestalih_prijava	($attr, $content='', $tag) {
+	public function callback__registar_nestalih_prijava	($attr, $content='', $tag='registar_nestalih_prijava') {
 		$attr = shortcode_atts( [
 			
 		], $attr, $tag );
@@ -146,7 +146,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	/*
 	 * Register Nestalih Questons & Answers
 	 */
-	public function callback__registar_nestalih_pitanja_saveti ($attr, $content='', $tag) {	
+	public function callback__registar_nestalih_pitanja_saveti ($attr, $content='', $tag='registar_nestalih_pitanja_saveti') {	
 		$attr = array_filter( shortcode_atts( [
 	/*		'per_page'	=> NULL,
 			'page'		=> NULL,
@@ -177,7 +177,7 @@ if( !class_exists('Registar_Nestalih_Shortcodes') ) : class Registar_Nestalih_Sh
 	/*
 	 * Register Nestalih Amber Alert
 	 */
-	public function callback__registar_nestalih_amber_alert ($attr, $content='', $tag) {
+	public function callback__registar_nestalih_amber_alert ($attr, $content='', $tag='callback__registar_nestalih_amber_alert') {
 		$attr = array_filter( shortcode_atts( [
 			'per_page'	=> NULL,
 			'page'		=> NULL,
