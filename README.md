@@ -1,4 +1,7 @@
 # Registar nestalih (ARHIVIRANO)
+![Status](https://img.shields.io/badge/status-archived-red.svg)
+![License](https://img.shields.io/badge/license-GPLv2-blue.svg)
+![WordPress](https://img.shields.io/badge/WordPress.org-closed-lightgrey.svg)
 
 Ovaj projekat je **arhiviran** i više se ne održava.
 
@@ -46,9 +49,9 @@ Projekat **nije namenjen za produkcionu upotrebu**.
 
 Ako iz istorijskih razloga želite da pregledate kod:
 
-1. Preuzmite ZIP arhivu.
-2. Raspakujte u direktorijum `/wp-content/plugins/registar-nestalih/`.
-3. Aktivirajte u WordPress Admin okruženju (samo lokalno).
+1. Preuzmite ZIP arhivu.  
+2. Raspakujte u direktorijum `/wp-content/plugins/registar-nestalih/`.  
+3. Aktivirajte u WordPress Admin okruženju (samo lokalno).  
 4. Nema podataka, API poziva ni prikaza – sve funkcije su onemogućene.
 
 ---
@@ -74,4 +77,4 @@ Kod se može slobodno proučavati, menjati i koristiti u skladu sa licencom.
 
 ---
 
-© INFINITUM FORM — Projekat razvijen u saradnji sa Centrom za sigurniji internet i podrškom Ambasade Australije u Srbiji.
+© INFINITUM FORM — Projekat razvijen u saradnji sa Centrom za sigurniji internet.
