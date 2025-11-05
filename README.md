@@ -1,45 +1,77 @@
-REGISTAR NESTALIH
-========
+# Registar nestalih (ARHIVIRANO)
 
-Prvi WordPress plugin za [Registar nestalih lica u Republici Srbiji](https://www.nestalisrbija.rs/).
+Ovaj projekat je **arhiviran** i više se ne održava.
 
-## OFICIJALNA INSTALACIJA
+- **Status:** Arhivirano  
+- **Održavanje:** Ne  
+- **Izvori podataka:** Onemogućeni  
+- **WordPress.org:** Dodatak je zatvoren i više nije dostupan za preuzimanje  
 
-[https://wordpress.org/plugins/registar-nestalih/](https://sr.wordpress.org/plugins/registar-nestalih/)
+---
 
-## INSTALACIJA DODATKA SA GitHub
+## O projektu
 
-U direktorijumu `/wp-content/plugins` vaše WordPress instalacije kreirajte novi folder pod nazivom `registar-nestalih`, preuzmite ovaj dodatak sa GitHub i prekopirajte sve fajlove koje dobijete u ZIP-u.
+**Registar nestalih** je bio prvi WordPress dodatak koji je omogućavao prikaz javno dostupnih informacija iz Registra nestalih lica u Republici Srbiji.  
+Dodatak je razvijen sa ciljem da se poveća vidljivost nestalih osoba i omogući građanima da učestvuju u potrazi kroz deljenje informacija.
 
-Nakon toga u WP Admin aktivirate ovaj novi dodatak.
+Projekat je **zvanično arhiviran** nakon što je Centar za sigurniji internet prešao na zatvorena, interna softverska rešenja.  
+Ovaj repozitorijum ostaje javan **isključivo u arhivske i edukativne svrhe**.
 
-Nakon aktivacije bi trebalo da dobijete novu stranicu **Registar nestalih** u gde se u sadržaju nalazi kratki kôd (shortcode) `[registar-nestalih]` koji prikazuje listu nestalih sa pretragom i svim ostalim funkcionalnostima.
+---
 
-Ako ova stranica ne postoji, kreirajte je i postavite kratki kôd `[registar-nestalih]` u sadržaj. Nakon toga u WP Admin posetite opciju **Nestale Osobe** koja se nalazi levo u u navigaciji i odaberite vašu stranicu nestalih osoba i snimite. u tim podešavanjima takođe podešavate permalinkove.
+## Razlozi za arhiviranje
 
-Nakon toga vaš dodatak treba da radi bez problema. 
+- API i izvorni sistem **više ne postoje**
+- Projekat **nije u funkciji** od 2024.
+- Nema više ažuriranja ni podrške
+- WordPress.org verzija je **zatvorena**
 
-## NESTALI NE SMEJU BITI I NEVIDLJIVI
+---
 
-Brojni nestanci dece i maloletnih lica na godišnjem nivou u Srbiji, alarm su koji se napravedno ignoriše. O nestancima mnogih se ne zna ništa, već samo mali broj njih, zahvaljujući angažovanosti porodice, dopre do društvenih mreža i medija, kada zapravo i započinje javna potraga.
+## Privatnost i bezbednost
 
-Centar za nestalu i zlostavljanu decu od 2015. godine beleži na desetine slučajeva nestale dece koja su joj bila prijavljena, a koja su brzim alarmiranjem javnosti, ubrzo nakon toga pronađena i vraćena svojim porodicama. Upravo ti slučajevi potkrepili su stav Centar da će uključivanje šire javnosti u potragu kroz osnivanje Registra nestalih lica Srbije znatno doprineti boljoj potrazi za nestalim licima, pre svega decom.
+Ova arhivirana verzija:
 
-Deca su najčešće meta pedofila, trgovaca ljudima, pa se i nestanak svakog deteta mora razmatrati i u tom pravcu, pored onih blažih scenarija da se „dete zaigralo“, „zaboravilo da se javi gde ide“, „da želi da pokaže svoj revolt i nezadovoljstvo“… Zbog svojih godina, interesantna su za eksploatisanje u pornografske svrhe, za prinudni rad, prinudnu prostituciju.
+- Ne prikuplja nikakve podatke  
+- Ne koristi kolačiće  
+- Ne poziva spoljne API servise  
+- Ne obrađuje lične podatke  
+- Nema funkcionalnost prikaza ili pretrage  
 
-Mnoga deca odlaze od svojih kuća jer su žrtve zlostavljanja u porodici.
+---
 
-### ZAŠTO REGISTAR NESTALIH LICA SRBIJE ?
+## Instalacija (samo za arhivu)
 
-Registar nestalih lica Srbije pokenut je u junu 2017. godine. Cilj pokretanja registra jeste vidljivost velikog broja nestalih lica čiji podaci i fotogafije, mimo policijske evidencije, javnosti nisu dostupne. Centar zastupa stav da se takvim pristupom, netransparentnošću, opšta javnost ne može uključiti u potragu i doprineti pronalasku nestalih lica, pre svega maloletnih. Pokretanjem registra – jedinstvene baze nestalih lica sa teritorije Srbije, Centar ujedno podiže svest javnosti o nestancima lica kao svakodnevnoj pojavi.
+Projekat **nije namenjen za produkcionu upotrebu**.
 
-### KAKO UČESTVOVATI U POTRAZI ZA NESTALIM LICIMA?
+Ako iz istorijskih razloga želite da pregledate kod:
 
-Registar nestalih lica Srbije dostupan je 24h na adresi nestalisrbija.rs. Registar će se popunjavati u skladu sa Centru dostupnim podacima o nestalim licima. U okviru podataka za svako nestalo lice, građani Srbije imaće priliku da u posebno naznačenom polju ostave podatak o nestalom licu, i time daju doprinos boljoj i efikasnijoj potrazi. Uredništvo registra dostupno je 24h putem adrese info@nestalisrbija.rs 
+1. Preuzmite ZIP arhivu.
+2. Raspakujte u direktorijum `/wp-content/plugins/registar-nestalih/`.
+3. Aktivirajte u WordPress Admin okruženju (samo lokalno).
+4. Nema podataka, API poziva ni prikaza – sve funkcije su onemogućene.
 
-Registra nestalih lica Srbije pružila je Ambasada Australije u Srbiji
+---
 
-## KONTAKT I PODRŠKA
-Ako imate neki tehnički problem prilikom instalacije ovog dodatka ili bilo kakvo pitanje u vezi upotrebe, kontaktirajte autora na e-mail: ivijan.stefan@csi.org.rs
+## Status na WordPress.org
 
-Takođe prijavite bilo kakav problem, ideju ili reči podrške za razvoj ovog projekta, bićemo veoma zahvalni!
+Oficijalna stranica dodatka je arhivirana:  
+[https://wordpress.org/plugins/registar-nestalih/](https://wordpress.org/plugins/registar-nestalih/)
+
+---
+
+## Licenca
+
+Ovaj projekat je dostupan pod [GPLv2](https://www.gnu.org/licenses/gpl-2.0.html) ili novijom licencom.  
+Kod se može slobodno proučavati, menjati i koristiti u skladu sa licencom.
+
+---
+
+## Napomena
+
+> Projekat je arhiviran radi očuvanja istorijskih podataka i kao primer saradnje između otvorenog koda i društveno odgovornog projekta.  
+> Nema aktivnu funkcionalnost i ne preporučuje se za instalaciju.
+
+---
+
+© INFINITUM FORM — Projekat razvijen u saradnji sa Centrom za sigurniji internet i podrškom Ambasade Australije u Srbiji.
